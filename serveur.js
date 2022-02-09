@@ -24,6 +24,11 @@ app.set('view engine', 'ejs');
 * import all related Javascript and css files to inject in our app
 */
 app.use(express.static(__dirname + '/public/'));
+
+//methode http chargee de la route /accueil
+app.get('/Accueil',function (req,res) {
+    res.render('pages/index.ejs');
+});
 var serveur = app.listen(2000, function(){
 	console.log("serveur fonctionne sur 2000... ! ");
 });
