@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/NarguSabz/ProjetApplicationTransactionnelle#readme",
   "dependencies": {
+    "bootstrap": "^5.1.3",
     "express": "^4.17.2"
   }
 }
