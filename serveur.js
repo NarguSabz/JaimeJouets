@@ -13,3 +13,9 @@ var bodyParser = require('body-parser');
 */
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+/*
+* view engine template parsing (ejs types)
+*/
+
+app.set('view engine', 'ejs');
