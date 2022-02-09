@@ -19,3 +19,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 */
 
 app.set('view engine', 'ejs');
+
+/**
+* import all related Javascript and css files to inject in our app
+*/
+app.use(express.static(__dirname + '/public/'));
