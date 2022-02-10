@@ -45,6 +45,11 @@ app.get('/unProduit',function (req,res) {
     res.render('pages/unProduit.ejs');
 });
 
+//methode http chargee de la route /produits
+app.get('/produits',function (req,res) {
+    res.render('pages/produits.ejs');
+});
+
 var serveur = app.listen(2000, function(){
 	console.log("serveur fonctionne sur 2000... ! ");
 });
