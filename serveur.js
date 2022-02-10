@@ -40,6 +40,11 @@ app.get('/creerUnCompte',function (req,res) {
     res.render('pages/creerCompte.ejs');
 });
 
+//methode http chargee de la route /unProduit
+app.get('/unProduit',function (req,res) {
+    res.render('pages/unProduit.ejs');
+});
+
 var serveur = app.listen(2000, function(){
 	console.log("serveur fonctionne sur 2000... ! ");
 });
