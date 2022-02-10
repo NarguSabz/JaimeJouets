@@ -34,6 +34,12 @@ app.get('/accueil',function (req,res) {
 app.get('/login',function (req,res) {
     res.render('pages/login.ejs');
 });
+
+//methode http chargee de la route /creerCompte
+app.get('/creerUnCompte',function (req,res) {
+    res.render('pages/creerCompte.ejs');
+});
+
 var serveur = app.listen(2000, function(){
 	console.log("serveur fonctionne sur 2000... ! ");
 });
