@@ -26,8 +26,13 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public/'));
 
 //methode http chargee de la route /accueil
-app.get('/Accueil',function (req,res) {
+app.get('/accueil',function (req,res) {
     res.render('pages/index.ejs');
+});
+
+//methode http chargee de la route /login
+app.get('/login',function (req,res) {
+    res.render('pages/login.ejs');
 });
 var serveur = app.listen(2000, function(){
 	console.log("serveur fonctionne sur 2000... ! ");
