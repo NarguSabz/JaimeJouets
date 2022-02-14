@@ -83,10 +83,13 @@ get the event list with select from table
 con.connect(function(err) {
     if (err) throw err;
 con.query("SELECT * FROM compte_client", function (err, result){
-    if (err) throw err;
-
+	if (err) throw err;
+	console.log(result)
 });
-
+	con.query("SELECT * FROM panier", function (err, result) {
+		if (err) throw err;
+		console.log(result)
+	});
 });
 
 /*
@@ -130,71 +133,57 @@ app.get('/event/add',function (req,res) {
 post method to data : pour ajouter un evenement à la BD
 */
 
-app.post('/',function (req,res) {
-	
+app.post('/', function (req, res) {
+
 	/* get the record base on ID
 	*/
 	var resultTest = 0;
-	     con.query("SELECT id_panier from panier ORDER BY id_panier DESC LIMIT 1", function (err, result){
-		console.log(result[0].id_panier);
-		console.log(result[0].compte_client_nom_utilisateur);
-		if (result.length > 0){
+
+	if (req.body.username.trim().toLowerCase() == "") {
+		console.log('invalid username')
+		throw err;
+	}
+
+	con.query("SELECT * from panier ORDER BY id_panier DESC LIMIT 1", function (err, result) {
+
+		if (typeof result[0] != 'undefined') {
 			resultTest = result[0].id_panier;
 			resultTest++;
-			
-		}
-		console.log(resultTest);
-	});	
-	
-	
-	
-		console.log(resultTest);
-		var query = "INSERT INTO panier (id_panier, compte_client_nom_utilisateur) VALUES (";
-		query += " "+resultTest+",";
-		query += " '"+req.body.lname+"')";
-
-		
-		con.query(query, function (err, result){
-			if (err) throw err;
-			res.redirect(baseURL);
-
-	 });
-	
-	
-	/**
-	var resultUserNameExists = 0;
-	
-	    con.query("SELECT * FROM compte_client where nom_utilisateur = "+req.body.username+"'", function (err, result){
-		console.log("result "+ result);
-
-		if (!result){
-			resultUserNameExists = 1;
 		}
 
-    });
-		if (resultUserNameExists == 1) {
-			
-		var query = "INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES (";
-		query += " "+req.body.username+",";
-		query += " "+req.body.password1+",";
-		query += " "+req.body.fname+",";
-		query += " "+req.body.lname+",";
-		query += " "+req.body.email+",";
-		query += " "+req.body.adresse+",";
-		query += " '"+resultTest+"')";
+		con.query("SELECT compte_client_nom_utilisateur from panier WHERE compte_client_nom_utilisateur = '" + req.body.username.trim().toLowerCase() + "'", function (err, result) {
 
-		con.query(query, function (err, result){
-			if (err) throw err;
-			res.redirect(baseURL);
-	});	
-		}else{
-			
-			console.log("username taken")
+			if (typeof result[0] != 'undefined') {
+				console.log('username used' + req.body.username.trim().toLowerCase());
+				throw err;
 
-		}
-**/
+			} else {
+
+				con.query("INSERT INTO panier (id_panier, compte_client_nom_utilisateur) VALUES ( " + resultTest + "," + " '" + req.body.username.trim().toLowerCase() + "')", function (err, result) {
+					if (err) throw err;
+
+					console.log("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + req.body.username + "', '" + req.body.password1 + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.email + "', '" + req.body.adresse + "', " + resultTest + ")");
+					con.query("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + req.body.username + "', '" + req.body.password1 + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.email + "', '" + req.body.adresse + "', " + resultTest + ")", function (err, result) {
+						if (err) throw err;
+
+					});
+
+				});
+
+			}
+
+		});
 
 	});
+
+
+});
+		
+
+		
+
+
+
 /*
 pour editer un event 
 */
