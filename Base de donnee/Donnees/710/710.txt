@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Id : 710
 Nom : VTech Super trotteur parlant
 Marque : VTech 
@@ -5,4 +6,13 @@ Description : Qu'il s'agisse de jouer à même le sol ou de faire ses premiers p
 Date : 11-03-2021
 Categorie: 0-4
 Prix : 59.99
+=======
+Id : 710
+Nom : VTech Super trotteur parlant
+Marque : VTech 
+Description : Qu'il s'agisse de jouer à même le sol ou de faire ses premiers pas, le Super trotteur parlant grandit avec votre tout-petit. Débordant de fonctions amusantes, le panneau d'activités facile à retirer est idéal pour jouer sur le sol; de plus, ses pattes se replient pour faciliter le rangement. Cinq touches de piano lumineuses présentent à votre petit chérubin les couleurs et les chiffres, alors que les engrenages pivotants et le téléphone cellulaire amovible contribuent à renforcer sa motricité fine. Il fera la connaissance de six animaux sympathiques en insérant les trois pièces du trieur de formes, en appuyant sur le bouton du chiot, en glissant la souris ou en tapant sur l'oiseau, ce qui activera les sons et les voix qui leur sont propres. Puis, au fur et à mesure que grandissent vos tout-petits, fixez le panneau sur le trotteur à deux vitesses ajustables et regardez-les partir en trombe!
+Date : 11-03-2021
+Categorie: 0-4
+Prix : 59.99
+>>>>>>> 0ebcd52961e7460072ba471fca8f49b5f62817f0
 Stock : 8

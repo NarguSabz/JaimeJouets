@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Id : 714
 Nom : Fisher-Price - Rires et Éveil - Plaisirs du jardin à la cuisine
 Marque : Fisher-Price
@@ -5,4 +6,13 @@ Description : Avec le coffret de jeu Plaisirs du jardin à la cuisine Rires et �
 Date : 18-09-2014
 Categorie: 0-4
 Prix : 134.99
+=======
+Id : 714
+Nom : Fisher-Price - Rires et Éveil - Plaisirs du jardin à la cuisine
+Marque : Fisher-Price
+Description : Avec le coffret de jeu Plaisirs du jardin à la cuisine Rires et Éveil de Fisher-Price, les tout-petits peuvent "cultiver", cueillir, "préparer" et servir des aliments frais factices, créant ainsi leurs propres repas délicieux de la ferme à la table. Ce coffret interactif à 2 côtés de jeu comprend 1 jardin d'un côté et 1 cuisine de l'autre, chacun proposant des lumières, de la musique et des activités manuelles que les tout-petits peuvent découvrir. Le contenu d'apprentissage Éveil progressif enseigne l'alphabet, le comptage, les couleurs, les formes, l'alimentation saine et plus encore, tout en faisant jouer les petits jardiniers. Essayez un smoothie à l'alphabet. Il accompagne parfaitement le pain grillé à l'avocat!
+Date : 18-09-2014
+Categorie: 0-4
+Prix : 134.99
+>>>>>>> 0ebcd52961e7460072ba471fca8f49b5f62817f0
 Stock : 24

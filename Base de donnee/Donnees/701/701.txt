@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Id : 701
 Nom : Hot Wheels - Garage Ultime
 Marque : Hot Wheels
@@ -5,4 +6,13 @@ Description : Nouveau pour 2020, c'est le MÉGA défi dans le Méga Garage LE PL
 Date : 25-09-2019
 Categorie: 7-9
 Prix : 159.99
+=======
+Id : 701
+Nom : Hot Wheels - Garage Ultime
+Marque : Hot Wheels
+Description : Nouveau pour 2020, c'est le MÉGA défi dans le Méga Garage LE PLUS HAUT jusqu'à maintenant, offrant d'innombrables possibilités d'histoires et de jeu d'action de véhicules! Ce gigantesque coffret de jeu offre du stationnement pour plus de 100 véhicules et 1 ennemi T-Rex Robot surprenant qui alimente l'imagination des enfants! Les enfants amènent les véhicules jusqu'en haut dans l'ascenseur pour 2 véhicules actionné par l'enfant. Ils peuvent ensuite descendre à vive allure dans le garage aux niveaux multiples et découvrir le mode multijeu pour des sensations fortes continues! Se connecte à d'autres coffrets Hot Wheels (vendus séparément) et comprend 2 véhicules Hot Wheels à l'échelle 1:64 et aussi une fonction pour de l'action Hot Wheels id! Raccordez le Portail Hot Wheels id (vendu séparément) pour accéder à une expérience de jeu supplémentaire: balayez un véhicule, faites la course avec vos adversaires, échappez au T-Rex Robot et gagnez!
+Date : 25-09-2019
+Categorie: 7-9
+Prix : 159.99
+>>>>>>> 0ebcd52961e7460072ba471fca8f49b5f62817f0
 Stock : 8

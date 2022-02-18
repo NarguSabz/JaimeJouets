@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Id : 708
 Nom : LEGO Festival de glace du Nouvel An lunaire
 Marque : LEGO	
@@ -5,4 +6,13 @@ Description : Mettez-vous dans l'ambiance de la fête avec cet ensemble de const
 Date : 01-08-2016
 Categorie: 7-9
 Prix : 154.94
+=======
+Id : 708
+Nom : LEGO Festival de glace du Nouvel An lunaire
+Marque : LEGO	
+Description : Mettez-vous dans l'ambiance de la fête avec cet ensemble de construction du festival de glace du Nouvel An lunaire (80109) LEGO pour les huit ans et plus. Il présente une scène hivernale très détaillée avec un lac gelé en briques, un magasin de location d'équipement, le chariot d'un vendeur de patates douces, une cabine photo, une sculpture de glace chun, un distributeur automatique, une luge en forme de pingouin, une piste de ski, un arbre couronné de neige et plus encore. Construire, joueret exposer La scène joyeuse prend vie grâce à treize figurines LEGO, dont une personne en tenue de tigre pour marquer l'année du Tigre, une figurine de pingouin et de nombreux éléments et accessoires amusants comme des patins à glace, une rondelle de hockey, un téléphone intelligent, une sculpture de glace de pingouin bleu translucide et des outils pour sculpter la glace. L'ensemble est amusant à construire seul ou en famille et constitue une pièce d'exposition festive et merveilleusement ludique. D'excellentes idées-cadeaux Les ensembles LEGO du festival traditionnel à collectionner sont des cadeaux fantastiques pour les enfants branchés et pour toute personne intéressée par la culture asiatique, car ils offrent des défis de construction passionnants et des heures de jeu créatif.
+Date : 01-08-2016
+Categorie: 7-9
+Prix : 154.94
+>>>>>>> 0ebcd52961e7460072ba471fca8f49b5f62817f0
 Stock : 3
