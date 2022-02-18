@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 * view engine template parsing (ejs types)
 */
 //ajot d'une connection a la base de donnees
-var connection= mysql.createConnection({ host: "localhost", user: "root", password: "", database: "mybd" });
+var connection = mysql.createConnection({ host: "localhost", user: "root", password: "", database: "mybd" });
 
 app.set('view engine', 'ejs');
 
@@ -29,7 +29,9 @@ app.use(express.static(__dirname + '/public/'));
 
 //methode http chargee de la route /accueil
 app.get('/', function (req, res) {
-    res.render('pages/index.ejs');
+    //query permettant d aller chercher les 8 les plus recents produits, dans la base de donnees mybd, puis on passe le resultat dans le variable produits
+    con.query("SELECT p.id_produit, p.nom, p.description, p.date_parution, p.prix, c.nom age, m.nom marque from produit p join categories c on p.categories_id_categories = c.id_categories join marques m on p.marques_id_marque = m.id_marque order by p.date_parution desc,p.id_produit ASC limit 8;",
+        function (err, resultat) { res.render('pages/index.ejs', { produits: resultat }); });
 });
 
 //methode http chargee de la route /login
