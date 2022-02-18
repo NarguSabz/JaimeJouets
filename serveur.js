@@ -7,7 +7,12 @@ var http = require('http');
 var mysql = require('mysql');
 var app = express();
 var bodyParser = require('body-parser');
-
+var con = mysql.createConnection({
+	host: "localhost",
+	user: "root",
+	password: "",
+	database: "bdproto"
+});
 /*
 * parse all form data
 */
@@ -35,6 +40,28 @@ app.get('/login', function (req, res) {
     res.render('pages/login.ejs');
 });
 
+app.post('/login/connexion', function (req, res){
+    console.log('username used ' + req.body.username);
+    con.query("Select nom_utilisateur, mdp from compte_client where nom_utilisateur = '" + req.body.username + "'", function(err, result){
+        console.log(result);
+        var user = result[0].nom_utilisateur
+        if (typeof user == 'undefined') {
+            console.log('username used ' + req.body.username);
+            res.writeHeader(200, {'Content-Type': 'text/html ; charset=UTF-8'});
+            res.write("<html><body><script>alert('Pas Ok');</script></body></html>");
+            res.end();
+        }else{
+            if(result[0].mdp == req.body.MDP){
+            res.writeHeader(200, {'Content-Type': 'text/html ; charset=UTF-8'});
+            res.write("<html><body><script>alert('Ok');</script></body></html>");
+            console.log('Test réussi');
+            res.end();
+            }
+            
+        }
+    });
+    
+});
 //methode http chargee de la route /creerCompte
 app.get('/creerUnCompte', function (req, res) {
     res.render('pages/creerCompte.ejs');
