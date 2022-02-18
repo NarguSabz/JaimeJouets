@@ -1,0 +1,18 @@
+<<<<<<< HEAD
+Id : 712
+Nom : Vtech - Do, ré, mi, super livre enchanté
+Marque : VTech 
+Description : Bébé explorera les comptines classiques à l’aide de Do, Ré, Mi, Super livre enchanté de VTechMD. Il développera ses habiletés motrices en glissant et tournant les pièces de jeu amusantes, tout en explorant chaque page facile à tourner. Ensuite, il pianotera de bon coeur à l’aide des cinq touches de piano colorées qui lui montrent les couleurs et les instruments. Il profitera de deux modes amusants : le mode éducatif, qui offre un vocabulaire correspondant à son âge et le mode musical, qui joue de la musique et le son des instruments. Avec ses pages aux couleurs vives et une étoile lumineuse qui clignote avec les sons, le livre d’histoires interactives procure une stimulation visuelle qui saura captiver votre enfant pendant des heures.
+Date : 11-05-2020
+Categorie: 0-4
+Prix : 26.99
+=======
+Id : 712
+Nom : Vtech - Do, ré, mi, super livre enchanté
+Marque : VTech 
+Description : Bébé explorera les comptines classiques à l’aide de Do, Ré, Mi, Super livre enchanté de VTechMD. Il développera ses habiletés motrices en glissant et tournant les pièces de jeu amusantes, tout en explorant chaque page facile à tourner. Ensuite, il pianotera de bon coeur à l’aide des cinq touches de piano colorées qui lui montrent les couleurs et les instruments. Il profitera de deux modes amusants : le mode éducatif, qui offre un vocabulaire correspondant à son âge et le mode musical, qui joue de la musique et le son des instruments. Avec ses pages aux couleurs vives et une étoile lumineuse qui clignote avec les sons, le livre d’histoires interactives procure une stimulation visuelle qui saura captiver votre enfant pendant des heures.
+Date : 11-05-2020
+Categorie: 0-4
+Prix : 26.99
+>>>>>>> 0ebcd52961e7460072ba471fca8f49b5f62817f0
+Stock : 13
