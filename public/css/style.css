@@ -905,6 +905,12 @@ textarea.input {
   text-align: center;
   z-index: 20;
 }
+h3.product-name{
+overflow: hidden;
+    white-space: nowrap;
+    text-o: ;
+    text-overflow: ellipsis;
+}
 
 .product .product-body .product-category {
   text-transform: uppercase;
