@@ -33,11 +33,11 @@ app.get('/', function (req, res) {
     connection.query("SELECT p.id_produit, p.nom, p.description, p.date_parution, p.prix, c.nom age, m.nom marque from produit p join categories c on p.categories_id_categories = c.id_categories join marques m on p.marques_id_marque = m.id_marque order by p.date_parution desc,p.id_produit ASC limit 8;",
         function (err, resultat) { res.render('pages/index.ejs', { login: "", accueil: "active", creationCompte: "", produit: "", produits: resultat }); });
     //on active egalement le lien vers la page d accueil et desactive tous les autres liens
-    });
+});
 
 //methode http chargee de la route /login
 app.get('/login', function (req, res) {
-        //active le lien vers la page de login et desactive tous les autres liens
+    //active le lien vers la page de login et desactive tous les autres liens
     res.render('pages/login.ejs', { login: "active", accueil: "", creationCompte: "", produit: "" });
 });
 
@@ -54,8 +54,10 @@ app.get('/unProduit', function (req, res) {
 
 //methode http chargee de la route /produits
 app.get('/produits', function (req, res) {
-    //active le lien vers la page des produits et desactive tous les autres liens
-    res.render('pages/produits.ejs', { login: "", accueil: "", creationCompte: "", produit: "active" });
+    //query permettant d aller chercher tous les produits, dans la base de donnees mybd, puis on passe le resultat dans le variable produits
+    connection.query("SELECT p.id_produit, p.nom, p.description, p.date_parution, p.prix, c.nom age, m.nom marque from produit p join categories c on p.categories_id_categories = c.id_categories join marques m on p.marques_id_marque = m.id_marque;",
+        function (err, resultat) { res.render('pages/produits.ejs', { login: "", accueil: "", creationCompte: "", produit: "active", produits: resultat }); });
+    //on active le lien vers la page des produits et desactive tous les autres liens
 });
 
 var serveur = app.listen(2000, function () {
