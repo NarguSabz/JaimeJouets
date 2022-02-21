@@ -184,62 +184,75 @@
                         <!-- product -->
                         <!--ce foreach prends comme variable 'produits' qui contient les 8 les plus recents produits-->
 
-                        <% produits.forEach(function(produit) { %>
-                            <div class="col-md-4 col-xs-6">
-                                <div class="product">
-                                    <div class="product-img">
-                                        <!--on place le id du produit pour pouvoir chercher la route vers son image-->
-                                        <img src="./img/<%=produit.id_produit %>/<%=produit.id_produit %>-1.jpg" alt="">
-                                        <div class="product-label">
-                                            <span class="sale">-30%</span>
-                                            <span class="new">NOUVEAU</span>
+                        <div class="tab-content">
+                            <!-- product -->
+                            <!--ce foreach prends comme variable 'produits' qui contient les 8 les plus recents produits-->
+                            <% for(var i=0, j=0; i< nbrePages; i++){%>
+                                <%if(i==0){%>
+                                <div id="tab<%=i+1%>" class="tab-pane fade in active">
+                                    <%}else{%>
+                                        <div id="tab<%=i+1%>" class="tab-pane fade">
+                                        <%}%>
+                                    <% for(var k=0; k< 2 && j < produits.length; j++,k++){ %>
+                                        <div class="col-md-4 col-xs-6">
+                                            <div class="product">
+                                                <div class="product-img">
+                                                    <!--on place le id du produit pour pouvoir chercher la route vers son image-->
+                                                    <img src="./img/<%=produits[j].id_produit %>/<%=produits[j].id_produit %>-1.jpg"
+                                                        alt="">
+                                                    <div class="product-label">
+                                                        <span class="sale">-30%</span>
+                                                        <span class="new">NOUVEAU</span>
+                                                    </div>
+                                                </div>
+                                                <div class="product-body">
+                                                    <!--on place la marque du produit-->
+    
+                                                    <p class="product-category">par <%=produits[j].marque %>
+                                                    </p>
+                                                    <!--on place le nom du produit-->
+    
+                                                    <h3 class="product-name"><a href="#">
+                                                            <%=produits[j].nom %>
+                                                        </a>
+    
+                                                    </h3>
+                                                    <!--on place le prix du produit-->
+    
+                                                    <h4 class="product-price">$<%=produits[j].prix %> <del
+                                                                class="product-old-price">$990.00</del></h4>
+                                                    <!--on place la categorie d age du produit-->
+    
+                                                    <p class="product-category">pour <%=produits[j].age %> ans</p>
+                                                    <div class="product-rating">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    </div>
+                                                    <div class="product-btns">
+                                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
+                                                                class="tooltipp">add to wishlist</span></button>
+                                                        <button class="add-to-compare"><i class="fa fa-exchange"></i><span
+                                                                class="tooltipp">add to compare</span></button>
+                                                        <button class="quick-view"><i class="fa fa-eye"></i><span
+                                                                class="tooltipp">quick view</span></button>
+                                                    </div>
+                                                </div>
+                                                <div class="add-to-cart">
+                                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add
+                                                        to
+                                                        cart</button>
+                                                </div>
+                                            </div>
+    
                                         </div>
-                                    </div>
-                                    <div class="product-body">
-                                        <!--on place la marque du produit-->
-
-                                        <p class="product-category">par <%=produit.marque %>
-                                        </p>
-                                        <!--on place le nom du produit-->
-
-                                        <h3 class="product-name"><a href="#">
-                                                <%=produit.nom %>
-                                            </a>
-
-                                        </h3>
-                                        <!--on place le prix du produit-->
-
-                                        <h4 class="product-price">$<%=produit.prix %> <del
-                                                    class="product-old-price">$990.00</del></h4>
-                                        <!--on place la categorie d age du produit-->
-
-                                        <p class="product-category">pour <%=produit.age %> ans</p>
-                                        <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <div class="product-btns">
-                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                    class="tooltipp">add to wishlist</span></button>
-                                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span
-                                                    class="tooltipp">add to compare</span></button>
-                                            <button class="quick-view"><i class="fa fa-eye"></i><span
-                                                    class="tooltipp">quick view</span></button>
-                                        </div>
-                                    </div>
-                                    <div class="add-to-cart">
-                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add
-                                            to
-                                            cart</button>
-                                    </div>
+                                        <%}%>
                                 </div>
-
-                            </div>
-                            <%}); %>
-                                <!-- /product -->
+                                <%}%>
+                                    <!-- /product -->
+                        </div>
                     </div>
                     <!-- /store products -->
 
