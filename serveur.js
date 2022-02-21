@@ -73,7 +73,7 @@ app.post('/creerCompte', function (req, res) {
 	/* get the record base on ID
 	*/
 	var resultTest = 0;
-	if (req.body.username.trim().toLowerCase() == "") {
+	if (req.body.username.trim() == "") {
 		console.log('invalid username')
 		throw err;
 	}
@@ -82,16 +82,16 @@ app.post('/creerCompte', function (req, res) {
 			resultTest = result[0].id_panier;
 			resultTest++;
 		}
-		con.query("SELECT compte_client_nom_utilisateur from panier WHERE compte_client_nom_utilisateur = '" + req.body.username.trim().toLowerCase() + "'", function (err, result) {
+		con.query("SELECT compte_client_nom_utilisateur from panier WHERE compte_client_nom_utilisateur = '" + req.body.username.trim() + "'", function (err, result) {
 			if (typeof result[0] != 'undefined') {
-				console.log('username used' + req.body.username.trim().toLowerCase());
+				console.log('username used' + req.body.username.trim());
 				throw err;
 			} else {
-				con.query("INSERT INTO panier (id_panier, compte_client_nom_utilisateur) VALUES ( " + resultTest + "," + " '" + req.body.username.trim().toLowerCase() + "')", function (err, result) {
+				con.query("INSERT INTO panier (id_panier, compte_client_nom_utilisateur) VALUES ( " + resultTest + "," + " '" + req.body.username.trim() + "')", function (err, result) {
 					if (err) throw err;
 
-					console.log("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + req.body.username + "', '" + req.body.password1 + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.email + "', '" + req.body.adresse + "', " + resultTest + ")");
-					con.query("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + req.body.username + "', '" + req.body.password1 + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.email + "', '" + req.body.adresse + "', " + resultTest + ")", function (err, result) {
+					console.log("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + req.body.username + "', '" + req.body.passwordUser + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.email + "', '" + req.body.adresse + "', " + resultTest + ")");
+					con.query("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + req.body.username + "', '" + req.body.passwordUser + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.email + "', '" + req.body.adresse + "', " + resultTest + ")", function (err, result) {
 						if (err) throw err;
 					res.writeHeader(200, {'Content-Type': 'text/html ; charset=UTF-8'});
 					res.write("<html><body><script>alert('Compte Créer');</script></body></html>");
