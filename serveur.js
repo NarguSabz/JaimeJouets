@@ -7,6 +7,8 @@ var http = require('http');
 var mysql = require('mysql');
 var app = express();
 var bodyParser = require('body-parser');
+var $ = require("jquery");
+
 
 /*
 * parse all form data
@@ -73,10 +75,7 @@ app.get('/creerUnCompte', function (req, res) {
     //active le lien vers la page de creation du compte et desactive tous les autres liens
     res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "" });
     $('#messageCreation').hide();
-    GLOBAL.document = new JSDOM(html).window.document;
-    const jsdom = require("jsdom");
-    const { JSDOM } = jsdom;    
-    var $ = require("jquery");
+    
 });
 
 
