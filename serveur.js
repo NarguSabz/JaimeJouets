@@ -64,7 +64,7 @@ app.post('/login/connexion', function (req, res){
 
 //methode qui se charge d'envoyer les informations necessaires pour la creation d'un compte 
 //vers la BD en s'assurant que ces entrées sont acceptables 
-app.post('/creerCompte', function (req, res) {
+app.post('/creerUnCompte', function (req, res) {
 	
 	var resultTest = 0; //initialisation du premier ID a 0 si necessaire
 	
