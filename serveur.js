@@ -73,7 +73,7 @@ app.post('/creerCompte', function (req, res) {
 		throw err;
 	}
 	
-	con.query("SELECT * from panier ORDER BY id_panier DESC LIMIT 1", function (err, result) {
+	connection.query("SELECT * from panier ORDER BY id_panier DESC LIMIT 1", function (err, result) {
 		
 		if (typeof result[0] != 'undefined') { //chercher le plus gros ID s'il existe pour iterer dessus
 			resultTest = result[0].id_panier;
@@ -81,15 +81,15 @@ app.post('/creerCompte', function (req, res) {
 		}
 		
 		//verifier si le username existe deja si non, inserer les données de l'utilisateur dans la BD
-		con.query("SELECT compte_client_nom_utilisateur from panier WHERE compte_client_nom_utilisateur = '" + req.body.username.trim() + "'", function (err, result) {
+		connection.query("SELECT compte_client_nom_utilisateur from panier WHERE compte_client_nom_utilisateur = '" + req.body.username.trim() + "'", function (err, result) {
 			if (typeof result[0] != 'undefined') {
 				console.log('username used' + req.body.username.trim());
 				throw err;
 			} else {
-				con.query("INSERT INTO panier (id_panier, compte_client_nom_utilisateur) VALUES ( " + resultTest + "," + " '" + req.body.username.trim() + "')", function (err, result) {
+				connection.query("INSERT INTO panier (id_panier, compte_client_nom_utilisateur) VALUES ( " + resultTest + "," + " '" + req.body.username.trim() + "')", function (err, result) {
 					if (err) throw err;
 					//console.log("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + req.body.username + "', '" + req.body.passwordUser + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.email + "', '" + req.body.adresse + "', " + resultTest + ")");
-					con.query("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + req.body.username + "', '" + req.body.passwordUser + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.email + "', '" + req.body.adresse + "', " + resultTest + ")", function (err, result) {
+					connection.query("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + req.body.username + "', '" + req.body.passwordUser + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.email + "', '" + req.body.adresse + "', " + resultTest + ")", function (err, result) {
 						if (err) throw err;
 						
 					res.writeHeader(200, {'Content-Type': 'text/html ; charset=UTF-8'});
