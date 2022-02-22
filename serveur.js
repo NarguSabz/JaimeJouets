@@ -178,6 +178,9 @@ app.get('/creerUnCompte', function (req, res) {
     //active le lien vers la page de creation du compte et desactive tous les autres liens
     res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "" });
     $('#messageCreation').hide();
+    GLOBAL.document = new JSDOM(html).window.document;
+    const jsdom = require("jsdom");
+    const { JSDOM } = jsdom;    
 });
 
 //methode http chargee de la route /unProduit
