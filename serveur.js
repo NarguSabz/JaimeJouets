@@ -7,12 +7,7 @@ var http = require('http');
 var mysql = require('mysql');
 var app = express();
 var bodyParser = require('body-parser');
-var con = mysql.createConnection({
-	host: "localhost",
-	user: "root",
-	password: "",
-	database: "bdproto"
-});
+
 /*
 * parse all form data
 */
@@ -23,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 * view engine template parsing (ejs types)
 */
 //ajot d'une connection a la base de donnees
-var connection = mysql.createConnection({ host: "localhost", user: "root", password: "", database: "mybd" });
+var connection = mysql.createConnection({ host: "localhost", user: "root", password: "", database: "bdproto" });
 
 app.set('view engine', 'ejs');
 
@@ -48,7 +43,7 @@ app.get('/login', function (req, res) {
 
 app.post('/login/connexion', function (req, res){
     console.log('username used ' + req.body.username);
-    con.query("Select nom_utilisateur, mdp from compte_client where nom_utilisateur = '" + req.body.username + "'", function(err, result){
+    connection.query("Select nom_utilisateur, mdp from compte_client where nom_utilisateur = '" + req.body.username + "'", function(err, result){
         if (typeof result[0] == 'undefined') {
             console.log('username used ' + req.body.username);
             res.writeHeader(200, {'Content-Type': 'text/html ; charset=UTF-8'});
