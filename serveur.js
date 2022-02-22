@@ -66,36 +66,18 @@ app.post('/login/connexion', function (req, res){
     
 });
 
-function checkOneFieldEmpty(fieldToCheck){
 
-    if (fieldToCheck.trim() == ""){
-        return 1;
-    }
-    return 0;
-}
 
-function checkAllFieldsEmpty(req){
-    //var missing = 0;
-    // var inputFields = document.querySelectorAll("#formCreation input[type=text]")
-
-    // for (var i = 0, field; field = inputFields[i++];) {
-    //     if (field.value === ""){
-    //         missing = 1;
-    //     } 
-    // } 
-    //return Boolean(missing);  
-    var missingAmount = 0;
-    
-    missingAmount += checkOneFieldEmpty(req.body.username);
-    missingAmount += checkOneFieldEmpty(req.body.passwordUser);
-    missingAmount += checkOneFieldEmpty(req.body.fname);
-    missingAmount += checkOneFieldEmpty(req.body.lname);
-    missingAmount += checkOneFieldEmpty(req.body.email);
-    missingAmount += checkOneFieldEmpty(req.body.adresse);
-    
-    return Boolean(missingAmount);
-
-}
+//methode http chargee de la route /creerCompte
+app.get('/creerUnCompte', function (req, res) {
+    //active le lien vers la page de creation du compte et desactive tous les autres liens
+    res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "" });
+    $('#messageCreation').hide();
+    GLOBAL.document = new JSDOM(html).window.document;
+    const jsdom = require("jsdom");
+    const { JSDOM } = jsdom;    
+    var $ = require("jquery");
+});
 
 
 
@@ -181,15 +163,37 @@ app.post('/creerUnCompte', function (req, res) {
     }
 });
 
-//methode http chargee de la route /creerCompte
-app.get('/creerUnCompte', function (req, res) {
-    //active le lien vers la page de creation du compte et desactive tous les autres liens
-    res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "" });
-    $('#messageCreation').hide();
-    GLOBAL.document = new JSDOM(html).window.document;
-    const jsdom = require("jsdom");
-    const { JSDOM } = jsdom;    
-});
+function checkAllFieldsEmpty(req){
+    //var missing = 0;
+    // var inputFields = document.querySelectorAll("#formCreation input[type=text]")
+
+    // for (var i = 0, field; field = inputFields[i++];) {
+    //     if (field.value === ""){
+    //         missing = 1;
+    //     } 
+    // } 
+    //return Boolean(missing);  
+    var missingAmount = 0;
+    
+    missingAmount += checkOneFieldEmpty(req.body.username);
+    missingAmount += checkOneFieldEmpty(req.body.passwordUser);
+    missingAmount += checkOneFieldEmpty(req.body.fname);
+    missingAmount += checkOneFieldEmpty(req.body.lname);
+    missingAmount += checkOneFieldEmpty(req.body.email);
+    missingAmount += checkOneFieldEmpty(req.body.adresse);
+    
+    return Boolean(missingAmount);
+
+}
+
+function checkOneFieldEmpty(fieldToCheck){
+
+    if (fieldToCheck.trim() == ""){
+        return 1;
+    }
+    return 0;
+}
+
 
 //methode http chargee de la route /unProduit
 app.get('/unProduit', function (req, res) {
