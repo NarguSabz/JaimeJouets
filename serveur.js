@@ -66,18 +66,49 @@ app.post('/login/connexion', function (req, res){
     
 });
 
+// function checkOneFieldEmpty(fieldToCheck){
+
+//     if (fieldToCheck.trim() == ""){
+
+//         $('#messageCreation').text("Entrée obligatoire manquante"); 
+//         $(".createAlert").css("color","#ff0000");
+        
+//             $("#messageCreation").fadeIn("slow", function(){
+//                 // Code to be executed
+//                 $('#messageCreation').fadeOut();
+//             });
+
+//     }
+
+    
+// }
+
+function checkAllFieldsEmpty(){
+
+    // checkOneFieldEmpty(req.body.username);
+    // checkOneFieldEmpty(req.body.password);
+    // checkOneFieldEmpty(req.body.password);
+    var missing = 0;
+    var inputFields = document.querySelectorAll("#formCreation input[type=text]")
+
+    for (var i = 0, field; field = inputFields[i++];) {
+        if (field.value === ""){
+            missing = 1;
+        } 
+    }   
+    return Boolean(missing);
+}
+
+
+
 //methode qui se charge d'envoyer les informations necessaires pour la creation d'un compte 
 //vers la BD en s'assurant que ces entrées sont acceptables 
 app.post('/creerUnCompte', function (req, res) {
-	
+	    
 	var resultTest = 0; //initialisation du premier ID a 0 si necessaire
 	
-	if (req.body.username.trim() == "") { //verifier si le username est vide
-		console.log('invalid username')
-		throw err;
-	}
-	
-	connection.query("SELECT * from panier ORDER BY id_panier DESC LIMIT 1", function (err, result) {
+	if (!checkAllFieldsEmpty()){
+		connection.query("SELECT * from panier ORDER BY id_panier DESC LIMIT 1", function (err, result) {
 		
 		if (typeof result[0] != 'undefined') { //chercher le plus gros ID s'il existe pour iterer dessus
 			resultTest = result[0].id_panier;
@@ -87,30 +118,66 @@ app.post('/creerUnCompte', function (req, res) {
 		//verifier si le username existe deja si non, inserer les données de l'utilisateur dans la BD
 		connection.query("SELECT compte_client_nom_utilisateur from panier WHERE compte_client_nom_utilisateur = '" + req.body.username.trim() + "'", function (err, result) {
 			if (typeof result[0] != 'undefined') {
+
 				console.log('username used' + req.body.username.trim());
-				throw err;
+                $('#messageCreation').text("Nom d'utilisateur utilisé"); 
+                $(".createAlert").css("color","#ff0000");
+                
+                    $("#messageCreation").fadeIn("slow", function(){
+                        // Code to be executed
+                        $('#messageCreation').fadeOut();
+                    });
+
 			} else {
 				connection.query("INSERT INTO panier (id_panier, compte_client_nom_utilisateur) VALUES ( " + resultTest + "," + " '" + req.body.username.trim() + "')", function (err, result) {
-					if (err) throw err;
+					if (err) {
+
+                        $('#messageCreation').text("Problème lors de l'insertion dans la bd (panier)"); 
+                        $(".createAlert").css("color","#ff0000");
+                        
+                            $("#messageCreation").fadeIn("slow", function(){
+                                // Code to be executed
+                                $('#messageCreation').fadeOut();
+                            });
+
+                    }
 					//console.log("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + req.body.username + "', '" + req.body.passwordUser + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.email + "', '" + req.body.adresse + "', " + resultTest + ")");
 					connection.query("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + req.body.username + "', '" + req.body.passwordUser + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.email + "', '" + req.body.adresse + "', " + resultTest + ")", function (err, result) {
-						if (err) throw err;
-						
-					res.writeHeader(200, {'Content-Type': 'text/html ; charset=UTF-8'});
-					res.write("<html><body><script>alert('Compte Créer');</script></body></html>");
-					console.log('Test réussi');
-					
+						if (err) {
+
+                            $('#messageCreation').text("Problème lors de l'insertion dans la bd (compte_client)"); 
+                            $(".createAlert").css("color","#ff0000");
+                    
+                            $("#messageCreation").fadeIn("slow", function(){
+                            // Code to be executed
+                            $('#messageCreation').fadeOut();
+                        });
+
+                        }else{
+                            
+                            $('#messageCreation').text("Compte Créer avec succès!"); 
+                            $(".createAlert").css("color","#34eb3a");
+                            
+                            $("#messageCreation").fadeIn("slow", function(){
+                                // Code to be executed
+                                $('#messageCreation').fadeOut();
+                            });
+                            console.log('Test réussi');
+                        }
+											
 					});
 				});
 			}
 		});
 	});
+    }
 });
 
 //methode http chargee de la route /creerCompte
 app.get('/creerUnCompte', function (req, res) {
     //active le lien vers la page de creation du compte et desactive tous les autres liens
     res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "" });
+    $('#messageCreation').hide();
 });
 
 //methode http chargee de la route /unProduit
