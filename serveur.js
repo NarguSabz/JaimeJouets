@@ -106,7 +106,7 @@ app.post('/creerCompte', function (req, res) {
 //methode http chargee de la route /creerCompte
 app.get('/creerUnCompte', function (req, res) {
     //active le lien vers la page de creation du compte et desactive tous les autres liens
-    res.render('pages/creerCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "" });
+    res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "" });
 });
 
 //methode http chargee de la route /unProduit
