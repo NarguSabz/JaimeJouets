@@ -66,37 +66,43 @@ app.post('/login/connexion', function (req, res){
     
 });
 
-// function checkOneFieldEmpty(fieldToCheck){
+function checkOneFieldEmpty(fieldToCheck){
 
-//     if (fieldToCheck.trim() == ""){
+    if (fieldToCheck.trim() == ""){
 
-//         $('#messageCreation').text("Entrée obligatoire manquante"); 
-//         $(".createAlert").css("color","#ff0000");
+        $('#messageCreation').text("Entrée obligatoire manquante"); 
+        $(".createAlert").css("color","#ff0000");
         
-//             $("#messageCreation").fadeIn("slow", function(){
-//                 // Code to be executed
-//                 $('#messageCreation').fadeOut();
-//             });
-
-//     }
-
-    
-// }
+            $("#messageCreation").fadeIn("slow", function(){
+                // Code to be executed
+                $('#messageCreation').fadeOut();
+            });
+        return 1;
+    }
+    return 0;
+}
 
 function checkAllFieldsEmpty(){
+    //var missing = 0;
+    // var inputFields = document.querySelectorAll("#formCreation input[type=text]")
 
-    // checkOneFieldEmpty(req.body.username);
-    // checkOneFieldEmpty(req.body.password);
-    // checkOneFieldEmpty(req.body.password);
-    var missing = 0;
-    var inputFields = document.querySelectorAll("#formCreation input[type=text]")
+    // for (var i = 0, field; field = inputFields[i++];) {
+    //     if (field.value === ""){
+    //         missing = 1;
+    //     } 
+    // } 
+    //return Boolean(missing);  
+    var missingAmount = 0;
+    
+    missingAmount += checkOneFieldEmpty(req.body.username);
+    missingAmount += checkOneFieldEmpty(req.body.passwordUser);
+    missingAmount += checkOneFieldEmpty(req.body.fname);
+    missingAmount += checkOneFieldEmpty(req.body.lname);
+    missingAmount += checkOneFieldEmpty(req.body.email);
+    missingAmount += checkOneFieldEmpty(req.body.adresse);
+    
+    return Boolean(missingAmount);
 
-    for (var i = 0, field; field = inputFields[i++];) {
-        if (field.value === ""){
-            missing = 1;
-        } 
-    }   
-    return Boolean(missing);
 }
 
 
