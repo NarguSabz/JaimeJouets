@@ -49,7 +49,7 @@ app.get('/creerUnCompte', function (req, res) {
 
 //methode http chargee de la route /unProduit
 app.get('/unProduit', function (req, res) {
-    res.render('pages/unProduit.ejs');
+    res.render('pages/unProduit.ejs', {login: "", accueil: "", creationCompte: "", produit: "active"});
 });
 
 //methode http chargee de la route /produits
