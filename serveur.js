@@ -84,7 +84,30 @@ app.get('/creerUnCompte', function (req, res) {
 //methode qui se charge d'envoyer les informations necessaires pour la creation d'un compte 
 //vers la BD en s'assurant que ces entrées sont acceptables 
 app.post('/creerUnCompte', function (req, res) {
-	    
+
+	// $(document).ready(function(){
+
+    //     var com=$('p').text();
+        
+    //     alert(com);
+        
+    //     var sub = com.substr(0,23);
+        
+    //     if(com.length <10){
+    //      $('#id1').text(com); // afficher le texte com
+    //     }
+    //     else {
+    //     $('#id1').html(sub + ".....<a href='#'> afficher la suite</a>"); // .html pour interpreter le html
+    //     }
+        
+    //     $('a').click(function(){ // qd on clique, on affiche le message au complet
+    //     $('#id1').text(com);
+    //     });
+    //     $('p').hide(); 
+        
+    //     });   
+        
+        
 	var resultTest = 0; //initialisation du premier ID a 0 si necessaire
 	
 	if (!checkAllFieldsEmpty(req)){
