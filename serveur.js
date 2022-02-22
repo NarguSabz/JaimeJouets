@@ -120,8 +120,15 @@ app.get('/creerUnCompte', function (req, res) {
 
 //methode http chargee de la route /unProduit
 app.get('/produit/:id', function (req, res) {
-    res.render('pages/unProduit.ejs', {login: "", accueil: "", creationCompte: "", produit: "active"});
-});
+    connection.query("SELECT p.id_produit, p.nom, p.description, p.date_parution, p.prix, c.nom age, m.nom marque from produit p join categories c on p.categories_id_categories = c.id_categories join marques m on p.marques_id_marque = m.id_marque where p.id_produit =" + req.params.id +";",
+    function (err, resultat) {
+        if(resultat.length == 0){
+            console.log("produit non trouvable");
+            res.writeHeader(200, {'Content-Type': 'text/html ; charset=UTF-8'});
+			res.write("<html><body><script>alert('produit non trouvable'); window.location = 'http://localhost:2000/';</script></body></html>");
+        }else{
+        res.render('pages/unProduit.ejs', {login: "", accueil: "", creationCompte: "", produit: "active",produit: resultat[0]})};
+});});
 //methode http chargee de la route /produits
 app.get('/produits', function (req, res) {
     //query permettant d aller chercher tous les produits, dans la base de donnees mybd, puis on passe le resultat dans le variable produits
@@ -141,5 +148,5 @@ app.get('/produits', function (req, res) {
 });
 
 var serveur = app.listen(2000, function () {
-    console.log("serveur fonctionne sur 2000... ! ");
+    console.log("serveur fonctionne sur 2000... ! "); 
 });
