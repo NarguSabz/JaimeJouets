@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 * view engine template parsing (ejs types)
 */
 //ajot d'une connection a la base de donnees
-var connection = mysql.createConnection({ host: "localhost", user: "root", password: "", database: "mybd" });
+var connection = mysql.createConnection({ host: "localhost", user: "root", password: "", database: "bdproto" });
 
 app.set('view engine', 'ejs');
 
@@ -39,6 +39,68 @@ app.get('/', function (req, res) {
 app.get('/login', function (req, res) {
     //active le lien vers la page de login et desactive tous les autres liens
     res.render('pages/login.ejs', { login: "active", accueil: "", creationCompte: "", produit: "" });
+});
+
+app.post('/login/connexion', function (req, res){
+    console.log('username used ' + req.body.username);
+    connection.query("Select nom_utilisateur, mdp from compte_client where nom_utilisateur = '" + req.body.username + "'", function(err, result){
+        if (typeof result[0] == 'undefined') {
+            console.log('username used ' + req.body.username);
+            res.writeHeader(200, {'Content-Type': 'text/html ; charset=UTF-8'});
+            res.write("<html><body><script>alert('Pas Ok');</script></body></html>");
+            res.end();
+        }else{
+            if(result[0].mdp == req.body.MDP){
+            res.writeHeader(200, {'Content-Type': 'text/html ; charset=UTF-8'});
+            res.write("<html><body><script>alert('Ok');</script></body></html>");
+            console.log('Test réussi');
+            res.end();
+            }
+            
+        }
+    });
+    
+});
+
+//methode qui se charge d'envoyer les informations necessaires pour la creation d'un compte 
+//vers la BD en s'assurant que ces entrées sont acceptables 
+app.post('/creerCompte', function (req, res) {
+	
+	var resultTest = 0; //initialisation du premier ID a 0 si necessaire
+	
+	if (req.body.username.trim() == "") { //verifier si le username est vide
+		console.log('invalid username')
+		throw err;
+	}
+	
+	connection.query("SELECT * from panier ORDER BY id_panier DESC LIMIT 1", function (err, result) {
+		
+		if (typeof result[0] != 'undefined') { //chercher le plus gros ID s'il existe pour iterer dessus
+			resultTest = result[0].id_panier;
+			resultTest++;
+		}
+		
+		//verifier si le username existe deja si non, inserer les données de l'utilisateur dans la BD
+		connection.query("SELECT compte_client_nom_utilisateur from panier WHERE compte_client_nom_utilisateur = '" + req.body.username.trim() + "'", function (err, result) {
+			if (typeof result[0] != 'undefined') {
+				console.log('username used' + req.body.username.trim());
+				throw err;
+			} else {
+				connection.query("INSERT INTO panier (id_panier, compte_client_nom_utilisateur) VALUES ( " + resultTest + "," + " '" + req.body.username.trim() + "')", function (err, result) {
+					if (err) throw err;
+					//console.log("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + req.body.username + "', '" + req.body.passwordUser + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.email + "', '" + req.body.adresse + "', " + resultTest + ")");
+					connection.query("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + req.body.username + "', '" + req.body.passwordUser + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.email + "', '" + req.body.adresse + "', " + resultTest + ")", function (err, result) {
+						if (err) throw err;
+						
+					res.writeHeader(200, {'Content-Type': 'text/html ; charset=UTF-8'});
+					res.write("<html><body><script>alert('Compte Créer');</script></body></html>");
+					console.log('Test réussi');
+					
+					});
+				});
+			}
+		});
+	});
 });
 
 //methode http chargee de la route /creerCompte

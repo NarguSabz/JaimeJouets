@@ -1,2 +1,37 @@
-<%- include ('../partials/header') %>	
+<%- include ('../partials/header') %>
+<body>
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h3 class="title">Connexion</h3>
+                </div>
+            </div>
+            <form action="/login/connexion" method="post">
+                <input class="input" name="username" placeholder="Nom d'utilisateur">
+                <br>
+                <br>
+                <input class="input" name="MDP" placeholder="Mot de passe">
+                <br>
+                <br>
+                <button class="primary-btn cta-btn">Connexion</button>
+            </form>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="section-title">
+                <h3 class="title">Vous n'avez de compte ? Inscrivez-vous!</h3>
+            </div>
+            <form action="/creerUnCompte" method="get">
+                <button class="primary-btn cta-btn">Inscription</button>
+            </form>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+    </body>
 <%- include ('../partials/footer') %>	

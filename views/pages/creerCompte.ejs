@@ -1,2 +1,54 @@
 <%- include ('../partials/header') %>	
+
+
+<body>
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h3 class="title">Connexion</h3>
+                </div>
+            </div>
+			
+            <form action="/creerCompte" method="post">
+                <input class="input" name="username" placeholder="Nom d'utilisateur">
+                <br>
+                <br>
+                <input class="input" name="passwordUser" placeholder="Mot de passe">
+                <br>
+                <br>
+				<input class="input" name="fname" placeholder="Prenom">
+                <br>
+                <br>
+				<input class="input" name="lname" placeholder="Nom">
+                <br>
+                <br>
+				<input class="input" name="email" placeholder="Adresse courriel">
+                <br>
+                <br>
+				<input class="input" name="adresse" placeholder="Adresse">
+                <br>
+                <br>
+                <button class="primary-btn cta-btn">Inscrivez-vous!</button>
+            </form>
+			<br>
+            <br>
+            <br>
+            <br>
+            <div class="section-title">
+                <h3 class="title">Vous avez déja un compte ? Connectez-vous!</h3>
+            </div>
+            <form action="/login" method="get">
+                <button class="primary-btn cta-btn">Connectez-vous!</button>
+            </form>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+    </body>
+
+
 <%- include ('../partials/footer') %>	
