@@ -114,10 +114,14 @@ app.get('/creerUnCompte', function (req, res) {
 });
 
 //methode http chargee de la route /unProduit
-app.get('/unProduit', function (req, res) {
+/*app.get('/unProduit', function (req, res) {
+    res.render('pages/unProduit.ejs', {login: "", accueil: "", creationCompte: "", produit: "active"});
+});*/
+
+//methode http chargee de la route /unProduit
+app.get('/produit/:id', function (req, res) {
     res.render('pages/unProduit.ejs', {login: "", accueil: "", creationCompte: "", produit: "active"});
 });
-
 //methode http chargee de la route /produits
 app.get('/produits', function (req, res) {
     //query permettant d aller chercher tous les produits, dans la base de donnees mybd, puis on passe le resultat dans le variable produits
