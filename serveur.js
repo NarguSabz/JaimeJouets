@@ -74,7 +74,7 @@ function checkOneFieldEmpty(fieldToCheck){
     return 0;
 }
 
-function checkAllFieldsEmpty(){
+function checkAllFieldsEmpty(req){
     //var missing = 0;
     // var inputFields = document.querySelectorAll("#formCreation input[type=text]")
 
@@ -105,7 +105,7 @@ app.post('/creerUnCompte', function (req, res) {
 	    
 	var resultTest = 0; //initialisation du premier ID a 0 si necessaire
 	
-	if (!checkAllFieldsEmpty()){
+	if (!checkAllFieldsEmpty(req)){
 		connection.query("SELECT * from panier ORDER BY id_panier DESC LIMIT 1", function (err, result) {
 		
 		if (typeof result[0] != 'undefined') { //chercher le plus gros ID s'il existe pour iterer dessus
@@ -177,7 +177,7 @@ app.post('/creerUnCompte', function (req, res) {
                 // Code to be executed
                 $('#messageCreation').fadeOut();
             });
-            
+
     }
 });
 
