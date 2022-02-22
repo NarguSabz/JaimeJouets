@@ -61,6 +61,48 @@ app.post('/login/connexion', function (req, res){
     });
     
 });
+
+//methode qui se charge d'envoyer les informations necessaires pour la creation d'un compte 
+//vers la BD en s'assurant que ces entrées sont acceptables 
+app.post('/creerCompte', function (req, res) {
+	
+	var resultTest = 0; //initialisation du premier ID a 0 si necessaire
+	
+	if (req.body.username.trim() == "") { //verifier si le username est vide
+		console.log('invalid username')
+		throw err;
+	}
+	
+	con.query("SELECT * from panier ORDER BY id_panier DESC LIMIT 1", function (err, result) {
+		
+		if (typeof result[0] != 'undefined') { //chercher le plus gros ID s'il existe pour iterer dessus
+			resultTest = result[0].id_panier;
+			resultTest++;
+		}
+		
+		//verifier si le username existe deja si non, inserer les données de l'utilisateur dans la BD
+		con.query("SELECT compte_client_nom_utilisateur from panier WHERE compte_client_nom_utilisateur = '" + req.body.username.trim() + "'", function (err, result) {
+			if (typeof result[0] != 'undefined') {
+				console.log('username used' + req.body.username.trim());
+				throw err;
+			} else {
+				con.query("INSERT INTO panier (id_panier, compte_client_nom_utilisateur) VALUES ( " + resultTest + "," + " '" + req.body.username.trim() + "')", function (err, result) {
+					if (err) throw err;
+					//console.log("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + req.body.username + "', '" + req.body.passwordUser + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.email + "', '" + req.body.adresse + "', " + resultTest + ")");
+					con.query("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + req.body.username + "', '" + req.body.passwordUser + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.email + "', '" + req.body.adresse + "', " + resultTest + ")", function (err, result) {
+						if (err) throw err;
+						
+					res.writeHeader(200, {'Content-Type': 'text/html ; charset=UTF-8'});
+					res.write("<html><body><script>alert('Compte Créer');</script></body></html>");
+					console.log('Test réussi');
+					
+					});
+				});
+			}
+		});
+	});
+});
+
 //methode http chargee de la route /creerCompte
 app.get('/creerUnCompte', function (req, res) {
     //active le lien vers la page de creation du compte et desactive tous les autres liens
