@@ -69,14 +69,6 @@ app.post('/login/connexion', function (req, res){
 function checkOneFieldEmpty(fieldToCheck){
 
     if (fieldToCheck.trim() == ""){
-
-        $('#messageCreation').text("Entrée obligatoire manquante"); 
-        $(".createAlert").css("color","#ff0000");
-        
-            $("#messageCreation").fadeIn("slow", function(){
-                // Code to be executed
-                $('#messageCreation').fadeOut();
-            });
         return 1;
     }
     return 0;
@@ -176,6 +168,16 @@ app.post('/creerUnCompte', function (req, res) {
 			}
 		});
 	});
+    }else{
+
+        $('#messageCreation').text("Entrée obligatoire manquante"); 
+        $(".createAlert").css("color","#ff0000");
+        
+            $("#messageCreation").fadeIn("slow", function(){
+                // Code to be executed
+                $('#messageCreation').fadeOut();
+            });
+            
     }
 });
 
