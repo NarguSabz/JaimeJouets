@@ -119,7 +119,7 @@ app.post('/creerUnCompte', function (req, res) {
 		connection.query("SELECT compte_client_nom_utilisateur from panier WHERE compte_client_nom_utilisateur = '" + req.body.username.trim() + "'", function (err, result) {
 			if (typeof result[0] != 'undefined') {
 
-				console.log('username used' + req.body.username.trim());
+				//console.log('username used' + req.body.username.trim());
                 $('#messageCreation').text("Nom d'utilisateur utilisé"); 
                 $(".createAlert").css("color","#ff0000");
                 
@@ -162,7 +162,7 @@ app.post('/creerUnCompte', function (req, res) {
                                 // Code to be executed
                                 $('#messageCreation').fadeOut();
                             });
-                            console.log('Test réussi');
+                            //console.log('Test réussi');
                         }
 											
 					});
