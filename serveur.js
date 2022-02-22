@@ -58,9 +58,9 @@ app.get('/produits', function (req, res) {
     connection.query("SELECT p.id_produit, p.nom, p.description, p.date_parution, p.prix, c.nom age, m.nom marque from produit p join categories c on p.categories_id_categories = c.id_categories join marques m on p.marques_id_marque = m.id_marque;",
         function (err, resultat) {
             //ceci permet de savoir combien de pages sera necessaire pour henberger 20 produits par page
-            var nbreDeVingts = parseInt(resultat.length / 20);
+            var nbreDeVingts = parseInt(resultat.length / 9);
             var nbreDePages;
-            if (resultat.length % 20 > 0) {
+            if (resultat.length % 9 > 0) {
                 nbreDePages = nbreDeVingts + 1;
             } else {
                 nbreDePages = nbreDeVingts;
