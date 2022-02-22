@@ -55,6 +55,10 @@ app.post('/login/connexion', function (req, res){
             res.write("<html><body><script>alert('Ok');</script></body></html>");
             console.log('Test réussi');
             res.end();
+            }else{
+                res.writeHeader(200, {'Content-Type': 'text/html ; charset=UTF-8'});
+                res.write("<html><body><script>alert('Pas Ok');</script></body></html>");
+                res.end()
             }
             
         }
