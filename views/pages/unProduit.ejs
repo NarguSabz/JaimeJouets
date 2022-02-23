@@ -345,9 +345,10 @@
                 </div>
 
                 <!-- product -->
-                <div class="col-md-3 col-xs-6">
 
-                    <% produitsDeMemeMarque.forEach(function(produit) { %>
+                <% produitsDeMemeMarque.forEach(function(produit) { %>
+                    <div class="col-md-3 col-xs-6">
+
                         <div class="product">
                             <div class="product-img">
                                 <!--on place le id du produit pour pouvoir chercher la route vers son image-->
@@ -364,7 +365,7 @@
                                 </p>
                                 <!--on place le nom du produit-->
 
-                                <h3 class="product-name"><a href="produit/<%=produit.id_produit%>">
+                                <h3 class="product-name"><a href="<%=produit.id_produit%>">
                                         <%=produit.nom %>
                                     </a>
 
@@ -398,11 +399,12 @@
                                     cart</button>
                             </div>
                         </div>
-                        <%}); %>
-                            <!-- /product -->
+                    </div>
+                    <%}); %>
+                        <!-- /product -->
 
-                </div>
-                <!-- /row -->
+
+                        <!-- /row -->
             </div>
             <!-- /container -->
         </div>
