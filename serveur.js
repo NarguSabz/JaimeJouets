@@ -41,70 +41,70 @@ app.get('/login', function (req, res) {
     res.render('pages/login.ejs', { login: "active", accueil: "", creationCompte: "", produit: "" });
 });
 
-app.post('/login/connexion', function (req, res){
+app.post('/login/connexion', function (req, res) {
     console.log('username used ' + req.body.username);
-    connection.query("Select nom_utilisateur, mdp from compte_client where nom_utilisateur = '" + req.body.username + "'", function(err, result){
+    connection.query("Select nom_utilisateur, mdp from compte_client where nom_utilisateur = '" + req.body.username + "'", function (err, result) {
         if (typeof result[0] == 'undefined') {
             console.log('username used ' + req.body.username);
-            res.writeHeader(200, {'Content-Type': 'text/html ; charset=UTF-8'});
+            res.writeHeader(200, { 'Content-Type': 'text/html ; charset=UTF-8' });
             res.write("<html><body><script>alert('Pas Ok');</script></body></html>");
             res.end();
-        }else{
-            if(result[0].mdp == req.body.MDP){
-            res.writeHeader(200, {'Content-Type': 'text/html ; charset=UTF-8'});
-            res.write("<html><body><script>alert('Ok');</script></body></html>");
-            console.log('Test réussi');
-            res.end();
-            }else{
-                res.writeHeader(200, {'Content-Type': 'text/html ; charset=UTF-8'});
+        } else {
+            if (result[0].mdp == req.body.MDP) {
+                res.writeHeader(200, { 'Content-Type': 'text/html ; charset=UTF-8' });
+                res.write("<html><body><script>alert('Ok');</script></body></html>");
+                console.log('Test réussi');
+                res.end();
+            } else {
+                res.writeHeader(200, { 'Content-Type': 'text/html ; charset=UTF-8' });
                 res.write("<html><body><script>alert('Pas Ok');</script></body></html>");
                 res.end()
             }
-            
+
         }
     });
-    
+
 });
 
 //methode qui se charge d'envoyer les informations necessaires pour la creation d'un compte 
 //vers la BD en s'assurant que ces entrées sont acceptables 
 app.post('/creerUnCompte', function (req, res) {
-	
-	var resultTest = 0; //initialisation du premier ID a 0 si necessaire
-	
-	if (req.body.username.trim() == "") { //verifier si le username est vide
-		console.log('invalid username')
-		throw err;
-	}
-	
-	connection.query("SELECT * from panier ORDER BY id_panier DESC LIMIT 1", function (err, result) {
-		
-		if (typeof result[0] != 'undefined') { //chercher le plus gros ID s'il existe pour iterer dessus
-			resultTest = result[0].id_panier;
-			resultTest++;
-		}
-		
-		//verifier si le username existe deja si non, inserer les données de l'utilisateur dans la BD
-		connection.query("SELECT compte_client_nom_utilisateur from panier WHERE compte_client_nom_utilisateur = '" + req.body.username.trim() + "'", function (err, result) {
-			if (typeof result[0] != 'undefined') {
-				console.log('username used' + req.body.username.trim());
-				throw err;
-			} else {
-				connection.query("INSERT INTO panier (id_panier, compte_client_nom_utilisateur) VALUES ( " + resultTest + "," + " '" + req.body.username.trim() + "')", function (err, result) {
-					if (err) throw err;
-					//console.log("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + req.body.username + "', '" + req.body.passwordUser + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.email + "', '" + req.body.adresse + "', " + resultTest + ")");
-					connection.query("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + req.body.username + "', '" + req.body.passwordUser + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.email + "', '" + req.body.adresse + "', " + resultTest + ")", function (err, result) {
-						if (err) throw err;
-						
-					res.writeHeader(200, {'Content-Type': 'text/html ; charset=UTF-8'});
-					res.write("<html><body><script>alert('Compte Créer');</script></body></html>");
-					console.log('Test réussi');
-					
-					});
-				});
-			}
-		});
-	});
+
+    var resultTest = 0; //initialisation du premier ID a 0 si necessaire
+
+    if (req.body.username.trim() == "") { //verifier si le username est vide
+        console.log('invalid username')
+        throw err;
+    }
+
+    connection.query("SELECT * from panier ORDER BY id_panier DESC LIMIT 1", function (err, result) {
+
+        if (typeof result[0] != 'undefined') { //chercher le plus gros ID s'il existe pour iterer dessus
+            resultTest = result[0].id_panier;
+            resultTest++;
+        }
+
+        //verifier si le username existe deja si non, inserer les données de l'utilisateur dans la BD
+        connection.query("SELECT compte_client_nom_utilisateur from panier WHERE compte_client_nom_utilisateur = '" + req.body.username.trim() + "'", function (err, result) {
+            if (typeof result[0] != 'undefined') {
+                console.log('username used' + req.body.username.trim());
+                throw err;
+            } else {
+                connection.query("INSERT INTO panier (id_panier, compte_client_nom_utilisateur) VALUES ( " + resultTest + "," + " '" + req.body.username.trim() + "')", function (err, result) {
+                    if (err) throw err;
+                    //console.log("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + req.body.username + "', '" + req.body.passwordUser + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.email + "', '" + req.body.adresse + "', " + resultTest + ")");
+                    connection.query("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + req.body.username + "', '" + req.body.passwordUser + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.email + "', '" + req.body.adresse + "', " + resultTest + ")", function (err, result) {
+                        if (err) throw err;
+
+                        res.writeHeader(200, { 'Content-Type': 'text/html ; charset=UTF-8' });
+                        res.write("<html><body><script>alert('Compte Créer');</script></body></html>");
+                        console.log('Test réussi');
+
+                    });
+                });
+            }
+        });
+    });
 });
 
 //methode http chargee de la route /creerCompte
@@ -120,15 +120,19 @@ app.get('/creerUnCompte', function (req, res) {
 
 //methode http chargee de la route /unProduit
 app.get('/produit/:id', function (req, res) {
-    connection.query("SELECT p.id_produit, p.nom, p.description, p.date_parution, p.prix, c.nom age, m.nom marque from produit p join categories c on p.categories_id_categories = c.id_categories join marques m on p.marques_id_marque = m.id_marque where p.id_produit =" + req.params.id +";",
-    function (err, resultat) {
-        if(resultat.length == 0){
-            console.log("produit non trouvable");
-            res.writeHeader(200, {'Content-Type': 'text/html ; charset=UTF-8'});
-			res.write("<html><body><script>alert('produit non trouvable'); window.location = 'http://localhost:2000/';</script></body></html>");
-        }else{
-        res.render('pages/unProduit.ejs', {login: "", accueil: "", creationCompte: "", produit: "active",produit: resultat[0]})};
-});});
+    connection.query("SELECT p.id_produit, p.*, c.nom age, m.nom marque from produit p join categories c on p.categories_id_categories = c.id_categories join marques m on p.marques_id_marque = m.id_marque where p.id_produit =" + req.params.id + ";",
+        function (err, resultat) {
+            if (resultat.length == 0) {
+                console.log("produit non trouvable");
+                res.writeHeader(200, { 'Content-Type': 'text/html ; charset=UTF-8' });
+                res.write("<html><body><script>alert('produit non trouvable'); window.location = 'http://localhost:2000/';</script></body></html>");
+            } else {
+                connection.query("SELECT p.*, c.nom age, m.nom marque from produit p join categories c on p.categories_id_categories = c.id_categories join marques m on p.marques_id_marque = m.id_marque where p.marques_id_marque ="+resultat[0].marques_id_marque+" and p.id_produit !="+resultat[0].id_produit+";", function (err, result) {
+                    res.render('pages/unProduit.ejs', { login: "", accueil: "", creationCompte: "", produit: "active", produit: resultat[0],produitsDeMemeMarque:result})
+                });
+            };
+        });
+});
 //methode http chargee de la route /produits
 app.get('/produits', function (req, res) {
     //query permettant d aller chercher tous les produits, dans la base de donnees mybd, puis on passe le resultat dans le variable produits
@@ -142,11 +146,11 @@ app.get('/produits', function (req, res) {
             } else {
                 nbreDePages = nbreDeVingts;
             }
-            res.render('pages/produits.ejs', {nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", produit: "active", produits: resultat });
+            res.render('pages/produits.ejs', { nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", produit: "active", produits: resultat });
         });
     //on active le lien vers la page des produits et desactive tous les autres liens
 });
 
 var serveur = app.listen(2000, function () {
-    console.log("serveur fonctionne sur 2000... ! "); 
+    console.log("serveur fonctionne sur 2000... ! ");
 });
