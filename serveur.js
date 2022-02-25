@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 /*
 * view engine template parsing (ejs types)
 */
-//ajot d'une connection a la base de donnees
+//ajout d'une connection a la base de donnees
 var connection = mysql.createConnection({ host: "localhost", user: "root", password: "", database: "bdproto" });
 
 app.set('view engine', 'ejs');
