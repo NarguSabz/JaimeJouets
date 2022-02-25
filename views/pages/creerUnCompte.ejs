@@ -33,28 +33,28 @@
                 <br>
                 <button class="primary-btn cta-btn">Inscrivez-vous!</button>
             </form>
+
             <br>
 
-        <%if (typeof items != 'undefined' && items.length>0) {%>
-                  
-                  <p class="<%= items[1]%>" id="messageCreation"><strong><%= items[0]%></strong></p> 
-
-		<% }else {%>
-
-			<p class="createAlert" id="messageCreation" ></p>
-
-		<% } %>
+            <%if (typeof items != 'undefined' && items.length>0) {%>
+                <p class="<%= items[1]%>" id="messageCreation"><strong><%= items[0]%></strong></p> 
+            <% }else {%>
+                <p class="createAlert" id="messageCreation" ></p>
+            <% } %>
 
             <div class="section-title">
                 <h3 class="title">Vous avez déja un compte ? Connectez-vous!</h3>
             </div>
+
             <form action="/login" method="get">
                 <button class="primary-btn cta-btn">Connectez-vous!</button>
             </form>
+
             <br>
             <br>
             <br>
             <br>
+
         </div>
     </div>
     </body>

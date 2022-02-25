@@ -8,6 +8,7 @@
                     <h3 class="title">Connexion</h3>
                 </div>
             </div>
+
             <form action="/login" method="post">
                 <input class="input" name="username" placeholder="Nom d'utilisateur">
                 <br>
@@ -17,29 +18,32 @@
                 <br>
                 <button class="primary-btn cta-btn">Connexion</button>
             </form>
-            <br>
-                 <%if (typeof items != 'undefined' && items.length>0) {%>
-                 
-                  <p class="<%= items[1]%>" id="messageCreation"><strong><%= items[0]%></strong></p> 
 
-		<% }else {%>
+            <br>
 
-			<p class="createAlert" id="messageCreation" ></p>
+            <%if (typeof items != 'undefined' && items.length>0) {%>
+                <p class="<%= items[1]%>" id="messageCreation"><strong><%= items[0]%></strong></p> 
+            <% }else {%>
+                <p class="createAlert" id="messageConnexion" ></p>
+            <% } %>
 
-		<% } %>
             <br>
             <br>
             <br>
+
             <div class="section-title">
                 <h3 class="title">Vous n'avez de compte ? Inscrivez-vous!</h3>
             </div>
+
             <form action="/creerUnCompte" method="get">
                 <button class="primary-btn cta-btn">Inscription</button>
             </form>
+
             <br>
             <br>
             <br>
             <br>
+
         </div>
     </div>
     </body>
