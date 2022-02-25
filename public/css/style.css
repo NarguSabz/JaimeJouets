@@ -86,9 +86,14 @@ ul, ol {
   list-style: none
 }
 
-.createAlert{
+.alertGood{
+  color: #34eb3a;
+}
+
+.alertBad{
   color: #ff0000;
 }
+
 
 /*----------------------------*\
 	Buttons

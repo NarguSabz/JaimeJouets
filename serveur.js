@@ -83,7 +83,7 @@ app.get('/creerUnCompte', function (req, res) {
 app.post('/creerUnCompte', function (req, res) {
 
     var userMessageText = "";
-    var userMessageColor = "";
+    var userMessageStatus = "";
     
 	var resultTest = 0; //initialisation du premier ID a 0 si necessaire
 	
@@ -99,34 +99,40 @@ app.post('/creerUnCompte', function (req, res) {
 		connection.query("SELECT compte_client_nom_utilisateur from panier WHERE compte_client_nom_utilisateur = '" + req.body.username.trim() + "'", function (err, result) {
 			if (typeof result[0] != 'undefined') {
 
-				//console.log('username used' + req.body.username.trim());
-                userMessageText = "Nom d'utilisateur utilisé";
-                userMessageColor = "#ff0000";
-                   
-
+			  userMessageText = "Nom d'utilisateur utilisé";
+                userMessageStatus = "alertBad";
+                userMessageArray = [userMessageText, userMessageStatus];
+                console.log(userMessageArray);
+                res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray });
+                res.end()
 			} else {
 				connection.query("INSERT INTO panier (id_panier, compte_client_nom_utilisateur) VALUES ( " + resultTest + "," + " '" + req.body.username.trim() + "')", function (err, result) {
 					if (err) {
 
                         userMessageText = "Problème lors de l'insertion dans la bd (panier)";
-                        userMessageColor = "#ff0000";
-                           
-
+                        userMessageStatus = "alertBad";
+                        userMessageArray = [userMessageText, userMessageStatus];
+                        console.log(userMessageArray);
+                        res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray });
+                        res.end()
                     }
-					//console.log("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + req.body.username + "', '" + req.body.passwordUser + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.email + "', '" + req.body.adresse + "', " + resultTest + ")");
-					connection.query("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + req.body.username + "', '" + req.body.passwordUser + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.email + "', '" + req.body.adresse + "', " + resultTest + ")", function (err, result) {
+						connection.query("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + req.body.username + "', '" + req.body.passwordUser + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.email + "', '" + req.body.adresse + "', " + resultTest + ")", function (err, result) {
 						if (err) {
 
                             userMessageText = "Problème lors de l'insertion dans la bd (compte_client)";
-                            userMessageColor = "#ff0000";
-                            
-
+                            userMessageStatus = "alertBad";
+                            userMessageArray = [userMessageText, userMessageStatus];
+                            console.log(userMessageArray);
+                            res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray });
+                            res.end()
                         }else{
                             userMessageText = "Compte Créer avec succès!";
-                            userMessageColor = "#34eb3a";
-                            
-                           
-                            //console.log('Test réussi');
+                            userMessageStatus = "alertGood";
+                            userMessageArray = [userMessageText, userMessageStatus];
+                            console.log(userMessageArray);
+                            res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray });
+                            res.end()
+                        
                         }
 											
 					});
@@ -137,13 +143,13 @@ app.post('/creerUnCompte', function (req, res) {
     } else {
 
         userMessageText = "Entrée obligatoire manquante!";
-        userMessageColor = "#ff0000";
-
+        userMessageStatus = "alertBad";
+        userMessageArray = [userMessageText, userMessageStatus];
+        console.log(userMessageArray);
+        res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray });
+        res.end()
     }
-    
-    userMessageArray = [userMessageText, userMessageColor];
-    console.log(userMessageArray);
-    res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray });
+   
 });
 
 function checkAllFieldsEmpty(req){

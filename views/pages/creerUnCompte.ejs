@@ -1,4 +1,5 @@
 <%- include ('../partials/header') %>	
+<script src="ejs.js"></script>
 
 
 <body>
@@ -33,11 +34,15 @@
                 <button class="primary-btn cta-btn">Inscrivez-vous!</button>
             </form>
             <br>
-            <br>
-		
+
         <%if (typeof items != 'undefined' && items.length>0) {%>
-                   
-                  <p class="createAlert" id="messageCreation"><strong><%= items[0] %></strong></p> 
+                  
+
+
+                  <p class="<%= items[1]%>" id="messageCreation"><strong><%= items[0]%></strong></p> 
+
+
+
 
 		<% }else {%>
 
@@ -45,23 +50,6 @@
 
 		<% } %>
 
-
-
-
-
-
-
-
-
-
-
-            			
-
-
-            <br>
-            <br>
-            <br>
-            <br>
             <div class="section-title">
                 <h3 class="title">Vous avez déja un compte ? Connectez-vous!</h3>
             </div>
