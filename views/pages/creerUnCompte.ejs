@@ -34,7 +34,30 @@
             </form>
             <br>
             <br>
-			<p class="createAlert" id="messageCreation"></p>
+		
+        <%if (typeof items != 'undefined' && items.length>0) {%>
+                   
+                  <p class="createAlert" id="messageCreation"><strong><%= items[0] %></strong></p> 
+
+		<% }else {%>
+
+			<p class="createAlert" id="messageCreation" ></p>
+
+		<% } %>
+
+
+
+
+
+
+
+
+
+
+
+            			
+
+
             <br>
             <br>
             <br>

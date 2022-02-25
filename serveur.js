@@ -7,7 +7,6 @@ var http = require('http');
 var mysql = require('mysql');
 var app = express();
 var bodyParser = require('body-parser');
-var $ = require("jquery");
 
 
 /*
@@ -74,7 +73,6 @@ app.post('/login/connexion', function (req, res){
 app.get('/creerUnCompte', function (req, res) {
     //active le lien vers la page de creation du compte et desactive tous les autres liens
     res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "" });
-    $('#messageCreation').hide();
     
 });
 
@@ -84,29 +82,9 @@ app.get('/creerUnCompte', function (req, res) {
 //vers la BD en s'assurant que ces entrées sont acceptables 
 app.post('/creerUnCompte', function (req, res) {
 
-	// $(document).ready(function(){
-
-    //     var com=$('p').text();
-        
-    //     alert(com);
-        
-    //     var sub = com.substr(0,23);
-        
-    //     if(com.length <10){
-    //      $('#id1').text(com); // afficher le texte com
-    //     }
-    //     else {
-    //     $('#id1').html(sub + ".....<a href='#'> afficher la suite</a>"); // .html pour interpreter le html
-    //     }
-        
-    //     $('a').click(function(){ // qd on clique, on affiche le message au complet
-    //     $('#id1').text(com);
-    //     });
-    //     $('p').hide(); 
-        
-    //     });   
-        
-        
+    var userMessageText = "";
+    var userMessageColor = "";
+    
 	var resultTest = 0; //initialisation du premier ID a 0 si necessaire
 	
 	if (!checkAllFieldsEmpty(req)){
@@ -122,48 +100,32 @@ app.post('/creerUnCompte', function (req, res) {
 			if (typeof result[0] != 'undefined') {
 
 				//console.log('username used' + req.body.username.trim());
-                $('#messageCreation').text("Nom d'utilisateur utilisé"); 
-                $(".createAlert").css("color","#ff0000");
-                
-                    $("#messageCreation").fadeIn("slow", function(){
-                        // Code to be executed
-                        $('#messageCreation').fadeOut();
-                    });
+                userMessageText = "Nom d'utilisateur utilisé";
+                userMessageColor = "#ff0000";
+                   
 
 			} else {
 				connection.query("INSERT INTO panier (id_panier, compte_client_nom_utilisateur) VALUES ( " + resultTest + "," + " '" + req.body.username.trim() + "')", function (err, result) {
 					if (err) {
 
-                        $('#messageCreation').text("Problème lors de l'insertion dans la bd (panier)"); 
-                        $(".createAlert").css("color","#ff0000");
-                        
-                            $("#messageCreation").fadeIn("slow", function(){
-                                // Code to be executed
-                                $('#messageCreation').fadeOut();
-                            });
+                        userMessageText = "Problème lors de l'insertion dans la bd (panier)";
+                        userMessageColor = "#ff0000";
+                           
 
                     }
 					//console.log("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + req.body.username + "', '" + req.body.passwordUser + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.email + "', '" + req.body.adresse + "', " + resultTest + ")");
 					connection.query("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + req.body.username + "', '" + req.body.passwordUser + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.email + "', '" + req.body.adresse + "', " + resultTest + ")", function (err, result) {
 						if (err) {
 
-                            $('#messageCreation').text("Problème lors de l'insertion dans la bd (compte_client)"); 
-                            $(".createAlert").css("color","#ff0000");
-                    
-                            $("#messageCreation").fadeIn("slow", function(){
-                            // Code to be executed
-                            $('#messageCreation').fadeOut();
-                        });
+                            userMessageText = "Problème lors de l'insertion dans la bd (compte_client)";
+                            userMessageColor = "#ff0000";
+                            
 
                         }else{
+                            userMessageText = "Compte Créer avec succès!";
+                            userMessageColor = "#34eb3a";
                             
-                            $('#messageCreation').text("Compte Créer avec succès!"); 
-                            $(".createAlert").css("color","#34eb3a");
-                            
-                            $("#messageCreation").fadeIn("slow", function(){
-                                // Code to be executed
-                                $('#messageCreation').fadeOut();
-                            });
+                           
                             //console.log('Test réussi');
                         }
 											
@@ -172,29 +134,20 @@ app.post('/creerUnCompte', function (req, res) {
 			}
 		});
 	});
-    }else{
+    } else {
 
-        $('#messageCreation').text("Entrée obligatoire manquante"); 
-        $(".createAlert").css("color","#ff0000");
-        
-            $("#messageCreation").fadeIn("slow", function(){
-                // Code to be executed
-                $('#messageCreation').fadeOut();
-            });
+        userMessageText = "Entrée obligatoire manquante!";
+        userMessageColor = "#ff0000";
 
     }
+    
+    userMessageArray = [userMessageText, userMessageColor];
+    console.log(userMessageArray);
+    res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray });
 });
 
 function checkAllFieldsEmpty(req){
-    //var missing = 0;
-    // var inputFields = document.querySelectorAll("#formCreation input[type=text]")
 
-    // for (var i = 0, field; field = inputFields[i++];) {
-    //     if (field.value === ""){
-    //         missing = 1;
-    //     } 
-    // } 
-    //return Boolean(missing);  
     var missingAmount = 0;
     
     missingAmount += checkOneFieldEmpty(req.body.username);
