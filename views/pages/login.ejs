@@ -8,7 +8,7 @@
                     <h3 class="title">Connexion</h3>
                 </div>
             </div>
-            <form action="/login/connexion" method="post">
+            <form action="/login" method="post">
                 <input class="input" name="username" placeholder="Nom d'utilisateur">
                 <br>
                 <br>
@@ -18,6 +18,20 @@
                 <button class="primary-btn cta-btn">Connexion</button>
             </form>
             <br>
+                 <%if (typeof items != 'undefined' && items.length>0) {%>
+                  
+
+
+                  <p class="<%= items[1]%>" id="messageCreation"><strong><%= items[0]%></strong></p> 
+
+
+
+
+		<% }else {%>
+
+			<p class="createAlert" id="messageCreation" ></p>
+
+		<% } %>
             <br>
             <br>
             <br>

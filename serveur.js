@@ -42,27 +42,35 @@ app.get('/login', function (req, res) {
     res.render('pages/login.ejs', { login: "active", accueil: "", creationCompte: "", produit: "" });
 });
 
-app.post('/login/connexion', function (req, res){
-    console.log('username used ' + req.body.username);
+app.post('/login', function (req, res) {
+    var userMessageText = "";
+    var userMessageStatus = "";
+    //console.log('username used ' + req.body.username);
     connection.query("Select nom_utilisateur, mdp from compte_client where nom_utilisateur = '" + req.body.username + "'", function(err, result){
         if (typeof result[0] == 'undefined') {
-            console.log('username used ' + req.body.username);
-            res.writeHeader(200, {'Content-Type': 'text/html ; charset=UTF-8'});
-            res.write("<html><body><script>alert('Pas Ok');</script></body></html>");
-            res.end();
+            //console.log('username used ' + req.body.username);
+
+            userMessageText = "Combinaison du nom d'utilisateur et mot de passe incorrecte!";
+            userMessageStatus = "alertBad";
+
         }else{
-            if(result[0].mdp == req.body.MDP){
-            res.writeHeader(200, {'Content-Type': 'text/html ; charset=UTF-8'});
-            res.write("<html><body><script>alert('Ok');</script></body></html>");
-            console.log('Test réussi');
-            res.end();
-            }else{
-                res.writeHeader(200, {'Content-Type': 'text/html ; charset=UTF-8'});
-                res.write("<html><body><script>alert('Pas Ok');</script></body></html>");
-                res.end()
+            if (result[0].mdp == req.body.MDP) {
+
+                userMessageText = "Combinaison du nom d'utilisateur et mot de passe correcte!";
+                userMessageStatus = "alertGood";
+
+            } else {
+
+                userMessageText = "Combinaison du nom d'utilisateur et mot de passe incorrecte!";
+                userMessageStatus = "alertBad";
+                
             }
             
         }
+        userMessageArray = [userMessageText, userMessageStatus];
+        res.render('pages/login.ejs', { login: "active", accueil: "", creationCompte: "", produit: "", items: userMessageArray });
+        res.end();
+
     });
     
 });
@@ -73,7 +81,7 @@ app.post('/login/connexion', function (req, res){
 app.get('/creerUnCompte', function (req, res) {
     //active le lien vers la page de creation du compte et desactive tous les autres liens
     res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "" });
-    
+
 });
 
 
@@ -145,7 +153,7 @@ app.post('/creerUnCompte', function (req, res) {
         userMessageText = "Entrée obligatoire manquante!";
         userMessageStatus = "alertBad";
         userMessageArray = [userMessageText, userMessageStatus];
-        console.log(userMessageArray);
+        //console.log(userMessageArray);
         res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray });
         res.end()
     }
