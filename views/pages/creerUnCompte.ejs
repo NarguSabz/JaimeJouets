@@ -1,4 +1,5 @@
 <%- include ('../partials/header') %>	
+<script src="ejs.js"></script>
 
 
 <body>
@@ -11,7 +12,7 @@
                 </div>
             </div>
 			
-            <form action="/creerCompte" method="post">
+            <form action="/creerUnCompte" method="post" id="formCreation">
                 <input class="input" name="username" placeholder="Nom d'utilisateur">
                 <br>
                 <br>
@@ -32,20 +33,28 @@
                 <br>
                 <button class="primary-btn cta-btn">Inscrivez-vous!</button>
             </form>
-			<br>
+
             <br>
-            <br>
-            <br>
+
+            <%if (typeof items != 'undefined' && items.length>0) {%>
+                <p class="<%= items[1]%>" id="messageCreation"><strong><%= items[0]%></strong></p> 
+            <% }else {%>
+                <p class="createAlert" id="messageCreation" ></p>
+            <% } %>
+
             <div class="section-title">
                 <h3 class="title">Vous avez déja un compte ? Connectez-vous!</h3>
             </div>
+
             <form action="/login" method="get">
                 <button class="primary-btn cta-btn">Connectez-vous!</button>
             </form>
+
             <br>
             <br>
             <br>
             <br>
+
         </div>
     </div>
     </body>
