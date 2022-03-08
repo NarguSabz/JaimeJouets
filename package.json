@@ -30,6 +30,8 @@
     "express": "^4.17.2",
     "express-partials": "^0.3.0",
     "jquery": "^3.6.0",
+    "mongodb": "^3.7.3",
+    "monk": "^7.3.4",
     "mysql": "^2.18.1",
     "tether": "^2.0.0"
   }
