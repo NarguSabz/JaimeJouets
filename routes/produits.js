@@ -20,3 +20,6 @@ router.get('/produits', function (req, res) {
         });
     //on active le lien vers la page des produits et desactive tous les autres liens
 });
+
+
+module.exports = router;

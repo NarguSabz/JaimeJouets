@@ -20,3 +20,5 @@ router.get('/produit/:id', function (req, res) {
             };
         });
 });
+
+module.exports = router;

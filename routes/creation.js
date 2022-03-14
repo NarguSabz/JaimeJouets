@@ -99,3 +99,5 @@ function checkOneFieldEmpty(fieldToCheck) {
     }
     return 0;
 }
+
+module.exports = router;

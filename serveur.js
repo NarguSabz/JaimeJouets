@@ -12,7 +12,7 @@ var creationRouter = require('./routes/creation');
 var connexionRouter = require('./routes/connexion');
 var produitRouter = require('./routes/produit');
 var produitsRouter = require('./routes/produits');
-var produitsRouter = require('./routes/index');
+var indexRouter = require('./routes/index');
 /*
 * parse all form data
 */
@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 * view engine template parsing (ejs types)
 */
 
-app.set('views', path.join(__dirname, 'views'));
+//app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 /**
@@ -56,3 +56,5 @@ app.use(function(err, req, res, next) {
 var serveur = app.listen(2000, function () {
     console.log("serveur fonctionne sur 2000... ! ");
 });
+
+module.exports = app;
