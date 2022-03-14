@@ -12,6 +12,7 @@ var creationRouter = require('./routes/creation');
 var connexionRouter = require('./routes/connexion');
 var produitRouter = require('./routes/produit');
 var produitsRouter = require('./routes/produits');
+var produitsRouter = require('./routes/index');
 /*
 * parse all form data
 */
@@ -21,9 +22,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 /*
 * view engine template parsing (ejs types)
 */
-//ajout d'une connection a la base de donnees
-var connection = mysql.createConnection({ host: "localhost", user: "root", password: "", database: "bdproto" });
 
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 /**
@@ -36,12 +36,11 @@ app.use('/creerUnCompte', creationRouter);
 app.use('/produits', produitsRouter);
 app.use('/produit/:id', produitRouter);
 app.use('/creerUnCompte', creationRouter);
-
+app.use('/', indexRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
-
 
 // error handler
 app.use(function(err, req, res, next) {
