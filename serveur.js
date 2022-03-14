@@ -34,7 +34,7 @@ app.use(express.static(__dirname + '/public/'));
 app.use('/login', connexionRouter);
 app.use('/creerUnCompte', creationRouter);
 app.use('/produits', produitsRouter);
-app.use('/produit/:id', produitRouter);
+app.use('/produit', produitRouter);
 app.use('/creerUnCompte', creationRouter);
 app.use('/', indexRouter);
 

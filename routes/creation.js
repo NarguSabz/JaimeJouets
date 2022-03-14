@@ -7,14 +7,14 @@ var router = express.Router();
 var connection = mysql.createConnection({ host: "localhost", user: "root", password: "", database: "bdproto" });
 
 //methode http chargee de la route /creerCompte
-router.get('/creerUnCompte', function (req, res) {
+router.get('/', function (req, res) {
     //active le lien vers la page de creation du compte et desactive tous les autres liens
     res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "" });
 });
 
 //methode qui se charge d'envoyer les informations necessaires pour la creation d'un compte
 //vers la BD en s'assurant que ces entrées sont acceptables (select & insert)
-router.post('/creerUnCompte', function (req, res) {
+router.post('/', function (req, res) {
     var userMessageText = "";
     var userMessageStatus = "";
 

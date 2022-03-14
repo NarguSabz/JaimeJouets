@@ -6,7 +6,7 @@ var router = express.Router();
 var connection = mysql.createConnection({ host: "localhost", user: "root", password: "", database: "bdproto" });
 
 //methode http chargee de la route /unProduit
-router.get('/produit/:id', function (req, res) {
+router.get('/:id', function (req, res) {
     connection.query("SELECT p.id_produit, p.*, c.nom age, m.nom marque from produit p join categories c on p.categories_id_categories = c.id_categories join marques m on p.marques_id_marque = m.id_marque where p.id_produit =" + req.params.id + ";",
         function (err, resultat) {
             if (resultat.length == 0) {
