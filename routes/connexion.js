@@ -6,12 +6,12 @@ var router = express.Router();
 var connection = mysql.createConnection({ host: "localhost", user: "root", password: "", database: "bdproto" });
 
 //methode http chargee de la route /login
-router.get('/login', function (req, res) {
+router.get('/', function (req, res) {
     //active le lien vers la page de login et desactive tous les autres liens
     res.render('pages/login.ejs', { login: "active", accueil: "", creationCompte: "", produit: "" });
 });
 
-router.post('/login', function (req, res) {
+router.post('/', function (req, res) {
     var userMessageText = "";
     var userMessageStatus = "";
     //console.log('username used ' + req.body.username);

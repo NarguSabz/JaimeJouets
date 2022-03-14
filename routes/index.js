@@ -3,6 +3,8 @@ var express = require('express');
 var mysql = require('mysql');
 var router = express.Router();
 
+//ajout d'une connection a la base de donnees
+var connection = mysql.createConnection({ host: "localhost", user: "root", password: "", database: "bdproto" });
 
 //methode http chargee de la route /accueil
 router.get('/', function (req, res) {

@@ -3,6 +3,9 @@ var http = require('http');
 var mysql = require('mysql');
 var router = express.Router();
 
+//ajout d'une connection a la base de donnees
+var connection = mysql.createConnection({ host: "localhost", user: "root", password: "", database: "bdproto" });
+
 //methode http chargee de la route /produits
 router.get('/produits', function (req, res) {
     //query permettant d aller chercher tous les produits, dans la base de donnees mybd, puis on passe le resultat dans le variable produits
