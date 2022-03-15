@@ -31,6 +31,7 @@
     "express-partials": "^0.3.0",
     "express-session": "^1.17.2",
     "jquery": "^3.6.0",
+    "json-stringify-safe": "^5.0.1",
     "mongodb": "^3.5.4",
     "monk": "^7.1.2",
     "mysql": "^2.18.1",
