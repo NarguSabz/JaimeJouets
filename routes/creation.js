@@ -96,7 +96,7 @@ router.post('/', function (req, res) {
 
 function toStringTrim(tempReq) {
 
-    return String(tempReq);
+    return tempReq.trim();
 }
 
 function checkAllFieldsEmpty(req) {
