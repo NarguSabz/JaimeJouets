@@ -1,7 +1,7 @@
 var express = require('express');
 var mysql = require('mysql');
 var router = express.Router();
-var stringify = require('json-stringify-safe');
+
 
 
 //ajout d'une connection a la base de donnees
@@ -20,12 +20,14 @@ router.post('/', function (req, res) {
     var userMessageText = "";
     var userMessageStatus = "";
 
-    var userUsername = stringify(req.body.username).trim();
-    var userPassword = stringify(req.body.passwordUser).trim();
-    var userFirstname = stringify(req.body.fname).trim();
-    var userLastname = stringify(req.body.lname).trim();
-    var userEmail = stringify(req.body.email).trim();
-    var userAddress = stringify(req.body.adresse).trim();
+    var userUsername = req.body.username.toString().trim();
+    var userPassword = req.body.passwordUser.toString().trim();
+    var userFirstname = req.body.fname.toString().trim();
+    var userLastname = req.body.lname.toString().trim();
+    var userEmail = req.body.email.toString().trim();
+    var userAddress = req.body.adresse.toString().trim();
+
+
  
     var resultTest = 0; //initialisation du premier ID a 0 si necessaire
 
@@ -91,6 +93,11 @@ router.post('/', function (req, res) {
         res.end()
     }
 });
+
+function toStringTrim(tempReq) {
+
+    return String(tempReq);
+}
 
 function checkAllFieldsEmpty(req) {
     var missingAmount = 0;
