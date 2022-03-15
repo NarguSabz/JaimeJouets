@@ -1,7 +1,8 @@
 var express = require('express');
-
 var mysql = require('mysql');
 var router = express.Router();
+var stringify = require('json-stringify-safe');
+
 
 //ajout d'une connection a la base de donnees
 var connection = mysql.createConnection({ host: "localhost", user: "root", password: "", database: "bdproto" });
@@ -15,14 +16,16 @@ router.get('/', function (req, res) {
 //methode qui se charge d'envoyer les informations necessaires pour la creation d'un compte
 //vers la BD en s'assurant que ces entrées sont acceptables (select & insert)
 router.post('/', function (req, res) {
+
     var userMessageText = "";
     var userMessageStatus = "";
-    var userUsername = req.body.username;
-    var userPassword = req.body.passwordUser;
-    var userFirstname = req.body.fname;
-    var userLastname = req.body.lname;
-    var userEmail = req.body.email;
-    var userAddress = req.body.adresse;
+
+    var userUsername = stringify(req.body.username).trim();
+    var userPassword = stringify(req.body.passwordUser).trim();
+    var userFirstname = stringify(req.body.fname).trim();
+    var userLastname = stringify(req.body.lname).trim();
+    var userEmail = stringify(req.body.email).trim();
+    var userAddress = stringify(req.body.adresse).trim();
  
     var resultTest = 0; //initialisation du premier ID a 0 si necessaire
 
@@ -34,7 +37,7 @@ router.post('/', function (req, res) {
             }
 
             //verifier si le username existe deja si non, inserer les données de l'utilisateur dans la BD
-            connection.query("SELECT compte_client_nom_utilisateur from panier WHERE compte_client_nom_utilisateur = '" + userUsername.trim() + "'", function (err, result) {
+            connection.query("SELECT compte_client_nom_utilisateur from panier WHERE compte_client_nom_utilisateur = '" + userUsername + "'", function (err, result) {
                 if (typeof result[0] != 'undefined') {
                     //message d'erreur pour un nom d'utilsateur deja pris
                     userMessageText = "Nom d'utilisateur utilisé";
@@ -44,7 +47,7 @@ router.post('/', function (req, res) {
                     res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray });
                     res.end()
                 } else {
-                    connection.query("INSERT INTO panier (id_panier, compte_client_nom_utilisateur) VALUES ( " + resultTest + "," + " '" + userUsername.trim() + "')", function (err, result) {
+                    connection.query("INSERT INTO panier (id_panier, compte_client_nom_utilisateur) VALUES ( " + resultTest + "," + " '" + userUsername + "')", function (err, result) {
                         if (err) {
                             //message d'erreur pour un si il y a une erreur au niveau du sql
                             //(primary key ou autre) lors de l'insertion dans la table panier
@@ -55,7 +58,7 @@ router.post('/', function (req, res) {
                             res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray });
                             res.end()
                         }
-                        connection.query("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + userUsername.trim() + "', '" + userPassword.trim() + "', '" + userFirstname.trim() + "', '" + userLastname.trim() + "', '" + userEmail.trim() + "', '" + userAddress.trim() + "', " + resultTest + ")", function (err, result) {
+                        connection.query("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + userUsername + "', '" + userPassword + "', '" + userFirstname + "', '" + userLastname + "', '" + userEmail + "', '" + userAddress + "', " + resultTest + ")", function (err, result) {
                             if (err) {
                                 //message d'erreur pour un si il y a une erreur au niveau du sql
                                 //(primary key ou autre) lors de l'insertion dans la table compte_client
