@@ -34,9 +34,18 @@ router.get('/', function (req, res) {
                foreignField: "_id.numid",
                as: "marques_id"
            }}
-        ],function(err, res) {
+        ],function(err, resultat) {
             if (err) throw err;
-            console.log(JSON.stringify(res));
+            //ceci permet de savoir combien de pages sera necessaire pour henberger 20 produits par page
+            var nbreDeVingts = parseInt(resultat.length / 9);
+            var nbreDePages;
+            if (resultat.length % 9 > 0) {
+                nbreDePages = nbreDeVingts + 1;
+            } else {
+                nbreDePages = nbreDeVingts;
+            }
+            res.render('pages/produits.ejs', { nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", produit: "active", produits: resultat });
+       
             db.close();
           });
     });
