@@ -49,7 +49,7 @@ router.post('/', function (req, res) {
                             res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray });
                             res.end()
                         }
-                        connection.query("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + req.body.username + "', '" + req.body.passwordUser + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.email + "', '" + req.body.adresse + "', " + resultTest + ")", function (err, result) {
+                        connection.query("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + req.body.username + "', '" + req.body.passwordUser.trim() + "', '" + req.body.fname.trim() + "', '" + req.body.lname.trim() + "', '" + req.body.email.trim() + "', '" + req.body.adresse.trim() + "', " + resultTest.trim() + ")", function (err, result) {
                             if (err) {
                                 //message d'erreur pour un si il y a une erreur au niveau du sql
                                 //(primary key ou autre) lors de l'insertion dans la table compte_client
