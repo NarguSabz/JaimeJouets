@@ -17,12 +17,12 @@ router.get('/', function (req, res) {
 router.post('/', function (req, res) {
     var userMessageText = "";
     var userMessageStatus = "";
-    var userUsername = ""+req.body.username;
-    var userPassword = ""+req.body.passwordUser;
-    var userFirstname = ""+req.body.fname;
-    var userLastname = ""+req.body.lname;
-    var userEmail = ""+req.body.email;
-    var userAddress = ""+req.body.adresse;
+    var userUsername = req.body.username;
+    var userPassword = req.body.passwordUser;
+    var userFirstname = req.body.fname;
+    var userLastname = req.body.lname;
+    var userEmail = req.body.email;
+    var userAddress = req.body.adresse;
  
     var resultTest = 0; //initialisation du premier ID a 0 si necessaire
 
