@@ -49,7 +49,7 @@ router.get('/:id', function (req, res) {
                        localField: "marques_id",
                        foreignField: "_id.numid",
                        as: "marques_id"
-                   }},{$match: {'marques_id': resultat[0].marques_id}}
+                   }},{$match: {'marques_id': resultat[0].marques_id, '_id.numid':{$ne: resultat[0]._id.numid}}}
                 ],function(err, result) {
                 res.render('pages/unProduit.ejs', { login: "", accueil: "", creationCompte: "", produit: "active", produit: resultat[0],produitsDeMemeMarque:result})
             });
