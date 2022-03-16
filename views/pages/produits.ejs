@@ -197,15 +197,15 @@
                                                     <!--ce boucle permet de remplir chaque page, rempli 20 produits par pages, tant qu on a pas mis tous les produits-->
                                                     <% for(var k=0; k< 9 && j < produits.length; j++,k++){ %>
                                                         <div class="col-md-4 col-xs-6">
+                                                            <a href="produit/<%=produits[j]._id.numid %>">
                                                             <div class="product">
                                                                 <div class="product-img">
                                                                     <!--on place le id du produit pour pouvoir chercher la route vers son image-->
-                                                                    <img src="./img/<%=produits[j]._id.numid %>/<%=produits[j]._id.numid %>-1.jpg"
-                                                                        alt="">
-                                                                    <div class="product-label">
-                                                                        <span class="sale">-30%</span>
-                                                                        <span class="new">NOUVEAU</span>
-                                                                    </div>
+                                                                           <img src="./img/<%=produits[j]._id.numid %>/<%=produits[j]._id.numid %>-1.jpg" >
+                                                                        <div class="product-label">
+                                                                            <span class="sale">-30%</span>
+                                                                            <span class="new">NOUVEAU</span>
+                                                                        </div>
                                                                 </div>
                                                                 <div class="product-body">
                                                                     <!--on place la marque du produit-->
@@ -215,7 +215,8 @@
                                                                     </p>
                                                                     <!--on place le nom du produit-->
 
-                                                                    <h3 class="product-name"><a href="produit/<%=produits[j]._id.numid %>">
+                                                                    <h3 class="product-name"><a
+                                                                            href="produit/<%=produits[j]._id.numid %>">
                                                                             <%=produits[j].nom %>
                                                                         </a>
 
@@ -227,8 +228,8 @@
                                                                     </h4>
                                                                     <!--on place la categorie d age du produit-->
 
-                                                                    <p class="product-category">pour <%=produits[j].categories_id[0].nom
-                                                                            %> ans</p>
+                                                                    <p class="product-category">pour
+                                                                        <%=produits[j].categories_id[0].nom %> ans</p>
                                                                     <div class="product-rating">
                                                                         <i class="fa fa-star"></i>
                                                                         <i class="fa fa-star"></i>
@@ -259,7 +260,7 @@
                                                                 </div>
                                                             </div>
 
-                                                        </div>
+                                                        </div></a>
                                                         <%}%>
                                             </div>
                                             <%}%>

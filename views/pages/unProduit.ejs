@@ -348,7 +348,7 @@
 
                 <% produitsDeMemeMarque.forEach(function(produit) { %>
                     <div class="col-md-3 col-xs-6">
-
+                        <a href="<%=produit._id.numid%>">
                         <div class="product">
                             <div class="product-img">
                                 <!--on place le id du produit pour pouvoir chercher la route vers son image-->
@@ -398,7 +398,7 @@
                                     to
                                     cart</button>
                             </div>
-                        </div>
+                        </div></a>
                     </div>
                     <%}); %>
                         <!-- /product -->
