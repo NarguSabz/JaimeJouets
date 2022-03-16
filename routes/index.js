@@ -2,8 +2,6 @@ var express = require('express');
 var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk('localhost:27017/protodb');
-
-var mysql = require('mysql');
 var router = express.Router();
 
 //methode http chargee de la route /accueil

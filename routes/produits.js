@@ -1,13 +1,10 @@
 var express = require('express');
 var http = require('http');
-var mysql = require('mysql');
 var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk('localhost:27017/protodb');
 var router = express.Router();
 
-//ajout d'une connection a la base de donnees
-var connection = mysql.createConnection({ host: "localhost", user: "root", password: "", database: "bdproto" });
 
 //methode http chargee de la route /produits
 router.get('/', function (req, res) {
