@@ -27,8 +27,6 @@ router.post('/', function (req, res) {
     var userEmail = req.body.email.toString().trim();
     var userAddress = req.body.adresse.toString().trim();
 
-
- 
     var resultTest = 0; //initialisation du premier ID a 0 si necessaire
 
     if (!checkAllFieldsEmpty(req)) {
@@ -93,11 +91,6 @@ router.post('/', function (req, res) {
         res.end()
     }
 });
-
-function toStringTrim(tempReq) {
-
-    return tempReq.trim();
-}
 
 function checkAllFieldsEmpty(req) {
     var missingAmount = 0;
