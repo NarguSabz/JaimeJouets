@@ -193,7 +193,7 @@
                                         <div class="product">
                                             <div class="product-img">
                                                 <!--on place le id du produit pour pouvoir chercher la route vers son image-->
-                                                <img src="./img/<%=produit.id_produit %>/<%=produit.id_produit %>-1.jpg"
+                                                <img src="./img/<%=produit._id.numid %>/<%=produit._id.numid %>-1.jpg"
                                                     alt="">
                                                 <div class="product-label">
                                                     <span class="sale">-30%</span>
@@ -203,11 +203,11 @@
                                             <div class="product-body">
                                                 <!--on place la marque du produit-->
 
-                                                <p class="product-category">par <%=produit.marque %>
+                                                <p class="product-category">par <%=produit.marques_id[0].Nom %>
                                                 </p>
                                                 <!--on place le nom du produit-->
 
-                                                <h3 class="product-name"><a href="produit/<%=produit.id_produit%>"><%=produit.nom %></a>
+                                                <h3 class="product-name"><a href="produit/<%=produit._id.numid%>"><%=produit.nom %></a>
                                                     
                                                 </h3>
                                                 <!--on place le prix du produit-->
@@ -216,7 +216,7 @@
                                                             class="product-old-price">$990.00</del></h4>
                                                 <!--on place la categorie d age du produit-->
 
-                                                <p class="product-category">pour <%=produit.age %> ans</p>
+                                                <p class="product-category">pour <%=produit.categories_id[0].nom %> ans</p>
                                                 <div class="product-rating">
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
