@@ -4,7 +4,7 @@ var monk = require('monk');
 var db = monk('localhost:27017/protodb');
 var router = express.Router();
 
-//methode http chargee de la route /accueil
+//methode http chargee de la route /rechercher
 router.get('/', function (req, res) {
     //connection.query("SELECT p.id_produit, p.nom, p.description, p.date_parution, p.prix, c.nom age, m.nom marque from produit p join categories c on p.categories_id_categories = c.id_categories join marques m on p.marques_id_marque = m.id_marque where p.nom Like"+ "'%"+req.query.q+"%'"+";",  function (err, resultat) {
     var collection = db.get('produits');
