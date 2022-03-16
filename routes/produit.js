@@ -52,6 +52,7 @@ router.get('/:id', function (req, res) {
                    }},{$match: {'marques_id': resultat[0].marques_id, '_id.numid':{$ne: resultat[0]._id.numid}}}
                 ],function(err, result) {
                 res.render('pages/unProduit.ejs', { login: "", accueil: "", creationCompte: "", produit: "active", produit: resultat[0],produitsDeMemeMarque:result})
+                db.close();
             });
         };          
           //on active egalement le lien vers la page d accueil et desactive tous les autres liens         

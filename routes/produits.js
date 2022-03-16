@@ -30,7 +30,6 @@ router.get('/', function (req, res) {
         ],function(err, resultat) {
             if (err) throw err;           
 
-            console.log(resultat);
             //ceci permet de savoir combien de pages sera necessaire pour henberger 20 produits par page
             var nbreDeVingts = parseInt(resultat.length / 9);
             var nbreDePages;

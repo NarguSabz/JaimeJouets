@@ -30,6 +30,7 @@ router.get('/', function (req, res) {
          if (err) throw err;           
          res.render('pages/index.ejs', { login: "", accueil: "active", creationCompte: "", produit: "", produits: resultat });
          //on active egalement le lien vers la page d accueil et desactive tous les autres liens        
+         db.close();
        });
 });
 
