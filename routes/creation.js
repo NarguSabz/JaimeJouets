@@ -3,9 +3,9 @@ var express = require('express');
 var mysql = require('mysql');
 var router = express.Router();
 
-var mongo = require('mongodb');
-var monk = require('monk');
-var db = monk('localhost:27017/protodb');
+//var mongo = require('mongodb');
+//var monk = require('monk');
+//var db = monk('localhost:27017/protodb');
 
 //ajout d'une connection a la base de donnees
 var connection = mysql.createConnection({ host: "localhost", user: "root", password: "", database: "bdproto" });
@@ -22,56 +22,48 @@ router.post('/', function (req, res) {
     var userMessageText = "";
     var userMessageStatus = "";
 
-    var resultTest = 0; //initialisation du premier ID a 0 si necessaire
+    var resultTest; //initialisation du premier ID a 0 si necessaire
 
-    var collectionPanier = db.get('panier');
+    //collectionPanier.find({}, { _id: 0, compte_client: 0 }).sort({ numid: -1 }).limit(1, function (e, result) {
+    //dbo.collection("panier").find({}, { _id: 0, compte_client: 0 }).sort({ numid: -1 }).limit(1,function (e, result) {
+    //   console.log(result);
+    //});
 
-    collectionPanier.find({}, { compte_client: 0, id: 0}, function (e, docs) {
-        res.json(docs);
-    });
+    var MongoClient = require('mongodb').MongoClient;
+    var url = "mongodb://localhost:27017/";
+
+    MongoClient.connect(url, function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("protodb");
+        if (!checkAllFieldsEmpty(req)) {
+            resultTest = giveUserId(dbo);
 
 
-    if (!checkAllFieldsEmpty(req)) {
-		//db.collection.find().sort({id_panier:-1}).limit(1) // for MAX
-        db.panier.find({}, { _id: 0, compte_client: 0 }, function (err, result) {
-            console.log(result);
-            if (typeof result[0] != 'undefined') { //chercher le plus gros ID s'il existe pour iterer dessus
-                resultTest = result[0].numid;
-                resultTest++;
+            var userNameNotUsed = checkUserNameAvailable(dbo, req);
+            console.log(userNameNotUsed);
+            if (userNameNotUsed) {
+                console.log("username check cleared");
+                insertUserPanier(dbo, req, resultTest);
+                insertUserCompteClient(dbo, req);
+            } else {
+                console.log("username check NOT cleared");
             }
 
-            //verifier si le username existe deja si non, inserer les données de l'utilisateur dans la BD
-            connection.query("SELECT compte_client_nom_utilisateur from panier WHERE compte_client_nom_utilisateur = '" + req.body.username.trim() + "'", function (err, result) {
-                if (typeof result[0] != 'undefined') {
-                    //message d'erreur pour un nom d'utilsateur deja pris
-                    userMessageText = "Nom d'utilisateur utilisé";
-                    userMessageStatus = "alertBad";
-                    userMessageArray = [userMessageText, userMessageStatus]; //console.log(userMessageArray);
-                    //afficher le message a l'utilisateur
-                    res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray });
-                    res.end()
-                } else {
+        } else {
+
+            console.log("field empty pls");
+        }
+        db.close();
+
+    });
+});
+    /*
+      
                     connection.query("INSERT INTO panier (id_panier, compte_client_nom_utilisateur) VALUES ( " + resultTest + "," + " '" + req.body.username.trim() + "')", function (err, result) {
-                        if (err) {
-                            //message d'erreur pour un si il y a une erreur au niveau du sql
-                            //(primary key ou autre) lors de l'insertion dans la table panier
-                            userMessageText = "Problème lors de l'insertion dans la bd (panier)";
-                            userMessageStatus = "alertBad";
-                            userMessageArray = [userMessageText, userMessageStatus]; //console.log(userMessageArray);
-                            //afficher le message a l'utilisateur
-                            res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray });
-                            res.end()
+                      
                         }
                         connection.query("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + req.body.username + "', '" + req.body.passwordUser + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.email + "', '" + req.body.adresse + "', " + resultTest + ")", function (err, result) {
-                            if (err) {
-                                //message d'erreur pour un si il y a une erreur au niveau du sql
-                                //(primary key ou autre) lors de l'insertion dans la table compte_client
-                                userMessageText = "Problème lors de l'insertion dans la bd (compte_client)";
-                                userMessageStatus = "alertBad";
-                                userMessageArray = [userMessageText, userMessageStatus]; //console.log(userMessageArray);
-                                //afficher le message a l'utilisateur
-                                res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray });
-                                res.end()
+                          
                             } else {
                                 //message de succes pour un compte creer
                                 userMessageText = "Compte Créer avec succès!";
@@ -81,30 +73,82 @@ router.post('/', function (req, res) {
                                 res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray });
                                 res.end()
                             }
-                        });
-                    });
-                }
-            });
-        });
-    } else {
-        //message d'erreur pour une entree obligatoire manquante
-        userMessageText = "Entrée obligatoire manquante!";
-        userMessageStatus = "alertBad";
-        userMessageArray = [userMessageText, userMessageStatus]; //console.log(userMessageArray);
-        res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray });
-        res.end()
+
+
+    */
+
+function insertUserPanier(dbo, req, resultTest) {
+    var userUsername = req.body.username.toString().trim();
+    var myobj = { numid: resultTest, compte_client: userUsername };
+    console.log(myobj);
+
+    dbo.collection("panier").insertOne(myobj, function (err, res) {
+        if (err) throw err;
+        console.log("1 document inserted");
+      
+    });
+
+}
+
+function insertUserCompteClient(dbo, req, resultTest) {
+
+    var userUsername = req.body.username.toString().trim();
+    var userPassword = req.body.passwordUser.toString().trim();
+    var userFirstname = req.body.fname.toString().trim();
+    var userLastname = req.body.lname.toString().trim();
+    var userEmail = req.body.email.toString().trim();
+    var userAddress = req.body.adresse.toString().trim();
+
+    var myobj = { username: userUsername, mdp: userPassword, prenom: userFirstname, nom: userLastname, email: userEmail, panier_id: resultTest, adresse: userAddress };
+    console.log( myobj);
+    dbo.collection("panier").insertOne(myobj, function (err, res) {
+        if (err) throw err;
+        console.log("1 document inserted" );
+
+    });
+
+}
+
+function checkUserNameAvailable(dbo, req) {
+    var userUsername = req.body.username.toString().trim();
+    dbo.collection("panier").find({ compte_client: userUsername }).limit(1).toArray(function (err, result) {
+        console.log(result);
+        if (!result[0]) {
+            console.log("not used")
+            return 1;
+
+        }
+        console.log("used")
+        return 0;
+    });
+}
+
+
+
+function giveUserId(dbo) {
+
+    dbo.collection("panier").find({}, { projection: { _id: 0, numid: 1 } }).sort({ numid: -1 }).limit(1).toArray(function (err, result) {
+        //console.log(result);
+        if (typeof result[0] != 'undefined') { //chercher le plus gros ID s'il existe pour iterer dessus
+            resultTest = result[0].numid;
+            resultTest++;
+            console.log(resultTest);
+            return resultTest;
+        }
+    
+        return 0;
+    });
     }
-});
 
 function checkAllFieldsEmpty(req) {
     var missingAmount = 0;
 
-    missingAmount += checkOneFieldEmpty(req.body.username);
-    missingAmount += checkOneFieldEmpty(req.body.passwordUser);
-    missingAmount += checkOneFieldEmpty(req.body.fname);
-    missingAmount += checkOneFieldEmpty(req.body.lname);
-    missingAmount += checkOneFieldEmpty(req.body.email);
-    missingAmount += checkOneFieldEmpty(req.body.adresse);
+    missingAmount += checkOneFieldEmpty(req.body.username.toString());
+    missingAmount += checkOneFieldEmpty(req.body.passwordUser.toString());
+    missingAmount += checkOneFieldEmpty(req.body.fname.toString());
+    missingAmount += checkOneFieldEmpty(req.body.lname.toString());
+    missingAmount += checkOneFieldEmpty(req.body.email.toString());
+    missingAmount += checkOneFieldEmpty(req.body.adresse.toString());
 
     return Boolean(missingAmount);
 }
