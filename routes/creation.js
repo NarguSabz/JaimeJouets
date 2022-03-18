@@ -41,13 +41,13 @@ router.post('/', function (req, res) {
 
             var userNameNotUsed = checkUserNameAvailable(dbo, req);
             console.log(userNameNotUsed);
-            if (userNameNotUsed) {
-                console.log("username check cleared");
+           // if (userNameNotUsed) {
+              //  console.log("username check cleared");
                 insertUserPanier(dbo, req, resultTest);
                 insertUserCompteClient(dbo, req);
-            } else {
-                console.log("username check NOT cleared");
-            }
+           // } else {
+                //console.log("username check NOT cleared");
+           // }
 
         } else {
 
@@ -57,26 +57,7 @@ router.post('/', function (req, res) {
 
     });
 });
-    /*
-      
-                    connection.query("INSERT INTO panier (id_panier, compte_client_nom_utilisateur) VALUES ( " + resultTest + "," + " '" + req.body.username.trim() + "')", function (err, result) {
-                      
-                        }
-                        connection.query("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + req.body.username + "', '" + req.body.passwordUser + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.email + "', '" + req.body.adresse + "', " + resultTest + ")", function (err, result) {
-                          
-                            } else {
-                                //message de succes pour un compte creer
-                                userMessageText = "Compte Créer avec succès!";
-                                userMessageStatus = "alertGood";
-                                userMessageArray = [userMessageText, userMessageStatus]; //console.log(userMessageArray);
-                                //afficher le message a l'utilisateur
-                                res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray });
-                                res.end()
-                            }
-
-
-    */
-
+    
 function insertUserPanier(dbo, req, resultTest) {
     var userUsername = req.body.username.toString().trim();
     var myobj = { numid: resultTest, compte_client: userUsername };
@@ -101,7 +82,7 @@ function insertUserCompteClient(dbo, req, resultTest) {
 
     var myobj = { username: userUsername, mdp: userPassword, prenom: userFirstname, nom: userLastname, email: userEmail, panier_id: resultTest, adresse: userAddress };
     console.log( myobj);
-    dbo.collection("panier").insertOne(myobj, function (err, res) {
+    dbo.collection("compte_client").insertOne(myobj, function (err, res) {
         if (err) throw err;
         console.log("1 document inserted" );
 
