@@ -18,15 +18,14 @@ router.post('/', function (req, res) {
     var userMessageText = "";
     var userMessageStatus = "";
     //console.log('username used ' + req.body.username);
-    db.collection("compte_client").find({}, {username : req.body.username}, function (err, result) {
+    db.collection("compte_client").find({username : req.body.username}, function (err, result) {
         console.log(result);
-        console.log(result[0].username);
-        if (typeof result == 'undefined') {
+        if (typeof result[0] == 'undefined') {
             //message d'erreur pour un nom d'utilsateur incorrecte
             userMessageText = "Combinaison du nom d'utilisateur et mot de passe incorrecte!";
             userMessageStatus = "alertBad";
         } else {
-            if (result[0].mdp == req.body.MDP) {
+            if (result[0].mdp == req.body.passwordUser) {
                 //message de succes pour une combinaison de nom d'utilisateur et mot de passe correcte
                 userMessageText = "Combinaison du nom d'utilisateur et mot de passe correcte!";
                 userMessageStatus = "alertGood";
