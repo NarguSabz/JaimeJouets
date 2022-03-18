@@ -3,7 +3,7 @@ var router = express.Router();
 
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
-var dbo = db.db("protodb");
+
 
 var userUsername = "";
 var userPassword = "";
@@ -28,14 +28,22 @@ router.get('/', function (req, res) {
 //methode qui se charge d'envoyer les informations necessaires pour la creation d'un compte
 //vers la BD en s'assurant que ces entrées sont acceptables (select & insert)
 router.post('/', function (req, res) {
-        fillVariablesInput();
-          
+
+    fillVariablesInput(req);
+    console.log(userAddress);
+
+    /*
+    const query = MySchema.findOne({ name: /tester/gi });
+    const userData = await query.exec();
+    console.log(userData)
+    */
+
         if (!checkAllFieldsEmpty()) {
             
-            if (checkUserNameAvailable(req)) {
+            if (checkUserNameAvailable()) {
                 console.log("username check cleared");
-                insertUserPanier(req);
-                insertUserCompteClient(req);
+                insertUserPanier();
+                insertUserCompteClient();
             } else {
                 console.log("username check NOT cleared");
             }
@@ -50,12 +58,12 @@ router.post('/', function (req, res) {
 });
 
 
-function insertUserPanier(req) {
-    var userUsername = req.body.username.toString().trim();
-    var myobj = { /*numid: resultTest,*/ compte_client: userUsername };
+function insertUserPanier() {
+
+    var myobj = {  compte_client: userUsername };
     console.log(myobj);
     MongoClient.connect(url, function (err, db) {
-    dbo.collection("panier").insertOne(myobj, function (err, res) {
+        db.db("protodb").collection("panier").insertOne(myobj, function (err, res) {
         if (err) throw err;
         console.log("1 document inserted");
         db.close();
@@ -63,52 +71,54 @@ function insertUserPanier(req) {
     });
 }
 
-function insertUserCompteClient(req) {
+function insertUserCompteClient() {
 
-    var userUsername = req.body.username.toString().trim();
-    var userPassword = req.body.passwordUser.toString().trim();
-    var userFirstname = req.body.fname.toString().trim();
-    var userLastname = req.body.lname.toString().trim();
-    var userEmail = req.body.email.toString().trim();
-    var userAddress = req.body.adresse.toString().trim();
+    var myobj = { username: userUsername, mdp: userPassword, prenom: userFirstname, nom: userLastname, email: userEmail, adresse: userAddress };
+    MongoClient.connect(url, function (err, db) {
+        console.log(myobj);
+        db.db("protodb").collection("panier").insertOne(myobj, function (err, res) {
+            if (err) throw err;
+            console.log("1 document inserted");
+            db.close();
+        });
 
-    var myobj = { username: userUsername, mdp: userPassword, prenom: userFirstname, nom: userLastname, email: userEmail, adresse: userAddress /*, panier_id: resultTest*/ };
-    console.log( myobj);
-    dbo.collection("panier").insertOne(myobj, function (err, res) {
-        if (err) throw err;
-        console.log("1 document inserted" );
-
-    });
-
-}
-
-function checkUserNameAvailable(dbo, req) {
-    var userUsername = req.body.username.toString().trim();
-    dbo.collection("panier").find({ compte_client: userUsername }).limit(1).toArray(function (err, result) {
-        console.log(result);
-        if (!result[0]) {
-            console.log("not used")
-            return 1;
-
-        }
-        console.log("used")
-        return 0;
     });
 }
 
+function checkUserNameAvailable() {
+            MongoClient.connect(url, function (err, db) {
+                db.db("protodb").collection("panier").find({ compte_client: userUsername }).limit(1).toArray(function (err, result) {
+                    console.log(result);
+                    if (!result[0]) {
+                        console.log("not used")
+                        db.close();
+                        return 1;
+
+                    }
+                    console.log("used")
+                    db.close();
+                    return 0;
+                });
+
+            });
+}
 
 
-function giveUserId(dbo) {
 
-    dbo.collection("panier").find({}, { projection: { _id: 0, numid: 1 } }).sort({ numid: -1 }).limit(1).toArray(function (err, result) {
-        //console.log(result);
+    
+function giveUserId() {
+    MongoClient.connect(url, function (err, db) {
+    db.db("protodb").collection("panier").find({}, { projection: { _id: 0, numid: 1 } }).sort({ numid: -1 }).limit(1).toArray(function (err, result) {
         if (typeof result[0] != 'undefined') { //chercher le plus gros ID s'il existe pour iterer dessus
             resultTest = result[0].numid;
             resultTest++;
             console.log(resultTest);
+            db.close();
             return resultTest;
         }
+        db.close();
         return 0;
+    });
     });
     }
 
@@ -132,7 +142,7 @@ function checkOneFieldEmpty(fieldToCheck) {
     return 0;
 }
 
-function fillVariablesInput() {
+function fillVariablesInput(req) {
 
     userUsername = req.body.username.toString().trim();
     userPassword = req.body.passwordUser.toString().trim();
