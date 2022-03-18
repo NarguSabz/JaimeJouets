@@ -7,8 +7,6 @@ var router = express.Router();
 //var monk = require('monk');
 //var db = monk('localhost:27017/protodb');
 
-//ajout d'une connection a la base de donnees
-var connection = mysql.createConnection({ host: "localhost", user: "root", password: "", database: "bdproto" });
 
 //methode http chargee de la route /creerCompte
 router.get('/', function (req, res) {
@@ -37,7 +35,8 @@ router.post('/', function (req, res) {
         var dbo = db.db("protodb");
         if (!checkAllFieldsEmpty(req)) {
             //resultTest = giveUserId(dbo);
-            if (checkUserNameAvailable(dbo, req)) {
+            var userNameAvailable = await checkUserNameAvailable(dbo, req);
+            if (userNameAvailable) {
                 console.log("username check cleared");
                 insertUserPanier(dbo, req, resultTest);
                 insertUserCompteClient(dbo, req);
@@ -53,25 +52,7 @@ router.post('/', function (req, res) {
 
     });
 });
-    /*
-      
-                    connection.query("INSERT INTO panier (id_panier, compte_client_nom_utilisateur) VALUES ( " + resultTest + "," + " '" + req.body.username.trim() + "')", function (err, result) {
-                      
-                        }
-                        connection.query("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + req.body.username + "', '" + req.body.passwordUser + "', '" + req.body.fname + "', '" + req.body.lname + "', '" + req.body.email + "', '" + req.body.adresse + "', " + resultTest + ")", function (err, result) {
-                          
-                            } else {
-                                //message de succes pour un compte creer
-                                userMessageText = "Compte Créer avec succès!";
-                                userMessageStatus = "alertGood";
-                                userMessageArray = [userMessageText, userMessageStatus]; //console.log(userMessageArray);
-                                //afficher le message a l'utilisateur
-                                res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray });
-                                res.end()
-                            }
 
-
-    */
 
 function insertUserPanier(dbo, req, resultTest) {
     var userUsername = req.body.username.toString().trim();
@@ -103,7 +84,7 @@ function insertUserCompteClient(dbo, req, resultTest) {
 
 }
 
-function checkUserNameAvailable(dbo, req) {
+async function checkUserNameAvailable(dbo, req) {
     var userUsername = req.body.username.toString().trim();
     dbo.collection("panier").find({ compte_client: userUsername }).limit(1).toArray(function (err, result) {
         console.log(result);
