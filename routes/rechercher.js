@@ -8,9 +8,7 @@ var bodyParser = require('body-parser');
 //methode http chargee de la route /rechercher
 router.get('/', function (req, res) {
     //ceci permet d aller chercher tous le nom de categorie et de marque de chacun des produits et de aller chercher les 8 les plus recents produits, dans la base de donnees
-   var collection = db.get('produits');/*
-    collection.createIndex({nom: "text"});
-    collection.find({ $text : { $search : req.query.q }},function(err, result){console.log(result.length)});*/
+   var collection = db.get('produits');
     
     collection.aggregate([
         {
@@ -31,7 +29,7 @@ router.get('/', function (req, res) {
                 foreignField: "numid",
                 as: "marques_id"
             }
-        }, {$match:{ "nom": {$regex: ".*"+ req.query.q +".*" ,$options:"xi"}}}
+        }, {$match:{ "nom": {$regex: ".*"+ req.query.q +".*" ,$options:"i"}}}
     ], function (err, resultat) {
         if (err) throw err;
          //ceci permet de savoir combien de pages sera necessaire pour henberger 20 produits par page
