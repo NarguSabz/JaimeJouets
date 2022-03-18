@@ -15,7 +15,7 @@ router.get('/', function (req, res) {
            {
              from: 'categories',
              localField: 'categories_id',
-             foreignField: '_id.numid',
+             foreignField: 'numid',
              as: 'categories_id'
            } 
           
@@ -24,7 +24,7 @@ router.get('/', function (req, res) {
            {
                from: "marques",
                localField: "marques_id",
-               foreignField: "_id.numid",
+               foreignField: "numid",
                as: "marques_id"
            }}
         ],function(err, resultat) {
