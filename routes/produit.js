@@ -14,7 +14,7 @@ router.get('/:id', function (req, res) {
          {
            from: 'categories',
            localField: 'categories_id',
-           foreignField: '_id.numid',
+           foreignField: 'numid',
            as: 'categories_id'
          } 
         
@@ -23,9 +23,9 @@ router.get('/:id', function (req, res) {
          {
              from: "marques",
              localField: "marques_id",
-             foreignField: "_id.numid",
+             foreignField: "numid",
              as: "marques_id"
-         }},{$match: {'_id.numid': req.params.id}}
+         }},{$match: {'numid': req.params.id}}
       ],function(err, resultat) {
           if (err) throw err;  
           if (resultat.length == 0) {
@@ -38,7 +38,7 @@ router.get('/:id', function (req, res) {
                    {
                      from: 'categories',
                      localField: 'categories_id',
-                     foreignField: '_id.numid',
+                     foreignField: 'numid',
                      as: 'categories_id'
                    } 
                   
@@ -47,9 +47,9 @@ router.get('/:id', function (req, res) {
                    {
                        from: "marques",
                        localField: "marques_id",
-                       foreignField: "_id.numid",
+                       foreignField: "numid",
                        as: "marques_id"
-                   }},{$match: {'marques_id': resultat[0].marques_id, '_id.numid':{$ne: resultat[0]._id.numid}}}
+                   }},{$match: {'marques_id': resultat[0].marques_id, 'numid':{$ne: resultat[0]._id.numid}}}
                 ],function(err, result) {
                 res.render('pages/unProduit.ejs', { login: "", accueil: "", creationCompte: "", produit: "active", produit: resultat[0],produitsDeMemeMarque:result})
                 db.close();
