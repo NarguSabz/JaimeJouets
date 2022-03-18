@@ -3,6 +3,10 @@ var express = require('express');
 var mysql = require('mysql');
 var router = express.Router();
 
+var mongo = require('mongodb');
+var monk = require('monk');
+var db = monk('localhost:27017/protodb');
+
 //ajout d'une connection a la base de donnees
 var connection = mysql.createConnection({ host: "localhost", user: "root", password: "", database: "bdproto" });
 
