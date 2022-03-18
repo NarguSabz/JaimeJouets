@@ -9,15 +9,17 @@ var bodyParser = require('body-parser');
 router.get('/', function (req, res) {
     //connection.query("SELECT p.id_produit, p.nom, p.description, p.date_parution, p.prix, c.nom age, m.nom marque from produit p join categories c on p.categories_id_categories = c.id_categories join marques m on p.marques_id_marque = m.id_marque where p.nom Like"+ "'%"+req.query.q+"%'"+";",  function (err, resultat) {
     //ceci permet d aller chercher tous le nom de categorie et de marque de chacun des produits et de aller chercher les 8 les plus recents produits, dans la base de donnees
-    var collection = db.get('produits');
-
+   /* var collection = db.get('produits');
+    collection.createIndex({nom: "text"});
+    collection.find({ $text : { $search : req.query.q }},function(err, result){console.log(result.length)});*/
+    
     collection.aggregate([
         {
             $lookup:
             {
                 from: 'categories',
                 localField: 'categories_id',
-                foreignField: '_id.numid',
+                foreignField: 'numid',
                 as: 'categories_id'
             }
 
@@ -27,10 +29,10 @@ router.get('/', function (req, res) {
             {
                 from: "marques",
                 localField: "marques_id",
-                foreignField: "_id.numid",
+                foreignField: "numid",
                 as: "marques_id"
             }
-        }, {$match:{ "nom": {$regex: req.query.q ,$options:"xi"}}}
+        }, {$match:{ "nom": {$regex: ".*"+ req.query.q +".*" ,$options:"xi"}}}
     ], function (err, resultat) {
         if (err) throw err;
          //ceci permet de savoir combien de pages sera necessaire pour henberger 20 produits par page
