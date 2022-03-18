@@ -1,6 +1,9 @@
 var express = require('express');
 var mysql = require('mysql');
 var router = express.Router();
+var mongo = require('mongodb');
+var monk = require('monk');
+var db = monk('localhost:27017/protodb');
 
 //ajout d'une connection a la base de donnees
 var connection = mysql.createConnection({ host: "localhost", user: "root", password: "", database: "bdproto" });
@@ -14,18 +17,16 @@ router.get('/', function (req, res) {
 router.post('/', function (req, res) {
     var userMessageText = "";
     var userMessageStatus = "";
-
-    var userUsername = req.body.username.toString().trim();
-    var userPassword = req.body.passwordUser.toString().trim();
-
     //console.log('username used ' + req.body.username);
-    connection.query("Select nom_utilisateur, mdp from compte_client where nom_utilisateur = '" + userUsername + "'", function (err, result) {
-        if (typeof result[0] == 'undefined') {
+    db.collection("compte_client").find({}, {username : req.body.username}, function (err, result) {
+        console.log(result);
+        console.log(result[0].username);
+        if (typeof result == 'undefined') {
             //message d'erreur pour un nom d'utilsateur incorrecte
             userMessageText = "Combinaison du nom d'utilisateur et mot de passe incorrecte!";
             userMessageStatus = "alertBad";
         } else {
-            if (result[0].mdp == userPassword) {
+            if (result[0].mdp == req.body.MDP) {
                 //message de succes pour une combinaison de nom d'utilisateur et mot de passe correcte
                 userMessageText = "Combinaison du nom d'utilisateur et mot de passe correcte!";
                 userMessageStatus = "alertGood";
