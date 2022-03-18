@@ -24,10 +24,19 @@ router.post('/', function (req, res) {
 
     var resultTest = 0; //initialisation du premier ID a 0 si necessaire
 
+    var collectionPanier = db.get('panier');
+
+    collectionPanier.find({}, { compte_client: 0, id: 0}, function (e, docs) {
+        res.json(docs);
+    });
+
+
     if (!checkAllFieldsEmpty(req)) {
-        connection.query("SELECT * from panier ORDER BY id_panier DESC LIMIT 1", function (err, result) {
+		//db.collection.find().sort({id_panier:-1}).limit(1) // for MAX
+        db.panier.find({}, { _id: 0, compte_client: 0 }, function (err, result) {
+            console.log(result);
             if (typeof result[0] != 'undefined') { //chercher le plus gros ID s'il existe pour iterer dessus
-                resultTest = result[0].id_panier;
+                resultTest = result[0].numid;
                 resultTest++;
             }
 
