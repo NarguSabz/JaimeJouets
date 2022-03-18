@@ -25,7 +25,7 @@ router.get('/', function (req, res) {
             localField: "marques_id",
             foreignField: "numid",
             as: "marques_id"
-        }},{$sort:{ date_parution : -1,'_id.numid':1}},{$limit:8}
+        }},{$sort:{ date_parution : -1,numid:1}},{$limit:8}
      ],function(err, resultat) {
          if (err) throw err;           
          res.render('pages/index.ejs', { login: "", accueil: "active", creationCompte: "", produit: "", produits: resultat });

@@ -7,9 +7,8 @@ var bodyParser = require('body-parser');
 
 //methode http chargee de la route /rechercher
 router.get('/', function (req, res) {
-    //connection.query("SELECT p.id_produit, p.nom, p.description, p.date_parution, p.prix, c.nom age, m.nom marque from produit p join categories c on p.categories_id_categories = c.id_categories join marques m on p.marques_id_marque = m.id_marque where p.nom Like"+ "'%"+req.query.q+"%'"+";",  function (err, resultat) {
     //ceci permet d aller chercher tous le nom de categorie et de marque de chacun des produits et de aller chercher les 8 les plus recents produits, dans la base de donnees
-   /* var collection = db.get('produits');
+   var collection = db.get('produits');/*
     collection.createIndex({nom: "text"});
     collection.find({ $text : { $search : req.query.q }},function(err, result){console.log(result.length)});*/
     

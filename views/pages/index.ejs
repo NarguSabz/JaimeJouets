@@ -191,7 +191,7 @@
                                     <!--ce foreach prends comme variable 'produits' qui contient les 8 les plus recents produits-->
                                     <% produits.forEach(function(produit) { %>
                                        
-                                        <div class="product"> <a href="produit/<%=produit._id.numid%>">
+                                        <div class="product"> <a href="produit/<%=produit.numid%>">
                                             <div class="product-img">
                                                 <!--on place le id du produit pour pouvoir chercher la route vers son image-->
                                                 <img src="./img/<%=produit.numid %>/<%=produit.numid %>-1.jpg"
