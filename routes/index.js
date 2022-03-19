@@ -28,7 +28,7 @@ router.get('/', function (req, res) {
         }},{$sort:{ date_parution : -1,numid:1}},{$limit:8}
      ],function(err, resultat) {
          if (err) throw err;           
-         res.render('pages/index.ejs', { login: "", accueil: "active", creationCompte: "", produit: "", produits: resultat });
+         res.render('pages/index.ejs', { login: "", accueil: "active", creationCompte: "", produit: "", produits: resultat,marques:["Barbie","Fisher-Price","Hot Wheels","Lego","Vtech"] });
          //on active egalement le lien vers la page d accueil et desactive tous les autres liens        
          db.close();
        });
