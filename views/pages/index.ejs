@@ -169,11 +169,11 @@
                         <div class="section-nav">
                             <ul class="section-tab-nav tab-nav">
                                 <li class="active"><a data-toggle="tab" href="#tab1">Tous</a></li>
-                                <li><a data-toggle="tab" href="#tab1">Barbie</a></li>
-                                <li><a data-toggle="tab" href="#tab1">Fisher-Price</a></li>
-                                <li><a data-toggle="tab" href="#tab1">Hot Wheels</a></li>
-                                <li><a data-toggle="tab" href="#tab1">Lego</a></li>
-                                <li><a data-toggle="tab" href="#tab1">Vtech</a></li>
+                                <li><a data-toggle="tab" href="#tab2">Barbie</a></li>
+                                <li><a data-toggle="tab" href="#tab3">Fisher-Price</a></li>
+                                <li><a data-toggle="tab" href="#tab4">Hot Wheels</a></li>
+                                <li><a data-toggle="tab" href="#tab5">Lego</a></li>
+                                <li><a data-toggle="tab" href="#tab6">Vtech</a></li>
                             </ul>
                         </div>
                     </div>
@@ -190,62 +190,153 @@
                                     <!-- product -->
                                     <!--ce foreach prends comme variable 'produits' qui contient les 8 les plus recents produits-->
                                     <% produits.forEach(function(produit) { %>
-                                       
+
                                         <div class="product"> <a href="produit/<%=produit.numid%>">
-                                            <div class="product-img">
-                                                <!--on place le id du produit pour pouvoir chercher la route vers son image-->
-                                                <img src="./img/<%=produit.numid %>/<%=produit.numid %>-1.jpg"
-                                                    alt="">
-                                                <div class="product-label">
-                                                    <span class="sale">-30%</span>
-                                                    <span class="new">NOUVEAU</span>
+                                                <div class="product-img">
+                                                    <!--on place le id du produit pour pouvoir chercher la route vers son image-->
+                                                    <img src="./img/<%=produit.numid %>/<%=produit.numid %>-1.jpg"
+                                                        alt="">
+                                                    <div class="product-label">
+                                                        <span class="sale">-30%</span>
+                                                        <span class="new">NOUVEAU</span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="product-body">
-                                                <!--on place la marque du produit-->
+                                                <div class="product-body">
+                                                    <!--on place la marque du produit-->
 
-                                                <p class="product-category">par <%=produit.marques_id[0].Nom %>
-                                                </p>
-                                                <!--on place le nom du produit-->
+                                                    <p class="product-category">par <%=produit.marques_id[0].Nom %>
+                                                    </p>
+                                                    <!--on place le nom du produit-->
 
-                                                <h3 class="product-name"><a href="produit/<%=produit.numid%>"><%=produit.nom %></a>
-                                                    
-                                                </h3>
-                                                <!--on place le prix du produit-->
+                                                    <h3 class="product-name"><a href="produit/<%=produit.numid%>">
+                                                            <%=produit.nom %>
+                                                        </a>
 
-                                                <h4 class="product-price">$<%=produit.prix %> <del
-                                                            class="product-old-price">$990.00</del></h4>
-                                                <!--on place la categorie d age du produit-->
+                                                    </h3>
+                                                    <!--on place le prix du produit-->
 
-                                                <p class="product-category">pour <%=produit.categories_id[0].nom %> ans</p>
-                                                <div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
+                                                    <h4 class="product-price">$<%=produit.prix %> <del
+                                                                class="product-old-price">$990.00</del></h4>
+                                                    <!--on place la categorie d age du produit-->
+
+                                                    <p class="product-category">pour <%=produit.categories_id[0].nom %>
+                                                            ans</p>
+                                                    <div class="product-rating">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    </div>
+                                                    <div class="product-btns">
+                                                        <button class="add-to-wishlist"><i
+                                                                class="fa fa-heart-o"></i><span class="tooltipp">add to
+                                                                wishlist</span></button>
+                                                        <button class="add-to-compare"><i
+                                                                class="fa fa-exchange"></i><span class="tooltipp">add to
+                                                                compare</span></button>
+                                                        <button class="quick-view"><i class="fa fa-eye"></i><span
+                                                                class="tooltipp">quick view</span></button>
+                                                    </div>
                                                 </div>
-                                                <div class="product-btns">
-                                                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                            class="tooltipp">add to wishlist</span></button>
-                                                    <button class="add-to-compare"><i class="fa fa-exchange"></i><span
-                                                            class="tooltipp">add to compare</span></button>
-                                                    <button class="quick-view"><i class="fa fa-eye"></i><span
-                                                            class="tooltipp">quick view</span></button>
+                                                <div class="add-to-cart">
+                                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>
+                                                        add
+                                                        to
+                                                        cart</button>
                                                 </div>
-                                            </div>
-                                            <div class="add-to-cart">
-                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add
-                                                    to
-                                                    cart</button>
-                                            </div></a>
+                                            </a>
                                         </div>
                                         <%}); %>
                                             <!-- /product -->
                                 </div>
                                 <div id="slick-nav-1" class="products-slick-nav"></div>
                             </div>
-                            <!-- /tab -->
+                            <% for(var j=0; j<=marques.length; j++){%>
+                                <div id="tab<%=j+2%>" class="tab-pane fade">
+                                    <div class="products-slick" data-nav="#slick-nav-1">
+                                        <% for(var i=0; i< produits.length; i++){%>
+                                            <% if(produits[i].marques_id[0].Nom==marques[j] ) { %>
+
+                                                <!-- product -->
+                                                <!--ce foreach prends comme variable 'produits' qui contient les 8 les plus recents produits-->
+                                                <div class="product"> <a href="produits[i]/<%=produits[i].numid%>">
+                                                        <div class="product-img">
+                                                            <!--on place le id du produit pour pouvoir chercher la route vers son image-->
+                                                            <img src="./img/<%=produits[i].numid %>/<%=produits[i].numid %>-1.jpg"
+                                                                alt="">
+                                                            <div class="product-label">
+                                                                <span class="sale">-30%</span>
+                                                                <span class="new">NOUVEAU</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="product-body">
+                                                            <!--on place la marque du produit-->
+
+                                                            <p class="product-category">par
+                                                                <%=produits[i].marques_id[0].Nom %>
+                                                            </p>
+                                                            <!--on place le nom du produit-->
+
+                                                            <h3 class="product-name"><a
+                                                                    href="produits[i]/<%=produits[i].numid%>">
+                                                                    <%=produits[i].nom %>
+                                                                </a>
+
+                                                            </h3>
+                                                            <!--on place le prix du produit-->
+
+                                                            <h4 class="product-price">$<%=produits[i].prix %>
+                                                                    <del class="product-old-price">$990.00</del>
+                                                            </h4>
+                                                            <!--on place la categorie d age du produit-->
+
+                                                            <p class="product-category">pour
+                                                                <%=produits[i].categories_id[0].nom %> ans
+                                                            </p>
+                                                            <div class="product-rating">
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                            </div>
+                                                            <div class="product-btns">
+                                                                <button class="add-to-wishlist"><i
+                                                                        class="fa fa-heart-o"></i><span
+                                                                        class="tooltipp">add
+                                                                        to wishlist</span></button>
+                                                                <button class="add-to-compare"><i
+                                                                        class="fa fa-exchange"></i><span
+                                                                        class="tooltipp">add to
+                                                                        compare</span></button>
+                                                                <button class="quick-view"><i
+                                                                        class="fa fa-eye"></i><span
+                                                                        class="tooltipp">quick
+                                                                        view</span></button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="add-to-cart">
+                                                            <button class="add-to-cart-btn"><i
+                                                                    class="fa fa-shopping-cart"></i> add
+                                                                to
+                                                                cart</button>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <%}}%>
+
+                                                    <!-- /product -->
+                                    </div>
+
+                                    <div id="slick-nav-1" class="products-slick-nav">
+
+                                    </div>
+
+                                    <!-- /tab -->
+                                </div>
+                                <%}%>
+                                    <!-- /tab -->
                         </div>
                     </div>
                 </div>
