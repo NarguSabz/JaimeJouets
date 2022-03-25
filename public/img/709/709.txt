@@ -1,18 +1,18 @@
 <<<<<<< HEAD
-Id : 709
-Nom : LEGO City La voiture de course
-Marque : LEGO	
-Description : Faites découvrir aux enfants un monde d'amusement et d'exaltation avec cet ensemble de jeu de voiture de course LEGO City (60322), comprenant une voiture de style F1, ainsi que des outils et un trophée de gagnant. Ajoutez-y les figurines du mécanicien et du pilote de course pour des heures d'aventures de course passionnantes ! Un jeu de construction amusant pour les garçons et les filles de quatre ans et plus. Cet ensemble de jouets de construction de quatre ans et plus comprend un guide deconstruction imprimé illustré, un élément de brique de démarrage LEGO - une base pré-moulée à partir de laquelle on peut commencer à construire. Vous obtenez également des instructions construction numériques, disponibles dans l'application gratuite Instructions de montage LEGO pour téléphones intelligents et tablettes. Ce guide interactif étonnant permet aux enfants de zoomer, de pivoter et de visualiser le modèle fini sous tous les angles pendant qu'ils construisent. Un monde de divertissement Les ensembles de jeu LEGO City Super véhicules mettent les enfants au coeur de l'action avec des superbes jouets qui font passer le jeu imaginatif à la vitesse supérieure. Les enfants peuvent explorer toutes sortes de véhicules terrestres, aériens et aquatiques et jouer des scénarios amusants qui dépeignent la vie réelle de manière passionnante.
-Date : 13-04-2020
-Categorie: 5-6
-Prix : 14.94
+Id : 710
+Nom : VTech Super trotteur parlant
+Marque : VTech 
+Description : Qu'il s'agisse de jouer à même le sol ou de faire ses premiers pas, le Super trotteur parlant grandit avec votre tout-petit. Débordant de fonctions amusantes, le panneau d'activités facile à retirer est idéal pour jouer sur le sol; de plus, ses pattes se replient pour faciliter le rangement. Cinq touches de piano lumineuses présentent à votre petit chérubin les couleurs et les chiffres, alors que les engrenages pivotants et le téléphone cellulaire amovible contribuent à renforcer sa motricité fine. Il fera la connaissance de six animaux sympathiques en insérant les trois pièces du trieur de formes, en appuyant sur le bouton du chiot, en glissant la souris ou en tapant sur l'oiseau, ce qui activera les sons et les voix qui leur sont propres. Puis, au fur et à mesure que grandissent vos tout-petits, fixez le panneau sur le trotteur à deux vitesses ajustables et regardez-les partir en trombe!
+Date : 11-03-2021
+Categorie: 0-4
+Prix : 59.99
 =======
-Id : 709
-Nom : LEGO City La voiture de course
-Marque : LEGO	
-Description : Faites découvrir aux enfants un monde d'amusement et d'exaltation avec cet ensemble de jeu de voiture de course LEGO City (60322), comprenant une voiture de style F1, ainsi que des outils et un trophée de gagnant. Ajoutez-y les figurines du mécanicien et du pilote de course pour des heures d'aventures de course passionnantes ! Un jeu de construction amusant pour les garçons et les filles de quatre ans et plus. Cet ensemble de jouets de construction de quatre ans et plus comprend un guide deconstruction imprimé illustré, un élément de brique de démarrage LEGO - une base pré-moulée à partir de laquelle on peut commencer à construire. Vous obtenez également des instructions construction numériques, disponibles dans l'application gratuite Instructions de montage LEGO pour téléphones intelligents et tablettes. Ce guide interactif étonnant permet aux enfants de zoomer, de pivoter et de visualiser le modèle fini sous tous les angles pendant qu'ils construisent. Un monde de divertissement Les ensembles de jeu LEGO City Super véhicules mettent les enfants au coeur de l'action avec des superbes jouets qui font passer le jeu imaginatif à la vitesse supérieure. Les enfants peuvent explorer toutes sortes de véhicules terrestres, aériens et aquatiques et jouer des scénarios amusants qui dépeignent la vie réelle de manière passionnante.
-Date : 13-04-2020
-Categorie: 5-6
-Prix : 14.94
+Id : 710
+Nom : VTech Super trotteur parlant
+Marque : VTech 
+Description : Qu'il s'agisse de jouer à même le sol ou de faire ses premiers pas, le Super trotteur parlant grandit avec votre tout-petit. Débordant de fonctions amusantes, le panneau d'activités facile à retirer est idéal pour jouer sur le sol; de plus, ses pattes se replient pour faciliter le rangement. Cinq touches de piano lumineuses présentent à votre petit chérubin les couleurs et les chiffres, alors que les engrenages pivotants et le téléphone cellulaire amovible contribuent à renforcer sa motricité fine. Il fera la connaissance de six animaux sympathiques en insérant les trois pièces du trieur de formes, en appuyant sur le bouton du chiot, en glissant la souris ou en tapant sur l'oiseau, ce qui activera les sons et les voix qui leur sont propres. Puis, au fur et à mesure que grandissent vos tout-petits, fixez le panneau sur le trotteur à deux vitesses ajustables et regardez-les partir en trombe!
+Date : 11-03-2021
+Categorie: 0-4
+Prix : 59.99
 >>>>>>> 0ebcd52961e7460072ba471fca8f49b5f62817f0
-Stock : 16
+Stock : 8

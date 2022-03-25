@@ -1,18 +1,18 @@
 <<<<<<< HEAD
-Id : 711
-Nom : Vtech Magi bureau interactif 4 en 1
+Id : 712
+Nom : Vtech - Do, ré, mi, super livre enchanté
 Marque : VTech 
-Description : Magi bureau interactif 4 en 1 est doté d'un bureau interactif, cinq pages remplies de contenu engageant notamment des lettres, des chiffres, de la musique, des couleurs et plus encore. Le bloc-note d'écriture repliable et affichage lumineux encourageant aux enfants à l'écriture en traçant les lettres, les chiffres et les formes avec un stylet. Le bureau se transforme en un chevalet et ardoise avec beaucoup d'espace de rangement pour fournitures artistiques. Continuer le jeu avec les trousses d'extension chacune mettant l'accent sur un programme spécifique comme des comptines, les compétences de lecture, les animaux et les chiffres. Les enfants peuvent également jouer avec le téléphone jouet à écran tactile ou écouter plus de 20 mélodies sur le lecteur de musique. (Les fournitures d'art ne sont pas incluses. Les trousses d'expansion sont vendus séparément.) Destiné aux enfants de 2 à 5 ans. Poids maximum de 75 livres. Nécessite 4 piles AA. Les piles sont incluses à des fins de démonstration uniquement. Des piles neuves sont recommandées pour une utilisation régulière.
-Date : 17-12-200
+Description : Bébé explorera les comptines classiques à l’aide de Do, Ré, Mi, Super livre enchanté de VTechMD. Il développera ses habiletés motrices en glissant et tournant les pièces de jeu amusantes, tout en explorant chaque page facile à tourner. Ensuite, il pianotera de bon coeur à l’aide des cinq touches de piano colorées qui lui montrent les couleurs et les instruments. Il profitera de deux modes amusants : le mode éducatif, qui offre un vocabulaire correspondant à son âge et le mode musical, qui joue de la musique et le son des instruments. Avec ses pages aux couleurs vives et une étoile lumineuse qui clignote avec les sons, le livre d’histoires interactives procure une stimulation visuelle qui saura captiver votre enfant pendant des heures.
+Date : 11-05-2020
 Categorie: 0-4
-Prix : 89.99
+Prix : 26.99
 =======
-Id : 711
-Nom : Vtech Magi bureau interactif 4 en 1
+Id : 712
+Nom : Vtech - Do, ré, mi, super livre enchanté
 Marque : VTech 
-Description : Magi bureau interactif 4 en 1 est doté d'un bureau interactif, cinq pages remplies de contenu engageant notamment des lettres, des chiffres, de la musique, des couleurs et plus encore. Le bloc-note d'écriture repliable et affichage lumineux encourageant aux enfants à l'écriture en traçant les lettres, les chiffres et les formes avec un stylet. Le bureau se transforme en un chevalet et ardoise avec beaucoup d'espace de rangement pour fournitures artistiques. Continuer le jeu avec les trousses d'extension chacune mettant l'accent sur un programme spécifique comme des comptines, les compétences de lecture, les animaux et les chiffres. Les enfants peuvent également jouer avec le téléphone jouet à écran tactile ou écouter plus de 20 mélodies sur le lecteur de musique. (Les fournitures d'art ne sont pas incluses. Les trousses d'expansion sont vendus séparément.) Destiné aux enfants de 2 à 5 ans. Poids maximum de 75 livres. Nécessite 4 piles AA. Les piles sont incluses à des fins de démonstration uniquement. Des piles neuves sont recommandées pour une utilisation régulière.
-Date : 17-12-200
+Description : Bébé explorera les comptines classiques à l’aide de Do, Ré, Mi, Super livre enchanté de VTechMD. Il développera ses habiletés motrices en glissant et tournant les pièces de jeu amusantes, tout en explorant chaque page facile à tourner. Ensuite, il pianotera de bon coeur à l’aide des cinq touches de piano colorées qui lui montrent les couleurs et les instruments. Il profitera de deux modes amusants : le mode éducatif, qui offre un vocabulaire correspondant à son âge et le mode musical, qui joue de la musique et le son des instruments. Avec ses pages aux couleurs vives et une étoile lumineuse qui clignote avec les sons, le livre d’histoires interactives procure une stimulation visuelle qui saura captiver votre enfant pendant des heures.
+Date : 11-05-2020
 Categorie: 0-4
-Prix : 89.99
+Prix : 26.99
 >>>>>>> 0ebcd52961e7460072ba471fca8f49b5f62817f0
-Stock : 7
+Stock : 13

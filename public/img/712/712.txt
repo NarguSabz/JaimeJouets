@@ -1,18 +1,18 @@
 <<<<<<< HEAD
-Id : 712
-Nom : Vtech - Do, ré, mi, super livre enchanté
-Marque : VTech 
-Description : Bébé explorera les comptines classiques à l’aide de Do, Ré, Mi, Super livre enchanté de VTechMD. Il développera ses habiletés motrices en glissant et tournant les pièces de jeu amusantes, tout en explorant chaque page facile à tourner. Ensuite, il pianotera de bon coeur à l’aide des cinq touches de piano colorées qui lui montrent les couleurs et les instruments. Il profitera de deux modes amusants : le mode éducatif, qui offre un vocabulaire correspondant à son âge et le mode musical, qui joue de la musique et le son des instruments. Avec ses pages aux couleurs vives et une étoile lumineuse qui clignote avec les sons, le livre d’histoires interactives procure une stimulation visuelle qui saura captiver votre enfant pendant des heures.
-Date : 11-05-2020
+Id : 713
+Nom : Fisher-Price - Tapis d'activités Snugamonkey Go Bananas
+Marque : Fisher-Price
+Description : Notre exclusivité, uniquement disponible chez Toys R Us Canada. Le Tapis d'activités Snugamonkey Go Bananas de Fisher-Price offre à bébé beaucoup d'espace (et de jouets amusants) pour l'heure du jeu. Le grand Tapis d'activités offre des surprises à découvrir, ainsi que 2arches pour suspendre et repositionner les 7jouets d'activités. Un joli coussin en forme de banane offre aux petits un soutien supplémentaire lorsqu'ils se redressent pendant le jeu sur le ventre, et le singe jouet doux les divertit à la maison ou pendant les déplacements avec 20minutes de musique et de lumières..
+Date : 01-01-2022
 Categorie: 0-4
-Prix : 26.99
+Prix : 79.99
 =======
-Id : 712
-Nom : Vtech - Do, ré, mi, super livre enchanté
-Marque : VTech 
-Description : Bébé explorera les comptines classiques à l’aide de Do, Ré, Mi, Super livre enchanté de VTechMD. Il développera ses habiletés motrices en glissant et tournant les pièces de jeu amusantes, tout en explorant chaque page facile à tourner. Ensuite, il pianotera de bon coeur à l’aide des cinq touches de piano colorées qui lui montrent les couleurs et les instruments. Il profitera de deux modes amusants : le mode éducatif, qui offre un vocabulaire correspondant à son âge et le mode musical, qui joue de la musique et le son des instruments. Avec ses pages aux couleurs vives et une étoile lumineuse qui clignote avec les sons, le livre d’histoires interactives procure une stimulation visuelle qui saura captiver votre enfant pendant des heures.
-Date : 11-05-2020
+Id : 713
+Nom : Fisher-Price - Tapis d'activités Snugamonkey Go Bananas
+Marque : Fisher-Price
+Description : Notre exclusivité, uniquement disponible chez Toys R Us Canada. Le Tapis d'activités Snugamonkey Go Bananas de Fisher-Price offre à bébé beaucoup d'espace (et de jouets amusants) pour l'heure du jeu. Le grand Tapis d'activités offre des surprises à découvrir, ainsi que 2arches pour suspendre et repositionner les 7jouets d'activités. Un joli coussin en forme de banane offre aux petits un soutien supplémentaire lorsqu'ils se redressent pendant le jeu sur le ventre, et le singe jouet doux les divertit à la maison ou pendant les déplacements avec 20minutes de musique et de lumières..
+Date : 01-01-2022
 Categorie: 0-4
-Prix : 26.99
+Prix : 79.99
 >>>>>>> 0ebcd52961e7460072ba471fca8f49b5f62817f0
-Stock : 13
+Stock : 18

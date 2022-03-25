@@ -1,18 +1,18 @@
 <<<<<<< HEAD
-Id : 713
-Nom : Fisher-Price - Tapis d'activités Snugamonkey Go Bananas
+Id : 714
+Nom : Fisher-Price - Rires et Éveil - Plaisirs du jardin à la cuisine
 Marque : Fisher-Price
-Description : Notre exclusivité, uniquement disponible chez Toys R Us Canada. Le Tapis d'activités Snugamonkey Go Bananas de Fisher-Price offre à bébé beaucoup d'espace (et de jouets amusants) pour l'heure du jeu. Le grand Tapis d'activités offre des surprises à découvrir, ainsi que 2arches pour suspendre et repositionner les 7jouets d'activités. Un joli coussin en forme de banane offre aux petits un soutien supplémentaire lorsqu'ils se redressent pendant le jeu sur le ventre, et le singe jouet doux les divertit à la maison ou pendant les déplacements avec 20minutes de musique et de lumières..
-Date : 01-01-2022
+Description : Avec le coffret de jeu Plaisirs du jardin à la cuisine Rires et Éveil de Fisher-Price, les tout-petits peuvent "cultiver", cueillir, "préparer" et servir des aliments frais factices, créant ainsi leurs propres repas délicieux de la ferme à la table. Ce coffret interactif à 2 côtés de jeu comprend 1 jardin d'un côté et 1 cuisine de l'autre, chacun proposant des lumières, de la musique et des activités manuelles que les tout-petits peuvent découvrir. Le contenu d'apprentissage Éveil progressif enseigne l'alphabet, le comptage, les couleurs, les formes, l'alimentation saine et plus encore, tout en faisant jouer les petits jardiniers. Essayez un smoothie à l'alphabet. Il accompagne parfaitement le pain grillé à l'avocat!
+Date : 18-09-2014
 Categorie: 0-4
-Prix : 79.99
+Prix : 134.99
 =======
-Id : 713
-Nom : Fisher-Price - Tapis d'activités Snugamonkey Go Bananas
+Id : 714
+Nom : Fisher-Price - Rires et Éveil - Plaisirs du jardin à la cuisine
 Marque : Fisher-Price
-Description : Notre exclusivité, uniquement disponible chez Toys R Us Canada. Le Tapis d'activités Snugamonkey Go Bananas de Fisher-Price offre à bébé beaucoup d'espace (et de jouets amusants) pour l'heure du jeu. Le grand Tapis d'activités offre des surprises à découvrir, ainsi que 2arches pour suspendre et repositionner les 7jouets d'activités. Un joli coussin en forme de banane offre aux petits un soutien supplémentaire lorsqu'ils se redressent pendant le jeu sur le ventre, et le singe jouet doux les divertit à la maison ou pendant les déplacements avec 20minutes de musique et de lumières..
-Date : 01-01-2022
+Description : Avec le coffret de jeu Plaisirs du jardin à la cuisine Rires et Éveil de Fisher-Price, les tout-petits peuvent "cultiver", cueillir, "préparer" et servir des aliments frais factices, créant ainsi leurs propres repas délicieux de la ferme à la table. Ce coffret interactif à 2 côtés de jeu comprend 1 jardin d'un côté et 1 cuisine de l'autre, chacun proposant des lumières, de la musique et des activités manuelles que les tout-petits peuvent découvrir. Le contenu d'apprentissage Éveil progressif enseigne l'alphabet, le comptage, les couleurs, les formes, l'alimentation saine et plus encore, tout en faisant jouer les petits jardiniers. Essayez un smoothie à l'alphabet. Il accompagne parfaitement le pain grillé à l'avocat!
+Date : 18-09-2014
 Categorie: 0-4
-Prix : 79.99
+Prix : 134.99
 >>>>>>> 0ebcd52961e7460072ba471fca8f49b5f62817f0
-Stock : 18
+Stock : 24

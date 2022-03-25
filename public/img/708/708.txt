@@ -1,18 +1,18 @@
 <<<<<<< HEAD
-Id : 708
-Nom : LEGO Festival de glace du Nouvel An lunaire
+Id : 709
+Nom : LEGO City La voiture de course
 Marque : LEGO	
-Description : Mettez-vous dans l'ambiance de la fête avec cet ensemble de construction du festival de glace du Nouvel An lunaire (80109) LEGO pour les huit ans et plus. Il présente une scène hivernale très détaillée avec un lac gelé en briques, un magasin de location d'équipement, le chariot d'un vendeur de patates douces, une cabine photo, une sculpture de glace chun, un distributeur automatique, une luge en forme de pingouin, une piste de ski, un arbre couronné de neige et plus encore. Construire, joueret exposer La scène joyeuse prend vie grâce à treize figurines LEGO, dont une personne en tenue de tigre pour marquer l'année du Tigre, une figurine de pingouin et de nombreux éléments et accessoires amusants comme des patins à glace, une rondelle de hockey, un téléphone intelligent, une sculpture de glace de pingouin bleu translucide et des outils pour sculpter la glace. L'ensemble est amusant à construire seul ou en famille et constitue une pièce d'exposition festive et merveilleusement ludique. D'excellentes idées-cadeaux Les ensembles LEGO du festival traditionnel à collectionner sont des cadeaux fantastiques pour les enfants branchés et pour toute personne intéressée par la culture asiatique, car ils offrent des défis de construction passionnants et des heures de jeu créatif.
-Date : 01-08-2016
-Categorie: 7-9
-Prix : 154.94
+Description : Faites découvrir aux enfants un monde d'amusement et d'exaltation avec cet ensemble de jeu de voiture de course LEGO City (60322), comprenant une voiture de style F1, ainsi que des outils et un trophée de gagnant. Ajoutez-y les figurines du mécanicien et du pilote de course pour des heures d'aventures de course passionnantes ! Un jeu de construction amusant pour les garçons et les filles de quatre ans et plus. Cet ensemble de jouets de construction de quatre ans et plus comprend un guide deconstruction imprimé illustré, un élément de brique de démarrage LEGO - une base pré-moulée à partir de laquelle on peut commencer à construire. Vous obtenez également des instructions construction numériques, disponibles dans l'application gratuite Instructions de montage LEGO pour téléphones intelligents et tablettes. Ce guide interactif étonnant permet aux enfants de zoomer, de pivoter et de visualiser le modèle fini sous tous les angles pendant qu'ils construisent. Un monde de divertissement Les ensembles de jeu LEGO City Super véhicules mettent les enfants au coeur de l'action avec des superbes jouets qui font passer le jeu imaginatif à la vitesse supérieure. Les enfants peuvent explorer toutes sortes de véhicules terrestres, aériens et aquatiques et jouer des scénarios amusants qui dépeignent la vie réelle de manière passionnante.
+Date : 13-04-2020
+Categorie: 5-6
+Prix : 14.94
 =======
-Id : 708
-Nom : LEGO Festival de glace du Nouvel An lunaire
+Id : 709
+Nom : LEGO City La voiture de course
 Marque : LEGO	
-Description : Mettez-vous dans l'ambiance de la fête avec cet ensemble de construction du festival de glace du Nouvel An lunaire (80109) LEGO pour les huit ans et plus. Il présente une scène hivernale très détaillée avec un lac gelé en briques, un magasin de location d'équipement, le chariot d'un vendeur de patates douces, une cabine photo, une sculpture de glace chun, un distributeur automatique, une luge en forme de pingouin, une piste de ski, un arbre couronné de neige et plus encore. Construire, joueret exposer La scène joyeuse prend vie grâce à treize figurines LEGO, dont une personne en tenue de tigre pour marquer l'année du Tigre, une figurine de pingouin et de nombreux éléments et accessoires amusants comme des patins à glace, une rondelle de hockey, un téléphone intelligent, une sculpture de glace de pingouin bleu translucide et des outils pour sculpter la glace. L'ensemble est amusant à construire seul ou en famille et constitue une pièce d'exposition festive et merveilleusement ludique. D'excellentes idées-cadeaux Les ensembles LEGO du festival traditionnel à collectionner sont des cadeaux fantastiques pour les enfants branchés et pour toute personne intéressée par la culture asiatique, car ils offrent des défis de construction passionnants et des heures de jeu créatif.
-Date : 01-08-2016
-Categorie: 7-9
-Prix : 154.94
+Description : Faites découvrir aux enfants un monde d'amusement et d'exaltation avec cet ensemble de jeu de voiture de course LEGO City (60322), comprenant une voiture de style F1, ainsi que des outils et un trophée de gagnant. Ajoutez-y les figurines du mécanicien et du pilote de course pour des heures d'aventures de course passionnantes ! Un jeu de construction amusant pour les garçons et les filles de quatre ans et plus. Cet ensemble de jouets de construction de quatre ans et plus comprend un guide deconstruction imprimé illustré, un élément de brique de démarrage LEGO - une base pré-moulée à partir de laquelle on peut commencer à construire. Vous obtenez également des instructions construction numériques, disponibles dans l'application gratuite Instructions de montage LEGO pour téléphones intelligents et tablettes. Ce guide interactif étonnant permet aux enfants de zoomer, de pivoter et de visualiser le modèle fini sous tous les angles pendant qu'ils construisent. Un monde de divertissement Les ensembles de jeu LEGO City Super véhicules mettent les enfants au coeur de l'action avec des superbes jouets qui font passer le jeu imaginatif à la vitesse supérieure. Les enfants peuvent explorer toutes sortes de véhicules terrestres, aériens et aquatiques et jouer des scénarios amusants qui dépeignent la vie réelle de manière passionnante.
+Date : 13-04-2020
+Categorie: 5-6
+Prix : 14.94
 >>>>>>> 0ebcd52961e7460072ba471fca8f49b5f62817f0
-Stock : 3
+Stock : 16
