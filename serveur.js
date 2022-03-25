@@ -14,6 +14,8 @@ var produitRouter = require('./routes/produit');
 var produitsRouter = require('./routes/produits');
 var indexRouter = require('./routes/index');
 var rechercherRouter = require('./routes/rechercher');
+var rechercherSugRouter = require('./routes/rechercherSuggestions');
+
 /*
 * parse all form data
 */
@@ -39,7 +41,7 @@ app.use('/produit', produitRouter);
 app.use('/creerUnCompte', creationRouter);
 app.use('/', indexRouter);
 app.use('/rechercher', rechercherRouter);
-
+app.use('/rechercherSuggestions', rechercherSugRouter);
 //catch 404 and forward to error handler
 //app.use(function(req, res, next) {
 //  next(createError(404));
