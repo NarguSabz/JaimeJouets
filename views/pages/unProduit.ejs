@@ -60,10 +60,11 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star-o"></i>
                             </div>
-                            <a class="review-link" href="#">10 Review(s) | Add your review</a>
+                            <a class="review-link" href="#">10 Commentaire(s) | Ajoutez votre commentaire</a>
                         </div>
                         <div>
-                            <h3 class="product-price">$<%=produit.prix %> <del class="product-old-price">$990.00</del>
+                            <h3 class="product-price">$
+                                <%=produit.prix %>
                             </h3>
                             <span class="product-available">In Stock</span>
                         </div>
@@ -80,19 +81,20 @@
                                     <span class="qty-down">-</span>
                                 </div>
                             </div>
-                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Ajouter au panier</button>
                         </div>
 
                         <ul class="product-btns">
-                            <li><a href="#"><i class="fa fa-heart-o"></i> add to wishlist</a></li>
-                            <li><a href="#"><i class="fa fa-exchange"></i> add to compare</a></li>
+                            <li><a href="#"><i class="fa fa-heart-o"></i>Ajouter à la liste de souhaits</a></li>
                         </ul>
 
                         <ul class="product-links">
                             <li>Categorie:</li>
-                            <li><a href="#">
+                            <li>
+                                <a href="#">
                                     <%=produit.categories_id[0].nom %> ans
-                                </a></li>
+                                </a>
+                            </li>
                         </ul>
 
                         <ul class="product-links">
@@ -114,7 +116,7 @@
                         <ul class="tab-nav">
                             <li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
                             <!--<li><a data-toggle="tab" href="#tab2">Details</a></li>-->
-                            <li><a data-toggle="tab" href="#tab2">Reviews (3)</a></li>
+                            <li><a data-toggle="tab" href="#tab2">Commentaires (3)</a></li>
                         </ul>
                         <!-- product tab nav -->
 
@@ -236,9 +238,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="review-body">
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                                                            do eiusmod tempor incididunt ut labore et dolore magna
-                                                            aliqua</p>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                                                        </p>
                                                     </div>
                                                 </li>
                                                 <li>
@@ -254,9 +255,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="review-body">
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                                                            do eiusmod tempor incididunt ut labore et dolore magna
-                                                            aliqua</p>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                                                        </p>
                                                     </div>
                                                 </li>
                                                 <li>
@@ -272,9 +272,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="review-body">
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                                                            do eiusmod tempor incididunt ut labore et dolore magna
-                                                            aliqua</p>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                                                        </p>
                                                     </div>
                                                 </li>
                                             </ul>
@@ -297,21 +296,16 @@
                                                 <input class="input" type="email" placeholder="Your Email">
                                                 <textarea class="input" placeholder="Your Review"></textarea>
                                                 <div class="input-rating">
-                                                    <span>Your Rating: </span>
+                                                    <span>Votre Évaluation: </span>
                                                     <div class="stars">
-                                                        <input id="star5" name="rating" value="5" type="radio"><label
-                                                            for="star5"></label>
-                                                        <input id="star4" name="rating" value="4" type="radio"><label
-                                                            for="star4"></label>
-                                                        <input id="star3" name="rating" value="3" type="radio"><label
-                                                            for="star3"></label>
-                                                        <input id="star2" name="rating" value="2" type="radio"><label
-                                                            for="star2"></label>
-                                                        <input id="star1" name="rating" value="1" type="radio"><label
-                                                            for="star1"></label>
+                                                        <input id="star5" name="rating" value="5" type="radio"><label for="star5"></label>
+                                                        <input id="star4" name="rating" value="4" type="radio"><label for="star4"></label>
+                                                        <input id="star3" name="rating" value="3" type="radio"><label for="star3"></label>
+                                                        <input id="star2" name="rating" value="2" type="radio"><label for="star2"></label>
+                                                        <input id="star1" name="rating" value="1" type="radio"><label for="star1"></label>
                                                     </div>
                                                 </div>
-                                                <button class="primary-btn">Submit</button>
+                                                <button class="primary-btn">Soumettre</button>
                                             </form>
                                         </div>
                                     </div>
@@ -349,56 +343,57 @@
                 <% produitsDeMemeMarque.forEach(function(produit) { %>
                     <div class="col-md-3 col-xs-6">
                         <a href="<%=produit.numid%>">
-                        <div class="product">
-                            <div class="product-img">
-                                <!--on place le id du produit pour pouvoir chercher la route vers son image-->
-                                <img src="../img/<%=produit.numid %>/<%=produit.numid %>-1.jpg" alt="">
-                                <div class="product-label">
-                                    <span class="sale">-30%</span>
-                                    <span class="new">NOUVEAU</span>
+                            <div class="product">
+                                <div class="product-img">
+                                    <!--on place le id du produit pour pouvoir chercher la route vers son image-->
+                                    <img src="../img/<%=produit.numid %>/<%=produit.numid %>-1.jpg" alt="">
+                                    <div class="product-label">
+                                        <span class="sale">-30%</span>
+                                        <span class="new">NOUVEAU</span>
+                                    </div>
+                                </div>
+                                <div class="product-body">
+                                    <!--on place la marque du produit-->
+
+                                    <p class="product-category">par
+                                        <%=produit.marques_id[0].Nom%>
+                                    </p>
+                                    <!--on place le nom du produit-->
+
+                                    <h3 class="product-name">
+                                        <a href="<%=produit.numid%>">
+                                            <%=produit.nom %>
+                                        </a>
+
+                                    </h3>
+                                    <!--on place le prix du produit-->
+
+                                    <h4 class="product-price">$
+                                        <%=produit.prix %>
+                                            <!--<del class="product-old-price">$990.00</del>--></h4>
+                                    <!--on place la categorie d age du produit-->
+
+                                    <p class="product-category">pour
+                                        <%=produit.categories_id[0].nom %> ans</p>
+                                    <div class="product-rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product-btns">
+                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
+                                            class="tooltipp">Ajouter à la liste de souhaits</span></button>
+
+
+                                    </div>
+                                </div>
+                                <div class="add-to-cart">
+                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Ajouter au panier</button>
                                 </div>
                             </div>
-                            <div class="product-body">
-                                <!--on place la marque du produit-->
-
-                                <p class="product-category">par <%=produit.marques_id[0].Nom%>
-                                </p>
-                                <!--on place le nom du produit-->
-
-                                <h3 class="product-name"><a href="<%=produit.numid%>">
-                                        <%=produit.nom %>
-                                    </a>
-
-                                </h3>
-                                <!--on place le prix du produit-->
-
-                                <h4 class="product-price">$<%=produit.prix %> <del
-                                            class="product-old-price">$990.00</del></h4>
-                                <!--on place la categorie d age du produit-->
-
-                                <p class="product-category">pour <%=produit.categories_id[0].nom %> ans</p>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <div class="product-btns">
-                                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                            class="tooltipp">add to wishlist</span></button>
-                                    <button class="add-to-compare"><i class="fa fa-exchange"></i><span
-                                            class="tooltipp">add to compare</span></button>
-                                    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick
-                                            view</span></button>
-                                </div>
-                            </div>
-                            <div class="add-to-cart">
-                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add
-                                    to
-                                    cart</button>
-                            </div>
-                        </div></a>
+                        </a>
                     </div>
                     <%}); %>
                         <!-- /product -->
