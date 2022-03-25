@@ -32,7 +32,7 @@ router.get('/', function (req, res) {
         }, {$match:{ "nom": {$regex: ".*"+ req.query.q +".*" ,$options:"i"}}},{$limit:3}
     ], function (err, resultat) {
         
-         res.render('pages/suggestions.ejs', { character:req.query.q,produits: resultat });
+         res.render('pages/suggestions.ejs', { character:req.query.q,produits: resultat});
          //on active egalement le lien vers la page d accueil et desactive tous les autres liens        
         db.close();
     });
