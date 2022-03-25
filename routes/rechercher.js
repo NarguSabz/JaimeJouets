@@ -40,7 +40,7 @@ router.get('/', function (req, res) {
          } else {
              nbreDePages = nbreDeVingts;
          }
-         res.render('pages/produits.ejs', { nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", produit: "active", produits: resultat });
+         res.render('pages/produits.ejs', { nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", produit: "active", produits: resultat,recherche:req.query.q});
          //on active egalement le lien vers la page d accueil et desactive tous les autres liens        
         db.close();
     });

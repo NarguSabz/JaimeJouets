@@ -232,6 +232,7 @@
                             <span class="store-qty"></span>
                             <ul class="store-pagination">
                                 <!--ce boucle permet de mettre des referance en bas de la page vers chacune des pages, le nombre est defini par le nombre de pages existant-->
+                                <%if(nbrePages>0){%>
                                 <% for(var i=0; i< nbrePages; i++){%>
                                     <!--on s assure que par defaut la page 1 est activee-->
 
@@ -244,7 +245,9 @@
                                                 <%=i+1%>
                                             </li>
                                             <%}}%>
-                                                <li data-toggle="tab" href="#tabx" href="#"><i class="fa fa-angle-right"></i></li>
+                                                <li data-toggle="tab" href="#tabx" href="#"><i class="fa fa-angle-right"></i></li><%}else{%>
+                                                    <h3 style="float:none;">Aucun resultats trouvés pour "<%=recherche%>"</h3>
+                                                    <%}%>
                             </ul>
                         </div>
                         <!-- /store bottom filter -->

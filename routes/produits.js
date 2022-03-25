@@ -38,7 +38,7 @@ router.get('/', function (req, res) {
             } else {
                 nbreDePages = nbreDeVingts;
             }
-            res.render('pages/produits.ejs', { nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", produit: "active", produits: resultat });
+            res.render('pages/produits.ejs', { nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", produit: "active", produits: resultat, recherche:""});
            //on active le lien vers la page des produits et desactive tous les autres liens
 
             db.close();
