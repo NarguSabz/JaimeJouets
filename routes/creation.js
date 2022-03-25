@@ -31,7 +31,7 @@ router.post('/', function(req, res) {
         checkUserNameAvailable();
 
     } else {
-        printResult("il manque un champs!", "alertBad") //print message d'erreur
+        printResult("Tous les champs d'entrés doivent être remplis!", "alertBad") //print message d'erreur
     }
 
 });
