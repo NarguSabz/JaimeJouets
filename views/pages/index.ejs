@@ -18,7 +18,7 @@
                         </div>
                         <div class="shop-body">
                             <h3>0 à 4 ans</h3>
-                            <a href="#" class="cta-btn">Acheter maintenant <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="#" class="cta-btn">Acheter maintenant<i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                         </div>
                         <div class="shop-body">
                             <h3>5 à 6 ans</h3>
-                            <a href="#" class="cta-btn">Acheter maintenant <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="#" class="cta-btn">Acheter maintenant<i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                         </div>
                         <div class="shop-body">
                             <h3>7 à 9 ans</h3>
-                            <a href="#" class="cta-btn">Acheter maintenant <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="#" class="cta-btn">Acheter maintenant<i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                         </div>
                         <div class="shop-body">
                             <h3>10 à 99 ans</h3>
-                            <a href="#" class="cta-btn">Acheter maintenant <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="#" class="cta-btn">Acheter maintenant<i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                         </div>
                         <div class="shop-body">
                             <h3>Barbie</h3>
-                            <a href="#" class="cta-btn">Acheter maintenant <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="#" class="cta-btn">Acheter maintenant<i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
 
@@ -106,7 +106,7 @@
                         </div>
                         <div class="shop-body">
                             <h3>Fisher-Price</h3>
-                            <a href="#" class="cta-btn">Acheter maintenant <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="#" class="cta-btn">Acheter maintenant<i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
 
@@ -119,7 +119,7 @@
                         </div>
                         <div class="shop-body">
                             <h3>Hot Wheels</h3>
-                            <a href="#" class="cta-btn">Acheter maintenant <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="#" class="cta-btn">Acheter maintenant<i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- /shop -->
@@ -131,7 +131,7 @@
                         </div>
                         <div class="shop-body">
                             <h3>Lego</h3>
-                            <a href="#" class="cta-btn">Acheter maintenant <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="#" class="cta-btn">Acheter maintenant<i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
 
@@ -144,7 +144,7 @@
                         </div>
                         <div class="shop-body">
                             <h3>Vtech</h3>
-                            <a href="#" class="cta-btn">Acheter maintenant <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="#" class="cta-btn">Acheter maintenant<i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
 
@@ -172,7 +172,7 @@
                         <h3 class="title">Nouveaux produits</h3>
                         <div class="section-nav">
                             <ul class="section-tab-nav tab-nav">
-                                <li class="active"><a data-toggle="tab" href="#tab1">Tous</a></li>
+                                <li class="active"><a data-toggle="tab" href="#tab1">Toutes les marques</a></li>
                                 <li><a data-toggle="tab" href="#tab2">Barbie</a></li>
                                 <li><a data-toggle="tab" href="#tab3">Fisher-Price</a></li>
                                 <li><a data-toggle="tab" href="#tab4">Hot Wheels</a></li>
@@ -195,11 +195,11 @@
                                     <!--ce foreach prends comme variable 'produits' qui contient les 8 les plus recents produits-->
                                     <% produits.forEach(function(produit) { %>
 
-                                        <div class="product"> <a href="produit/<%=produit.numid%>">
+                                        <div class="product">
+                                            <a href="produit/<%=produit.numid%>">
                                                 <div class="product-img">
                                                     <!--on place le id du produit pour pouvoir chercher la route vers son image-->
-                                                    <img src="./img/<%=produit.numid %>/<%=produit.numid %>-1.jpg"
-                                                        alt="">
+                                                    <img src="./img/<%=produit.numid %>/<%=produit.numid %>-1.jpg" alt="">
                                                     <div class="product-label">
                                                         <span class="new">NOUVEAU</span>
                                                     </div>
@@ -207,21 +207,26 @@
                                                 <div class="product-body">
                                                     <!--on place la marque du produit-->
 
-                                                    <p class="product-category">par <%=produit.marques_id[0].Nom %>
+                                                    <p class="product-category">par
+                                                        <%=produit.marques_id[0].Nom %>
                                                     </p>
                                                     <!--on place le nom du produit-->
 
-                                                    <h3 class="product-name"><a href="produit/<%=produit.numid%>">
+                                                    <h3 class="product-name">
+                                                        <a href="produit/<%=produit.numid%>">
                                                             <%=produit.nom %>
                                                         </a>
 
                                                     </h3>
                                                     <!--on place le prix du produit-->
 
-                                                    <h4 class="product-price">$<%=produit.prix %></h4>
+                                                    <h4 class="product-price">$
+                                                        <%=produit.prix %>
+                                                    </h4>
                                                     <!--on place la categorie d age du produit-->
 
-                                                    <p class="product-category">pour <%=produit.categories_id[0].nom %>
+                                                    <p class="product-category">pour
+                                                        <%=produit.categories_id[0].nom %>
                                                             ans</p>
                                                     <div class="product-rating">
                                                         <i class="fa fa-star"></i>
@@ -236,10 +241,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="add-to-cart">
-                                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>
-                                                        Ajout
-                                                        au
-                                                        panier</button>
+                                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Ajout au panier</button>
                                                 </div>
                                             </a>
                                         </div>
@@ -256,11 +258,11 @@
 
                                                 <!-- product -->
                                                 <!--ce foreach prends comme variable 'produits' qui contient les 8 les plus recents produits-->
-                                                <div class="product"> <a href="produits[i]/<%=produits[i].numid%>">
+                                                <div class="product">
+                                                    <a href="produits[i]/<%=produits[i].numid%>">
                                                         <div class="product-img">
                                                             <!--on place le id du produit pour pouvoir chercher la route vers son image-->
-                                                            <img src="./img/<%=produits[i].numid %>/<%=produits[i].numid %>-1.jpg"
-                                                                alt="">
+                                                            <img src="./img/<%=produits[i].numid %>/<%=produits[i].numid %>-1.jpg" alt="">
                                                             <div class="product-label">
                                                                 <span class="new">NOUVEAU</span>
                                                             </div>
@@ -273,15 +275,16 @@
                                                             </p>
                                                             <!--on place le nom du produit-->
 
-                                                            <h3 class="product-name"><a
-                                                                    href="produits[i]/<%=produits[i].numid%>">
+                                                            <h3 class="product-name">
+                                                                <a href="produits[i]/<%=produits[i].numid%>">
                                                                     <%=produits[i].nom %>
                                                                 </a>
 
                                                             </h3>
                                                             <!--on place le prix du produit-->
 
-                                                            <h4 class="product-price">$<%=produits[i].prix %>
+                                                            <h4 class="product-price">$
+                                                                <%=produits[i].prix %>
                                                                     <del class="product-old-price">$990.00</del>
                                                             </h4>
                                                             <!--on place la categorie d age du produit-->
@@ -304,9 +307,7 @@
                                                         </div>
                                                         <div class="add-to-cart">
                                                             <button class="add-to-cart-btn"><i
-                                                                    class="fa fa-shopping-cart"></i> Ajouter
-                                                                au
-                                                                panier</button>
+                                                                    class="fa fa-shopping-cart"></i>Ajout au panier</button>
                                                         </div>
                                                     </a>
                                                 </div>
