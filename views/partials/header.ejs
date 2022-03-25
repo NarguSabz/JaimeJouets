@@ -3,11 +3,14 @@
 
 <head>
     <%- include ('../partials/head') %>
+        
 </head>
 
-<body>
+<body style="margin-top: 300px;">
+    <div id="layer"></div>
     <!-- HEADER -->
-    <header>
+    <div style="z-index: 100;top:0;position: fixed; width: 100%;" onmouseleave="showResult('');">
+    <header >
         <!-- TOP HEADER -->
         <div id="top-header">
             <div class="container">
@@ -34,7 +37,7 @@
                     <div class="col-md-3">
                         <div class="header-logo">
                             <a href="/" class="logo" style="color:white">
-                                <img src="../img/Logo-ourson.png"  width = "30%" height = "35%" alt="">
+                                <img src="../img/Logo-ourson.png" width="30%" height="35%" alt="">
                                 J'aime Jouets
                             </a>
                         </div>
@@ -50,10 +53,13 @@
                                     <option value="1">Category 01</option>
                                     <option value="1">Category 02</option>
                                 </select>
-                                <input name="q" class="input" placeholder="Rechercher ici">
+                                <input name="q" class="input" placeholder="Rechercher ici"
+                                    onkeyup="showResult(this.value)">
                                 <button class="search-btn">Rechercher</button>
+                                
                             </form>
                         </div>
+                        <div id="livesearch"style="display: block;" ></div>
                     </div>
                     <!-- /SEARCH BAR -->
 
@@ -111,8 +117,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- /Cart -->
-
+                            <!-- /Cart -->                              
+        
                             <!-- Menu Toogle -->
                             <div class="menu-toggle">
                                 <a href="#">
@@ -131,5 +137,6 @@
         </div>
         <!-- /MAIN HEADER -->
     </header>
+
     <!-- /HEADER -->
     <%- include ('../partials/navbar') %>
