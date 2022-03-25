@@ -7,6 +7,7 @@ var http = require('http');
 var mysql = require('mysql');
 var app = express();
 var bodyParser = require('body-parser');
+var session = require ( 'express-session' ) ;
 
 var creationRouter = require('./routes/creation');
 var connexionRouter = require('./routes/connexion');
@@ -21,7 +22,8 @@ var rechercherSugRouter = require('./routes/rechercherSuggestions');
 */
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use ( session ( { secret : '1111111' ,saveUninitialized : false , resave : false } ) ) ;
+var sess;
 /*
 * view engine template parsing (ejs types)
 */

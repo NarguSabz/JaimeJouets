@@ -10,11 +10,13 @@ var connection = mysql.createConnection({ host: "localhost", user: "root", passw
 
 //methode http chargee de la route /login
 router.get('/', function (req, res) {
+    sess = req.session;
     //active le lien vers la page de login et desactive tous les autres liens
     res.render('pages/login.ejs', { login: "active", accueil: "", creationCompte: "", produit: "" });
 });
 
 router.post('/', function (req, res) {
+    sess = req.session;
     var userMessageText = "";
     var userMessageStatus = "";
     //console.log('username used ' + req.body.username);
@@ -27,7 +29,9 @@ router.post('/', function (req, res) {
         } else {
             if (result[0].mdp == req.body.passwordUser) {
                 //message de succes pour une combinaison de nom d'utilisateur et mot de passe correcte
-                userMessageText = "Combinaison du nom d'utilisateur et mot de passe correcte!";
+                sess.email = result[0].email;
+                sess.username = result[0].username;
+                userMessageText = "Combinaison du nom d'utilisateur et mot de passe correcte!" + sess.email + sess.username;
                 userMessageStatus = "alertGood";
             } else {
                 //message d'erreur pour un mot de passe incorrect
