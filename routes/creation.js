@@ -11,10 +11,7 @@ var userFirstname = "";
 var userLastname = "";
 var userEmail = "";
 var userAddress = "";
-
-var userMessageText = "";
-var userMessageStatus = "";
-
+var tempRes;
 //var mongo = require('mongodb');
 //var monk = require('monk');
 //var db = monk('localhost:27017/protodb');
@@ -30,30 +27,21 @@ router.get('/', function (req, res) {
 router.post('/', function (req, res) {
 
     fillVariablesInput(req);
-    console.log(userAddress);
+    //console.log(userAddress);
 
     /*
     const query = MySchema.findOne({ name: /tester/gi });
     const userData = await query.exec();
     console.log(userData)
     */
-
+        tempRes = res;
         if (!checkAllFieldsEmpty()) {
             
-            if (checkUserNameAvailable()) {
-                console.log("username check cleared");
-                insertUserPanier();
-                insertUserCompteClient();
-            } else {
-                console.log("username check NOT cleared");
-            }
+            checkUserNameAvailable();
 
         } else {
-
-            console.log("field empty pls");
+            printResult("il manque un champs!", "alertBad")
         }
-       
-
 
 });
 
@@ -61,11 +49,10 @@ router.post('/', function (req, res) {
 function insertUserPanier() {
 
     var myobj = {  compte_client: userUsername };
-    console.log(myobj);
     MongoClient.connect(url, function (err, db) {
         db.db("protodb").collection("panier").insertOne(myobj, function (err, res) {
+       
         if (err) throw err;
-        console.log("1 document inserted");
         db.close();
     });
     });
@@ -75,40 +62,49 @@ function insertUserCompteClient() {
 
     var myobj = { username: userUsername, mdp: userPassword, prenom: userFirstname, nom: userLastname, email: userEmail, adresse: userAddress };
     MongoClient.connect(url, function (err, db) {
-        console.log(myobj);
-        db.db("protodb").collection("panier").insertOne(myobj, function (err, res) {
+        
+        db.db("protodb").collection("compte_client").insertOne(myobj, function (err, res) {
+            
             if (err) throw err;
-            console.log("1 document inserted");
             db.close();
         });
 
     });
 }
 
+function printResult(userMessageTextTmp, userMessageAlertTmp) {
+    userMessageArray = [userMessageTextTmp, userMessageAlertTmp];
+    tempRes.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray });
+    tempRes.end();
+
+}
+
 function checkUserNameAvailable() {
             MongoClient.connect(url, function (err, db) {
                 db.db("protodb").collection("panier").find({ compte_client: userUsername }).limit(1).toArray(function (err, result) {
-                    console.log(result);
-                    if (!result[0]) {
-                        console.log("not used")
-                        db.close();
-                        return 1;
+                    
 
+                    //console.log(result);
+                    if (!result[0]) { 
+                        db.close();
+                        insertUserPanier();
+                        insertUserCompteClient();
+
+                        printResult("Creation du compte avec succes!", "alertGood")
+                        
                     }
-                    console.log("used")
                     db.close();
-                    return 0;
+                    printResult("nom d'utilisateur utiliser!", "alertBad")
                 });
 
             });
 }
 
-
-
-    
+/**     deprecated 
 function giveUserId() {
     MongoClient.connect(url, function (err, db) {
     db.db("protodb").collection("panier").find({}, { projection: { _id: 0, numid: 1 } }).sort({ numid: -1 }).limit(1).toArray(function (err, result) {
+        sleep(2000);
         if (typeof result[0] != 'undefined') { //chercher le plus gros ID s'il existe pour iterer dessus
             resultTest = result[0].numid;
             resultTest++;
@@ -121,6 +117,7 @@ function giveUserId() {
     });
     });
     }
+*/
 
 function checkAllFieldsEmpty() {
     var missingAmount = 0;
@@ -153,9 +150,13 @@ function fillVariablesInput(req) {
 
 }
 
-
-
-
+function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+        currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+}
 
 
 module.exports = router;
