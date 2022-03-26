@@ -48,17 +48,17 @@
                     <div class="col-md-6">
                         <div class="header-search">
                             <form action="/rechercher" method="get">
-                                <select class="input-select">
-                                    <option value="0">Tous les marques</option>
-                                    <option value="1">Barbie</option>
-                                    <option value="1">Vtech</option>
-                                    <option value="1">Lego</option>
-                                    <option value="1">Hot-Wheels</option>
-                                    <option value="1">Fisher-Price</option>
+                                <select class="input-select" name="marque" onchange="showResult(q.value,this.value)">
+                                    <option value="">Tous les marques</option>
+                                    <option value="Barbie">Barbie</option>
+                                    <option value="Vtech">Vtech</option>
+                                    <option value="Lego">Lego</option>
+                                    <option value="Hot Wheels">Hot Wheels</option>
+                                    <option value="Fisher-Price">Fisher-Price</option>
 
                                 </select>
                                 <input name="q" class="input" placeholder="Rechercher ici"
-                                    onkeyup="showResult(this.value)">
+                                    onkeyup="showResult(this.value,marque.value)">
                                 <button class="search-btn">Rechercher</button>
                                 
                             </form>

@@ -29,7 +29,7 @@ router.get('/', function (req, res) {
                 foreignField: "numid",
                 as: "marques_id"
             }
-        }, {$match:{ "nom": {$regex: ".*"+ req.query.q +".*" ,$options:"i"}}},{$limit:3}
+        }, {$match:{$and: [ {"nom": {$regex: ".*"+ req.query.q +".*" ,$options:"i"}},{"marques_id.Nom": {$regex: ".*"+ req.query.marque +".*" ,$options:"i"}}]}},{$limit:3}
     ], function (err, resultat) {
         
          res.render('pages/suggestions.ejs', { character:req.query.q,produits: resultat});
