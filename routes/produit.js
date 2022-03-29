@@ -6,6 +6,7 @@ var router = express.Router();
 
 //methode http chargee de la route /unProduit
 router.get('/:id', function (req, res) {
+  sess = req.session;
         //ceci permet d aller chercher tous le nom de categorie et de marque de chacun des produits et de aller chercher les 8 les plus recents produits, dans la base de donnees
     var collection = db.get('produits');
 
@@ -51,7 +52,8 @@ router.get('/:id', function (req, res) {
                        as: "marques_id"
                    }},{$match: {'marques_id': resultat[0].marques_id, 'numid':{$ne: resultat[0].numid}}}
                 ],function(err, result) {
-                res.render('pages/unProduit.ejs', { login: "", accueil: "", creationCompte: "", produit: "active", produit: resultat[0],produitsDeMemeMarque:result})
+                  var utilisateur = sess.username;
+                res.render('pages/unProduit.ejs', { login: "", accueil: "", creationCompte: "", produit: "active", produit: resultat[0],produitsDeMemeMarque:result, username: utilisateur})
                 db.close();
             });
         };          

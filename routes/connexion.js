@@ -12,13 +12,7 @@ var connection = mysql.createConnection({ host: "localhost", user: "root", passw
 router.get('/', function (req, res) {
     sess = req.session;
     var utilisateur;
-
-    if(typeof sess.username == undefined){
-        utilisateur = "Mon compte";
-    }else{
-        utilisateur = sess.username;
-    }
-
+    utilisateur = sess.username;
     //active le lien vers la page de login et desactive tous les autres liens
     res.render('pages/login.ejs', { login: "active", accueil: "", creationCompte: "", produit: "", username: utilisateur});
 });
@@ -49,12 +43,7 @@ router.post('/', function (req, res) {
         }
         
         var utilisateur
-        if(typeof sess.username == undefined){
-            utilisateur = "Mon compte";
-        }else{
-            utilisateur = sess.username;
-        }
-
+        utilisateur = sess.username;
         //afficher le message a l'utilisateur
         userMessageArray = [userMessageText, userMessageStatus];
         res.render('pages/login.ejs', { login: "active", accueil: "", creationCompte: "", produit: "", items: userMessageArray, username: utilisateur });
