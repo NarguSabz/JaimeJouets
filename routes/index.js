@@ -7,6 +7,14 @@ var router = express.Router();
 //methode http chargee de la route /accueil
 router.get('/', function (req, res) {
   sess = req.session;
+
+  var utilisateur
+        if(typeof sess.username == undefined){
+            utilisateur = "Mon compte";
+        }else{
+            utilisateur = sess.username;
+        }
+  
   console.log(sess)
     //ceci permet d aller chercher tous le nom de categorie et de marque de chacun des produits et de aller chercher les 8 les plus recents produits, dans la base de donnees
     var collection = db.get('produits');
@@ -30,7 +38,7 @@ router.get('/', function (req, res) {
         }},{$sort:{ date_parution : -1,numid:1}},{$limit:8}
      ],function(err, resultat) {
          if (err) throw err;           
-         res.render('pages/index.ejs', { login: "", accueil: "active", creationCompte: "", produit: "", produits: resultat,marques:["Barbie","Fisher-Price","Hot Wheels","Lego","Vtech"] });
+         res.render('pages/index.ejs', { login: "", accueil: "active", creationCompte: "", produit: "", produits: resultat,marques:["Barbie","Fisher-Price","Hot Wheels","Lego","Vtech"], username: utilisateur });
          //on active egalement le lien vers la page d accueil et desactive tous les autres liens        
          db.close();
        });
