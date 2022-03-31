@@ -5,41 +5,65 @@ var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk('localhost:27017/protodb');
 
-//ajout d'une connection a la base de donnees
-var connection = mysql.createConnection({ host: "localhost", user: "root", password: "", database: "bdproto" });
 
 //methode http chargee de la route /login
 router.get('/', function (req, res) {
     //active le lien vers la page de login et desactive tous les autres liens
-    res.render('pages/login.ejs', { login: "active", accueil: "", creationCompte: "", produit: "" });
+    res.render('pages/admin.ejs', { login: "active", accueil: "", creationCompte: "", produit: "" });
 });
 
 router.post('/', function (req, res) {
     var userMessageText = "";
     var userMessageStatus = "";
-    //console.log('username used ' + req.body.username);
-    db.collection("compte_client").find({username : req.body.username}, function (err, result) {
+
+    db.collection("produits").find({ numid: req.body.itemID }, function (err, result) {
+       
+        if (typeof result[0] == 'undefined') {  
+            userMessageText = "item id incorrecte!";
+            userMessageStatus = "alertBad";
+            userMessageArray = [userMessageText, userMessageStatus];
+            res.render('pages/admin.ejs', { login: "active", accueil: "", creationCompte: "", produit: "", items: userMessageArray });
+            res.end();
+        } else {
+            updateQuantity(req);
+           }
+        //afficher le message a l'utilisateur
+        
+    });
+});
+
+function updateQuantity(reqTmp) {
+    db.collection("produits").updateOne({ numid: reqTmp.body.itemID }, { $inc: { nombrestock: reqTmp.body.amountChange } }, function (err, result) {
+        positiveStock(reqTmp);
+        //afficher le message a l'utilisateur
+
+    });
+}
+
+function updateQuantity(reqTmp) {
+
+    db.collection("produits").find({ numid: reqTmp.body.itemID }, function (err, result) {
         console.log(result);
         if (typeof result[0] == 'undefined') {
-            //message d'erreur pour un nom d'utilsateur incorrecte
-            userMessageText = "Combinaison du nom d'utilisateur et mot de passe incorrecte!";
+            userMessageText = "item id incorrecte!";
             userMessageStatus = "alertBad";
+            userMessageArray = [userMessageText, userMessageStatus];
+            res.render('pages/admin.ejs', { login: "active", accueil: "", creationCompte: "", produit: "", items: userMessageArray });
+            res.end();
         } else {
-            if (result[0].mdp == req.body.passwordUser) {
-                //message de succes pour une combinaison de nom d'utilisateur et mot de passe correcte
-                userMessageText = "Combinaison du nom d'utilisateur et mot de passe correcte!";
-                userMessageStatus = "alertGood";
-            } else {
-                //message d'erreur pour un mot de passe incorrect
-                userMessageText = "Combinaison du nom d'utilisateur et mot de passe incorrecte!";
-                userMessageStatus = "alertBad";
+            if (result[0].nombrestock <= 0) {
+                setQuantityZero(reqTmp);
             }
         }
         //afficher le message a l'utilisateur
-        userMessageArray = [userMessageText, userMessageStatus];
-        res.render('pages/login.ejs', { login: "active", accueil: "", creationCompte: "", produit: "", items: userMessageArray });
-        res.end();
+
     });
-});
+
+}
+
+function setQuantityZero(reqTmp) {
+    db.collection("produits").updateOne({ numid: reqTmp.body.itemID }, { nombrestock: 0 } , function (err, result) {
+    });
+}
 
 module.exports = router;
