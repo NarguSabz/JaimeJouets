@@ -13,6 +13,7 @@ var connexionRouter = require('./routes/connexion');
 var produitRouter = require('./routes/produit');
 var produitsRouter = require('./routes/produits');
 var indexRouter = require('./routes/index');
+var adminRouter = require('./routes/admin');
 var rechercherRouter = require('./routes/rechercher');
 var rechercherSugRouter = require('./routes/rechercherSuggestions');
 
@@ -40,8 +41,10 @@ app.use('/produits', produitsRouter);
 app.use('/produit', produitRouter);
 app.use('/creerUnCompte', creationRouter);
 app.use('/', indexRouter);
+app.use('/admin', adminRouter);
 app.use('/rechercher', rechercherRouter);
 app.use('/rechercherSuggestions', rechercherSugRouter);
+
 //catch 404 and forward to error handler
 //app.use(function(req, res, next) {
 //  next(createError(404));
