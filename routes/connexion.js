@@ -38,13 +38,16 @@ router.post('/', function (req, res) {
     request(verificationUrl, function (error, response, body) {
         body = JSON.parse(body);
         sess = req.session;
-        if (body.success !== undefined && !body.success) {
+        if (body.success) {
             db.collection("compte_client").find({ username: req.body.username }, function (err, result) {
                 console.log(result);
                 if (typeof result[0] == 'undefined') {
                     //message d'erreur pour un nom d'utilsateur incorrecte
                     userMessageText = "Combinaison du nom d'utilisateur et mot de passe incorrecte!";
                     userMessageStatus = "alertBad";
+                    userMessageArray = [userMessageText, userMessageStatus];
+                    res.render('pages/login.ejs', { login: "active", accueil: "", creationCompte: "", produit: "", items: userMessageArray, username: sess.username });
+                    res.end(); 
                 } else {
                     if (result[0].mdp == req.body.passwordUser) {
                         //message de succes pour une combinaison de nom d'utilisateur et mot de passe correcte

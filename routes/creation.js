@@ -20,10 +20,10 @@ var utilisateur;
 
 //methode http chargee de la route /creerCompte
 router.get('/', function (req, res) {
-    ses = req.session;
-    utilisateur = sess.username;
+    sess = req.session;
+    
     //active le lien vers la page de creation du compte et desactive tous les autres liens
-    res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", username: utilisateur});
+    res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", username: sess.username});
 });
 
 
