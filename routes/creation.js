@@ -13,14 +13,17 @@ var userLastname = "";
 var userEmail = "";
 var userAddress = "";
 var tempRes;
+var utilisateur;
 //var mongo = require('mongodb');
 //var monk = require('monk');
 //var db = monk('localhost:27017/protodb');
 
 //methode http chargee de la route /creerCompte
 router.get('/', function (req, res) {
+    ses = req.session;
+    utilisateur = sess.username;
     //active le lien vers la page de creation du compte et desactive tous les autres liens
-    res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "" });
+    res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", username: utilisateur});
 });
 
 
@@ -28,7 +31,7 @@ router.get('/', function (req, res) {
 //vers la BD en s'assurant que ces entrées sont acceptables (select & insert) -- recaptcha 
 router.post('/', function (req, res) {
     fillVariablesInput(req);
-
+    
     tempRes = res;
 
     if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
