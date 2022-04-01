@@ -15,6 +15,7 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
+
     fillVariablesUpdateInput(req);
     tempRes = res;
 
@@ -23,10 +24,8 @@ router.post('/', function (req, res) {
         if (typeof result[0] == 'undefined') {  
             printResult("l'item " + tempItemId + " est introuvable dans la base de donnée! ", "alertBad");
         } else {
-           
             updateQuantity();
            }
-      
     });
 });
 
@@ -47,7 +46,7 @@ function positiveStock() {
 
         } else {
             if (result[0].nombrestock <= 0) {
-                console.log(result[0].nombrestock);
+                
                 setQuantityZero();
             } else {
                 printResult("nouveau stock de l'item " + tempItemId +" est de : " + result[0].nombrestock+ " ! ", "alertGood");
