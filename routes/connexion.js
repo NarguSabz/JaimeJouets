@@ -45,8 +45,6 @@ router.post('/', function (req, res) {
                     //message d'erreur pour un nom d'utilsateur incorrecte
                     userMessageText = "Combinaison du nom d'utilisateur et mot de passe incorrecte!";
                     userMessageStatus = "alertBad";
-                    res.render('pages/login.ejs', { login: "active", accueil: "", creationCompte: "", produit: "", items: userMessageArray, username: sess.username });
-                    res.end(); 
                 } else {
                     if (result[0].mdp == req.body.passwordUser) {
                         //message de succes pour une combinaison de nom d'utilisateur et mot de passe correcte
