@@ -45,8 +45,8 @@ router.post('/', function (req, res) {
     request(verificationUrl, function (error, response, body) {
         body = JSON.parse(body);
         
-        if (body.success !== undefined && !body.success) {
-            console.log("yes")
+        if (body.success) {
+            
             if (!checkAllFieldsEmpty()) {
                
                 checkUserNameAvailable();
