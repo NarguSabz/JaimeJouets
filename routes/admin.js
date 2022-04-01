@@ -17,7 +17,7 @@ router.post('/', function (req, res) {
     var userMessageStatus = "";
 
     db.collection("produits").find({ numid: req.body.itemID }, function (err, result) {
-       
+        
         if (typeof result[0] == 'undefined') {  
             userMessageText = "item id incorrecte!";
             userMessageStatus = "alertBad";
@@ -25,6 +25,7 @@ router.post('/', function (req, res) {
             res.render('pages/admin.ejs', { login: "active", accueil: "", creationCompte: "", produit: "", items: userMessageArray });
             res.end();
         } else {
+           
             updateQuantity(req);
            }
         //afficher le message a l'utilisateur
@@ -33,17 +34,20 @@ router.post('/', function (req, res) {
 });
 
 function updateQuantity(reqTmp) {
-    db.collection("produits").updateOne({ numid: reqTmp.body.itemID }, { $inc: { nombrestock: reqTmp.body.amountChange } }, function (err, result) {
+    var numberTmp = Number(reqTmp.body.amountChange)
+    console.log(numberTmp);
+    db.collection("produits").update({ numid: reqTmp.body.itemID }, { $inc: { nombrestock: reqTmp.body.amountChange } })
+       
         positiveStock(reqTmp);
         //afficher le message a l'utilisateur
 
-    });
+    
 }
 
-function updateQuantity(reqTmp) {
+function positiveStock(reqTmp) {
 
     db.collection("produits").find({ numid: reqTmp.body.itemID }, function (err, result) {
-        console.log(result);
+       
         if (typeof result[0] == 'undefined') {
             userMessageText = "item id incorrecte!";
             userMessageStatus = "alertBad";
