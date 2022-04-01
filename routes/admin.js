@@ -7,11 +7,14 @@ var tempRes;
 var tempItemId;
 var tempAmountChange;
 
-
 //methode http chargee de la route /login
 router.get('/', function (req, res) {
     sess = req.session;
     var utilisateur = sess.username;
+    var collection = db.get('produits');
+    collection.find({}, {}, function (e, docs) {
+        res.json(docs);
+    });
     //active le lien vers la page de login et desactive tous les autres liens
     res.render('pages/admin.ejs', { login: "", accueil: "", creationCompte: "", produit: "", username: utilisateur } );
 });
@@ -74,5 +77,6 @@ function printResult(userMessageTextTmp, userMessageAlertTmp) {
     tempRes.render('pages/admin.ejs', { login: "", accueil: "", creationCompte: "", produit: "", items: userMessageArray, username: utilisateur });
     tempRes.end();
 }
+
 
 module.exports = router;
