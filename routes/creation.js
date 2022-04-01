@@ -2,8 +2,6 @@ var express = require('express');
 var mysql = require('mysql');
 var router = express.Router();
 
-
-
 //ajout d'une connection a la base de donnees
 var connection = mysql.createConnection({ host: "localhost", user: "root", password: "", database: "bdproto" });
 var utilisateur;
@@ -12,8 +10,12 @@ var utilisateur;
 router.get('/', function (req, res) {
     //active le lien vers la page de creation du compte et desactive tous les autres liens
     sess = req.session;
-    utilisateur = sess.username;
-    res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", username: utilisateur});
+    if(sess.username){
+        res.render('pages/profil.ejs', { login: "", accueil: "", creationCompte: "", produit: "", username: sess.username, email: sess.email});
+    }else{
+        utilisateur = sess.username;
+        res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", username: utilisateur});
+    }
 });
 
 //methode qui se charge d'envoyer les informations necessaires pour la creation d'un compte

@@ -26,6 +26,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use ( session ( { secret : crypto.randomBytes(20).toString("hex") ,saveUninitialized : false , resave : false } ) ) ;
 var sess;
+
 /*
 * view engine template parsing (ejs types)
 */
