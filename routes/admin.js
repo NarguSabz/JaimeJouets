@@ -21,13 +21,12 @@ router.post('/', function (req, res) {
     db.collection("produits").find({ numid: tempItemId }, function (err, result) {
         
         if (typeof result[0] == 'undefined') {  
-            printResult("item id incorrecte!", "alertBad");
+            printResult("l'item " + tempItemId + " est introuvable dans la base de donnée! ", "alertBad");
         } else {
            
             updateQuantity();
            }
-        //afficher le message a l'utilisateur
-        
+      
     });
 });
 
@@ -51,7 +50,7 @@ function positiveStock() {
                 console.log(result[0].nombrestock);
                 setQuantityZero();
             } else {
-                printResult("stock changer!", "alertGood");
+                printResult("nouveau stock de l'item " + tempItemId +" est de : " + result[0].nombrestock+ " ! ", "alertGood");
             }
         }
     });
@@ -60,10 +59,8 @@ function positiveStock() {
 
 function setQuantityZero() {
     db.collection("produits").update({ numid: tempItemId }, { $set: { nombrestock: 0 } }).then(() => {
-        printResult("stock changer et remis a zero!", "alertGood");
+        printResult("nouveau stock de l'item " + tempItemId + " est de : 0 ! ", "alertGood");
     });
-   
-   
 }
 
 function fillVariablesUpdateInput(req) {
@@ -75,7 +72,6 @@ function printResult(userMessageTextTmp, userMessageAlertTmp) {
     userMessageArray = [userMessageTextTmp, userMessageAlertTmp];
     tempRes.render('pages/admin.ejs', { login: "", accueil: "", creationCompte: "", produit: "", items: userMessageArray });
     tempRes.end();
-
 }
 
 module.exports = router;
