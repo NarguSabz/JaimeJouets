@@ -1,9 +1,11 @@
 var express = require('express');
-var mysql = require('mysql');
 var router = express.Router();
-var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk('localhost:27017/protodb');
+
+var tempRes;
+var tempItemId;
+var tempAmountChange;
 
 
 //methode http chargee de la route /login
@@ -13,10 +15,10 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
-    var userMessageText = "";
-    var userMessageStatus = "";
+    fillVariablesInput(req);
+    tempRes = res;
 
-    db.collection("produits").find({ numid: req.body.itemID }, function (err, result) {
+    db.collection("produits").find({ numid: tempItemId }, function (err, result) {
         
         if (typeof result[0] == 'undefined') {  
             userMessageText = "item id incorrecte!";
@@ -34,11 +36,12 @@ router.post('/', function (req, res) {
 });
 
 function updateQuantity(reqTmp) {
-    var numberTmp = Number(reqTmp.body.amountChange)
-    console.log(numberTmp);
-    db.collection("produits").update({ numid: reqTmp.body.itemID }, { $inc: { nombrestock: reqTmp.body.amountChange } })
-       
+
+    db.collection("produits").update({ numid: tempItemId }, { $inc: { nombrestock: tempAmountChange } }).then(() => {
+        
         positiveStock(reqTmp);
+    });
+    
         //afficher le message a l'utilisateur
 
     
@@ -46,8 +49,8 @@ function updateQuantity(reqTmp) {
 
 function positiveStock(reqTmp) {
 
-    db.collection("produits").find({ numid: reqTmp.body.itemID }, function (err, result) {
-       
+    db.collection("produits").find({ numid: tempItemId }, function (err, result) {
+        
         if (typeof result[0] == 'undefined') {
             userMessageText = "item id incorrecte!";
             userMessageStatus = "alertBad";
@@ -56,7 +59,10 @@ function positiveStock(reqTmp) {
             res.end();
         } else {
             if (result[0].nombrestock <= 0) {
+                console.log(result[0].nombrestock);
                 setQuantityZero(reqTmp);
+            } else {
+
             }
         }
         //afficher le message a l'utilisateur
@@ -65,9 +71,14 @@ function positiveStock(reqTmp) {
 
 }
 
-function setQuantityZero(reqTmp) {
-    db.collection("produits").updateOne({ numid: reqTmp.body.itemID }, { nombrestock: 0 } , function (err, result) {
-    });
+function setQuantityZero(reqTmp) {;
+    db.collection("produits").update({ numid: reqTmp.body.itemID }, { $set: { nombrestock: 0 } });
+   
 }
 
+function fillVariablesInput(req) {
+
+    tempItemId = reqTmp.body.itemID.toString().trim();
+    tempAmountChange = Number(reqTmp.body.amountChange);
+}
 module.exports = router;
