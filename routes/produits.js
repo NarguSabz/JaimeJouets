@@ -8,6 +8,7 @@ var router = express.Router();
 
 //methode http chargee de la route /produits
 router.get('/', function (req, res) {
+  sess = req.session;
    var collection = db.get('produits');
        //ceci permet d aller chercher tous le nom de categorie et de marque de chacun des produits
       collection.aggregate([
@@ -38,7 +39,8 @@ router.get('/', function (req, res) {
             } else {
                 nbreDePages = nbreDeVingts;
             }
-            res.render('pages/produits.ejs', { nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", produit: "active", produits: resultat, recherche:""});
+            var utilisateur = sess.username;
+            res.render('pages/produits.ejs', { nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", produit: "active", produits: resultat, username: utilisateur });
            //on active le lien vers la page des produits et desactive tous les autres liens
 
             db.close();

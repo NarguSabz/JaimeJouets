@@ -2,21 +2,26 @@ var express = require('express');
 var mysql = require('mysql');
 var router = express.Router();
 
-
-
 //ajout d'une connection a la base de donnees
 var connection = mysql.createConnection({ host: "localhost", user: "root", password: "", database: "bdproto" });
+var utilisateur;
 
 //methode http chargee de la route /creerCompte
 router.get('/', function (req, res) {
     //active le lien vers la page de creation du compte et desactive tous les autres liens
-    res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "" });
+    sess = req.session;
+    if(sess.username){
+        res.render('pages/profil.ejs', { login: "", accueil: "", creationCompte: "", produit: "", username: sess.username, email: sess.email});
+    }else{
+        utilisateur = sess.username;
+        res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", username: utilisateur});
+    }
 });
 
 //methode qui se charge d'envoyer les informations necessaires pour la creation d'un compte
 //vers la BD en s'assurant que ces entrées sont acceptables (select & insert)
 router.post('/', function (req, res) {
-
+    sess = req.session;
     var userMessageText = "";
     var userMessageStatus = "";
 
@@ -28,13 +33,16 @@ router.post('/', function (req, res) {
     var userAddress = req.body.adresse.toString().trim();
 
     var resultTest = 0; //initialisation du premier ID a 0 si necessaire
-
+    utilisateur = sess.username;
+    
+        
     if (!checkAllFieldsEmpty(req)) {
         connection.query("SELECT * from panier ORDER BY id_panier DESC LIMIT 1", function (err, result) {
             if (typeof result[0] != 'undefined') { //chercher le plus gros ID s'il existe pour iterer dessus
                 resultTest = result[0].id_panier;
                 resultTest++;
             }
+            
 
             //verifier si le username existe deja si non, inserer les données de l'utilisateur dans la BD
             connection.query("SELECT compte_client_nom_utilisateur from panier WHERE compte_client_nom_utilisateur = '" + userUsername + "'", function (err, result) {
@@ -44,7 +52,7 @@ router.post('/', function (req, res) {
                     userMessageStatus = "alertBad";
                     userMessageArray = [userMessageText, userMessageStatus]; //console.log(userMessageArray);
                     //afficher le message a l'utilisateur
-                    res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray });
+                    res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray, username: utilisateur });
                     res.end()
                 } else {
                     connection.query("INSERT INTO panier (id_panier, compte_client_nom_utilisateur) VALUES ( " + resultTest + "," + " '" + userUsername + "')", function (err, result) {
@@ -55,7 +63,7 @@ router.post('/', function (req, res) {
                             userMessageStatus = "alertBad";
                             userMessageArray = [userMessageText, userMessageStatus]; //console.log(userMessageArray);
                             //afficher le message a l'utilisateur
-                            res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray });
+                            res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray, username: utilisateur });
                             res.end()
                         }
                         connection.query("INSERT INTO compte_client (nom_utilisateur, mdp, prenom, nom ,email, adresse, panier_id_panier) VALUES ( '" + userUsername + "', '" + userPassword + "', '" + userFirstname + "', '" + userLastname + "', '" + userEmail + "', '" + userAddress + "', " + resultTest + ")", function (err, result) {
@@ -66,7 +74,7 @@ router.post('/', function (req, res) {
                                 userMessageStatus = "alertBad";
                                 userMessageArray = [userMessageText, userMessageStatus]; //console.log(userMessageArray);
                                 //afficher le message a l'utilisateur
-                                res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray });
+                                res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray, username: utilisateur});
                                 res.end()
                             } else {
                                 //message de succes pour un compte creer
@@ -74,7 +82,7 @@ router.post('/', function (req, res) {
                                 userMessageStatus = "alertGood";
                                 userMessageArray = [userMessageText, userMessageStatus]; //console.log(userMessageArray);
                                 //afficher le message a l'utilisateur
-                                res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray });
+                                res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray, username: utilisateur});
                                 res.end()
                             }
                         });
@@ -87,7 +95,8 @@ router.post('/', function (req, res) {
         userMessageText = "Entrée obligatoire manquante!";
         userMessageStatus = "alertBad";
         userMessageArray = [userMessageText, userMessageStatus]; //console.log(userMessageArray);
-        res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray });
+        
+        res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray, username: utilisateur });
         res.end()
     }
 });

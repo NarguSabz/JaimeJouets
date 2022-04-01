@@ -7,6 +7,8 @@ var http = require('http');
 var mysql = require('mysql');
 var app = express();
 var bodyParser = require('body-parser');
+var session = require ( 'express-session' ) ;
+var crypto = require('crypto');
 
 var creationRouter = require('./routes/creation');
 var connexionRouter = require('./routes/connexion');
@@ -15,12 +17,15 @@ var produitsRouter = require('./routes/produits');
 var indexRouter = require('./routes/index');
 var rechercherRouter = require('./routes/rechercher');
 var rechercherSugRouter = require('./routes/rechercherSuggestions');
+var profilRouter = require('./routes/profil');
 
 /*
 * parse all form data
 */
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use ( session ( { secret : crypto.randomBytes(20).toString("hex") ,saveUninitialized : false , resave : false } ) ) ;
+var sess;
 
 /*
 * view engine template parsing (ejs types)
@@ -42,6 +47,7 @@ app.use('/creerUnCompte', creationRouter);
 app.use('/', indexRouter);
 app.use('/rechercher', rechercherRouter);
 app.use('/rechercherSuggestions', rechercherSugRouter);
+app.use('/profil', profilRouter)
 //catch 404 and forward to error handler
 //app.use(function(req, res, next) {
 //  next(createError(404));

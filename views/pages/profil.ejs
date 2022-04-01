@@ -1,0 +1,33 @@
+<%- include ('../partials/header') %>
+<body>
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h3 class="title">Profil de <%= username%></h3>
+                </div>
+            </div>
+
+            <br>
+            <br>
+            
+            <h3>Email: <%= email%> </h3>
+            
+            <br>
+            <br>
+            
+            <form action="/profil/deconnexion" method="post">
+                <button class="primary-btn cta-btn">Déconnexion</button>
+            </form>
+
+            <br>
+            <br>
+
+            
+
+            
+        </div>
+    </div>
+    </body>
+<%- include ('../partials/footer') %>
