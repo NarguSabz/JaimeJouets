@@ -1,0 +1,51 @@
+<%- include ('../partials/header') %>
+<body>
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h3 class="title">Admin</h3>
+                </div>
+            </div>
+                                     
+
+
+
+            <form action="/admin" method="post">
+                <input class="input" name="itemID" placeholder=" Exemple: 701 ">
+                <br>
+                <br>
+                <input class="input" type="number" name="amountChange" placeholder="Exemple: -3">
+                <br>
+                <br>
+                <button class="primary-btn cta-btn">Mettre a jour</button>
+            </form>
+
+            <br>
+
+            <%if (typeof items != 'undefined' && items.length>0) {%>
+                <p class="<%= items[1]%>" id="messageCreation"><strong><%= items[0]%></strong></p> 
+            <% }else {%>
+                <p class="createAlert" id="messageConnexion" ></p>
+            <% } %>
+
+            <h3 class="title">liste des produits</h3>
+
+            <div id="itemList">
+            <table>
+                <thead>
+                <th>Id du produit</th>
+                <th>Nom</th>
+                <th>Stock</th>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            </div>
+
+            
+        </div>
+    </div>
+    </body>
+    <%- include ('../partials/footer') %>

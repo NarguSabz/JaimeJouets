@@ -1,4 +1,8 @@
 <%- include ('../partials/header') %>
+
+<script src="ejs.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
 <body>
     <div class="container">
         <!-- row -->
@@ -16,6 +20,7 @@
                 <input class="input" type="password" name="passwordUser" placeholder="Mot de passe">
                 <br>
                 <br>
+                <div class="g-recaptcha" data-sitekey="6LebWCMfAAAAAPh53ZUANtCluXta0hjSMuijEXuw"></div><br>
                 <button class="primary-btn cta-btn">Connexion</button>
             </form>
 
@@ -47,4 +52,24 @@
         </div>
     </div>
     </body>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+  <script>
+  $(document).ready(function() {
+      $('#comment_form').submit(function() {
+        $(this).ajaxSubmit({
+          error: function(xhr) {
+            status('Error: ' + xhr.status);
+          },
+         success: function(response) {
+          console.log(response);
+         }
+        });
+        
+        return false;
+      });
+    });
+  </script>
+
     <%- include ('../partials/footer') %>
