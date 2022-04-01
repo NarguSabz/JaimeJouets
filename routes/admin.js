@@ -10,8 +10,10 @@ var tempAmountChange;
 
 //methode http chargee de la route /login
 router.get('/', function (req, res) {
+    sess = req.session;
+    var utilisateur = sess.username;
     //active le lien vers la page de login et desactive tous les autres liens
-    res.render('pages/admin.ejs', { login: "", accueil: "", creationCompte: "", produit: "" });
+    res.render('pages/admin.ejs', { login: "", accueil: "", creationCompte: "", produit: "", username: utilisateur } );
 });
 
 router.post('/', function (req, res) {
@@ -69,7 +71,7 @@ function fillVariablesUpdateInput(req) {
 
 function printResult(userMessageTextTmp, userMessageAlertTmp) {
     userMessageArray = [userMessageTextTmp, userMessageAlertTmp];
-    tempRes.render('pages/admin.ejs', { login: "", accueil: "", creationCompte: "", produit: "", items: userMessageArray });
+    tempRes.render('pages/admin.ejs', { login: "", accueil: "", creationCompte: "", produit: "", items: userMessageArray, username: utilisateur });
     tempRes.end();
 }
 
