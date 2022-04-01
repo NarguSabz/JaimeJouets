@@ -46,7 +46,7 @@ router.post('/', function (req, res) {
         body = JSON.parse(body);
         
         if (body.success) {
-            
+            console.log("yes")
             if (!checkAllFieldsEmpty()) {
                
                 checkUserNameAvailable();
@@ -91,7 +91,7 @@ function insertUserCompteClient() {
 
 function printResult(userMessageTextTmp, userMessageAlertTmp) {
     userMessageArray = [userMessageTextTmp, userMessageAlertTmp];
-    tempRes.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray, username: sess.username });
+    tempRes.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", items: userMessageArray,  username: sess.username});
     tempRes.end();
 
 }
