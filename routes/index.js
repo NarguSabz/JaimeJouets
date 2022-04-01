@@ -7,7 +7,6 @@ var router = express.Router();
 //methode http chargee de la route /accueil
 router.get('/', function (req, res) {
   sess = req.session;
-  console.log(sess.username);
   
     //ceci permet d aller chercher tous le nom de categorie et de marque de chacun des produits et de aller chercher les 8 les plus recents produits, dans la base de donnees
     var collection = db.get('produits');
