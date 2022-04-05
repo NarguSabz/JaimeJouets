@@ -241,7 +241,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="add-to-cart">
-                                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Ajout au panier</button>
+                                                    <button class="add-to-cart-btn" onclick='ajoutAuPanier("<%=produit.nom%>","./img/<%=produit.numid %>/<%=produit.numid %>-1.jpg","<%=produit.numid%>","<%=produit.prix %>");'><i class="fa fa-shopping-cart"></i>Ajout au panier</button>
                                                 </div>
                                             </a>
                                         </div>
@@ -306,7 +306,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="add-to-cart">
-                                                            <button class="add-to-cart-btn"><i
+                                                            <button class="add-to-cart-btn" onclick='ajoutAuPanier("<%=produits[i].nom%>","./img/<%=produits[i].numid %>/<%=produits[i].numid %>-1.jpg","<%=produits[i].numid%>","<%=produits[i].prix %>");'><i
                                                                     class="fa fa-shopping-cart"></i>Ajout au panier</button>
                                                         </div>
                                                     </a>
