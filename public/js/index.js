@@ -35,7 +35,7 @@ function ajoutAuPanier(nom,image,id,prix,qty=1) {
             
         },body:JSON.stringify(params)});
 
-    fetch('/panier/ajouterPanier' ,{
+    fetch('/panier/quickview' ,{
         method: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -43,19 +43,18 @@ function ajoutAuPanier(nom,image,id,prix,qty=1) {
         }}).then(function(response){
             response.text().then(function(text){
 
-                    document.getElementById("panier").innerHTML=text;
-                
+                document.getElementById("panier").innerHTML=text;
     });});}
     document.getElementById("body").onload = onPageReloud();
     function onPageReloud(){
-        fetch('/panier/ajouterPanier' ,{
+        fetch('/panier/quickview' ,{
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }}).then(function(response){
                 response.text().then(function(text){
-    
+                    
                         document.getElementById("panier").innerHTML=text;
                     
         });});
@@ -70,6 +69,32 @@ function ajoutAuPanier(nom,image,id,prix,qty=1) {
                 response.text().then(function(text){
     
                         document.getElementById("panier").innerHTML=text;
+                    
+        });});
+    }
+    
+    function enleverPage(id){
+        fetch('/panier/enlever/'+ id,{
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }}).then(function(response){
+                response.text().then(function(text){
+    
+                        document.getElementById("panier").innerHTML=text;
+                        fetch('/panier' ,{
+                            method: 'GET',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            }}).then(function(response){
+                                response.text().then(function(text){
+                                    
+                                       document.getElementById("pagePanier").innerHTML=text;
+                                    
+                        });});
+
                     
         });});
     }
