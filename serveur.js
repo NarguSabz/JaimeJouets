@@ -19,6 +19,8 @@ var rechercherRouter = require('./routes/rechercher');
 var rechercherSugRouter = require('./routes/rechercherSuggestions');
 var profilRouter = require('./routes/profil');
 var adminRouter = require('./routes/admin');
+var proposRouter = require('./routes/propos');
+
 /*
 * parse all form data
 */
@@ -49,6 +51,7 @@ app.use('/rechercher', rechercherRouter);
 app.use('/rechercherSuggestions', rechercherSugRouter);
 app.use('/profil', profilRouter)
 app.use('/admin', adminRouter);
+app.use('/propos', proposRouter);
 //catch 404 and forward to error handler
 //app.use(function(req, res, next) {
 //  next(createError(404));
