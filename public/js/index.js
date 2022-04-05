@@ -28,14 +28,14 @@ function ajoutAuPanier(nom,image,id,prix,qty=1) {
         qty:qty
 
       }
-    fetch('/ajouterPanier', {
+    fetch('/panier/ajouterPanier', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             
         },body:JSON.stringify(params)});
 
-    fetch('/ajouterPanier' ,{
+    fetch('/panier/ajouterPanier' ,{
         method: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -48,7 +48,7 @@ function ajoutAuPanier(nom,image,id,prix,qty=1) {
     });});}
     document.getElementById("body").onload = onPageReloud();
     function onPageReloud(){
-        fetch('/ajouterPanier' ,{
+        fetch('/panier/ajouterPanier' ,{
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -61,7 +61,7 @@ function ajoutAuPanier(nom,image,id,prix,qty=1) {
         });});
     }
     function enlever(id){
-        fetch('/ajouterPanier/enlever/'+ id,{
+        fetch('/panier/enlever/'+ id,{
             method: 'GET',
             headers: {
                 'Accept': 'application/json',

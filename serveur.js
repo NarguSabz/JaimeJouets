@@ -19,7 +19,7 @@ var rechercherRouter = require('./routes/rechercher');
 var rechercherSugRouter = require('./routes/rechercherSuggestions');
 var profilRouter = require('./routes/profil');
 var adminRouter = require('./routes/admin');
-var ajouterPanier = require('./routes/ajouterPanier');
+var panier = require('./routes/panier');
 
 /*
 * parse all form data
@@ -51,7 +51,7 @@ app.use('/rechercher', rechercherRouter);
 app.use('/rechercherSuggestions', rechercherSugRouter);
 app.use('/profil', profilRouter)
 app.use('/admin', adminRouter);
-app.use('/ajouterPanier', ajouterPanier);
+app.use('/panier', panier);
 
 //catch 404 and forward to error handler
 //app.use(function(req, res, next) {
