@@ -915,7 +915,6 @@ textarea.input {
 h3.product-name{
 overflow: hidden;
     white-space: nowrap;
-    text-o: ;
     text-overflow: ellipsis;
 }
 
@@ -2240,8 +2239,8 @@ overflow: hidden;
         padding:5px 10px;
         text-align:center;
       }
-.ajaxLoader {
-    display:    none;
+#ajaxLoader {
+
     position:   fixed;
     z-index:    1000;
     top:        0;
@@ -2249,19 +2248,16 @@ overflow: hidden;
     height:     100%;
     width:      100%;
     background: rgba( 255, 255, 255, .8 ) 
-                url('http://i.stack.imgur.com/FhHRx.gif') 
+                url('ajax-loader.gif') 
                 50% 50% 
                 no-repeat;
 }
 
 /* When the body has the loading class, we turn
    the scrollbar off with overflow:hidden */
-body.loading .ajaxLoader{
+#ajaxLoader{
     overflow: hidden;   
 }
 
 /* Anytime the body has the loading class, our
    modal element will be visible */
-body.loading .ajaxLoader{
-    display: block;
-}
