@@ -1,4 +1,5 @@
 <%- include ('../partials/header') %>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <body>
     <div class="container">
         <!-- row -->
@@ -13,10 +14,29 @@
 
 
             <form action="/admin" method="post">
-                <input class="input" name="itemID" placeholder=" Exemple: 701 ">
+                <input class="input" name="itemID" placeholder="Item Exemple: 701 ">
                 <br>
                 <br>
-                <input class="input" type="number" name="amountChange" placeholder="Exemple: -3">
+                <input class="input" type="number" name="amountChange" placeholder="Nombre d'item(s) Exemple: -3">
+                <br>
+                <br>
+                <input type="radio" name="incSetAmount" value="incChange"checked="checked">
+                <label for="incChange">increment amount value</label>
+                <input type="radio" name="incSetAmount" value="setChange" > 
+                <label for="setChange">set amount value</label>
+                
+
+                <br>
+                <br>
+                <input class="input" type="number" name="priceChange" placeholder="Prix Exemple: 25">
+                <br>
+                <br>
+                <input type="radio" name="incSetPrice" value="incPrice"checked="checked">
+                <label for="incPrice">increment price value</label>
+                <input type="radio" name="incSetPrice" value="setPrice" > 
+                <label for="setPrice">set price value</label>
+                
+
                 <br>
                 <br>
                 <button class="primary-btn cta-btn">Mettre a jour</button>
