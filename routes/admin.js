@@ -10,6 +10,8 @@ var tempPriceChange;
 var utilisateur;
 var userMessageAlertGlobal = "alertGood";
 var userMessageTextGlobal = "";
+
+
 //methode http chargee de la route /login
 router.get('/', function (req, res) {
     sess = req.session;
@@ -20,10 +22,7 @@ router.get('/', function (req, res) {
     //active le lien vers la page de login et desactive tous les autres liens
     res.render('pages/admin.ejs', { login: "", accueil: "", creationCompte: "", produit: "", username: utilisateur });
 
-
-    db.collection('produits').find({}, {}, function (e, docs) {
-        res.json(docs);
-    });
+   
 
    
 
@@ -31,6 +30,10 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
+    db.collection('produits').find({}, {}, function (e, docs) {
+        res.json(docs);
+    });
+
     tempRes = res;
     tempReq = req;
     fillVariablesUpdateInput(tempReq);
@@ -139,4 +142,6 @@ function setPriceZero() {
         printResult(userMessageTextGlobal, userMessageAlertGlobal);
     });
 }
+
+
 module.exports = router;

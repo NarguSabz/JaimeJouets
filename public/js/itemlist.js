@@ -1,3 +1,4 @@
+var $ = require("jquery");
 // DOM Ready =============================================================
 $(document).ready(function() {
   // Populate the user table on initial page load
