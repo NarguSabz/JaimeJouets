@@ -14,14 +14,18 @@ var userMessageTextGlobal = "";
 router.get('/', function (req, res) {
     sess = req.session;
     utilisateur = sess.username;
-    var collection = db.get('produits');
+    
 
-    collection.find({}, {}, function (e, docs) {
+    db.collection('produits').find({}, {}, function (e, docs) {
         res.json(docs);
-   });
+    });
 
     //active le lien vers la page de login et desactive tous les autres liens
-    res.render('pages/admin.ejs', { login: "", accueil: "", creationCompte: "", produit: "", username: utilisateur } );
+    res.render('pages/admin.ejs', { login: "", accueil: "", creationCompte: "", produit: "", username: utilisateur });
+    
+   
+
+  
 });
 
 router.post('/', function (req, res) {
