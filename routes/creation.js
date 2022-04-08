@@ -21,9 +21,14 @@ var utilisateur;
 //methode http chargee de la route /creerCompte
 router.get('/', function (req, res) {
     sess = req.session;
-    
+    if(sess.username){
+        res.render('pages/profil.ejs', { login: "", accueil: "", creationCompte: "", produit: "", username: sess.username, email: sess.email, propos: ""});
+    }else{
+      var utilisateur;
+    utilisateur = sess.username;
     //active le lien vers la page de creation du compte et desactive tous les autres liens
     res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", propos: "",username: sess.username});
+    }
 });
 
 
