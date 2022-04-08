@@ -53,7 +53,7 @@ router.get('/:id', function (req, res) {
                    }},{$match: {'marques_id': resultat[0].marques_id, 'numid':{$ne: resultat[0].numid}}}
                 ],function(err, result) {
                   var utilisateur = sess.username;
-                res.render('pages/unProduit.ejs', { login: "", accueil: "", creationCompte: "", produit: "active", produit: resultat[0],produitsDeMemeMarque:result, username: utilisateur})
+                res.render('pages/unProduit.ejs', { login: "", accueil: "", creationCompte: "", produit: "active", propos: "",produit: resultat[0],produitsDeMemeMarque:result, username: utilisateur})
                 db.close();
             });
         };          
