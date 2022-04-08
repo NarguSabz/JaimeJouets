@@ -8,7 +8,7 @@ class Panier {
         this.data.formattedTotals = '';
      }
     ajouterAuPanier(produit = null, qty = 1) {
-        if(!this.produitExist(produit.id)) {
+        if(!this.produitExist(produit.id,qty)) {
             let prod = {
                 id: produit.id,
                 nom: produit.nom,
@@ -17,7 +17,6 @@ class Panier {
                 image: produit.image,
               };
             this.data.produits.push(prod);
-            console.log(this.data.produits);
             this.calculateTotals();
         }
     }
@@ -48,10 +47,12 @@ class Panier {
         }
     }
 
-     produitExist(produitID = 0) {
+     produitExist(produitID = 0,qty) {
         let trouvee = false;
         this.data.produits.forEach(item => {
            if(item.id === produitID) {
+            item.qty = Number(item.qty) + Number(qty);
+               this.calculateTotals();
             trouvee = true;
            }
         });
