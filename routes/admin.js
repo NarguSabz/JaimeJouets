@@ -17,7 +17,7 @@ router.get('/', function (req, res) {
     sess = req.session;
     utilisateur = sess.username;
 
-    if (utilisateur == "test@test.com") {
+    if (utilisateur == "test") {
         res.render('pages/admin.ejs', { login: "", accueil: "", creationCompte: "", produit: "", username: utilisateur });
     } else {
         var collection = db.get('produits');
