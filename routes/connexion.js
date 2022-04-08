@@ -12,7 +12,8 @@ var connection = mysql.createConnection({ host: "localhost", user: "root", passw
 router.get('/', function (req, res) {
     sess = req.session;
     if(sess.username){
-        res.render('pages/profil.ejs', { login: "", accueil: "", creationCompte: "", produit: "", username: sess.username, email: sess.email});
+        res.redirect('/profil');
+        //res.render('pages/profil.ejs', { login: "", accueil: "", creationCompte: "", produit: "", username: sess.username, email: sess.email});
     }else{
       var utilisateur;
     utilisateur = sess.username;
