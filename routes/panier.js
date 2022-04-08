@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
   var utilisateur = sess.username;
 
     res.render('../views/pages/pagePanier.ejs', {
-      login: "", accueil: "", creationCompte: "", propos: "", produit: "active", username: utilisateur, panier: panier,
+      login: "", accueil: "", creationCompte: "", propos: "", produit: "", username: utilisateur, panier: panier,
 
     });
   

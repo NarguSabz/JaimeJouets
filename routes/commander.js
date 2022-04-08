@@ -7,6 +7,7 @@ var router = express.Router();
 //methode http chargee de la route /unProduit
 router.get('/', function (req, res) {
   sess = req.session;
+  res.render('pages/checkout.ejs', { nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", produit: "", propos: "", produits: resultat, username: utilisateur });
   
 });
 
