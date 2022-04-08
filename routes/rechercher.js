@@ -14,38 +14,39 @@ router.get('/', function (req, res) {
     collection.aggregate([
         {
             $lookup:
-            {
-                from: 'categories',
-                localField: 'categories_id',
-                foreignField: 'numid',
-                as: 'categories_id'
-            }
+                {
+                    from: 'categories',
+                    localField: 'categories_id',
+                    foreignField: 'numid',
+                    as: 'categories_id'
+                }
 
-        },
-        {
-            $lookup:
-            {
-                from: "marques",
-                localField: "marques_id",
-                foreignField: "numid",
-                as: "marques_id"
-            }
-        }, {$match:{ "nom": {$regex: ".*"+ req.query.q +".*" ,$options:"i"}}}
-    ], function (err, resultat) {
-        if (err) throw err;
-         //ceci permet de savoir combien de pages sera necessaire pour henberger 20 produits par page
-         var nbreDeVingts = parseInt(resultat.length / 9);
-         var nbreDePages;
-         if (resultat.length % 9 > 0) {
-             nbreDePages = nbreDeVingts + 1;
-         } else {
-             nbreDePages = nbreDeVingts;
-         }
-         var utilisateur = sess.username;
-         res.render('pages/produits.ejs', { nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", produit: "active", propos: "", produits: resultat, username: utilisateur,recherche:req.query.q });
-         //on active egalement le lien vers la page d accueil et desactive tous les autres liens        
-        db.close();
-    });
+            },
+            {$lookup:
+                {
+                    from: "marques",
+                    localField: "marques_id",
+                    foreignField: "numid",
+                    as: "marques_id"
+                }
+            }, {$match:{$and: [ {"nom": {$regex: ".*"+ req.query.q +".*" ,$options:"i"}},{"marques_id.Nom": {$regex: ".*"+ req.query.marque +".*" ,$options:"i"}}]}}
+        ], function (err, resultat) {
+            if (err) throw err;
+             //ceci permet de savoir combien de pages sera necessaire pour henberger 20 produits par page
+             var nbreDeVingts = parseInt(resultat.length / 9);
+             var nbreDePages;
+             if (resultat.length % 9 > 0) {
+                 nbreDePages = nbreDeVingts + 1;
+             } else {
+                 nbreDePages = nbreDeVingts;
+             }
+             var utilisateur = sess.username;
+
+             res.render('pages/produits.ejs', { nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", propos: "",username: utilisateur, produit: "active", produits: resultat,recherche:req.query.q});
+             //on active egalement le lien vers la page d accueil et desactive tous les autres liens        
+            db.close();
+        });
 });
 
+   
 module.exports = router;

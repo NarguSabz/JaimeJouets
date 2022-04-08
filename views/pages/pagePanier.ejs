@@ -24,8 +24,9 @@ margin-left: auto;">
     <h5>SOUS-TOTAL: <%=panier.data.formattedTotals%></h5>
 </div>
 <div class="cart-btns">
-    <a href="../panier" onclick="afficherPagePanier()">View Cart</a>
-    <a href="#">Checkout <i class="fa fa-arrow-circle-right"></i></a>
-</div><% }%></div>
+    <a href="../commander">Commander <i class="fa fa-arrow-circle-right"></i></a>
+</div><% }else{%>
+    <h3 style="text-align: center;padding: 200 200 200 200;">Votre panier est vide.</h3><%}%>
+</div>
     <!-- SECTION -->
 <%- include ('../partials/footer') %></div>
