@@ -20,6 +20,9 @@ router.get('/', function (req, res) {
     if (utilisateur == "test") {
         res.render('pages/admin.ejs', { login: "", accueil: "", creationCompte: "", produit: "", username: utilisateur });
     } else {
+        location.replace("../index");
+        //<a href="../">Accueil</a>
+        /** 
         var collection = db.get('produits');
 
         collection.aggregate([
@@ -49,6 +52,7 @@ router.get('/', function (req, res) {
             //on active egalement le lien vers la page d accueil et desactive tous les autres liens        
             db.close();
         });
+    */
     }
 
     
