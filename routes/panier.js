@@ -11,25 +11,28 @@ router.get('/', (req, res) => {
   sess = req.session;
   var utilisateur = sess.username;
 
-  res.render('../views/pages/pagePanier.ejs', {
-    login: "", accueil: "", creationCompte: "", propos: "", produit: "active",username: utilisateur,panier: panier,
+    res.render('../views/pages/pagePanier.ejs', {
+      login: "", accueil: "", creationCompte: "", propos: "", produit: "active", username: utilisateur, panier: panier,
 
-});});
+    });
+  
+
+});
 router.post('/ajouterPanier', (req, res) => {
   //si l utilisateur n est pas connectee
-  panier.ajouterAuPanier(req.body.produit,req.body.qty);
-  
-    res.end();
+  panier.ajouterAuPanier(req.body.produit, req.body.qty);
+
+  res.end();
+});
+router.get('/quickview', (req, res) => {
+  res.render('../views/pages/panier.ejs', {
+    panier: panier,
   });
- router.get('/quickview', (req, res) => {
-    res.render('../views/pages/panier.ejs', {
-        panier: panier,
-    });
 });
 router.get('/enlever/:id', (req, res) => {
- let id = req.params.id;
- panier.enleverProduit(parseInt(id, 10));
- res.redirect('/panier/quickview');
+  let id = req.params.id;
+  panier.enleverProduit(parseInt(id, 10));
+  res.redirect('/panier/quickview');
 
-  });
+});
 module.exports = router;
