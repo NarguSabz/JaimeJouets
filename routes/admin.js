@@ -16,23 +16,56 @@ var userMessageTextGlobal = "";
 router.get('/', function (req, res) {
     sess = req.session;
     utilisateur = sess.username;
-    
+
+    if (utilisateur == "test@test.com") {
+        res.render('pages/admin.ejs', { login: "", accueil: "", creationCompte: "", produit: "", username: utilisateur });
+    } else {
+        var collection = db.get('produits');
+
+        collection.aggregate([
+            {
+                $lookup:
+                {
+                    from: 'categories',
+                    localField: 'categories_id',
+                    foreignField: 'numid',
+                    as: 'categories_id'
+                }
+
+            },
+            {
+                $lookup:
+                {
+                    from: "marques",
+                    localField: "marques_id",
+                    foreignField: "numid",
+                    as: "marques_id"
+                }
+            }, { $sort: { date_parution: -1, numid: 1 } }, { $limit: 8 }
+        ], function (err, resultat) {
+            if (err) throw err;
+            var utilisateur = sess.username;
+            res.render('pages/index.ejs', { login: "", accueil: "active", creationCompte: "", produit: "", produits: resultat, marques: ["Barbie", "Fisher-Price", "Hot Wheels", "Lego", "Vtech"], username: utilisateur });
+            //on active egalement le lien vers la page d accueil et desactive tous les autres liens        
+            db.close();
+        });
+    }
 
     
     //active le lien vers la page de login et desactive tous les autres liens
-    res.render('pages/admin.ejs', { login: "", accueil: "", creationCompte: "", produit: "", username: utilisateur });
-
    
 
+   
+    //db.collection('produits').find({}, {}, function (e, docs) {
+    //    res.json(docs);
+    //});
    
 
   
 });
 
 router.post('/', function (req, res) {
-    db.collection('produits').find({}, {}, function (e, docs) {
-        res.json(docs);
-    });
+   
 
     tempRes = res;
     tempReq = req;
