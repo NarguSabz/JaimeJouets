@@ -22,7 +22,7 @@ router.get('/', function (req, res) {
     } else {
         //location.replace("../index");
         //<a href="../">Accueil</a>
-        return res.redirect('/pages/index.ejs');
+        /**return*/ res.redirect('/');
         /** var collection = db.get('produits');
 
         collection.aggregate([
@@ -66,6 +66,15 @@ router.get('/', function (req, res) {
    
 
   
+});
+
+
+router.get('/itemlist', function (req, res) {
+  
+    db.collection('produits').find({}, {}, function (e, docs) {
+        res.json(docs);
+    });
+
 });
 
 router.post('/', function (req, res) {
