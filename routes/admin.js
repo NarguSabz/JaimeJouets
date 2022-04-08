@@ -20,10 +20,10 @@ router.get('/', function (req, res) {
     if (utilisateur == "test") {
         res.render('pages/admin.ejs', { login: "", accueil: "", creationCompte: "", produit: "", username: utilisateur });
     } else {
-        location.replace("../index");
+        //location.replace("../index");
         //<a href="../">Accueil</a>
-        /** 
-        var collection = db.get('produits');
+        return res.redirect('/pages/index.ejs');
+        /** var collection = db.get('produits');
 
         collection.aggregate([
             {
