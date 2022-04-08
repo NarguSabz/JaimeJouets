@@ -1,7 +1,14 @@
 {
   "ExpandedNodes": [
     "",
-    "\\routes"
+    "\\public",
+    "\\public\\css",
+    "\\public\\fonts",
+    "\\public\\img",
+    "\\routes",
+    "\\views",
+    "\\views\\pages",
+    "\\views\\partials"
   ],
   "SelectedNode": "\\routes\\admin.js",
   "PreviewInSolutionExplorer": false
