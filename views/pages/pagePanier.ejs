@@ -1,4 +1,33 @@
+<div id="pagePanier">
 <%- include ('../partials/header') %>
+<% if( panier.data.produits.length > 0) { %>
+<div style="display: table;
+margin-right: auto;
+margin-left: auto;">
+<div class="cart-list" >
+<% panier.data.produits.forEach(function(produit) { %>
 
+    <div class="product-widget" style="display: flex;border: 1px black;">
+        <div class="product-img" style="flex:0; position: unset;">
+            <img src='.<%=produit.image%>' alt="" style="width:300px">
+        </div>
+        <div class="product-body" style="flex:1; padding-left: 300px;">
+            <h3 class="product-name" style="width: 200px; padding-top: 100px;"><a href="../produit/<%=produit.id%>"><%=produit.nom%></a></h3>
+            <h4 class="product-price"><span class="qty"><%=produit.qty%>x</span>$<%=produit.prix%></h4>
+        </div>
+        <button onclick="enleverPage('<%=produit.id%>')" class="delete" style="width: 20px; height: 20px;"><i class="fa fa-close"></i></button>
+    </div>
+    <% })%>
+</div>
+<div class="cart-summary" style="text-align: center;">
+    <small><%=panier.data.produits.length%> Item(s) selectionné(s)</small>
+    <h5>SOUS-TOTAL: <%=panier.data.formattedTotals%></h5>
+</div>
+<div class="cart-btns">
+    <a href="../panier" onclick="afficherPagePanier()">View Cart</a>
+    <a href="#">Checkout <i class="fa fa-arrow-circle-right"></i></a>
+</div><% }else{%>
+    <h3 style="text-align: center;padding: 20 200 200 200;">Votre panier est vide.</h3><%}%>
+</div>
     <!-- SECTION -->
-<%- include ('../partials/footer') %>
+<%- include ('../partials/footer') %></div>
