@@ -42,7 +42,7 @@ router.get('/', function (req, res) {
              nbreDePages = nbreDeVingts;
          }
          var utilisateur = sess.username;
-         res.render('pages/produits.ejs', { nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", produit: "active", produits: resultat, username: utilisateur });
+         res.render('pages/produits.ejs', { nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", produit: "active", propos: "", produits: resultat, username: utilisateur });
          //on active egalement le lien vers la page d accueil et desactive tous les autres liens        
         db.close();
     });

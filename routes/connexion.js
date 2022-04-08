@@ -12,9 +12,14 @@ var utilisateur;
 //methode http chargee de la route /login
 router.get('/', function (req, res) {
     sess = req.session;
+    if(sess.username){
+        res.render('pages/profil.ejs', { login: "", accueil: "", creationCompte: "", produit: "", username: sess.username, email: sess.email, propos: ""});
+    }else{
+      var utilisateur;
     utilisateur = sess.username;
-    //active le lien vers la page de login et desactive tous les autres liens
-    res.render('pages/login.ejs', { login: "active", accueil: "", creationCompte: "", produit: "", username : utilisateur });
+    //active le lien vers la page de creation du compte et desactive tous les autres liens
+    res.render('pages/login.ejs', { login: "active", accueil: "", creationCompte: "", produit: "", propos: "",username: sess.username});
+    }
 });
 
 router.post('/', function (req, res) {
@@ -27,7 +32,7 @@ router.post('/', function (req, res) {
         userMessageText = "Captcha non reussis!";
         userMessageStatus = "alertBad";
         userMessageArray = [userMessageText, userMessageStatus];
-        res.render('pages/login.ejs', { login: "active", accueil: "", creationCompte: "", produit: "", items: userMessageArray, username : utilisateur});
+        res.render('pages/login.ejs', { login: "active", accueil: "", creationCompte: "", produit: "", propos: "",items: userMessageArray, username : utilisateur});
         res.end();
     } else {
 
@@ -46,7 +51,7 @@ router.post('/', function (req, res) {
                     userMessageText = "Combinaison du nom d'utilisateur et mot de passe incorrecte!";
                     userMessageStatus = "alertBad";
                     userMessageArray = [userMessageText, userMessageStatus];
-                    res.render('pages/login.ejs', { login: "active", accueil: "", creationCompte: "", produit: "", items: userMessageArray, username: sess.username });
+                    res.render('pages/login.ejs', { login: "active", accueil: "", creationCompte: "", produit: "", propos: "",items: userMessageArray, username: sess.username });
                     res.end(); 
                 } else {
                     if (result[0].mdp == req.body.passwordUser) {
@@ -63,12 +68,12 @@ router.post('/', function (req, res) {
 
                     if(sess.username){
                         console.log('hello');
-                        res.render('pages/profil.ejs', { login: "active", accueil: "", creationCompte: "", produit: "", username: sess.username, email: sess.email });
+                        res.render('pages/profil.ejs', { login: "active", accueil: "", creationCompte: "", produit: "", propos: "",username: sess.username, email: sess.email });
                         res.end();
                     }else{
                         //afficher le message a l'utilisateur
                         userMessageArray = [userMessageText, userMessageStatus];
-                        res.render('pages/login.ejs', { login: "active", accueil: "", creationCompte: "", produit: "", items: userMessageArray, username: sess.username });
+                        res.render('pages/login.ejs', { login: "active", accueil: "", creationCompte: "", produit: "", propos: "",items: userMessageArray, username: sess.username });
                         res.end(); 
                     }
                 }
