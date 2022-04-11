@@ -1,4 +1,4 @@
-var $ = require("jquery");
+//var $ = require("jquery");
 // DOM Ready =============================================================
 $(document).ready(function() {
   // Populate the user table on initial page load
@@ -13,13 +13,14 @@ function populateTable() {
   // Empty content string
   var tableContent = '';
   // jQuery AJAX call for JSON
-  $.getJSON( '/admin', function( data ) {
+  $.getJSON( '/admin/itemlist', function( data ) {
 
     // For each item in our JSON, add a table row and cells to the content string
     $.each(data, function(){
     
       tableContent += '<tr>';
       tableContent += '<td>' + this.numid +'</td>';
+      tableContent += '<td>' + this.nom + '</td>';
       tableContent += '<td>' + this.nombrestock + '</td>';
       tableContent += '<td>' + this.prix + '</td>';
       tableContent += '</tr>';

@@ -20,54 +20,9 @@ router.get('/', function (req, res) {
     if (utilisateur == "test") {
         res.render('pages/admin.ejs', { login: "", accueil: "", creationCompte: "", produit: "", username: utilisateur });
     } else {
-        //location.replace("../index");
-        //<a href="../">Accueil</a>
-        /**return*/ res.redirect('/');
-        /** var collection = db.get('produits');
-
-        collection.aggregate([
-            {
-                $lookup:
-                {
-                    from: 'categories',
-                    localField: 'categories_id',
-                    foreignField: 'numid',
-                    as: 'categories_id'
-                }
-
-            },
-            {
-                $lookup:
-                {
-                    from: "marques",
-                    localField: "marques_id",
-                    foreignField: "numid",
-                    as: "marques_id"
-                }
-            }, { $sort: { date_parution: -1, numid: 1 } }, { $limit: 8 }
-        ], function (err, resultat) {
-            if (err) throw err;
-            var utilisateur = sess.username;
-            res.render('pages/index.ejs', { login: "", accueil: "active", creationCompte: "", produit: "", produits: resultat, marques: ["Barbie", "Fisher-Price", "Hot Wheels", "Lego", "Vtech"], username: utilisateur });
-            //on active egalement le lien vers la page d accueil et desactive tous les autres liens        
-            db.close();
-        });
-    */
-    }
-
-    
-    //active le lien vers la page de login et desactive tous les autres liens
-   
-
-   
-    //db.collection('produits').find({}, {}, function (e, docs) {
-    //    res.json(docs);
-    //});
-   
-
-  
+        res.redirect('/');
+    } 
 });
-
 
 router.get('/itemlist', function (req, res) {
   
@@ -87,7 +42,7 @@ router.post('/', function (req, res) {
     db.collection("produits").find({ numid: tempItemId }, function (err, result) {
         
         if (typeof result[0] == 'undefined') {  
-            userMessageTextGlobal = "l'item " + tempItemId + " est introuvable dans la base de donnée!";
+            userMessageTextGlobal = "l'item " + tempItemId + " est introuvable dans la base de donnï¿½e!";
             userMessageAlertGlobal = "alertBad";
            
         } else {
@@ -116,7 +71,7 @@ function positiveStock() {
     db.collection("produits").find({ numid: tempItemId }, function (err, result) {
         
         if (typeof result[0] == 'undefined') {
-            userMessageTextGlobal = "l'item " + tempItemId + " est introuvable dans la base de donnée! ";
+            userMessageTextGlobal = "l'item " + tempItemId + " est introuvable dans la base de donnï¿½e! ";
             userMessageAlertGlobal = "alertBad";
 
         } else {
@@ -167,7 +122,7 @@ function positivePrice() {
     db.collection("produits").find({ numid: tempItemId }, function (err, result) {
 
         if (typeof result[0] == 'undefined') {
-            userMessageTextGlobal = "l'item " + tempItemId + " est introuvable dans la base de donnée! ";
+            userMessageTextGlobal = "l'item " + tempItemId + " est introuvable dans la base de donnï¿½e! ";
             userMessageAlertGlobal = "alertBad";
 
         } else {
