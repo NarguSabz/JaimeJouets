@@ -5,7 +5,11 @@ class Panier {
         this.data = {};
         this.data.produits = [];
         this.data.totals = 0;
+        this.data.TPS = 0;
+        this.data.TVQ = 0;
+        this.data.formattedSousTotals = '';
         this.data.formattedTotals = '';
+
      }
     ajouterAuPanier(produit = null, qty = 1) {
         if(!this.produitExist(produit.id,qty)) {
@@ -28,13 +32,16 @@ class Panier {
         let somme = prix * qty;
 
         this.data.totals += somme;
-    });  
-    this.setFormattedTotals();
+    });
+    this.data.TPS= (this.data.totals*5)/100;
+    this.data.TVQ= (this.data.totals*9.975)/100;
+    this.data.formattedSousTotals= this.formattedTotals(this.data.totals);
+    this.data.formattedTotals= this.formattedTotals(this.data.totals+this.data.TPS+this.data.TVQ);
     }
-    setFormattedTotals() {
-        let format = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'CAD' });
-        let totals = this.data.totals;
-        this.data.formattedTotals = format.format(totals);
+    
+    formattedTotals(totalAFormatee) {
+        let format = new Intl.NumberFormat('en-CA', {style: 'currency', currency: 'CAD' });
+        return format.format(totalAFormatee);;
     }
     enleverProduit(id){
         for(let i = 0; i < this.data.produits.length; i++) {

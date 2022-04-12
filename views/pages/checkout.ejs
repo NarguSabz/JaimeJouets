@@ -72,6 +72,19 @@
                         <div><strong>GRATUIT</strong></div>
                     </div>
                     <div class="order-col">
+                        <div><strong>SOUS-TOTAL</strong></div>
+                        <div><strong class="order-total"><%=panier.data.formattedSousTotals%></strong></div>
+                    </div>
+                    <div class="order-col">
+                        <div>TPS(5%)</div>
+                        <div><strong><%=panier.formattedTotals(panier.data.TPS)%></strong></div>
+                    </div>
+                    <div class="order-col">
+                        <div>TVQ(9.975%)</div>
+                        <div><strong><%=panier.formattedTotals(panier.data.TVQ)%></strong></div>
+                    </div>
+                    
+                    <div class="order-col">
                         <div><strong>TOTAL</strong></div>
                         <div><strong class="order-total"><%=panier.data.formattedTotals%></strong></div>
                     </div>
