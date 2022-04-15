@@ -15,16 +15,16 @@
 
 
             <form action="/admin" method="post">
-                <input class="input" name="itemID" placeholder="Item Exemple: 701 ">
+                <input class="input" name="itemID" placeholder="Id de l'item Exemple: 701 ">
                 <br>
                 <br>
                 <input class="input" type="number" name="amountChange" placeholder="Nombre d'item(s) Exemple: -3">
                 <br>
                 <br>
                 <input type="radio" name="incSetAmount" value="incChange"checked="checked">
-                <label for="incChange">increment amount value</label>
+                <label for="incChange">incrémenter le stock</label>
                 <input type="radio" name="incSetAmount" value="setChange" > 
-                <label for="setChange">set amount value</label>
+                <label for="setChange">fixé le stock</label>
                 
 
                 <br>
@@ -33,9 +33,9 @@
                 <br>
                 <br>
                 <input type="radio" name="incSetPrice" value="incChange"checked="checked">
-                <label for="incPrice">increment price value</label>
+                <label for="incPrice">incrémenter le prix</label>
                 <input type="radio" name="incSetPrice" value="setChange" > 
-                <label for="setPrice">set price value</label>
+                <label for="setPrice">fixé le prix</label>
                 
 
                 <br>
@@ -58,8 +58,8 @@
                 <thead>
                 <th>Id du produit</th>
                 <th>Nom</th>
-                <th>Prix</th>
                 <th>Stock</th>
+                <th>Prix</th>
                 </thead>
                 <tbody>
                 </tbody>
