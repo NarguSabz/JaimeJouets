@@ -14,9 +14,10 @@ var userMessageTextGlobal = "";
 
 //methode http chargee de la route /login
 router.get('/', function (req, res) {
+
+    //verifier si l'utilsateur connecter est l'administrateur, sinon redirect l'utilisateur vers la page principale
     sess = req.session;
     utilisateur = sess.username;
-
     if (utilisateur == "test") {
         res.render('pages/admin.ejs', { login: "", accueil: "", creationCompte: "", produit: "", username: utilisateur });
     } else {
@@ -24,6 +25,7 @@ router.get('/', function (req, res) {
    } 
 });
 
+//methode qui se charge de charger d'afficher la liste des items dans une table
 router.get('/itemlist', function (req, res) {
   
     db.collection('produits').find({}, {}, function (e, docs) {
@@ -32,20 +34,22 @@ router.get('/itemlist', function (req, res) {
 
 });
 
+//methode qui se charge de faire les transactions lorsque le boutton est cliquer.
 router.post('/', function (req, res) {
    
 
     tempRes = res;
     tempReq = req;
     fillVariablesUpdateInput(tempReq);
-
+    //verifier que l'item existe dans la bd
     db.collection("produits").find({ numid: tempItemId }, function (err, result) {
-        
+        //imprimer un message d'erreur si l'item n'existe pas dans la bd
         if (typeof result[0] == 'undefined') {  
             userMessageTextGlobal = "l'item " + tempItemId + " est introuvable dans la base de donn�e!";
             userMessageAlertGlobal = "alertBad";
             printResult(userMessageTextGlobal,userMessageAlertGlobal);
         } else {
+            //mettre a jour les documents necessaires et les mettres a zero si negatif
             updateDocument("nombrestock", tempReq.body.incSetAmount, tempAmountChange);
             updateDocument("prix", tempReq.body.incSetPrice, tempPriceChange)
             positiveDocument();
@@ -58,39 +62,36 @@ router.post('/', function (req, res) {
 });
 
 
-
+//remplir les variables globales necessaires au fonctionnement de la page
 function fillVariablesUpdateInput(req) {
     tempItemId = req.body.itemID.toString().trim();
     tempAmountChange = Number(req.body.amountChange);
     tempPriceChange = Number(req.body.priceChange);
 }
 
+//imprimer le resultat final si tout est correcte
 function printFinishedResult(req) {
     db.collection("produits").find({ numid: tempItemId }, function (err, result) {
         
-        if (typeof result[0] == 'undefined') {  
-            userMessageTextGlobal = "l'item " + tempItemId + " est introuvable dans la base de donn�e!";
-            userMessageAlertGlobal = "alertBad";
-           
-        } else {
+        
             stockTmp = setPosInt(result[0].nombrestock);
             priceTmp = setPosInt(result[0].prix);
 
             userMessageTextGlobal = "l'item " + tempItemId + " a un stock de "+ stockTmp + " avec le prix de "+ priceTmp +" dollars canadiens!";
             userMessageAlertGlobal = "alertGood";
-        }
+        
         printResult(userMessageTextGlobal,userMessageAlertGlobal);
     });
 }
 
-
+//imprimer un resultat 
 function printResult(userMessageTextTmp, userMessageAlertTmp) {
     userMessageArray = [userMessageTextTmp, userMessageAlertTmp];
     tempRes.render('pages/admin.ejs', { login: "", accueil: "", creationCompte: "", produit: "", items: userMessageArray, username: utilisateur });
     tempRes.end();
 }
 
-
+//mettre a jour un document selon le radiobutton choisis (increment or set)
 function updateDocument(docTmp, radioToCheck, tempChange) {
 
     if (radioToCheck == "incChange"){
@@ -103,7 +104,7 @@ function updateDocument(docTmp, radioToCheck, tempChange) {
         });
     }
 }
-
+//mettre a zero un int negatif
 function setPosInt(intTmp) {
 
     if (intTmp <= 0) 
@@ -112,6 +113,7 @@ function setPosInt(intTmp) {
     return intTmp;
 }
 
+//mettre a zero un document si negatif
 function positiveDocument(docList) {
     db.collection("produits").find({ numid: tempItemId }, function (err, result) {
         
@@ -126,7 +128,7 @@ function positiveDocument(docList) {
    
 }
 
-
+//mettre a zero un document 
 function setDocumentZero(docTmp) {
    
         db.collection("produits").update({ numid: tempItemId }, { $set: { [docTmp]: 0 } }).then(() => {
@@ -134,7 +136,7 @@ function setDocumentZero(docTmp) {
         });
      
 }
-
+/** deprecated
 function checkVarInt(){
     if (!isinstance(tempAmountChange, int) ||!isinstance(tempPriceChange, int)){
         userMessageTextGlobal = "les valeurs entrers doivent etres des entiers relatifs!";
@@ -142,7 +144,9 @@ function checkVarInt(){
     }
 
 }
+*/
 
+/** deprecated
 function setEmptyZero(){
     if (tempAmountChange = 'undefined')
         tempAmountChange = 0;    
@@ -150,4 +154,5 @@ function setEmptyZero(){
     if (tempPriceChange = 'undefined')
         tempPriceChange = 0;  
 }
+*/
 module.exports = router;

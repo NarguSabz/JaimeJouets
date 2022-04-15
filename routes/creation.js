@@ -164,7 +164,7 @@ function fillVariablesInput(req) {
     userAddress = req.body.adresse.toString().trim();
 
 }
-
+/**     deprecated 
 function sleep(milliseconds) {
     const date = Date.now();
     let currentDate = null;
@@ -172,6 +172,6 @@ function sleep(milliseconds) {
         currentDate = Date.now();
     } while (currentDate - date < milliseconds);
 }
-
+*/
 
 module.exports = router;
