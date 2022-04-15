@@ -64,15 +64,25 @@ function fillVariablesUpdateInput(req) {
     tempItemId = req.body.itemID.toString().trim();
     tempAmountChange = Number(req.body.amountChange);
     tempPriceChange = Number(req.body.priceChange);
-    setEmptyZero();
+}
+
+function setEmptyZero(){
+    if (tempAmountChange = 'undefined')
+        tempAmountChange = 0; 
+        
+    if (tempPriceChange = 'undefined')
+        tempPriceChange = 0; 
+}
+
+function checkVarInt() {
+    if (!isinstance(tempAmountChange, int) || !isinstance(tempPriceChange, int)){
+        userMessageTextGlobal = "les valeurs doivent etre des nombres entiers relatifs!";
+        userMessageAlertGlobal = "alertBad";
+    }
+   
 }
 
 
-function setEmptyZero() {
-        console.log(tempAmountChange)
-
-
-}
 
 function printFinishedResult(req) {
     db.collection("produits").find({ numid: tempItemId }, function (err, result) {
