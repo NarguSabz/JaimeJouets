@@ -8,7 +8,7 @@ var tempItemId;
 var tempAmountChange;
 var tempPriceChange;
 var utilisateur;
-var userMessageAlertGlobal = "alertGood";
+var userMessageAlertGlobal = "alertBad";
 var userMessageTextGlobal = "";
 
 
@@ -38,7 +38,7 @@ router.post('/', function (req, res) {
     tempRes = res;
     tempReq = req;
     fillVariablesUpdateInput(tempReq);
-    console.log();
+
     db.collection("produits").find({ numid: tempItemId }, function (err, result) {
         
         if (typeof result[0] == 'undefined') {  
@@ -46,9 +46,8 @@ router.post('/', function (req, res) {
             userMessageAlertGlobal = "alertBad";
             printResult(userMessageTextGlobal,userMessageAlertGlobal);
         } else {
-            
-            updateDocument("nombrestock", tempReq.body.incSetAmount);
-            updateDocument("prix", tempReq.body.incSetPrice)
+            updateDocument("nombrestock", tempReq.body.incSetAmount, tempAmountChange);
+            updateDocument("prix", tempReq.body.incSetPrice, tempPriceChange)
             positiveDocument();
             
                     
@@ -66,36 +65,20 @@ function fillVariablesUpdateInput(req) {
     tempPriceChange = Number(req.body.priceChange);
 }
 
-function setEmptyZero(){
-    if (tempAmountChange = 'undefined')
-        tempAmountChange = 0; 
-        
-    if (tempPriceChange = 'undefined')
-        tempPriceChange = 0; 
-}
-
-function checkVarInt() {
-    if (!isinstance(tempAmountChange, int) || !isinstance(tempPriceChange, int)){
-        userMessageTextGlobal = "les valeurs doivent etre des nombres entiers relatifs!";
-        userMessageAlertGlobal = "alertBad";
-    }
-   
-}
-
-
-
-function printFinishedResult() {
+function printFinishedResult(req) {
     db.collection("produits").find({ numid: tempItemId }, function (err, result) {
         
-            console.log(stockTmp);
-            console.log(priceTmp);
+        if (typeof result[0] == 'undefined') {  
+            userMessageTextGlobal = "l'item " + tempItemId + " est introuvable dans la base de donn�e!";
+            userMessageAlertGlobal = "alertBad";
+           
+        } else {
             stockTmp = setPosInt(result[0].nombrestock);
             priceTmp = setPosInt(result[0].prix);
-            console.log(stockTmp);
-            console.log(priceTmp);
+
             userMessageTextGlobal = "l'item " + tempItemId + " a un stock de "+ stockTmp + " avec le prix de "+ priceTmp +" dollars canadiens!";
-           
-        
+            userMessageAlertGlobal = "alertGood";
+        }
         printResult(userMessageTextGlobal,userMessageAlertGlobal);
     });
 }
@@ -108,14 +91,14 @@ function printResult(userMessageTextTmp, userMessageAlertTmp) {
 }
 
 
-function updateDocument(docTmp, radioToCheck) {
+function updateDocument(docTmp, radioToCheck, tempChange) {
 
     if (radioToCheck == "incChange"){
-        db.collection("produits").update({ numid: tempItemId }, { $inc: { [docTmp]: tempAmountChange } }).then(() => {
+        db.collection("produits").update({ numid: tempItemId }, { $inc: { [docTmp]: tempChange } }).then(() => {
            
         });
     } else {
-        db.collection("produits").update({ numid: tempItemId }, { $set: { [docTmp]: tempAmountChange } }).then(() => {
+        db.collection("produits").update({ numid: tempItemId }, { $set: { [docTmp]: tempChange } }).then(() => {
             
         });
     }
@@ -129,7 +112,7 @@ function setPosInt(intTmp) {
     return intTmp;
 }
 
-function positiveDocument() {
+function positiveDocument(docList) {
     db.collection("produits").find({ numid: tempItemId }, function (err, result) {
         
             if (result[0].nombrestock <= 0) 
@@ -152,5 +135,19 @@ function setDocumentZero(docTmp) {
      
 }
 
+function checkVarInt(){
+    if (!isinstance(tempAmountChange, int) ||!isinstance(tempPriceChange, int)){
+        userMessageTextGlobal = "les valeurs entrers doivent etres des entiers relatifs!";
+        userMessageAlertGlobal = "alertBad";
+    }
 
+}
+
+function setEmptyZero(){
+    if (tempAmountChange = 'undefined')
+        tempAmountChange = 0;    
+
+    if (tempPriceChange = 'undefined')
+        tempPriceChange = 0;  
+}
 module.exports = router;
