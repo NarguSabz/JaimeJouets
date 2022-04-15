@@ -84,20 +84,18 @@ function checkVarInt() {
 
 
 
-function printFinishedResult(req) {
+function printFinishedResult() {
     db.collection("produits").find({ numid: tempItemId }, function (err, result) {
         
-        if (typeof result[0] == 'undefined') {  
-            userMessageTextGlobal = "l'item " + tempItemId + " est introuvable dans la base de donn�e!";
-            userMessageAlertGlobal = "alertBad";
-           
-        } else {
+            console.log(stockTmp);
+            console.log(priceTmp);
             stockTmp = setPosInt(result[0].nombrestock);
             priceTmp = setPosInt(result[0].prix);
-
+            console.log(stockTmp);
+            console.log(priceTmp);
             userMessageTextGlobal = "l'item " + tempItemId + " a un stock de "+ stockTmp + " avec le prix de "+ priceTmp +" dollars canadiens!";
            
-        }
+        
         printResult(userMessageTextGlobal,userMessageAlertGlobal);
     });
 }
@@ -131,7 +129,7 @@ function setPosInt(intTmp) {
     return intTmp;
 }
 
-function positiveDocument(docList) {
+function positiveDocument() {
     db.collection("produits").find({ numid: tempItemId }, function (err, result) {
         
             if (result[0].nombrestock <= 0) 
