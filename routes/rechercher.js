@@ -10,6 +10,8 @@ router.get('/', function (req, res) {
     sess = req.session;
     //ceci permet d aller chercher tous le nom de categorie et de marque de chacun des produits et de aller chercher les 8 les plus recents produits, dans la base de donnees
    var collection = db.get('produits');
+   nbreDeProd = req.query.nbrePage;
+      
     
     collection.aggregate([
         {
@@ -33,16 +35,16 @@ router.get('/', function (req, res) {
         ], function (err, resultat) {
             if (err) throw err;
              //ceci permet de savoir combien de pages sera necessaire pour henberger 20 produits par page
-             var nbreDeVingts = parseInt(resultat.length / 9);
+             var nbreDeVingts = parseInt(resultat.length / Number(nbreDeProd ));
              var nbreDePages;
-             if (resultat.length % 9 > 0) {
+             if (resultat.length % Number(nbreDeProd ) > 0) {
                  nbreDePages = nbreDeVingts + 1;
              } else {
                  nbreDePages = nbreDeVingts;
              }
              var utilisateur = sess.username;
 
-             res.render('pages/produits.ejs', { nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", propos: "",username: utilisateur, produit: "active", produits: resultat,recherche:req.query.q});
+             res.render('pages/produits.ejs', { nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", propos: "",username: utilisateur, produit: "active", produits: resultat,recherche:req.query.q, nbreParPage : nbreDeProd});
              //on active egalement le lien vers la page d accueil et desactive tous les autres liens        
             db.close();
         });

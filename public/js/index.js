@@ -117,7 +117,9 @@ function enleverPage(id) {
 
 }
 function mettreAJour(nbreParPage){
-    fetch('/produits?q=' + nbreParPage , {
+    console.log(document.getElementById("selectorNombrePage"));
+
+    fetch('/produits?nbre=' + nbreParPage , {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -131,3 +133,12 @@ function mettreAJour(nbreParPage){
         })
     })
 }
+function soumettre(){
+    document.getElementById("nbrePage").value = document.getElementById("selectorNombrePage").value;
+
+}
+window.onload = (event) => {
+    document.getElementById("selectorNombrePage").value = document.getElementById("selectorNombrePage").name ;
+    console.log(document.getElementById("selectorNombrePage").value);
+
+  };

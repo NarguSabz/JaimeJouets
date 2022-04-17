@@ -9,7 +9,7 @@ var router = express.Router();
 //methode http chargee de la route /produits
     router.get('/', function (req, res) {
       sess = req.session;
-      nbreDeProd = req.query.q;
+      nbreDeProd = req.query.nbre;
       if(nbreDeProd == undefined){
         nbreDeProd = 9;
       }

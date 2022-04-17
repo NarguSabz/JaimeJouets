@@ -59,7 +59,8 @@
                                 </select>
                                 <input name="q" class="input" placeholder="Rechercher ici"
                                     onkeyup="showResult(this.value,marque.value)">
-                                <button class="search-btn">Rechercher</button>
+                                <input id="nbrePage" type="hidden" name="nbrePage" class="input">
+                                <button class="search-btn" onclick="soumettre()">Rechercher</button>
                                 
                             </form>
                         </div>
