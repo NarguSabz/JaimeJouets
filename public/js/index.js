@@ -116,3 +116,18 @@ function enleverPage(id) {
 
 
 }
+function mettreAJour(nbreParPage){
+    fetch('/produits?q=' + nbreParPage , {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    }).then(function (response) {
+        response.text().then(function (text) {
+            document.getElementById("conteneur").innerHTML = text;
+            document.getElementById("conteneur").innerHTML = document.getElementById("conteneurProd").innerHTML ;
+
+        })
+    })
+}

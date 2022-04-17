@@ -1,7 +1,7 @@
 <%- include ('../partials/header') %>
 
     <!-- SECTION -->
-    <div class="section">
+    <div class="section" >
         <!-- container -->
         <div class="container">
             <!-- row -->
@@ -140,20 +140,24 @@
                                     <option value="1">Position</option>
                                 </select>
                             </label>
-
+                           
                             <label>
                                 Montrer:
-                                <select class="input-select">
-                                    <option value="0">9</option>
-                                    <option value="1">5</option>
+                                <select class="input-select" name="q" onchange="mettreAJour(this.value)" >
+                                    <option value="9">9</option>
+                                    <option value="5">5</option>
                                 </select>
                             </label>
+                        
+
                         </div>
                         
                     </div>
                     <!-- /store top filter -->
 
+                    <div id="conteneur">
                     <!-- store products -->
+                    <div id="conteneurProd">
                     <div class="row">
                         <!-- product -->
                         <!--ce foreach prends comme variable 'produits' qui contient les 8 les plus recents produits-->
@@ -169,7 +173,7 @@
                                             <div id="tab<%=i+1%>" class="tab-pane fade">
                                                 <%}%>
                                                     <!--ce boucle permet de remplir chaque page, rempli 20 produits par pages, tant qu on a pas mis tous les produits-->
-                                                    <% for(var k=0; k< 9 && j < produits.length; j++,k++){ %>
+                                                    <% for(var k=0; k< nbreParPage && j < produits.length; j++,k++){ %>
                                                         <div class="col-md-4 col-xs-6">
                                                             <a href="produit/<%=produits[j].numid %>">
                                                                 <div class="product">
@@ -257,6 +261,8 @@
                         </div>
                         <!-- /store bottom filter -->
                     </div>
+                </div>
+                </div>
                     <!-- /STORE -->
                 </div>
                 <!-- /row -->
