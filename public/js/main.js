@@ -110,17 +110,20 @@
 		down = $this.find('.qty-down');
 
 		down.on('click', function () {
+			console.log("injam");
 			var value = parseInt($input.val()) - 1;
 			value = value < 1 ? 1 : value;
 			$input.val(value);
-			$input.change();
+			$input.trigger( 'change' );
+			//$input.change();
 			updatePriceSlider($this , value)
 		})
 
 		up.on('click', function () {
 			var value = parseInt($input.val()) + 1;
 			$input.val(value);
-			$input.change();
+			$input.trigger( 'change' );
+			//$input.change();
 			updatePriceSlider($this , value)
 		})
 	});

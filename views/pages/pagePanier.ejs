@@ -2,29 +2,39 @@
 <%- include ('../partials/header') %>
 <% if( panier.data.produits.length > 0) { %>
 <div style="display: table;
-margin-right: auto;
-margin-left: auto;">
+margin-left: 200;">
 <div class="cart-list" >
 <% panier.data.produits.forEach(function(produit) { %>
 
-    <div class="product-widget" style="display: flex;border: 1px black;">
+    <div class="product-widget" style="display: flex; border: 3px solid #E4E7ED ;">
         <div class="product-img" style="flex:0; position: unset;">
             <img src='.<%=produit.image%>' alt="" style="width:300px">
         </div>
+
         <div class="product-body" style="flex:1; padding-left: 300px;">
-            <h3 class="product-name" style="width: 200px; padding-top: 100px;"><a href="../produit/<%=produit.id%>"><%=produit.nom%></a></h3>
-            <h4 class="product-price"><span class="qty"><%=produit.qty%>x</span>$<%=produit.prix%></h4>
+            <h3 class="product-name" style="width: 1000px; padding-top: 100px;font-size: 15px;"><a href="../produit/<%=produit.id%>"><%=produit.nom%></a></h3>
+            <h4 class="product-price"></span>$<%=produit.prix%></h4>
+
+            <div class="qty-label" style="display: flex;">
+                <div style="flex: 0; padding-top: 10px; padding-right: 10px;">Quantité:</div>
+                <div class="input-number" style="width: 80px;" >
+                    <input type="number" id="quantite" value="<%=produit.qty%>" onkeyup='ajouterQuantite("<%=produit.id%>",this.value);' onchange='ajouterQuantite("<%=produit.id%>",this.value);' >
+                    <span class="qty-up">+</span>
+                    <span class="qty-down">-</span>
+                </div>
+            </div>
         </div>
-        <button onclick="enleverPage('<%=produit.id%>')" class="delete" style="width: 20px; height: 20px;"><i class="fa fa-close"></i></button>
+        
+        <button onclick="enleverPage('<%=produit.id%>')" style="width: 40px; height: 40px;"><i class="fa fa-close"></i></button>
     </div>
     <% })%>
 </div>
-<div class="cart-summary" style="text-align: center;">
+<div class="cart-summary" style="text-align: center;font-size: 20px;">
     <small><%=panier.data.produits.length%> Item(s) selectionné(s)</small>
     <h5>SOUS-TOTAL: <%=panier.data.formattedSousTotals%></h5>
 </div>
-<div class="cart-btns">
-    <a href="../commander">Commander <i class="fa fa-arrow-circle-right"></i></a>
+<div class="cart-btns" style="text-align: center;font-size: 25px;padding-bottom: 30px;">
+    <a  href="../commander">Commander <i class="fa fa-arrow-circle-right"></i></a>
 </div><% }else{%>
     <h3 style="text-align: center;padding: 200 200 200 200;">Votre panier est vide.</h3><%}%>
 </div>

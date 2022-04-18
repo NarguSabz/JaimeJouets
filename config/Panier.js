@@ -54,6 +54,17 @@ class Panier {
         }
     }
 
+    ajouterQuantite(id, qty){
+        for(let i = 0; i < this.data.produits.length; i++) {
+            let item = this.data.produits[i];
+            if(item.id == id) { 
+                this.data.produits[i].qty = qty;
+                console.log(this.data.produits);
+                this.calculateTotals();
+            }
+        }
+
+    }
      produitExist(produitID = 0,qty) {
         let trouvee = false;
         this.data.produits.forEach(item => {

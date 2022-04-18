@@ -116,8 +116,20 @@ function enleverPage(id) {
 
         });
     });
+}
+function ajouterQuantite(id,qty = 1) {
+    fetch('/panier/ajouterQuantite/' + id+"/"+qty, {
+    method: 'GET',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    }
+}).then(function (response) {
+    response.text().then(function (text1) {
 
-
+                document.getElementById("panier").innerHTML = text1;
+    });
+});
 }
 function mettreAJour(nbreParPage){
 
@@ -138,7 +150,6 @@ function mettreAJour(nbreParPage){
         });
     }else{
         
-console.log("oyoy");
     fetch('/rechercher?nbrePage=' + nbreParPage +"&q="+document.getElementById("marqueRecherche").dataset.query+"&marque="+document.getElementById("marqueRecherche").dataset.marque, {
         
         method: 'GET',
@@ -164,3 +175,5 @@ window.onload = (event) => {
 
   };
 
+
+  

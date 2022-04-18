@@ -30,6 +30,12 @@ router.get('/enlever/:id', (req, res) => {
  let id = req.params.id;
  panier.enleverProduit(parseInt(id, 10));
  res.redirect('/panier/quickview');
-
   });
+  router.get('/ajouterQuantite/:id/:qty', (req, res) => {
+    let id = req.params.id;
+    let qty = req.params.qty
+    panier.ajouterQuantite(parseInt(id, 10),parseInt(qty, 10));
+    res.redirect('/panier/quickview');
+     });
+  
 module.exports = router;
