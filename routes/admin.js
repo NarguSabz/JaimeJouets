@@ -13,7 +13,7 @@ router.get('/', function (req, res) {
     sess = req.session;
     var utilisateur = sess.username;
     //active le lien vers la page de login et desactive tous les autres liens
-    res.render('pages/admin.ejs', { login: "", accueil: "", creationCompte: "", produit: "", propos: "",username: utilisateur } );
+    res.render('pages/admin.ejs', { login: "", accueil: "", creationCompte: "", produit: "", propos: "",username: utilisateur,nbreParPage : 9,recherche:true, marque:"",q:""  } );
 });
 
 router.post('/', function (req, res) {
@@ -71,7 +71,7 @@ function fillVariablesUpdateInput(req) {
 
 function printResult(userMessageTextTmp, userMessageAlertTmp) {
     userMessageArray = [userMessageTextTmp, userMessageAlertTmp];
-    tempRes.render('pages/admin.ejs', { login: "", accueil: "", creationCompte: "", produit: "", propos: "",items: userMessageArray, username: utilisateur });
+    tempRes.render('pages/admin.ejs', { login: "", accueil: "", creationCompte: "", produit: "", propos: "",items: userMessageArray, username: utilisateur,nbreParPage : 9,recherche:true, marque:"",q:"" });
     tempRes.end();
 }
 

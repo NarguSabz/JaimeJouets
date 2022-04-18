@@ -27,7 +27,7 @@ router.get('/', function (req, res) {
       var utilisateur;
     utilisateur = sess.username;
     //active le lien vers la page de creation du compte et desactive tous les autres liens
-    res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", propos: "",username: sess.username});
+    res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", propos: "",username: sess.username,nbreParPage :9,recherche:false, marque:req.query.marque,q:req.query.q});
     }
 });
 
@@ -96,7 +96,7 @@ function insertUserCompteClient() {
 
 function printResult(userMessageTextTmp, userMessageAlertTmp) {
     userMessageArray = [userMessageTextTmp, userMessageAlertTmp];
-    tempRes.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", propos: "", items: userMessageArray,  username: sess.username});
+    tempRes.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", propos: "", items: userMessageArray,  username: sess.username,nbreParPage :9,recherche:false, marque:'',q:''});
     tempRes.end();
 
 }

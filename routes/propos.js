@@ -8,7 +8,7 @@ var router = express.Router();
 router.get('/', function (req, res) {
   sess = req.session;
   var utilisateur = sess.username;
-  res.render('pages/propos.ejs', { login: "", accueil: "", creationCompte: "", produit: "", propos: "active",username: utilisateur });
+  res.render('pages/propos.ejs', { login: "", accueil: "", creationCompte: "", produit: "", propos: "active",username: utilisateur,nbreParPage : 9,recherche:true, marque:req.query.marque,q:req.query.q });
 });
 
 module.exports = router;

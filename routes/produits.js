@@ -10,6 +10,7 @@ var router = express.Router();
     router.get('/', function (req, res) {
       sess = req.session;
       nbreDeProd = req.query.nbre;
+
       if(nbreDeProd == undefined){
         nbreDeProd = 9;
       }
@@ -44,11 +45,13 @@ var router = express.Router();
                     nbreDePages = nbreDeVingts;
                 }
                 var utilisateur = sess.username;
-                res.render('pages/produits.ejs', { nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", produit: "active", propos: "", produits: resultat, username: utilisateur , nbreParPage : nbreDeProd });
+                
+                res.render('pages/produits.ejs', { nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", produit: "active", propos: "", produits: resultat, username: utilisateur ,MotCherchee:'', nbreParPage : nbreDeProd,recherche:false, marque:req.query.marque,q:req.query.q});
                //on active le lien vers la page des produits et desactive tous les autres liens
     
                 db.close();
               });
+              
         });
 
 module.exports = router;

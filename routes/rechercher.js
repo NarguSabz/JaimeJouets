@@ -11,7 +11,9 @@ router.get('/', function (req, res) {
     //ceci permet d aller chercher tous le nom de categorie et de marque de chacun des produits et de aller chercher les 8 les plus recents produits, dans la base de donnees
    var collection = db.get('produits');
    nbreDeProd = req.query.nbrePage;
-      
+   if(nbreDeProd == undefined ||nbreDeProd=="" ){
+    nbreDeProd = 9;
+  }
     
     collection.aggregate([
         {
@@ -43,8 +45,7 @@ router.get('/', function (req, res) {
                  nbreDePages = nbreDeVingts;
              }
              var utilisateur = sess.username;
-
-             res.render('pages/produits.ejs', { nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", propos: "",username: utilisateur, produit: "active", produits: resultat,recherche:req.query.q, nbreParPage : nbreDeProd});
+             res.render('pages/produits.ejs', { nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", propos: "",username: utilisateur, produit: "active", produits: resultat,MotCherchee:req.query.q, nbreParPage : nbreDeProd,recherche:true, marque:req.query.marque,q:req.query.q});
              //on active egalement le lien vers la page d accueil et desactive tous les autres liens        
             db.close();
         });

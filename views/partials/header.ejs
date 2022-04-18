@@ -48,7 +48,7 @@
                     <div class="col-md-6">
                         <div class="header-search">
                             <form action="/rechercher" method="get">
-                                <select class="input-select" name="marque" onchange="showResult(q.value,this.value)">
+                                <select id="marqueRecherche" class="input-select" name="marque" onchange="showResult(q.value,this.value)" data-recherche=<%=recherche%> data-marque='<%=marque%>' data-query='<%=q%>'>
                                     <option value="">Tous les marques</option>
                                     <option value="Barbie">Barbie</option>
                                     <option value="Vtech">Vtech</option>
@@ -57,10 +57,10 @@
                                     <option value="Fisher-Price">Fisher-Price</option>
 
                                 </select>
-                                <input name="q" class="input" placeholder="Rechercher ici"
+                                <input name="q" id="placeDeRecherche" class="input" placeholder="Rechercher ici"
                                     onkeyup="showResult(this.value,marque.value)">
                                 <input id="nbrePage" type="hidden" name="nbrePage" class="input">
-                                <button class="search-btn" onclick="soumettre()">Rechercher</button>
+                                <button id="bouttonRecherche" class="search-btn" onclick="soumettre()">Rechercher</button>
                                 
                             </form>
                         </div>

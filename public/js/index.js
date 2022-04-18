@@ -1,4 +1,7 @@
 
+var rechercher = false;
+var marque = "";
+var q = "";
 
 function showResult(str, marque) {
 
@@ -117,9 +120,27 @@ function enleverPage(id) {
 
 }
 function mettreAJour(nbreParPage){
-    console.log(document.getElementById("selectorNombrePage"));
 
-    fetch('/produits?nbre=' + nbreParPage , {
+    if(document.getElementById("marqueRecherche").dataset.recherche == "false"){    
+
+        fetch('/produits?nbre=' + nbreParPage , {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response) {
+            response.text().then(function (text) {
+                document.getElementById("conteneur").innerHTML = text;
+                document.getElementById("conteneur").innerHTML = document.getElementById("conteneurProd").innerHTML ;
+    
+            });
+        });
+    }else{
+        
+console.log("oyoy");
+    fetch('/rechercher?nbrePage=' + nbreParPage +"&q="+document.getElementById("marqueRecherche").dataset.query+"&marque="+document.getElementById("marqueRecherche").dataset.marque, {
+        
         method: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -127,18 +148,19 @@ function mettreAJour(nbreParPage){
         }
     }).then(function (response) {
         response.text().then(function (text) {
-            document.getElementById("conteneur").innerHTML = text;
+           document.getElementById("conteneur").innerHTML = text;
             document.getElementById("conteneur").innerHTML = document.getElementById("conteneurProd").innerHTML ;
 
-        })
-    })
+        });
+    });}
 }
 function soumettre(){
     document.getElementById("nbrePage").value = document.getElementById("selectorNombrePage").value;
 
 }
 window.onload = (event) => {
-    document.getElementById("selectorNombrePage").value = document.getElementById("selectorNombrePage").name ;
-    console.log(document.getElementById("selectorNombrePage").value);
+    document.getElementById("selectorNombrePage").value = document.getElementById("selectorNombrePage").dataset.nbrePage ;
+    console.log( document.getElementById("selectorNombrePage").dataset.nbrePage); 
 
   };
+

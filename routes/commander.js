@@ -11,7 +11,7 @@ router.get('/', function (req, res) {
   sess = req.session;
   var utilisateur = sess.username;
 
-  res.render('pages/checkout.ejs', {  login: "", accueil: "", creationCompte: "", produit: "", propos: "", username: utilisateur, panier: panier});
+  res.render('pages/checkout.ejs', {  login: "", accueil: "", creationCompte: "", produit: "", propos: "", username: utilisateur, panier: panier,nbreParPage : 9,recherche:false, marque:req.query.marque,q:req.query.q});
   
 });
 

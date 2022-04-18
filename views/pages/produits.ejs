@@ -143,11 +143,12 @@
                            
                             <label>
                                 Montrer:
-                                <select id="selectorNombrePage" class="input-select" onchange="mettreAJour(this.value)" name="<%=nbreParPage%>" >
+                                <select id="selectorNombrePage" class="input-select" onchange='mettreAJour(this.value)' data-nbre-page=<%=nbreParPage%> >
                                     <option value="9">9</option>
                                     <option value="5">5</option>
                                 </select>
                             </label>
+                            
                         
 
                         </div>
@@ -255,7 +256,7 @@
                                             </li>
                                             <%}}%><%if(nbrePages>1){%>
                                                 <li data-toggle="tab" href="#tabx" href="#"><i class="fa fa-angle-right"></i></li><%}else if(nbrePages==0){%>
-                                                    <h3>Aucun resultats trouvés pour "<%=recherche%>"</h3>
+                                                    <h3>Aucun resultats trouvés pour "<%=MotCherchee%>"</h3>
                                                     <%}%>
                             </ul>
                         </div>
