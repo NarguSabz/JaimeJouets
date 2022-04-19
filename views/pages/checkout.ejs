@@ -60,7 +60,7 @@
                         <div><strong>TOTAL</strong></div>
                     </div>
                     <div class="order-products">
-                        <%panier.data.produits.forEach(function(produit) { %>
+                        <%panier.produits.forEach(function(produit) { %>
                         <div class="order-col">
                             <div><%=produit.qty%>x <%=produit.nom%></div>
                             <div><%=produit.prix%>$</div>
@@ -73,20 +73,20 @@
                     </div>
                     <div class="order-col">
                         <div><strong>SOUS-TOTAL</strong></div>
-                        <div><strong class="order-total"><%=panier.data.formattedSousTotals%></strong></div>
+                        <div><strong class="order-total"><%=panier.formattedSousTotals%></strong></div>
                     </div>
                     <div class="order-col">
                         <div>TPS(5%)</div>
-                        <div><strong><%=panier.formattedTotals(panier.data.TPS)%></strong></div>
+                        <div><strong><%=classPanier.formattedTotals(panier.TPS)%></strong></div>
                     </div>
                     <div class="order-col">
                         <div>TVQ(9.975%)</div>
-                        <div><strong><%=panier.formattedTotals(panier.data.TVQ)%></strong></div>
+                        <div><strong><%=classPanier.formattedTotals(panier.TVQ)%></strong></div>
                     </div>
                     
                     <div class="order-col">
                         <div><strong>TOTAL</strong></div>
-                        <div><strong class="order-total"><%=panier.data.formattedTotals%></strong></div>
+                        <div><strong class="order-total"><%=panier.formattedTotals%></strong></div>
                     </div>
                 </div>
                 <div class="payment-method">

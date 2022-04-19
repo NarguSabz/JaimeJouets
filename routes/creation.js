@@ -21,13 +21,13 @@ var utilisateur;
 //methode http chargee de la route /creerCompte
 router.get('/', function (req, res) {
     sess = req.session;
-    if(sess.username){
-        res.render('pages/profil.ejs', { login: "", accueil: "", creationCompte: "", produit: "", username: sess.username, email: sess.email, propos: ""});
-    }else{
-      var utilisateur;
-    utilisateur = sess.username;
-    //active le lien vers la page de creation du compte et desactive tous les autres liens
-    res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", propos: "",username: sess.username,nbreParPage :9,recherche:false, marque:req.query.marque,q:req.query.q});
+    if (sess.username) {
+        res.render('pages/profil.ejs', { login: "", accueil: "", creationCompte: "", produit: "", username: sess.username, email: sess.email, propos: "", nbreParPage: 9, recherche: false, marque: req.query.marque, q: req.query.q });
+    } else {
+        var utilisateur;
+        utilisateur = sess.username;
+        //active le lien vers la page de creation du compte et desactive tous les autres liens
+        res.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", propos: "", username: sess.username, nbreParPage: 9, recherche: false, marque: req.query.marque, q: req.query.q });
     }
 });
 
@@ -36,7 +36,7 @@ router.get('/', function (req, res) {
 //vers la BD en s'assurant que ces entrées sont acceptables (select & insert) -- recaptcha 
 router.post('/', function (req, res) {
     fillVariablesInput(req);
-    
+
     tempRes = res;
 
     if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
@@ -49,11 +49,11 @@ router.post('/', function (req, res) {
 
     request(verificationUrl, function (error, response, body) {
         body = JSON.parse(body);
-        
+
         if (body.success) {
             console.log("yes")
             if (!checkAllFieldsEmpty()) {
-               
+
                 checkUserNameAvailable();
 
             } else {
@@ -61,8 +61,8 @@ router.post('/', function (req, res) {
             }
 
         }
-        
-        
+
+
     });
 
 });
@@ -70,7 +70,14 @@ router.post('/', function (req, res) {
 
 function insertUserPanier() {
 
-    var myobj = { compte_client: userUsername };
+    var myobj = {
+        compte_client: userUsername, produits: [],
+        totals: 0.00,
+        TPS: 0,
+        TVQ: 0,
+        formattedSousTotals: '',
+        formattedTotals: ''
+    };
     MongoClient.connect(url, function (err, db) {
         db.db("protodb").collection("panier").insertOne(myobj, function (err, res) {
 
@@ -96,7 +103,7 @@ function insertUserCompteClient() {
 
 function printResult(userMessageTextTmp, userMessageAlertTmp) {
     userMessageArray = [userMessageTextTmp, userMessageAlertTmp];
-    tempRes.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", propos: "", items: userMessageArray,  username: sess.username,nbreParPage :9,recherche:false, marque:'',q:''});
+    tempRes.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", propos: "", items: userMessageArray, username: sess.username, nbreParPage: 9, recherche: false, marque: '', q: '' });
     tempRes.end();
 
 }

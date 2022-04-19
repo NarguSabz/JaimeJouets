@@ -1,7 +1,8 @@
+'use strict';
 
 
 class Panier {
-    constructor() {
+    /*constructor() {
         this.data = {};
         this.data.produits = [];
         this.data.totals = 0;
@@ -10,9 +11,9 @@ class Panier {
         this.data.formattedSousTotals = '';
         this.data.formattedTotals = '';
 
-     }
-    ajouterAuPanier(produit = null, qty = 1) {
-        if(!this.produitExist(produit.id,qty)) {
+     }*/
+    static ajouterAuPanier(produit = null, qty = 1,panier) {
+        if(!this.produitExist(produit.id,qty,panier)) {
             let prod = {
                 id: produit.id,
                 nom: produit.nom,
@@ -20,57 +21,55 @@ class Panier {
                 qty: qty,
                 image: produit.image,
               };
-            this.data.produits.push(prod);
-            this.calculateTotals();
+            panier.produits.push(prod);
+            this.calculateTotals(panier);
         }
     }
-    calculateTotals(){
-        this.data.totals = 0;
-    this.data.produits.forEach(item => {
+    static calculateTotals(panier){
+        panier.totals = 0;
+    panier.produits.forEach(item => {
         let prix = item.prix;
         let qty = item.qty;
         let somme = prix * qty;
 
-        this.data.totals += somme;
+        panier.totals += somme;
     });
-    this.data.TPS= (this.data.totals*5)/100;
-    this.data.TVQ= (this.data.totals*9.975)/100;
-    this.data.formattedSousTotals= this.formattedTotals(this.data.totals);
-    this.data.formattedTotals= this.formattedTotals(this.data.totals+this.data.TPS+this.data.TVQ);
+    panier.TPS= (panier.totals*5)/100;
+    panier.TVQ= (panier.totals*9.975)/100;
+    panier.formattedSousTotals= this.formattedTotals(panier.totals);
+    panier.formattedTotals= this.formattedTotals(panier.totals+panier.TPS+panier.TVQ);
     }
     
-    formattedTotals(totalAFormatee) {
+    static formattedTotals(totalAFormatee) {
         let format = new Intl.NumberFormat('en-CA', {style: 'currency', currency: 'CAD' });
         return format.format(totalAFormatee);;
     }
-    enleverProduit(id){
-        for(let i = 0; i < this.data.produits.length; i++) {
-            let item = this.data.produits[i];
+    static enleverProduit(id,panier){
+        for(let i = 0; i < panier.produits.length; i++) {
+            let item = panier.produits[i];
             if(item.id == id) {
-                this.data.produits.splice(i, 1);
-                console.log(this.data.produits);
-                this.calculateTotals();
+                panier.produits.splice(i, 1);
+                this.calculateTotals(panier);
             }
         }
     }
 
-    ajouterQuantite(id, qty){
-        for(let i = 0; i < this.data.produits.length; i++) {
-            let item = this.data.produits[i];
+    static ajouterQuantite(id, qty,panier){
+        for(let i = 0; i < panier.produits.length; i++) {
+            let item = panier.produits[i];
             if(item.id == id) { 
-                this.data.produits[i].qty = qty;
-                console.log(this.data.produits);
-                this.calculateTotals();
+                panier.produits[i].qty = qty;
+                this.calculateTotals(panier);
             }
         }
 
     }
-     produitExist(produitID = 0,qty) {
+    static produitExist(produitID = 0,qty,panier) {
         let trouvee = false;
-        this.data.produits.forEach(item => {
+        panier.produits.forEach(item => {
            if(item.id === produitID) {
             item.qty = Number(item.qty) + Number(qty);
-               this.calculateTotals();
+               this.calculateTotals(panier);
             trouvee = true;
            }
         });
@@ -78,4 +77,4 @@ class Panier {
     }
 }
 
-module.exports = new Panier();
+module.exports = Panier;

@@ -65,7 +65,7 @@ function onPageReloud() {
         }
     }).then(function (response) {
         response.text().then(function (text) {
-
+            console.log(text+"d");
             document.getElementById("panier").innerHTML = text;
 
         });
@@ -80,7 +80,7 @@ function enlever(id) {
         }
     }).then(function (response) {
         response.text().then(function (text) {
-
+            enleverPage(id);
             document.getElementById("panier").innerHTML = text;
 
         });
@@ -106,6 +106,7 @@ function enleverPage(id) {
                 }
             }).then(function (response) {
                 response.text().then(function (text) {
+                    console.log(text)
                     document.getElementById("pagePanier").innerHTML = text;
                     document.getElementById("panier").innerHTML = text1;
 
