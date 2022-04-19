@@ -65,7 +65,7 @@ function onPageReloud() {
         }
     }).then(function (response) {
         response.text().then(function (text) {
-            console.log(text+"d");
+            console.log(text + "d");
             document.getElementById("panier").innerHTML = text;
 
         });
@@ -89,7 +89,7 @@ function enlever(id) {
 }
 
 function enleverPage(id) {
-        fetch('/panier/enlever/' + id, {
+    fetch('/panier/enlever/' + id, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -107,7 +107,12 @@ function enleverPage(id) {
             }).then(function (response) {
                 response.text().then(function (text) {
                     console.log(text)
-                    document.getElementById("pagePanier").innerHTML = text;
+                    const element = document.getElementById("pagePanier");
+                    var t1 = document.createElement('div');
+                    t1.innerHTML = text;
+                    // Replace the text node:
+                    element.parentNode.replaceChild(t1, element);
+                    //document.getElementById("pagePanier").innerHTML = text;
                     document.getElementById("panier").innerHTML = text1;
 
 
@@ -118,25 +123,25 @@ function enleverPage(id) {
         });
     });
 }
-function ajouterQuantite(id,qty = 1) {
-    fetch('/panier/ajouterQuantite/' + id+"/"+qty, {
-    method: 'GET',
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-    }
-}).then(function (response) {
-    response.text().then(function (text1) {
+function ajouterQuantite(id, qty = 1) {
+    fetch('/panier/ajouterQuantite/' + id + "/" + qty, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    }).then(function (response) {
+        response.text().then(function (text1) {
 
-                document.getElementById("panier").innerHTML = text1;
+            document.getElementById("panier").innerHTML = text1;
+        });
     });
-});
 }
-function mettreAJour(nbreParPage){
+function mettreAJour(nbreParPage) {
 
-    if(document.getElementById("marqueRecherche").dataset.recherche == "false"){    
+    if (document.getElementById("marqueRecherche").dataset.recherche == "false") {
 
-        fetch('/produits?nbre=' + nbreParPage , {
+        fetch('/produits?nbre=' + nbreParPage, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -145,36 +150,49 @@ function mettreAJour(nbreParPage){
         }).then(function (response) {
             response.text().then(function (text) {
                 document.getElementById("conteneur").innerHTML = text;
-                document.getElementById("conteneur").innerHTML = document.getElementById("conteneurProd").innerHTML ;
-    
+                document.getElementById("conteneur").innerHTML = document.getElementById("conteneurProd").innerHTML;
+
             });
         });
-    }else{
-        
-    fetch('/rechercher?nbrePage=' + nbreParPage +"&q="+document.getElementById("marqueRecherche").dataset.query+"&marque="+document.getElementById("marqueRecherche").dataset.marque, {
-        
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        }
-    }).then(function (response) {
-        response.text().then(function (text) {
-           document.getElementById("conteneur").innerHTML = text;
-            document.getElementById("conteneur").innerHTML = document.getElementById("conteneurProd").innerHTML ;
+    } else {
 
+        fetch('/rechercher?nbrePage=' + nbreParPage + "&q=" + document.getElementById("marqueRecherche").dataset.query + "&marque=" + document.getElementById("marqueRecherche").dataset.marque, {
+
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response) {
+            response.text().then(function (text) {
+                document.getElementById("conteneur").innerHTML = text;
+                document.getElementById("conteneur").innerHTML = document.getElementById("conteneurProd").innerHTML;
+
+            });
         });
-    });}
+    }
 }
-function soumettre(){
+function soumettre() {
     document.getElementById("nbrePage").value = document.getElementById("selectorNombrePage").value;
 
 }
 window.onload = (event) => {
-    document.getElementById("selectorNombrePage").value = document.getElementById("selectorNombrePage").dataset.nbrePage ;
-    console.log( document.getElementById("selectorNombrePage").dataset.nbrePage); 
+    document.getElementById("selectorNombrePage").value = document.getElementById("selectorNombrePage").dataset.nbrePage;
+    console.log(document.getElementById("selectorNombrePage").dataset.nbrePage);
 
-  };
+};
+
+window.addEventListener("beforeunload", function (evt) {
+    const params = {
+        typeDeconnexion: 'ajax',
+    }
+    fetch('/profil/deconnexion', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+
+        }, body: JSON.stringify(params)
+    });
+});
 
 
-  

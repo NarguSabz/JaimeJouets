@@ -2,16 +2,7 @@
 
 
 class Panier {
-    /*constructor() {
-        this.data = {};
-        this.data.produits = [];
-        this.data.totals = 0;
-        this.data.TPS = 0;
-        this.data.TVQ = 0;
-        this.data.formattedSousTotals = '';
-        this.data.formattedTotals = '';
-
-     }*/
+    
     static ajouterAuPanier(produit = null, qty = 1,panier) {
         if(!this.produitExist(produit.id,qty,panier)) {
             let prod = {
@@ -34,7 +25,7 @@ class Panier {
 
         panier.totals += somme;
     });
-    panier.TPS= (panier.totals*5)/100;
+    panier.TPS=(panier.totals*5)/100;
     panier.TVQ= (panier.totals*9.975)/100;
     panier.formattedSousTotals= this.formattedTotals(panier.totals);
     panier.formattedTotals= this.formattedTotals(panier.totals+panier.TPS+panier.TVQ);
