@@ -109,8 +109,7 @@ router.get('/', function (req, res) {
                          foreignField: "numid",
                          as: "marques_id"
                      }},
-               {$match:{$and: [{"categories_id.Nom": {$regex: req.body.categorie.value ,$options:"i"}},{"marques_id.Nom": {$regex: ".*"+ req.body.marque.value +".*" ,$options:"i"}}]
-              }}
+               {$match: {"marques_id.Nom": {$regex: ".*"+ req.body.filtreMarque.valeur +".*", $options:"i"}}},
                   ],function(err, resultat) {
                       if (err) throw err;           
           
