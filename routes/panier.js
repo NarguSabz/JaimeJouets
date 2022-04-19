@@ -26,8 +26,7 @@ router.post('/ajouterPanier', (req, res) => {
   }
   utilisateur = sess.username;
     panier.ajouterAuPanier(req.body.produit, req.body.qty,req.session.panier);
-    console.log(req.session.panier+"hh");
-
+    
     res.end();
   
 });
