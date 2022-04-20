@@ -33,7 +33,7 @@ router.get('/', function (req, res) {
                     foreignField: "numid",
                     as: "marques_id"
                 }
-            }, {$match:{$and: [ {"nom": {$regex: ".*"+ req.query.q +".*" ,$options:"i"}},{"marques_id.Nom": {$regex: ".*"+ req.query.marque +".*" ,$options:"i"}}]}}
+            }, {$match:{$and: [ {"marques_id.Nom": {$regex: ".*"+ req.query.marque +".*" ,$options:"i"}}]}}
         ], function (err, resultat) {
             if (err) throw err;
              //ceci permet de savoir combien de pages sera necessaire pour henberger 20 produits par page

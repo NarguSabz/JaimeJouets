@@ -282,6 +282,21 @@ function filtrer(){
     var filtres = document.forms[1];
 
  
+    fetch('/filtrer?filtres=' + filtres, {
+
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    }).then(function (response) {
+        response.text().then(function (text) {
+            document.getElementById("conteneur").innerHTML = text;
+            document.getElementById("conteneur").innerHTML = document.getElementById("conteneurProd").innerHTML;
+
+        });
+    });
+}
    // document.getElementById("order").value = "You ordered a coffee with: " + txt;
-  }
+  
 
