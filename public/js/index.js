@@ -278,4 +278,10 @@ window.addEventListener("beforeunload", function (evt) {
     });
 });
 
+function filtrer(){
+    var filtres = document.forms[1];
+
+ 
+   // document.getElementById("order").value = "You ordered a coffee with: " + txt;
+  }
 
