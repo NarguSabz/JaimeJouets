@@ -15,7 +15,6 @@ router.get('/', function (req, res) {
     }else{
       var utilisateur;
     utilisateur = sess.username;
-    console.log(utilisateur + "jj");
     //active le lien vers la page de creation du compte et desactive tous les autres liens
     res.render('pages/login.ejs', { login: "active", accueil: "", creationCompte: "", produit: "", propos: "",username: sess.username,nbreParPage :9,recherche:false, marque:req.query.marque,q:req.query.q});
     }

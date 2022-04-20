@@ -18,7 +18,8 @@ margin-left: 200;">
             <div class="qty-label" style="display: flex;">
                 <div style="flex: 0; padding-top: 10px; padding-right: 10px;">Quantité:</div>
                 <div class="input-number" style="width: 80px;" >
-                    <input type="number" id="quantite" value="<%=produit.qty%>" onkeyup='ajouterQuantite("<%=produit.id%>",this.value);' onchange='ajouterQuantite("<%=produit.id%>",this.value);' >
+                    <input type="number" id="quantite" value="<%=produit.qty%>" onkeyup='ajouterQuantite("<%=produit.id%>",this.value);' onchange='ajouterQuantite("<%=produit.id%>",this.value);'>
+                    
                     <span class="qty-up">+</span>
                     <span class="qty-down">-</span>
                 </div>

@@ -17,7 +17,6 @@ router.get('/', (req, res) => {
 
   res.render('../views/pages/pagePanier.ejs', {
     login: "", accueil: "", creationCompte: "", propos: "", produit: "", username: utilisateur, panier: req.session.panier, nbreParPage: 9, recherche: false, marque: req.query.marque, q: req.query.q
-
   });
 });
 router.post('/ajouterPanier', (req, res) => {
@@ -26,9 +25,9 @@ router.post('/ajouterPanier', (req, res) => {
   }
   utilisateur = sess.username;
     panier.ajouterAuPanier(req.body.produit, req.body.qty,req.session.panier);
-    
+
     res.end();
-  
+
 });
 router.get('/quickview', (req, res) => {
   if (!req.session.panier) {
@@ -68,5 +67,6 @@ function sessionPanierVide() {
     formattedTotals: ''
   };
 }
+
 
 module.exports = router;
