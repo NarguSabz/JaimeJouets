@@ -6,7 +6,7 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 
 //methode http chargee de la route /rechercher
-router.get('/', function (req, res) {
+router.use('/', function (req, res) {
     sess = req.session;
     //ceci permet d aller chercher tous le nom de categorie et de marque de chacun des produits et de aller chercher les 8 les plus recents produits, dans la base de donnees
    var collection = db.get('produits');
@@ -14,7 +14,7 @@ router.get('/', function (req, res) {
    if(nbreDeProd == undefined ||nbreDeProd=="" ){
     nbreDeProd = 9;
   }
-    
+  var filtres =  req.body.filtres;
     collection.aggregate([
         {
             $lookup:
@@ -33,8 +33,9 @@ router.get('/', function (req, res) {
                     foreignField: "numid",
                     as: "marques_id"
                 }
-            }, {$match:{$and: [ {"marques_id.Nom": {$regex: ".*"+ req.query.marque +".*" ,$options:"i"}}]}}
+            }, {$match:{"marques_id.Nom":{$in:filtres.marque}}}
         ], function (err, resultat) {
+            console.log(resultat[0])
             if (err) throw err;
              //ceci permet de savoir combien de pages sera necessaire pour henberger 20 produits par page
              var nbreDeVingts = parseInt(resultat.length / Number(nbreDeProd ));

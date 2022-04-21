@@ -139,7 +139,7 @@ function enleverPage(id) {
     }).then(function (response) {
         response.text().then(function (text1) {
 
-            
+
             fetch('/panier', {
                 method: 'GET',
                 headers: {
@@ -152,7 +152,7 @@ function enleverPage(id) {
                     const element = document.querySelector('#pagePanier').parentNode;
                     element.removeChild(element.firstChild);
                     element.insertAdjacentHTML("afterBegin", text);
-                   
+
                     const element2 = document.querySelector('#panier');
                     if (element2.firstChild != null) {
 
@@ -173,27 +173,27 @@ function enleverPage(id) {
         });
     });
 }
-function jqueryAjax(){
+function jqueryAjax() {
     $('.qty-down').on('click', function () {
         console.log('kk');
-    
-    var value = parseInt($(this).parent().find('input[type="number"]').val()) - 1;
-    value = value < 1 ? 1 : value;
-    $(this).parent().find('input[type="number"]').val(value);
-    //	$input.trigger('mouseup');
-    
-    $(this).parent().find('input[type="number"]').trigger( 'change' );
-    //$input.change();
-    //updatePriceSlider($(this), value)
+
+        var value = parseInt($(this).parent().find('input[type="number"]').val()) - 1;
+        value = value < 1 ? 1 : value;
+        $(this).parent().find('input[type="number"]').val(value);
+        //	$input.trigger('mouseup');
+
+        $(this).parent().find('input[type="number"]').trigger('change');
+        //$input.change();
+        //updatePriceSlider($(this), value)
     })
-    
+
     $('.qty-up').on('click', function () {
-    var value = parseInt($(this).parent().find('input[type="number"]').val()) + 1;
-    $(this).parent().find('input[type="number"]').val(value);
-    //$input.trigger('mouseup');
-    $(this).parent().find('input[type="number"]').trigger( 'change' );
-    //$input.change();
-    //updatePriceSlider($this, value)
+        var value = parseInt($(this).parent().find('input[type="number"]').val()) + 1;
+        $(this).parent().find('input[type="number"]').val(value);
+        //$input.trigger('mouseup');
+        $(this).parent().find('input[type="number"]').trigger('change');
+        //$input.change();
+        //updatePriceSlider($this, value)
     })
 }
 function ajouterQuantite(id, qty = 1) {
@@ -278,25 +278,33 @@ window.addEventListener("beforeunload", function (evt) {
     });
 });
 
-function filtrer(){
+function filtrer() {
     var filtres = document.forms[1];
+    var filtresJson={marque:[],categorie:[]};
 
- 
-    fetch('/filtrer?filtres=' + filtres, {
-
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
+    for (i = 0; i < filtres.length; i++) {
+        if(filtres[i].checked){
+        var nom =filtres[i].name;
+        filtresJson[nom].push(filtres[i].value);
         }
+      }
+    const params = {
+        filtres: filtresJson,
+    }
+    console.log(filtres);
+    fetch('/filtrer',{
+
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        }, body: JSON.stringify(params)
+
     }).then(function (response) {
         response.text().then(function (text) {
             document.getElementById("conteneur").innerHTML = text;
-            document.getElementById("conteneur").innerHTML = document.getElementById("conteneurProd").innerHTML;
-
-        });
-    });
+                document.getElementById("conteneur").innerHTML = document.getElementById("conteneurProd").innerHTML;
+        });});
 }
    // document.getElementById("order").value = "You ordered a coffee with: " + txt;
-  
+
 
