@@ -167,7 +167,7 @@
 		priceSlider.noUiSlider.on('update', function (values, handle) {
 			var value = values[handle];
 			handle ? priceInputMax.value = value : priceInputMin.value = value
-		});
+				});
 	}
 
 })(jQuery);

@@ -16,22 +16,18 @@ router.use('/', function (req, res) {
     }
     var filtres = req.body.filtres;
 
-    var condition;
-    var condition2;
-    if (filtres.marque.length == 0) {
-        condition = { "categories_id.nom": { $in: filtres.categorie } };
-        condition2 = { "categories_id.nom": { $in: filtres.categorie } };
+    var conditionCategorie = { "categories_id.nom": { $in: filtres.categorie } };;
+    var conditionMarque = { "marques_id.Nom": { $in: filtres.marque } };
+    var conditionPrix = { 'prix': { $gte: Number(filtres.prix[0]), $lt: Number(filtres.prix[1]) } };
+    if (filtres.categorie.length == 0 && filtres.marque.length == 0) {
+        conditionMarque = conditionPrix;
+        conditionCategorie = conditionPrix;
 
-
-    } else if (filtres.categorie.length == 0) {
-        condition = { "marques_id.Nom": { $in: filtres.marque } };
-        condition2 = { "marques_id.Nom": { $in: filtres.marque } };
-
-    } else {
-
-        condition = { "categories_id.nom": { $in: filtres.categorie } };
-        condition2 = { "marques_id.Nom": { $in: filtres.marque } };
-    }
+    }else if (filtres.categorie.length == 0) {
+        conditionCategorie = conditionMarque;
+    } else if (filtres.marque.length == 0) {
+        conditionMarque = conditionCategorie;
+    } 
 
     collection.aggregate([
         {
@@ -53,7 +49,7 @@ router.use('/', function (req, res) {
                 as: "marques_id"
             }
         },
-        { $match: { $and: [condition, condition2] } }
+        { $match: { $and: [conditionCategorie, conditionMarque, conditionPrix] } }
     ], function (err, resultat) {
         console.log(resultat[0])
         if (err) throw err;
