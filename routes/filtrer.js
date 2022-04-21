@@ -33,7 +33,7 @@ router.use('/', function (req, res) {
                     foreignField: "numid",
                     as: "marques_id"
                 }
-            }, {$match:{"marques_id.Nom":{$in:filtres.marque}}}
+            }, {$match:{$and: [{"marques_id.Nom":{$in:filtres.marque}},{"categories_id.nom":{$in:filtres.categorie}}]}}
         ], function (err, resultat) {
             console.log(resultat[0])
             if (err) throw err;
