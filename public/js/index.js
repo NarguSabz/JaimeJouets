@@ -280,18 +280,21 @@ window.addEventListener("beforeunload", function (evt) {
 
 function filtrer() {
     var filtres = document.forms[1];
-    var filtresJson={marque:[],categorie:[]};
+    var filtresJson={marque:[],categorie:[], prix:[]};
 
     for (i = 0; i < filtres.length; i++) {
         if(filtres[i].checked){
         var nom =filtres[i].name;
         filtresJson[nom].push(filtres[i].value);
+        }else if(filtres[i].name == "prix"){
+            var nom =filtres[i].name;
+            filtresJson[nom].push(filtres[i].value);
         }
       }
     const params = {
         filtres: filtresJson,
     }
-    console.log(filtres);
+    console.log(filtresJson);
     fetch('/filtrer',{
 
         method: 'POST',

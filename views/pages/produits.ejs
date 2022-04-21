@@ -14,7 +14,7 @@
                         <div class="checkbox-filter">
                             
                                 <div class="input-checkbox">
-                                    <input type="checkbox" id="category-1" name="categorie" value="0 à 4" onclick="filtrer()">
+                                    <input type="checkbox" id="category-1" Conflit interpersonnel?>
                                     <label for="category-1">
                                         <span></span>
                                         0 à 4 ans
@@ -58,15 +58,15 @@
                     <div class="aside">
                         <h3 class="aside-title">Prix</h3>
                         <div class="price-filter">
-                            <div id="price-slider"></div>
+                            <div id="price-slider" onclick="filtrer()"></div>
                             <div class="input-number price-min">
-                                <input id="price-min" type="number">
+                                <input id="price-min" type="number" name="prix" onchange="filtrer()" >
                                 <span class="qty-up">+</span>
                                 <span class="qty-down">-</span>
                             </div>
                             <span>-</span>
                             <div class="input-number price-max">
-                                <input id="price-max" type="number">
+                                <input id="price-max" type="number" name="prix" onchange="filtrer()">
                                 <span class="qty-up">+</span>
                                 <span class="qty-down">-</span>
                             </div>
