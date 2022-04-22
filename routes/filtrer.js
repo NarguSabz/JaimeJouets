@@ -66,7 +66,7 @@ router.use('/', function (req, res) {
         }
         var utilisateur = sess.username;
 
-        res.render('pages/produits.ejs', { nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", propos: "", username: utilisateur, produit: "active", produits: resultat, MotCherchee: req.query.q, nbreParPage: nbreDeProd, recherche: true, marque: req.query.marque, q: req.query.q,filtre:req.query.filtre ,filtrePrix:filtrePrix});
+        res.render('pages/produits.ejs', { nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", propos: "", username: utilisateur, produit: "active", produits: resultat, MotCherchee: req.body.q, nbreParPage: nbreDeProd, recherche: true, marque: req.query.marque, q: req.query.q,filtre:req.query.filtre ,filtrePrix:filtrePrix});
         //on active egalement le lien vers la page d accueil et desactive tous les autres liens        
     });
 });

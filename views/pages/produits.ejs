@@ -167,6 +167,9 @@
                                 <div class="tab-content">
                                     <!-- product -->
                                     <!--ce boucle for itere pages par page-->
+                                   <% if(nbrePages!=0){%>
+                                    <h4>Resultats trouvés pour "<%=MotCherchee%>"</h4>
+
                                     <% for(var i=0, j=0; i< nbrePages; i++){%>
                                         <!--on s assure que par defaut la page 1 est activee-->
                                         <%if(i==0){%>
@@ -241,7 +244,7 @@
                                                                 </a>
                                                                 <%}%>
                                                     </div>
-                                                    <%}%>
+                                                    <%}%> <%}%>
                                                         <!-- /product -->
                                             </div>
                                 </div>
