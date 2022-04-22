@@ -60,6 +60,14 @@ router.get('/itemlist', function (req, res) {
 
 });
 
+router.get('/userlist', function (req, res) {
+  
+    db.collection('compte_client').find({}, {}, function (e, docs) {
+        res.json(docs);
+    });
+
+});
+
 //methode qui se charge de faire les transactions lorsque le boutton est cliquer.
 router.post('/', function (req, res) {
    

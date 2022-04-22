@@ -10,14 +10,34 @@
                     <h3 class="title">Admin</h3>
                 </div>
             </div>
-                                     
+            
+            <!-- USER INFO --> 
+                 <div id="userInfo">
+                  <h3>Informations sur l'utilisateur</h3>
+                  <p>Nom d'utilisateur:
+                    <span id='userInfoUsername'></span>
+                    <br>
+                    Prenom:
+                    <span id='userInfoPrenom'></span>
+                    <br>
+                     Nom:
+                    <span id='userInfoNom'></span>
+                    <br>
+                     Email:
+                    <span id='userInfoEmail'></span>
+                    Addresse:
+                    <span id='userInfoAddresse'></span>
+                  </p> 
+                </div>
+                <!-- /USER INFO -->   
+            <h3>liste des utilisateurs</h3>
             <div id="itemList">
                 <table>
                     <thead>
-                    <th>Id du produit</th>
-                    <th>Nom</th>
-                    <th>Stock</th>
-                    <th>Prix</th>
+                    <th>Nom d'utilisateur</th>
+                    <th>Adresse courriel</th>
+                    <th>Informations</th>
+                    <th>Supprimer?</th>
                     </thead>
                     <tbody>
                     </tbody>
@@ -25,7 +45,13 @@
             </div>
 
 
+            <h3>Modifier la liste des utilisateurs</h3>
             <form action="/admin-users" method="post">
+
+                <input type="radio" name="setAddUser" value="addChange"checked="checked">
+                <label for="incPrice">Ajouter un utilisateur</label>
+                <input type="radio" name="setAddUser" value="setChange" > 
+                <label for="setPrice">Modifier un utilisateur</label>
 
                 <input class="input" type="text" name="userUsername" placeholder="Nom d'utilisateur">
                 <br>
@@ -48,7 +74,7 @@
                                
 
                 <br>
-                <br>
+                
                 <button class="primary-btn cta-btn">Mettre a jour</button>
             </form>
 
@@ -62,11 +88,19 @@
 
             <h3 class="title">liste des produits</h3>
 
-            
+            <br>
+            <br>
+
+            <form action="/admin" method="get">
+                <button class="primary-btn cta-btn">Panneau de configuration!</button>
+            </form>
+
+            <br>
+            <br>
 
             
         </div>
     </div>
     </body>
-    <script type="text/javascript" src="/js/itemlist.js"> </script>
+    <script type="text/javascript" src="/js/userlist.js"> </script>
     <%- include ('../partials/footer') %>
