@@ -12,7 +12,7 @@ var userMessageAlertGlobal = "alertBad";
 var userMessageTextGlobal = "";
 
 
-//methode http chargee de la route /login
+//methode http chargee de la route /admin
 router.get('/items', function (req, res) {
 
     //verifier si l'utilsateur connecter est l'administrateur, sinon redirect l'utilisateur vers la page principale
@@ -20,6 +20,32 @@ router.get('/items', function (req, res) {
     utilisateur = sess.username;
     if (utilisateur == "test") {
         res.render('pages/admin-items.ejs', { login: "", accueil: "", creationCompte: "", produit: "", username: utilisateur });
+    } else {
+        res.redirect('/');
+   } 
+});
+
+//methode http chargee de la route /admin
+router.get('/', function (req, res) {
+
+    //verifier si l'utilsateur connecter est l'administrateur, sinon redirect l'utilisateur vers la page principale
+    sess = req.session;
+    utilisateur = sess.username;
+    if (utilisateur == "test") {
+        res.render('pages/admin.ejs', { login: "", accueil: "", creationCompte: "", produit: "", username: utilisateur });
+    } else {
+        res.redirect('/');
+   } 
+});
+
+//methode http chargee de la route /admin
+router.get('/users', function (req, res) {
+
+    //verifier si l'utilsateur connecter est l'administrateur, sinon redirect l'utilisateur vers la page principale
+    sess = req.session;
+    utilisateur = sess.username;
+    if (utilisateur == "test") {
+        res.render('pages/admin-users.ejs', { login: "", accueil: "", creationCompte: "", produit: "", username: utilisateur });
     } else {
         res.redirect('/');
    } 

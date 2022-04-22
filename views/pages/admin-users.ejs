@@ -11,32 +11,41 @@
                 </div>
             </div>
                                      
+            <div id="itemList">
+                <table>
+                    <thead>
+                    <th>Id du produit</th>
+                    <th>Nom</th>
+                    <th>Stock</th>
+                    <th>Prix</th>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
 
 
+            <form action="/admin-users" method="post">
 
-            <form action="/admin" method="post">
-                <input class="input" name="itemID" placeholder="Id de l'item Exemple: 701 ">
+                <input class="input" type="text" name="userUsername" placeholder="Nom d'utilisateur">
                 <br>
                 <br>
-                <input class="input" type="number" name="amountChange" placeholder="Nombre d'item(s) Exemple: -3">
+                <input class="input" type="text" name="passwordUser" placeholder="Mot de passe">
                 <br>
                 <br>
-                <input type="radio" name="incSetAmount" value="incChange"checked="checked">
-                <label for="incChange">incrémenter le stock</label>
-                <input type="radio" name="incSetAmount" value="setChange" > 
-                <label for="setChange">fixé le stock</label>
-                
-
+				<input class="input" type="text" name="fname" placeholder="Prenom">
                 <br>
                 <br>
-                <input class="input" type="number" name="priceChange" placeholder="Prix Exemple: 25">
+				<input class="input" type="text" name="lname" placeholder="Nom">
                 <br>
                 <br>
-                <input type="radio" name="incSetPrice" value="incChange"checked="checked">
-                <label for="incPrice">incrémenter le prix</label>
-                <input type="radio" name="incSetPrice" value="setChange" > 
-                <label for="setPrice">fixé le prix</label>
-                
+				<input class="input" type="email" name="email" placeholder="Adresse courriel">
+                <br>
+                <br>
+				<input class="input" type="text" name="adresse" placeholder="Adresse">
+                <br>
+                <br>
+                               
 
                 <br>
                 <br>
@@ -53,18 +62,7 @@
 
             <h3 class="title">liste des produits</h3>
 
-            <div id="itemList">
-            <table>
-                <thead>
-                <th>Id du produit</th>
-                <th>Nom</th>
-                <th>Stock</th>
-                <th>Prix</th>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-            </div>
+            
 
             
         </div>
