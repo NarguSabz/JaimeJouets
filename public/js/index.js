@@ -97,7 +97,8 @@ function onPageReloud() {
         });
     });
     document.getElementById("selectorNombrePage").value = document.getElementById("selectorNombrePage").dataset.nbrePage;
-    console.log(document.getElementById("selectorNombrePage").dataset.nbrePage+"lkl");
+    document.getElementById("selectorPrix").value = document.getElementById("selectorPrix").dataset.prix;
+    console.log(document.getElementById("selectorPrix").value);
     var filtre = document.getElementById("aside").dataset.filtre;
     var filtres = document.forms[1];
     for (i = 0; i < filtres.length; i++) {
@@ -229,11 +230,12 @@ function ajouterQuantite(id, qty = 1) {
     });
 }
 
-function mettreAJour(nbreParPage) {
-    if (document.getElementById("marqueRecherche").dataset.recherche == "false") {
+/*function mettreAJour() {
+
+    /*if (document.getElementById("marqueRecherche").dataset.recherche == "false") {
         filtrer();
     } else {
-        filtrer();
+        filtrer();*/
 
        /* fetch('/rechercher?nbrePage=' + nbreParPage + "&q=" + document.getElementById("marqueRecherche").dataset.query + "&marque=" + document.getElementById("marqueRecherche").dataset.marque, {
 
@@ -249,13 +251,12 @@ function mettreAJour(nbreParPage) {
 
             });
         });*/
-    }
-}
+    
+
 function soumettre() {
     document.getElementById("nbrePage").value = document.getElementById("selectorNombrePage").value;
-    console.log(document.getElementById("nbrePage").value);
-
-
+    document.getElementById("filtrePrix").value = document.getElementById("selectorPrix").value;
+    console.log( document.getElementById("filtrePrix").value+'lll');
 }
 /*window.onload = (event) => {
     document.getElementById("selectorNombrePage").value = document.getElementById("selectorNombrePage").dataset.nbrePage;
@@ -290,11 +291,11 @@ function filtrer() {
         }
 
       }
-      console.log(document.getElementById("selectorNombrePage").value);
     const params = {
         filtres: filtresJson,
         nbrePage :document.getElementById("selectorNombrePage").value,
-        q: document.getElementById("marqueRecherche").dataset.query
+        q: document.getElementById("marqueRecherche").dataset.query,
+        filtrePrix:document.getElementById("selectorPrix").value
     }
     console.log(filtresJson);
     fetch('/filtrer',{

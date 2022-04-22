@@ -10,8 +10,12 @@ router.use('/', function (req, res) {
     sess = req.session;
     var collection = db.get('produits');
     nbreDeProd = req.body.nbrePage;
+    filtrePrix = req.body.filtrePrix;
+    
     if (nbreDeProd == undefined || nbreDeProd == "") {
         nbreDeProd = 9;
+    }if (filtrePrix == undefined || filtrePrix == "") {
+        filtrePrix = 1;
     }
     var filtres = req.body.filtres;
 
@@ -49,7 +53,7 @@ router.use('/', function (req, res) {
                 as: "marques_id"
             }
         },
-        { $match: { $and: [conditionCategorie, conditionMarque, conditionPrix, conditionQuery] } }
+        { $match: { $and: [conditionCategorie, conditionMarque, conditionPrix, conditionQuery] } },{$sort:{ prix :Number(filtrePrix) ,numid:1}}
     ], function (err, resultat) {
         if (err) throw err;
         //ceci permet de savoir combien de pages sera necessaire pour henberger 20 produits par page
@@ -62,7 +66,7 @@ router.use('/', function (req, res) {
         }
         var utilisateur = sess.username;
 
-        res.render('pages/produits.ejs', { nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", propos: "", username: utilisateur, produit: "active", produits: resultat, MotCherchee: req.query.q, nbreParPage: nbreDeProd, recherche: true, marque: req.query.marque, q: req.query.q,filtre:req.query.filtre });
+        res.render('pages/produits.ejs', { nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", propos: "", username: utilisateur, produit: "active", produits: resultat, MotCherchee: req.query.q, nbreParPage: nbreDeProd, recherche: true, marque: req.query.marque, q: req.query.q,filtre:req.query.filtre ,filtrePrix:filtrePrix});
         //on active egalement le lien vers la page d accueil et desactive tous les autres liens        
     });
 });

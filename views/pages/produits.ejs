@@ -136,16 +136,15 @@
                         <div class="store-sort">
                             <label>
                                 Trier par:
-                                <select class="input-select">
-                                    <option value="0">Populaire</option>
-                                    <option value="1">Prix</option>
+                                <select id="selectorPrix" class="input-select" onchange='filtrer()' data-prix=<%=filtrePrix%> >
+                                    <option value="1">Prix bas à élevé</option>
+                                    <option value="-1">Prix élevé à bas</option>
                                 </select>
                             </label>
 
                             <label>
                                 Montrer:
-                                <select id="selectorNombrePage" class="input-select" onchange='mettreAJour(this.value)'
-                                    data-nbre-page=<%=nbreParPage%> >
+                                <select id="selectorNombrePage" class="input-select" onchange='filtrer()' data-nbre-page=<%=nbreParPage%> >
                                     <option value="9">9</option>
                                     <option value="5">5</option>
                                 </select>

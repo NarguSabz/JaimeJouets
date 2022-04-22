@@ -10,10 +10,13 @@ var router = express.Router();
     router.get('/', function (req, res) {
       sess = req.session;
       nbreDeProd = req.query.nbre;
+      filtrePrix = req.query.filtrePrix;
 
       if(nbreDeProd == undefined){
         nbreDeProd = 9;
-      }
+      }if (filtrePrix == undefined || filtrePrix == "") {
+        filtrePrix = 1;
+    }
        var collection = db.get('produits');
            //ceci permet d aller chercher tous le nom de categorie et de marque de chacun des produits
           collection.aggregate([
@@ -46,7 +49,7 @@ var router = express.Router();
                 }
                 var utilisateur = sess.username;
                 
-                res.render('pages/produits.ejs', { nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", produit: "active", propos: "", produits: resultat, username: utilisateur ,MotCherchee:'', nbreParPage : nbreDeProd,recherche:false, marque:req.query.marque,q:req.query.q, filtre:req.query.filtre});
+                res.render('pages/produits.ejs', { nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", produit: "active", propos: "", produits: resultat, username: utilisateur ,MotCherchee:'', nbreParPage : nbreDeProd,recherche:false, marque:req.query.marque,q:req.query.q, filtre:req.query.filtre,filtrePrix:filtrePrix});
                //on active le lien vers la page des produits et desactive tous les autres liens
     
                 db.close();
