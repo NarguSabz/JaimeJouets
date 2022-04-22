@@ -1,7 +1,4 @@
 
-var rechercher = false;
-var marque = "";
-var q = "";
 
 function showResult(str, marque) {
 
@@ -78,6 +75,16 @@ function ajoutAuPanier(nom, image, id, prix, qty = 1) {
 }
 document.getElementById("body").onload = onPageReloud();
 function onPageReloud() {
+    var filtre = document.getElementById("aside").dataset.filtre;
+    var filtres = document.forms[1];
+    for (i = 0; i < filtres.length; i++) {
+        console.log(filtres[i].value == filtre + filtre)
+
+        if(filtres[i].value == filtre){
+            $('#'+filtres[i].id).prop('checked', true);        }
+      }
+
+   
     fetch('/panier/quickview', {
         method: 'GET',
         headers: {
@@ -262,7 +269,7 @@ function soumettre() {
 }
 window.onload = (event) => {
     document.getElementById("selectorNombrePage").value = document.getElementById("selectorNombrePage").dataset.nbrePage;
-
+   
 };
 
 window.addEventListener("beforeunload", function (evt) {
@@ -279,6 +286,7 @@ window.addEventListener("beforeunload", function (evt) {
 });
 
 function filtrer() {
+   
     var filtres = document.forms[1];
     var filtresJson={marque:[],categorie:[], prix:[]};
 
@@ -290,6 +298,7 @@ function filtrer() {
             var nom =filtres[i].name;
             filtresJson[nom].push(filtres[i].value);
         }
+
       }
     const params = {
         filtres: filtresJson,

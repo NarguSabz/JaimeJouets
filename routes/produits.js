@@ -46,7 +46,7 @@ var router = express.Router();
                 }
                 var utilisateur = sess.username;
                 
-                res.render('pages/produits.ejs', { nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", produit: "active", propos: "", produits: resultat, username: utilisateur ,MotCherchee:'', nbreParPage : nbreDeProd,recherche:false, marque:req.query.marque,q:req.query.q});
+                res.render('pages/produits.ejs', { nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", produit: "active", propos: "", produits: resultat, username: utilisateur ,MotCherchee:'', nbreParPage : nbreDeProd,recherche:false, marque:req.query.marque,q:req.query.q, filtre:req.query.filtre});
                //on active le lien vers la page des produits et desactive tous les autres liens
     
                 db.close();
