@@ -11,7 +11,7 @@ var utilisateur;
 router.get('/', function (req, res) {
     sess = req.session;
     if(sess.username){
-        res.render('pages/profil.ejs', { login: "", accueil: "", creationCompte: "", produit: "", username: sess.username, email: sess.email, propos: "",nbreParPage :9,recherche:false, marque:req.query.marque,q:req.query.q});
+        res.render('pages/profil.ejs', { login: "", accueil: "", creationCompte: "", produit: "", mdp: sess.mdp, nom: sess.nom, adresse: sess.adresse, prenom: sess.prenom, username: sess.username, email: sess.email, propos: "",nbreParPage :9,recherche:false, marque:req.query.marque,q:req.query.q});
     }else{
       var utilisateur;
     utilisateur = sess.username;
@@ -62,6 +62,10 @@ router.post('/', function (req, res) {
                                 userMessageStatus = "alertGood";
                                 sess.username = result[0].username;
                                 sess.email = result[0].email;
+                                sess.adresse = result[0].adresse;
+                                sess.prenom = result[0].prenom;
+                                sess.nom = result[0].nom;
+                                sess.mdp = result[0].mdp;
                                 sess.panier = resultat[0];
                     } else {
                         //message d'erreur pour un mot de passe incorrect
@@ -72,7 +76,7 @@ router.post('/', function (req, res) {
                     if(sess.username){
                         console.log('hello');
 
-                        res.render('pages/profil.ejs', { login: "active", accueil: "", creationCompte: "", produit: "", propos: "",username: sess.username, email: sess.email,nbreParPage :9,recherche:false, marque:req.query.marque,q:req.query.q });
+                        res.render('pages/profil.ejs', { login: "active", accueil: "", creationCompte: "", produit: "", propos: "", mdp: sess.mdp, nom: sess.nom, adresse: sess.adresse, prenom: sess.prenom, username: sess.username, email: sess.email, nbreParPage :9,recherche:false, marque:req.query.marque,q:req.query.q });
                         res.end();
                     }else{
                         //afficher le message a l'utilisateur
