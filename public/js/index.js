@@ -75,15 +75,6 @@ function ajoutAuPanier(nom, image, id, prix, qty = 1) {
 }
 document.getElementById("body").onload = onPageReloud();
 function onPageReloud() {
-    var filtre = document.getElementById("aside").dataset.filtre;
-    var filtres = document.forms[1];
-    for (i = 0; i < filtres.length; i++) {
-        console.log(filtres[i].value == filtre + filtre)
-
-        if(filtres[i].value == filtre){
-            $('#'+filtres[i].id).prop('checked', true);        }
-      }
-
    
     fetch('/panier/quickview', {
         method: 'GET',
@@ -105,6 +96,15 @@ function onPageReloud() {
             } element2.insertAdjacentHTML("afterBegin", text);
         });
     });
+    var filtre = document.getElementById("aside").dataset.filtre;
+    var filtres = document.forms[1];
+    for (i = 0; i < filtres.length; i++) {
+        console.log(filtres[i].value == filtre + filtre)
+
+        if(filtres[i].value == filtre){
+            $('#'+filtres[i].id).prop('checked', true);        }
+      }
+
 }
 function enlever(id) {
     fetch('/panier/enlever/' + id, {
@@ -228,26 +228,12 @@ function ajouterQuantite(id, qty = 1) {
 }
 
 function mettreAJour(nbreParPage) {
-
     if (document.getElementById("marqueRecherche").dataset.recherche == "false") {
-
-        fetch('/produits?nbre=' + nbreParPage, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        }).then(function (response) {
-            response.text().then(function (text) {
-                document.getElementById("conteneur").innerHTML = text;
-                document.getElementById("conteneur").innerHTML = document.getElementById("conteneurProd").innerHTML;
-
-
-            });
-        });
+        filtrer();
     } else {
+        filtrer();
 
-        fetch('/rechercher?nbrePage=' + nbreParPage + "&q=" + document.getElementById("marqueRecherche").dataset.query + "&marque=" + document.getElementById("marqueRecherche").dataset.marque, {
+       /* fetch('/rechercher?nbrePage=' + nbreParPage + "&q=" + document.getElementById("marqueRecherche").dataset.query + "&marque=" + document.getElementById("marqueRecherche").dataset.marque, {
 
             method: 'GET',
             headers: {
@@ -260,7 +246,7 @@ function mettreAJour(nbreParPage) {
                 document.getElementById("conteneur").innerHTML = document.getElementById("conteneurProd").innerHTML;
 
             });
-        });
+        });*/
     }
 }
 function soumettre() {
@@ -302,6 +288,8 @@ function filtrer() {
       }
     const params = {
         filtres: filtresJson,
+        nbrePage :document.getElementById("selectorNombrePage").value,
+        q: document.getElementById("marqueRecherche").dataset.query
     }
     console.log(filtresJson);
     fetch('/filtrer',{
@@ -317,6 +305,5 @@ function filtrer() {
                 document.getElementById("conteneur").innerHTML = document.getElementById("conteneurProd").innerHTML;
         });});
 }
-   // document.getElementById("order").value = "You ordered a coffee with: " + txt;
 
 

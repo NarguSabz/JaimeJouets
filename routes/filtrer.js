@@ -10,12 +10,14 @@ router.use('/', function (req, res) {
     sess = req.session;
     //ceci permet d aller chercher tous le nom de categorie et de marque de chacun des produits et de aller chercher les 8 les plus recents produits, dans la base de donnees
     var collection = db.get('produits');
-    nbreDeProd = req.query.nbrePage;
+    nbreDeProd = req.body.nbrePage;
+    console.log(nbreDeProd);
     if (nbreDeProd == undefined || nbreDeProd == "") {
         nbreDeProd = 9;
     }
     var filtres = req.body.filtres;
 
+    var  conditionQuery = {"nom": {$regex: ".*"+ req.body.q +".*" ,$options:"i"}};
     var conditionCategorie = { "categories_id.nom": { $in: filtres.categorie } };;
     var conditionMarque = { "marques_id.Nom": { $in: filtres.marque } };
     var conditionPrix = { 'prix': { $gte: Number(filtres.prix[0]), $lt: Number(filtres.prix[1]) } };
@@ -49,7 +51,7 @@ router.use('/', function (req, res) {
                 as: "marques_id"
             }
         },
-        { $match: { $and: [conditionCategorie, conditionMarque, conditionPrix] } }
+        { $match: { $and: [conditionCategorie, conditionMarque, conditionPrix, conditionQuery] } }
     ], function (err, resultat) {
         if (err) throw err;
         //ceci permet de savoir combien de pages sera necessaire pour henberger 20 produits par page
