@@ -283,7 +283,6 @@ function filtrer() {
     var filtresJson={marque:[],categorie:[], prix:[]};
 
     for (i = 0; i < filtres.length; i++) {
-        console.log(filtres[i]);
         if(filtres[i].checked){
         var nom =filtres[i].name;
         filtresJson[nom].push(filtres[i].value);

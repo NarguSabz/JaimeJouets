@@ -51,7 +51,6 @@ router.use('/', function (req, res) {
         },
         { $match: { $and: [conditionCategorie, conditionMarque, conditionPrix] } }
     ], function (err, resultat) {
-        console.log(resultat[0])
         if (err) throw err;
         //ceci permet de savoir combien de pages sera necessaire pour henberger 20 produits par page
         var nbreDeVingts = parseInt(resultat.length / Number(nbreDeProd));
@@ -62,9 +61,9 @@ router.use('/', function (req, res) {
             nbreDePages = nbreDeVingts;
         }
         var utilisateur = sess.username;
+
         res.render('pages/produits.ejs', { nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", propos: "", username: utilisateur, produit: "active", produits: resultat, MotCherchee: req.query.q, nbreParPage: nbreDeProd, recherche: true, marque: req.query.marque, q: req.query.q });
         //on active egalement le lien vers la page d accueil et desactive tous les autres liens        
-        db.close();
     });
 });
 
