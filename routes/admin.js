@@ -18,10 +18,13 @@ router.get('/items', function (req, res) {
     //verifier si l'utilsateur connecter est l'administrateur, sinon redirect l'utilisateur vers la page principale
     sess = req.session;
     utilisateur = sess.username;
+    userMessageArray = ['', ''];
     if (utilisateur == "test") {
-        res.render('pages/admin-items.ejs', { login: "", accueil: "", creationCompte: "", produit: "", username: utilisateur });
+        
+        res.render('pages/admin-items.ejs', { login: "", accueil: "", creationCompte: "", produit: "", propos: "",items: userMessageArray, username: utilisateur,nbreParPage : 9,recherche:true, marque:"",q:"" });
     } else {
         res.redirect('/');
+      // res.render('pages/admin-items.ejs', { login: "", accueil: "", creationCompte: "", produit: "", propos: "",items: userMessageArray, username: utilisateur,nbreParPage : 9,recherche:true, marque:"",q:"" });
    } 
 });
 
@@ -31,29 +34,34 @@ router.get('/', function (req, res) {
     //verifier si l'utilsateur connecter est l'administrateur, sinon redirect l'utilisateur vers la page principale
     sess = req.session;
     utilisateur = sess.username;
+    userMessageArray = ['', ''];
     if (utilisateur == "test") {
-        res.render('pages/admin.ejs', { login: "", accueil: "", creationCompte: "", produit: "", username: utilisateur });
+       
+        res.render('pages/admin.ejs', { login: "", accueil: "", creationCompte: "", produit: "", propos: "",items: userMessageArray, username: utilisateur,nbreParPage : 9,recherche:true, marque:"",q:"" });
     } else {
         res.redirect('/');
+    //res.render('pages/admin.ejs', { login: "", accueil: "", creationCompte: "", produit: "", propos: "",items: userMessageArray, username: utilisateur,nbreParPage : 9,recherche:true, marque:"",q:"" });
    } 
 });
 
 //methode http chargee de la route /admin
 router.get('/users', function (req, res) {
-
+    
     //verifier si l'utilsateur connecter est l'administrateur, sinon redirect l'utilisateur vers la page principale
     sess = req.session;
     utilisateur = sess.username;
+    userMessageArray = ['', ''];
     if (utilisateur == "test") {
-        res.render('pages/admin-users.ejs', { login: "", accueil: "", creationCompte: "", produit: "", username: utilisateur });
+    
+        res.render('pages/admin-users.ejs', { login: "", accueil: "", creationCompte: "", produit: "", propos: "",items: userMessageArray, username: utilisateur,nbreParPage : 9,recherche:true, marque:"",q:"" });
     } else {
         res.redirect('/');
+        //res.render('pages/admin-users.ejs', { login: "", accueil: "", creationCompte: "", produit: "", propos: "",items: userMessageArray, username: utilisateur,nbreParPage : 9,recherche:true, marque:"",q:"" });
    } 
 });
 
 //methode qui se charge de charger d'afficher la liste des items dans une table
 router.get('/itemlist', function (req, res) {
-  
     db.collection('produits').find({}, {}, function (e, docs) {
         res.json(docs);
     });
@@ -61,7 +69,6 @@ router.get('/itemlist', function (req, res) {
 });
 
 router.get('/userlist', function (req, res) {
-  
     db.collection('compte_client').find({}, {}, function (e, docs) {
         res.json(docs);
     });
@@ -121,7 +128,7 @@ function printFinishedResult(req) {
 //imprimer un resultat 
 function printResult(userMessageTextTmp, userMessageAlertTmp) {
     userMessageArray = [userMessageTextTmp, userMessageAlertTmp];
-    tempRes.render('pages/admin-items.ejs', { login: "", accueil: "", creationCompte: "", produit: "", items: userMessageArray, username: utilisateur });
+    tempRes.render('pages/admin-items.ejs', { login: "", accueil: "", creationCompte: "", produit: "", propos: "",items: userMessageArray, username: utilisateur,nbreParPage : 9,recherche:true, marque:"",q:"" });
     tempRes.end();
 }
 
