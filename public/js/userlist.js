@@ -21,8 +21,7 @@ function populateTable() {
       tableContent += '<tr>';
       tableContent += '<td>' + this.username +'</td>';
       tableContent += '<td>' + this.email + '</td>';
-      tableContent += '<td>' + 'Oui' + '</td>';
-      tableContent += '<td>' + 'Montrer' + '</td>';
+      tableContent += '<td>' + 'Montrer' + '/'+ 'Supprimer' '</td>';
       tableContent += '</tr>';
       
   });

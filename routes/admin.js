@@ -69,7 +69,7 @@ router.get('/userlist', function (req, res) {
 });
 
 //methode qui se charge de faire les transactions lorsque le boutton est cliquer.
-router.post('/', function (req, res) {
+router.post('/itemlist', function (req, res) {
    
 
     tempRes = res;
