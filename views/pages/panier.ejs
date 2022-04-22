@@ -1,0 +1,43 @@
+<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+    <i class="fa fa-shopping-cart"></i>
+    <span>Panier</span>
+    <div class="qty">
+        <%=panier.produits.length%>
+    </div>
+</a>
+<% if( panier.produits.length> 0) { %>
+
+    <div class="cart-dropdown">
+        <div class="cart-list">
+            <% panier.produits.forEach(function(produit) { %>
+
+                <div class="product-widget">
+                    <div class="product-img">
+                        <img src='.<%=produit.image%>' alt="">
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-name"><a href="../produit/<%=produit.id%>">
+                                <%=produit.nom%>
+                            </a></h3>
+                        <h4 class="product-price"><span class="qty">
+                                <%=produit.qty%>x
+                            </span>$<%=produit.prix%>
+                        </h4>
+                    </div>
+                    <button onclick="enlever('<%=produit.id%>')" class="delete"><i class="fa fa-close"></i></button>
+                </div>
+                <% })%>
+        </div>
+        <div class="cart-summary">
+            <small>
+                <%=panier.produits.length%> Item(s) selected
+            </small>
+            <h5>SOUS-TOTAL: <%=panier.formattedSousTotals%>
+            </h5>
+        </div>
+        <div class="cart-btns">
+            <a href="../panier" onclick="afficherPagePanier()">Voir panier</a>
+            <a href="../commander">Commander<i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    <% }%>
+    </div>

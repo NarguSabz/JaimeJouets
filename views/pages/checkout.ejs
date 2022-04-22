@@ -1,0 +1,134 @@
+<%- include ('../partials/header') %>
+
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+
+            <div class="col-md-7">
+                <!-- Billing Details -->
+                <div class="billing-details">
+                    <div class="section-title">
+                        <h3 class="title">Billing address</h3>
+                    </div>
+                    <div class="form-group">
+                        <input class="input" type="text" name="first-name" placeholder="Prénom">
+                    </div>
+                    <div class="form-group">
+                        <input class="input" type="text" name="last-name" placeholder="Nom">
+                    </div>
+                    <div class="form-group">
+                        <input class="input" type="email" name="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <input class="input" type="text" name="address" placeholder="Adresse">
+                    </div>
+                    <div class="form-group">
+                        <input class="input" type="text" name="city" placeholder="Ville">
+                    </div>
+                    <div class="form-group">
+                        <input class="input" type="text" name="country" placeholder="Pays">
+                    </div>
+                    <div class="form-group">
+                        <input class="input" type="text" name="zip-code" placeholder="Code postal">
+                    </div>
+                    <div class="form-group">
+                        <input class="input" type="tel" name="tel" placeholder="Telephone">
+                    </div>
+                    
+                </div>
+                <!-- /Billing Details -->
+
+               
+
+                <!-- Order notes -->
+                <div class="order-notes">
+                </div>
+                <!-- /Order notes -->
+            </div>
+
+            <!-- Order Details -->
+            <div class="col-md-5 order-details">
+                <div class="section-title text-center">
+                    <h3 class="title">Votre Commande</h3>
+                </div>
+                <div class="order-summary">
+                    <div class="order-col">
+                        <div><strong>PRODUIT</strong></div>
+                        <div><strong>TOTAL</strong></div>
+                    </div>
+                    <div class="order-products">
+                        <%panier.produits.forEach(function(produit) { %>
+                        <div class="order-col">
+                            <div><%=produit.qty%>x <%=produit.nom%></div>
+                            <div><%=produit.prix%>$</div>
+                        </div>
+                        <%})%>
+                    </div>
+                    <div class="order-col">
+                        <div>expédition</div>
+                        <div><strong>GRATUIT</strong></div>
+                    </div>
+                    <div class="order-col">
+                        <div><strong>SOUS-TOTAL</strong></div>
+                        <div><strong class="order-total"><%=panier.formattedSousTotals%></strong></div>
+                    </div>
+                    <div class="order-col">
+                        <div>TPS(5%)</div>
+                        <div><strong><%=classPanier.formattedTotals(panier.TPS)%></strong></div>
+                    </div>
+                    <div class="order-col">
+                        <div>TVQ(9.975%)</div>
+                        <div><strong><%=classPanier.formattedTotals(panier.TVQ)%></strong></div>
+                    </div>
+                    
+                    <div class="order-col">
+                        <div><strong>TOTAL</strong></div>
+                        <div><strong class="order-total"><%=panier.formattedTotals%></strong></div>
+                    </div>
+                </div>
+                <div class="payment-method">
+                    <div class="input-radio">
+                        <input type="radio" name="payment" id="payment-1">
+                        <label for="payment-1">
+                            <span></span>
+                            Direct Bank Transfer
+                        </label>
+                        <div class="caption">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="input-radio">
+                        <input type="radio" name="payment" id="payment-2">
+                        <label for="payment-2">
+                            <span></span>
+                            Cheque Payment
+                        </label>
+                        <div class="caption">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="input-radio">
+                        <input type="radio" name="payment" id="payment-3">
+                        <label for="payment-3">
+                            <span></span>
+                            Paypal System
+                        </label>
+                        <div class="caption">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="#" class="primary-btn order-submit">Placer Commande</a>
+            </div>
+            <!-- /Order Details -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
+<%- include ('../partials/footer') %>

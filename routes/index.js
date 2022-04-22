@@ -31,7 +31,7 @@ router.get('/', function (req, res) {
      ],function(err, resultat) {
          if (err) throw err; 
          var utilisateur = sess.username;
-         res.render('pages/index.ejs', { login: "", accueil: "active", creationCompte: "", produit: "", produits: resultat,marques:["Barbie","Fisher-Price","Hot Wheels","Lego","Vtech"], username: utilisateur });
+         res.render('pages/index.ejs', { login: "", accueil: "active", creationCompte: "", produit: "", propos: "",produits: resultat,marques:["Barbie","Fisher-Price","Hot Wheels","Lego","Vtech"], username: utilisateur,nbreParPage :9,recherche:false, marque:req.query.marque,q:req.query.q });
          //on active egalement le lien vers la page d accueil et desactive tous les autres liens        
          db.close();
        });

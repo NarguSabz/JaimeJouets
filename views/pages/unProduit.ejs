@@ -76,12 +76,12 @@
                             <div class="qty-label">
                                 Qty
                                 <div class="input-number">
-                                    <input type="number">
+                                    <input type="number" id="quantite" value="1">
                                     <span class="qty-up">+</span>
                                     <span class="qty-down">-</span>
                                 </div>
                             </div>
-                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Ajouter au panier</button>
+                            <button class="add-to-cart-btn" onclick='ajoutAuPanier("<%=produit.nom%>","./img/<%=produit.numid %>/<%=produit.numid %>-1.jpg","<%=produit.numid%>","<%=produit.prix %>",quantite.value);'><i class="fa fa-shopping-cart"></i>Ajouter au panier</button>
                         </div>
 
                         <ul class="product-btns">
@@ -390,7 +390,7 @@
                                     </div>
                                 </div>
                                 <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Ajouter au panier</button>
+                                    <button class="add-to-cart-btn" onclick='ajoutAuPanier("<%=produit.nom%>","./img/<%=produit.numid %>/<%=produit.numid %>-1.jpg","<%=produit.numid%>","<%=produit.prix %>");'><i class="fa fa-shopping-cart"></i>Ajouter au panier</button>
                                 </div>
                             </div>
                         </a>
