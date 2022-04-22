@@ -8,10 +8,8 @@ var bodyParser = require('body-parser');
 //methode http chargee de la route /rechercher
 router.use('/', function (req, res) {
     sess = req.session;
-    //ceci permet d aller chercher tous le nom de categorie et de marque de chacun des produits et de aller chercher les 8 les plus recents produits, dans la base de donnees
     var collection = db.get('produits');
     nbreDeProd = req.body.nbrePage;
-    console.log(nbreDeProd);
     if (nbreDeProd == undefined || nbreDeProd == "") {
         nbreDeProd = 9;
     }

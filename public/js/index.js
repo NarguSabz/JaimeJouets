@@ -96,6 +96,8 @@ function onPageReloud() {
             } element2.insertAdjacentHTML("afterBegin", text);
         });
     });
+    document.getElementById("selectorNombrePage").value = document.getElementById("selectorNombrePage").dataset.nbrePage;
+    console.log(document.getElementById("selectorNombrePage").dataset.nbrePage+"lkl");
     var filtre = document.getElementById("aside").dataset.filtre;
     var filtres = document.forms[1];
     for (i = 0; i < filtres.length; i++) {
@@ -251,12 +253,14 @@ function mettreAJour(nbreParPage) {
 }
 function soumettre() {
     document.getElementById("nbrePage").value = document.getElementById("selectorNombrePage").value;
+    console.log(document.getElementById("nbrePage").value);
+
 
 }
-window.onload = (event) => {
+/*window.onload = (event) => {
     document.getElementById("selectorNombrePage").value = document.getElementById("selectorNombrePage").dataset.nbrePage;
-   
-};
+    console.log(document.getElementById("selectorNombrePage").dataset.nbrePage+"lkl");  
+};*/
 
 window.addEventListener("beforeunload", function (evt) {
     const params = {
@@ -286,6 +290,7 @@ function filtrer() {
         }
 
       }
+      console.log(document.getElementById("selectorNombrePage").value);
     const params = {
         filtres: filtresJson,
         nbrePage :document.getElementById("selectorNombrePage").value,
