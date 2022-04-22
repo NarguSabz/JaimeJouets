@@ -13,13 +13,13 @@ var userMessageTextGlobal = "";
 
 
 //methode http chargee de la route /login
-router.get('/', function (req, res) {
+router.get('/items', function (req, res) {
 
     //verifier si l'utilsateur connecter est l'administrateur, sinon redirect l'utilisateur vers la page principale
     sess = req.session;
     utilisateur = sess.username;
     if (utilisateur == "test") {
-        res.render('pages/admin.ejs', { login: "", accueil: "", creationCompte: "", produit: "", username: utilisateur });
+        res.render('pages/admin-items.ejs', { login: "", accueil: "", creationCompte: "", produit: "", username: utilisateur });
     } else {
         res.redirect('/');
    } 
@@ -87,7 +87,7 @@ function printFinishedResult(req) {
 //imprimer un resultat 
 function printResult(userMessageTextTmp, userMessageAlertTmp) {
     userMessageArray = [userMessageTextTmp, userMessageAlertTmp];
-    tempRes.render('pages/admin.ejs', { login: "", accueil: "", creationCompte: "", produit: "", items: userMessageArray, username: utilisateur });
+    tempRes.render('pages/admin-items.ejs', { login: "", accueil: "", creationCompte: "", produit: "", items: userMessageArray, username: utilisateur });
     tempRes.end();
 }
 
