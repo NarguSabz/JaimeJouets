@@ -12,25 +12,28 @@
             <br>
             <br>
             
-            <h4>Prénom: <%= prenom%> </h3>
-            <h4>Nom: <%= nom%> </h3>
-            <h4>Adresse courriel: <%= email%> </h3>
-            <h4>Adresse: <%= adresse%> </h3>
+            <h4>Prénom: <%= prenom%> </h4>
+            <h4>Nom: <%= nom%> </h4>
+            <h4>Adresse courriel: <%= email%> </h4>
+            <h4>Adresse: <%= adresse%> </h4>
+            <h4>Mot de passe: <%= mdp%></h4>
 
             <br>
             <br>
             
+            <a href="/modifierMotDePasse"><button class="primary-btn cta-btn">Modifier votre mot de passe</button></a> 
+            
+            <br>
+            <br>
+
             <form action="/profil/deconnexion" method="post">
                 <button class="primary-btn cta-btn">Déconnexion</button>
             </form>
 
             <br>
             <br>
-
-            
-
-            
         </div>
+        
     </div>
     </body>
 <%- include ('../partials/footer') %>
