@@ -75,7 +75,7 @@ function ajoutAuPanier(nom, image, id, prix, qty = 1) {
 }
 document.getElementById("body").onload = onPageReloud();
 function onPageReloud() {
-   
+
     fetch('/panier/quickview', {
         method: 'GET',
         headers: {
@@ -96,6 +96,7 @@ function onPageReloud() {
             } element2.insertAdjacentHTML("afterBegin", text);
         });
     });
+
     document.getElementById("selectorNombrePage").value = document.getElementById("selectorNombrePage").dataset.nbrePage;
     document.getElementById("selectorPrix").value = document.getElementById("selectorPrix").dataset.prix;
     console.log(document.getElementById("selectorPrix").value);
@@ -104,9 +105,10 @@ function onPageReloud() {
     for (i = 0; i < filtres.length; i++) {
         console.log(filtres[i].value == filtre + filtre)
 
-        if(filtres[i].value == filtre){
-            $('#'+filtres[i].id).prop('checked', true);        }
-      }
+        if (filtres[i].value == filtre) {
+            $('#' + filtres[i].id).prop('checked', true);
+        }
+    }
 
 }
 function enlever(id) {
@@ -237,26 +239,26 @@ function ajouterQuantite(id, qty = 1) {
     } else {
         filtrer();*/
 
-       /* fetch('/rechercher?nbrePage=' + nbreParPage + "&q=" + document.getElementById("marqueRecherche").dataset.query + "&marque=" + document.getElementById("marqueRecherche").dataset.marque, {
+/* fetch('/rechercher?nbrePage=' + nbreParPage + "&q=" + document.getElementById("marqueRecherche").dataset.query + "&marque=" + document.getElementById("marqueRecherche").dataset.marque, {
 
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        }).then(function (response) {
-            response.text().then(function (text) {
-                document.getElementById("conteneur").innerHTML = text;
-                document.getElementById("conteneur").innerHTML = document.getElementById("conteneurProd").innerHTML;
+     method: 'GET',
+     headers: {
+         'Accept': 'application/json',
+         'Content-Type': 'application/json'
+     }
+ }).then(function (response) {
+     response.text().then(function (text) {
+         document.getElementById("conteneur").innerHTML = text;
+         document.getElementById("conteneur").innerHTML = document.getElementById("conteneurProd").innerHTML;
 
-            });
-        });*/
-    
+     });
+ });*/
+
 
 function soumettre() {
     document.getElementById("nbrePage").value = document.getElementById("selectorNombrePage").value;
     document.getElementById("filtrePrix").value = document.getElementById("selectorPrix").value;
-    console.log( document.getElementById("filtrePrix").value+'lll');
+    console.log(document.getElementById("filtrePrix").value + 'lll');
 }
 /*window.onload = (event) => {
     document.getElementById("selectorNombrePage").value = document.getElementById("selectorNombrePage").dataset.nbrePage;
@@ -277,28 +279,28 @@ window.addEventListener("beforeunload", function (evt) {
 });
 
 function filtrer() {
-   
+
     var filtres = document.forms[1];
-    var filtresJson={marque:[],categorie:[], prix:[]};
+    var filtresJson = { marque: [], categorie: [], prix: [] };
 
     for (i = 0; i < filtres.length; i++) {
-        if(filtres[i].checked){
-        var nom =filtres[i].name;
-        filtresJson[nom].push(filtres[i].value);
-        }else if(filtres[i].name == "prix"){
-            var nom =filtres[i].name;
+        if (filtres[i].checked) {
+            var nom = filtres[i].name;
+            filtresJson[nom].push(filtres[i].value);
+        } else if (filtres[i].name == "prix") {
+            var nom = filtres[i].name;
             filtresJson[nom].push(filtres[i].value);
         }
 
-      }
+    }
     const params = {
         filtres: filtresJson,
-        nbrePage :document.getElementById("selectorNombrePage").value,
+        nbrePage: document.getElementById("selectorNombrePage").value,
         q: document.getElementById("marqueRecherche").dataset.query,
-        filtrePrix:document.getElementById("selectorPrix").value
+        filtrePrix: document.getElementById("selectorPrix").value
     }
     console.log(filtresJson);
-    fetch('/filtrer',{
+    fetch('/filtrer', {
 
         method: 'POST',
         headers: {
@@ -308,8 +310,56 @@ function filtrer() {
     }).then(function (response) {
         response.text().then(function (text) {
             document.getElementById("conteneur").innerHTML = text;
-                document.getElementById("conteneur").innerHTML = document.getElementById("conteneurProd").innerHTML;
-        });});
+            document.getElementById("conteneur").innerHTML = document.getElementById("conteneurProd").innerHTML;
+        });
+    });
+}
+function changerPageDroite(d) {
+
+    nbrePage = document.getElementById("droite").dataset.page;
+    if (Number(nbrePage) > Number(d)) {
+        document.getElementById("droite").setAttribute('href', '#tab' + (Number(d) + 1));
+        document.getElementById("droite").value = (Number(d) + 1);
+
+        document.getElementById("gauche").setAttribute('href', '#tab' + (Number(d) + 1));
+        document.getElementById("gauche").value = (Number(d) + 1);
+    } if (Number(nbrePage) - 1 == Number(d)) {
+        document.getElementById("droite").style.visibility = "hidden";
+    } if (Number(d) == 1) {
+        document.getElementById("gauche").style.visibility = "visible";
+
+    }
+}
+function changerPageGauche(d) {
+
+    nbrePage = document.getElementById("droite").dataset.page;
+    if (Number(d) >= 2) {
+        document.getElementById("droite").setAttribute('href', '#tab' + (Number(d)) - 1);
+        document.getElementById("droite").value = (Number(d) - 1);
+        document.getElementById("gauche").setAttribute('href', '#tab' + (Number(d) - 1));
+        document.getElementById("gauche").value = (Number(d) - 1);
+    } if (Number(d) == 2) {
+        document.getElementById("gauche").style.visibility = "hidden";
+    } if (Number(d) == Number(nbrePage)) {
+        document.getElementById("droite").style.visibility = "visible";
+
+    }
+}
+function changerPage2(d) {
+    nbrePage = document.getElementById("droite").dataset.page;
+    document.getElementById("droite").setAttribute('href', '#tab' + (Number(d)));
+    document.getElementById("droite").value = (Number(d));
+    document.getElementById("gauche").setAttribute('href', '#tab' + (Number(d)));
+    document.getElementById("gauche").value = (Number(d));
+    if (Number(d) < Number(nbrePage)) {
+        document.getElementById("droite").style.visibility = "visible";
+    } else {
+        document.getElementById("droite").style.visibility = "hidden";
+    } if (Number(d) > 1) {
+        document.getElementById("gauche").style.visibility = "visible";
+    } else {
+        document.getElementById("gauche").style.visibility = "hidden";
+    }
 }
 
 

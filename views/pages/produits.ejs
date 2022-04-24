@@ -255,21 +255,27 @@
                                     <span class="store-qty"></span>
                                     <ul class="store-pagination" style="float:none;">
                                         <!--ce boucle permet de mettre des referance en bas de la page vers chacune des pages, le nombre est defini par le nombre de pages existant-->
-
+                                        <%= page %>
+                                        <% var page=1;%>
+                                        <%if(nbrePages>1){%>
+                                            <li id="gauche" data-toggle="tab" value='1' href="#tab1" onclick="changerPageGauche(this.value)" style="visibility: hidden;"><i
+                                                    class="fa fa-angle-left"></i></li>
+                                            <%}%>
                                         <% for(var i=0; i< nbrePages; i++){%>
                                             <!--on s assure que par defaut la page 1 est activee-->
+                                            
 
                                             <%if(i==0){%>
-                                                <li class="active" data-toggle="tab" href="#tab<%=i+1%>">
+                                                <li class="active" value='<%=i+1%>' data-toggle="tab" href="#tab<%=i+1%>" onclick="changerPage2(this.value)">
                                                     <%=i+1%>
                                                 </li>
                                                 <%}else{%>
-                                                    <li data-toggle="tab" href="#tab<%=i+1%>">
+                                                    <li data-toggle="tab" value='<%=i+1%>' href="#tab<%=i+1%>" onclick="changerPage2(this.value)">
                                                         <%=i+1%>
                                                     </li>
                                                     <%}}%>
                                                         <%if(nbrePages>1){%>
-                                                            <li data-toggle="tab" href="#tabx" href="#"><i
+                                                            <li id="droite" data-toggle="tab" value='1' data-page="<%=nbrePages%>" href="#tab1" onclick="changerPageDroite(this.value)"><i
                                                                     class="fa fa-angle-right"></i></li>
                                                             <%}else if(nbrePages==0){%>
                                                                 <h3>Aucun resultats trouvés pour "<%=MotCherchee%>"</h3>
