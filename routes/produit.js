@@ -60,5 +60,27 @@ router.get('/:id', function (req, res) {
           //on active egalement le lien vers la page d accueil et desactive tous les autres liens         
         });
 });
+router.post('/:id/commenter', function (req, res) {
+  sess = req.session;
+
+        //ceci permet d aller chercher tous le nom de categorie et de marque de chacun des produits et de aller chercher les 8 les plus recents produits, dans la base de donnees
+        var nom = req.body.nom;
+        var courriel = req.body.courriel;
+        var comment = req.body.commentaire;
+        var eval = req.body.rating;
+
+        comment = {nom : nom, courriel: courriel, commentaire:comment, evaluation: eval }
+        var collection = db.get('commentaires');
+
+        collection.insert(comment, function (err, res) {
+
+          if (err) throw err;
+          db.close();
+      });
+
+                  var utilisateur = sess.username;
+                res.render('pages/unProduit.ejs', { login: "", accueil: "", creationCompte: "", produit: "active", propos: "",produit: resultat[0],produitsDeMemeMarque:result, recherche:"", username: utilisateur,nbreParPage :9,recherche:false, marque:req.query.marque,q:req.query.q})
+          //on active egalement le lien vers la page d accueil et desactive tous les autres liens         
+});
 
 module.exports = router;

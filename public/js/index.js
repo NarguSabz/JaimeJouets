@@ -361,5 +361,9 @@ function changerPage2(d) {
         document.getElementById("gauche").style.visibility = "hidden";
     }
 }
+function courriel(input){
+    if(!input.includes("@")){
+    document.getElementById("courriel").setCustomValidity('@ manquant')}
+}
 
 

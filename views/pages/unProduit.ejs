@@ -291,18 +291,21 @@
                                     <!-- Review Form -->
                                     <div class="col-md-3">
                                         <div id="review-form">
-                                            <form class="review-form">
-                                                <input class="input" type="text" placeholder="Votre Nom">
-                                                <input class="input" type="email" placeholder="Votre Adresse Courriel">
-                                                <textarea class="input" placeholder="Votre Commentaire"></textarea>
+                                            <form class="review-form" action="/produit/<%=produit.numid %>/commenter" method="post">
+                                                <input class="input" type="text" name="nom" placeholder="Votre Nom" required oninvalid="this.setCustomValidity('Veuillez entrer votre nom ici')"
+                                                oninput="this.setCustomValidity('')">
+                                                <input class="input" type="email" name="courriel" placeholder="Votre Adresse Courriel" id="courriel" required oninvalid="this.setCustomValidity('Veuillez entrer votre courriel ici')"
+                                                oninput="this.setCustomValidity('')">
+                                                <textarea class="input" name="commentaire" placeholder="Votre Commentaire" oninvalid="this.setCustomValidity('Veuillez entrer votre commentaire ici')"
+                                                oninput="this.setCustomValidity('')"></textarea>
                                                 <div class="input-rating">
                                                     <span>Votre Évaluation: </span>
                                                     <div class="stars">
-                                                        <input id="star5" name="rating" value="5" type="radio"><label for="star5"></label>
-                                                        <input id="star4" name="rating" value="4" type="radio"><label for="star4"></label>
-                                                        <input id="star3" name="rating" value="3" type="radio"><label for="star3"></label>
-                                                        <input id="star2" name="rating" value="2" type="radio"><label for="star2"></label>
-                                                        <input id="star1" name="rating" value="1" type="radio"><label for="star1"></label>
+                                                        <input id="star5" name="rating" value="5" type="radio" required><label for="star5"></label>
+                                                        <input id="star4" name="rating" value="4" type="radio" required><label for="star4"></label>
+                                                        <input id="star3" name="rating" value="3" type="radio" required><label for="star3"></label>
+                                                        <input id="star2" name="rating" value="2" type="radio" required><label for="star2"></label>
+                                                        <input id="star1" name="rating" value="1" type="radio" required><label for="star1"></label>
                                                     </div>
                                                 </div>
                                                 <button class="primary-btn">Soumettre</button>
