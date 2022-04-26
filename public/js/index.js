@@ -96,11 +96,8 @@ function onPageReloud() {
             } element2.insertAdjacentHTML("afterBegin", text);
         });
     });
-    document.getElementById("progres5").style.width= document.getElementById("progres5").dataset.progres + "%"
-    document.getElementById("progres4").style.width= document.getElementById("progres4").dataset.progres + "%"
-    document.getElementById("progres3").style.width= document.getElementById("progres3").dataset.progres + "%"
-    document.getElementById("progres2").style.width= document.getElementById("progres2").dataset.progres + "%"
-    document.getElementById("progres1").style.width= document.getElementById("progres1").dataset.progres + "%"
+    try {
+  
     document.getElementById("selectorNombrePage").value = document.getElementById("selectorNombrePage").dataset.nbrePage;
     document.getElementById("selectorPrix").value = document.getElementById("selectorPrix").dataset.prix;
     console.log(document.getElementById("selectorPrix").value);
@@ -111,8 +108,13 @@ function onPageReloud() {
 
         if (filtres[i].value == filtre) {
             $('#' + filtres[i].id).prop('checked', true);
-        }
-    }
+      }  }
+    }catch{}
+    document.getElementById("progres5").style.width= document.getElementById("progres5").dataset.progres + "%"
+    document.getElementById("progres4").style.width= document.getElementById("progres4").dataset.progres + "%"
+    document.getElementById("progres3").style.width= document.getElementById("progres3").dataset.progres + "%"
+    document.getElementById("progres2").style.width= document.getElementById("progres2").dataset.progres + "%"
+    document.getElementById("progres1").style.width= document.getElementById("progres1").dataset.progres + "%"
 
 }
 function enlever(id) {

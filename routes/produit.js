@@ -82,8 +82,14 @@ router.get('/:id', function (req, res) {
       }
       
         var utilisateur = sess.username;
-        res.render('pages/unProduit.ejs', {sommeTotal : sommedeno, average: (somme/sommedeno).toFixed(1), nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", produit: "active", propos: "", produit: resultat[0], produitsDeMemeMarque: result, recherche: "", username: utilisateur, nbreParPage: 9, recherche: false, marque: req.query.marque, q: req.query.q })
-        db.close();
+        var average = 0;
+         average= (somme/sommedeno).toFixed(1);
+         if(isNaN(average)){
+           console.log(average);
+           average = 0;
+         }
+
+        res.render('pages/unProduit.ejs', {sommeTotal : sommedeno, average: average, nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", produit: "active", propos: "", produit: resultat[0], produitsDeMemeMarque: result, recherche: "", username: utilisateur, nbreParPage: 9, recherche: false, marque: req.query.marque, q: req.query.q })
       });
     };
     //on active egalement le lien vers la page d accueil et desactive tous les autres liens         
