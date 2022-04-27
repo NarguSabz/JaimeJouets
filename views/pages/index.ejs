@@ -229,11 +229,11 @@
                                                         <%=produit.categories_id[0].nom %>
                                                             ans</p>
                                                     <div class="product-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
+                                                        <%for(var l=0; l < produit.moyen ;l++ ){%>
+                                                            <i class="fa fa-star"></i>
+                                                            <%}for(var m=1; m < 5-produit.moyen; m++ ){%>
+                                                                <i class="fa fa-star-o"></i>                                                         
+                                                        <%}%>
                                                     </div>
                                                     <div class="product-btns">
                                                         <button class="add-to-wishlist"><i
@@ -259,7 +259,7 @@
                                                 <!-- product -->
                                                 <!--ce foreach prends comme variable 'produits' qui contient les 8 les plus recents produits-->
                                                 <div class="product">
-                                                    <a href="produits[i]/<%=produits[i].numid%>">
+                                                    <a href="produit/<%=produits[i].numid%>">
                                                         <div class="product-img">
                                                             <!--on place le id du produit pour pouvoir chercher la route vers son image-->
                                                             <img src="./img/<%=produits[i].numid %>/<%=produits[i].numid %>-1.jpg" alt="">
@@ -293,11 +293,11 @@
                                                                 <%=produits[i].categories_id[0].nom %> ans
                                                             </p>
                                                             <div class="product-rating">
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
+                                                                <%for(var l=0; l < produits[i].moyen ;l++ ){%>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <%}for(var m=1; m < 5-produits[i].moyen; m++ ){%>
+                                                                        <i class="fa fa-star-o"></i>                                                         
+                                                                <%}%>
                                                             </div>
                                                             <div class="product-btns">
                                                                 <button class="add-to-wishlist"><i
