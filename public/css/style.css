@@ -2253,11 +2253,24 @@ overflow: hidden;
                 no-repeat;
 }
 
-/* When the body has the loading class, we turn
-   the scrollbar off with overflow:hidden */
-#ajaxLoader{
-    overflow: hidden;   
+
+.stars {
+  position: relative;
+  padding: 1rem;
+  white-space: nowrap;
+
 }
 
-/* Anytime the body has the loading class, our
-   modal element will be visible */
+.cov{
+  background: white;
+  height: 100%;
+  overflow: hidden;
+  mix-blend-mode: color;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+svg {
+  fill: #0E49B5;
+}

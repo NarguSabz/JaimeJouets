@@ -74,22 +74,14 @@ router.get('/:id', function (req, res) {
         } else {
           nbreDePages = nbreDeVingts;
         }
-        var somme = 0;
         var sommedeno = 0;
-        for(var i = 1; i <= 5; i++){
-        somme += Number(resultat[0]['evaluations'][i])*i;      
-        sommedeno+=Number(resultat[0]['evaluations'][i]);
-      }
-      
+        for (var i = 1; i <= 5; i++) {
+          sommedeno += Number(resultat[0]['evaluations'][i]);
+        }
         var utilisateur = sess.username;
-        var average = 0;
-         average= (somme/sommedeno).toFixed(1);
-         if(isNaN(average)){
-           console.log(average);
-           average = 0;
-         }
 
-        res.render('pages/unProduit.ejs', {sommeTotal : sommedeno, average: average, nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", produit: "active", propos: "", produit: resultat[0], produitsDeMemeMarque: result, recherche: "", username: utilisateur, nbreParPage: 9, recherche: false, marque: req.query.marque, q: req.query.q })
+
+        res.render('pages/unProduit.ejs', { sommeTotal: sommedeno, average: resultat[0]['moyen'], nbrePages: nbreDePages, login: "", accueil: "", creationCompte: "", produit: "active", propos: "", produit: resultat[0], produitsDeMemeMarque: result, recherche: "", username: utilisateur, nbreParPage: 9, recherche: false, marque: req.query.marque, q: req.query.q })
       });
     };
     //on active egalement le lien vers la page d accueil et desactive tous les autres liens         
@@ -129,11 +121,26 @@ router.post('/:id/commenter', function (req, res) {
         [ev]: Number(docs[0].evaluations[eval]) + 1
       }
     }).then((updatedDoc) => {
+      collection.find({ 'numid': req.params.id }, 'evaluations').then((produit) => {
+      var somme = 0;
+      var sommedeno = 0;
+      for (var i = 1; i <= 5; i++) {
+        somme += Number(produit[0].evaluations[i]) * i;
+        sommedeno += Number(produit[0].evaluations[i]);
+      } 
 
-      db.close();
-      res.redirect('/produit/' + req.params.id)
+      collection.update({ 'numid': req.params.id }, {
+        $set: {
+          moyen: (somme / sommedeno).toFixed(1)
+        }
+      }).then((updatedDoc) => {
+  
+        db.close();
+        res.redirect('/produit/' + req.params.id)
+      });
     });
   });
+});
 
   //on active egalement le lien vers la page d accueil et desactive tous les autres liens         
 });
