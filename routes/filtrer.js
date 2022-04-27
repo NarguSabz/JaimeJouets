@@ -11,27 +11,42 @@ router.use('/', function (req, res) {
     var collection = db.get('produits');
     nbreDeProd = req.body.nbrePage;
     filtrePrix = req.body.filtrePrix;
+    filtres = req.body.filtres;
     
     if (nbreDeProd == undefined || nbreDeProd == "") {
         nbreDeProd = 9;
     }if (filtrePrix == undefined || filtrePrix == "") {
         filtrePrix = 1;
     }
-    var filtres = req.body.filtres;
+
 
     var  conditionQuery = {"nom": {$regex: ".*"+ req.body.q +".*" ,$options:"i"}};
     var conditionCategorie = { "categories_id.nom": { $in: filtres.categorie } };;
     var conditionMarque = { "marques_id.Nom": { $in: filtres.marque } };
     var conditionPrix = { 'prix': { $gte: Number(filtres.prix[0]), $lt: Number(filtres.prix[1]) } };
-    if (filtres.categorie.length == 0 && filtres.marque.length == 0) {
+    var conditionEvaluation = {"moyen":{$gte: Number(filtres.evaluation[0])}};
+    if (filtres.categorie.length == 0 && filtres.marque.length == 0 && filtres.evaluation.length == 0 ) {
         conditionMarque = conditionPrix;
         conditionCategorie = conditionPrix;
+        conditionEvaluation = conditionPrix;
 
-    }else if (filtres.categorie.length == 0) {
+    }else if (filtres.categorie.length == 0 && filtres.evaluation.length == 0) {
         conditionCategorie = conditionMarque;
-    } else if (filtres.marque.length == 0) {
+        conditionEvaluation = conditionMarque;
+    } else if (filtres.marque.length == 0 && filtres.evaluation.length == 0) {
         conditionMarque = conditionCategorie;
-    } 
+        conditionEvaluation = conditionCategorie;
+    } else if (filtres.marque.length == 0 && filtres.categorie.length == 0) {
+        conditionMarque = conditionEvaluation;
+        conditionCategorie = conditionEvaluation;
+    }
+    else if (filtres.categorie.length == 0 ) {
+        conditionCategorie = conditionEvaluation;
+    } else if (filtres.evaluation.length == 0 ) {
+        conditionEvaluation = conditionCategorie;
+    }else if (filtres.marque.length == 0 ) {
+        conditionMarque = conditionEvaluation;
+    }
 
     collection.aggregate([
         {
@@ -53,7 +68,7 @@ router.use('/', function (req, res) {
                 as: "marques_id"
             }
         },
-        { $match: { $and: [conditionCategorie, conditionMarque, conditionPrix, conditionQuery] } },{$sort:{ prix :Number(filtrePrix) ,numid:1}}
+        { $match: { $and: [conditionCategorie, conditionMarque, conditionPrix, conditionQuery,conditionEvaluation] } },{$sort:{ prix :Number(filtrePrix) ,numid:1}}
     ], function (err, resultat) {
         if (err) throw err;
         //ceci permet de savoir combien de pages sera necessaire pour henberger 20 produits par page

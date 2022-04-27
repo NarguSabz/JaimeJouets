@@ -131,7 +131,7 @@ router.post('/:id/commenter', function (req, res) {
 
       collection.update({ 'numid': req.params.id }, {
         $set: {
-          moyen: (somme / sommedeno).toFixed(1)
+          moyen: Number((somme / sommedeno).toFixed(1))
         }
       }).then((updatedDoc) => {
   

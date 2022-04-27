@@ -288,18 +288,26 @@ window.addEventListener("beforeunload", function (evt) {
 function filtrer() {
 
     var filtres = document.forms[1];
-    var filtresJson = { marque: [], categorie: [], prix: [] };
+    var filtresJson = { marque: [], categorie: [], prix: [], evaluation:[] };
 
     for (i = 0; i < filtres.length; i++) {
         if (filtres[i].checked) {
+            if (filtres[i].name == "evaluation") {
             var nom = filtres[i].name;
-            filtresJson[nom].push(filtres[i].value);
+            filtresJson[nom].push(Number(filtres[i].value));}else{
+                var nom = filtres[i].name;
+                filtresJson[nom].push(filtres[i].value);
+            }
         } else if (filtres[i].name == "prix") {
             var nom = filtres[i].name;
             filtresJson[nom].push(filtres[i].value);
         }
 
     }
+    if(filtresJson.evaluation.length !=0){
+        console.log(filtresJson.evaluation)
+    filtresJson.evaluation = [Math.min.apply(Math,filtresJson.evaluation)];}
+
     const params = {
         filtres: filtresJson,
         nbrePage: document.getElementById("selectorNombrePage").value,
