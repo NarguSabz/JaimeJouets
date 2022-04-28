@@ -119,9 +119,11 @@ function checkUserNameAvailable() {
 
                 printResult("Creation du compte avec succes!", "alertGood");
 
-            }
+            }else{
             db.close();
             printResult("nom d'utilisateur utiliser!", "alertBad");
+            }
+            
         });
 
     });
