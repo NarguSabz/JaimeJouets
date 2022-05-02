@@ -25,7 +25,7 @@ var userMessageAlertGlobal = "alertBad";
 var userMessageTextGlobal = "";
 
 //methode http chargee de la route /admin
-router.get('/items', function (req, res) {
+router.get('/items/', function (req, res) {
 
     //verifier si l'utilsateur connecter est l'administrateur, sinon redirect l'utilisateur vers la page principale
     sess = req.session;
@@ -69,7 +69,7 @@ router.get('/', function (req, res) {
 });
 
 //methode http chargee de la route /admin
-router.get('/users', function (req, res) {
+router.get('/users/', function (req, res) {
     
     //verifier si l'utilsateur connecter est l'administrateur, sinon redirect l'utilisateur vers la page principale
     sess = req.session;
@@ -86,14 +86,14 @@ router.get('/users', function (req, res) {
 });
 
 //methode qui se charge de charger d'afficher la liste des items dans une table
-router.get('/itemlist', function (req, res) {
+router.get('/itemlist/', function (req, res) {
     db.collection('produits').find({}, {}, function (e, docs) {
         res.json(docs);
     });
 
 });
 
-router.get('/userlist', function (req, res) {
+router.get('/userlist/', function (req, res) {
     db.collection('compte_client').find({}, {}, function (e, docs) {
         res.json(docs);
     });
@@ -101,7 +101,7 @@ router.get('/userlist', function (req, res) {
 });
 
 //methode qui se charge de faire les transactions lorsque le boutton est cliquer.
-router.post('/items', function (req, res) {
+router.post('/items/', function (req, res) {
    
 
     tempRes = res;
@@ -127,7 +127,7 @@ router.post('/items', function (req, res) {
     });
 });
 
-router.post('/users', function (req, res) {
+router.post('/users/', function (req, res) {
     fillUserInput(req);
     tempRes = res;
     tempReq = req;
