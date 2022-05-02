@@ -21,9 +21,8 @@ function populateTable() {
       tableContent += '<tr>';
       tableContent += '<td>' + this.username +'</td>';
       tableContent += '<td>' + this.email + '</td>';
-      tableContent += '<td>' + 'Montrer' + '</td>';
-      tableContent += '<td>' + 'Oui' + '</td>';
-
+      tableContent += '<td><a href="#" class="linkshowuser" rel="' + this.username + '">' + 'Montrer' + '</a></td>';
+      tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this.username + '">Oui</a></td>';
       tableContent += '</tr>';
       
   });
@@ -31,4 +30,35 @@ function populateTable() {
     // Inject the whole content string into our existing HTML table
     $('#itemList table tbody').html(tableContent);
   });
+};
+
+
+function showUserInfo(event) {
+
+  
+  event.preventDefault();
+
+
+  var thisUserName = $(this).attr('rel');
+  
+
+  $.getJSON( '/admin/userlist').done (function( data ) {
+       userListData = data.map(function (item) {
+      return item;
+  });
+
+
+  var arrayPosition = userListData.findIndex(obj => obj.username==thisUserName);
+
+ 
+  // Get our User Object    
+ 
+  var thisUserObject = userListData[arrayPosition];
+  //Populate Info Box    
+  $('#userInfoUsername').text(thisUserObject.username);    
+  $('#userInfoPrenom').text(thisUserObject.prenom);    
+  $('#userInfoNom').text(thisUserObject.nom);   
+  $('#userInfoEmail').text(thisUserObject.email);
+  $('#userInfoAddresse').text(thisUserObject.adresse);
+});
 };
