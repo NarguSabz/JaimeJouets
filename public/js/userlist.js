@@ -3,6 +3,13 @@
 $(document).ready(function() {
   // Populate the user table on initial page load
   populateTable();
+    // Username link click    
+  $('#itemList table tbody').on('click', 'td a.linkshowuser', showUserInfo);     
+  // Add User button click   
+  
+ 
+  //Delete User link click
+  $('#itemList table tbody').on('click', 'td a.linkdeleteuser', deleteUser);
 });
 
 // Functions =============================================================
@@ -68,14 +75,14 @@ function deleteUser(event) {
 
   //Pop up a confirmation dialog
   var confirmation = confirm('Are you sure you want to delete this user?');
-
+  console.log("afs");
   //Check and make sure the user confirmed
   if (confirmation === true) {
-
+        console.log("fs");
       //If they did, do our delete
       $.ajax({
           type: 'DELETE',
-          url: '/admin/deleteuser/' + $(this).attr('rel')
+          url: '/admin/deleteuser' + $(this).attr('rel')
       }).done(function (response) {
           //Check for a successful response
           if (response.msg === '') {

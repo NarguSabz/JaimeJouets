@@ -42,11 +42,10 @@ router.get('/items/', function (req, res) {
 });
 
 /* DELETE to deleteuser. */
-router.delete('/deleteuser/:id', function(req, res) {
-  var db = req.db;
-  var collection = db.get('userlist');
+router.delete('/deleteuser:id', function(req, res) {
+
   var userToDelete = req.params.id;
-  collection.remove({ '_id' : userToDelete }, function(err) {
+  db.collection('compte_client').remove({ 'username' : userToDelete }, function(err) {
     res.send((err === null) ? { msg: '' } : { msg:'error: ' + err });
   });
 });
