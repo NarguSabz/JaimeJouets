@@ -12,22 +12,39 @@
             <br>
             <br>
             
-            <h3>Email: <%= email%> </h3>
+            <h4>Prénom: <%= prenom%> </h4>
+            <h4>Nom: <%= nom%> </h4>
+            <h4>Adresse courriel: <%= email%> </h4>
+            <h4>Adresse: <%= adresse%> </h4>
+            <h4>Mot de passe: <%= mdp%></h4>
+
+            <%if (typeof items != 'undefined' && items.length>0) {%>
+                <p class="<%= items[1]%>" id="messageCreation"><strong><%= items[0]%></strong></p> 
+            <% }else {%>
+                <p class="createAlert" id="messageConnexion" ></p>
+            <% } %>
             
             <br>
             <br>
             
+            <a href="/modifierMotDePasse"><button class="primary-btn cta-btn">Modifier votre mot de passe</button></a> 
+            
+            <br>
+            <br>
+
+            <a href="/modifierEmail"><button class="primary-btn cta-btn">Modifier votre adresse courriel</button></a> 
+
+            <br>
+            <br>
+
             <form action="/profil/deconnexion" method="post">
                 <button class="primary-btn cta-btn">Déconnexion</button>
             </form>
 
             <br>
             <br>
-
-            
-
-            
         </div>
+        
     </div>
     </body>
 <%- include ('../partials/footer') %>
