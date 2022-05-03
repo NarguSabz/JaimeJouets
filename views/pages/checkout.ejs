@@ -1,134 +1,180 @@
 <%- include ('../partials/header') %>
 
-<!-- SECTION -->
-<div class="section">
-    <!-- container -->
-    <div class="container">
-        <!-- row -->
-        <div class="row">
+    <!-- SECTION -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
 
-            <div class="col-md-7">
-                <!-- Billing Details -->
-                <div class="billing-details">
-                    <div class="section-title">
-                        <h3 class="title">Billing address</h3>
+                <div class="col-md-7">
+                    <!-- Billing Details -->
+                    <div class="billing-details">
+                        <div class="section-title">
+                            <h3 class="title">Billing address</h3>
+                        </div>
+                        <div class="form-group">
+                            <input class="input" type="text" name="first-name" placeholder="Prénom" required
+                                oninvalid="this.setCustomValidity('Veuillez entrer votre Prénom ici')"
+                                oninput="this.setCustomValidity('')">
+                        </div>
+                        <div class="form-group">
+                            <input class="input" type="text" name="last-name" placeholder="Nom" required
+                                oninvalid="this.setCustomValidity('Veuillez entrer votre nom ici')"
+                                oninput="this.setCustomValidity('')">
+                        </div>
+                        <div class="form-group">
+                            <input class="input" type="email" name="email" placeholder="Email" required
+                                oninvalid="this.setCustomValidity('Veuillez entrer votre courriel ici')"
+                                oninput="this.setCustomValidity('')">
+                        </div>
+                        <div class="form-group">
+                            <input class="input" type="text" name="address" placeholder="Adresse" required
+                                oninvalid="this.setCustomValidity('Veuillez entrer votre addresse ici')"
+                                oninput="this.setCustomValidity('')">
+                        </div>
+                        <div class="form-group">
+                            <input class="input" type="text" name="city" placeholder="Ville">
+                        </div>
+                        <div class="form-group">
+                            <select>
+                                <option class="select-option" label="Select" value="">Select</option>
+                                <option class="select-option" label="Alberta" value="AB">Alberta</option>
+                                <option class="select-option" label="British Columbia" value="BC">British Columbia
+                                </option>
+                                <option class="select-option" label="Manitoba" value="MB">Manitoba</option>
+                                <option class="select-option" label="New Brunswick" value="NB">New Brunswick</option>
+                                <option class="select-option" label="Newfoundland and Labrador" value="NL">Newfoundland
+                                    and Labrador</option>
+                                <option class="select-option" label="Northwest Territories" value="NT">Northwest
+                                    Territories</option>
+                                <option class="select-option" label="Nova Scotia" value="NS">Nova Scotia</option>
+                                <option class="select-option" label="Nunavut" value="NU">Nunavut</option>
+                                <option class="select-option" label="Ontario" value="ON">Ontario</option>
+                                <option class="select-option" label="Prince Edward Island" value="PE">Prince Edward
+                                    Island</option>
+                                <option class="select-option" label="Quebec" value="QC">Quebec</option>
+                                <option class="select-option" label="Saskatchewan" value="SK">Saskatchewan</option>
+                                <option class="select-option" label="Yukon" value="YT">Yukon</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input class="input" type="text" name="zip-code" placeholder="Code postal" required
+                                oninvalid="this.setCustomValidity('Veuillez entrer votre code postal ici')"
+                                oninput="this.setCustomValidity('')">
+                        </div>
+                        <div class="form-group">
+                            <input class="input" type="tel" name="tel" placeholder="Telephone" required
+                                oninvalid="this.setCustomValidity('Veuillez entrer votre numéro de téléphone ici')"
+                                oninput="this.setCustomValidity('')">
+                        </div>
+
                     </div>
-                    <div class="form-group">
-                        <input class="input" type="text" name="first-name" placeholder="Prénom">
+                    <!-- /Billing Details -->
+
+
+
+                    <!-- Order notes -->
+                    <div class="order-notes">
                     </div>
-                    <div class="form-group">
-                        <input class="input" type="text" name="last-name" placeholder="Nom">
-                    </div>
-                    <div class="form-group">
-                        <input class="input" type="email" name="email" placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                        <input class="input" type="text" name="address" placeholder="Adresse">
-                    </div>
-                    <div class="form-group">
-                        <input class="input" type="text" name="city" placeholder="Ville">
-                    </div>
-                    <div class="form-group">
-                        <input class="input" type="text" name="country" placeholder="Pays">
-                    </div>
-                    <div class="form-group">
-                        <input class="input" type="text" name="zip-code" placeholder="Code postal">
-                    </div>
-                    <div class="form-group">
-                        <input class="input" type="tel" name="tel" placeholder="Telephone">
-                    </div>
-                    
+                    <!-- /Order notes -->
                 </div>
-                <!-- /Billing Details -->
 
-               
-
-                <!-- Order notes -->
-                <div class="order-notes">
-                </div>
-                <!-- /Order notes -->
-            </div>
-
-            <!-- Order Details -->
-            <div class="col-md-5 order-details">
-                <div class="section-title text-center">
-                    <h3 class="title">Votre Commande</h3>
-                </div>
-                <div class="order-summary">
-                    <div class="order-col">
-                        <div><strong>PRODUIT</strong></div>
-                        <div><strong>TOTAL</strong></div>
+                <!-- Order Details -->
+                <div class="col-md-5 order-details">
+                    <div class="section-title text-center">
+                        <h3 class="title">Votre Commande</h3>
                     </div>
-                    <div class="order-products">
-                        <%panier.produits.forEach(function(produit) { %>
+                    <div class="order-summary">
                         <div class="order-col">
-                            <div><%=produit.qty%>x <%=produit.nom%></div>
-                            <div><%=produit.prix * produit.qty%>$</div>
+                            <div><strong>PRODUIT</strong></div>
+                            <div><strong>TOTAL</strong></div>
                         </div>
-                        <%})%>
+                        <div class="order-products">
+                            <%panier.produits.forEach(function(produit) { %>
+                                <div class="order-col">
+                                    <div>
+                                        <%=produit.qty%>x <%=produit.nom%>
+                                    </div>
+                                    <div>
+                                        <%=produit.prix * produit.qty%>$
+                                    </div>
+                                </div>
+                                <%})%>
+                        </div>
+                        <div class="order-col">
+                            <div>expédition</div>
+                            <div><strong>GRATUIT</strong></div>
+                        </div>
+                        <div class="order-col">
+                            <div><strong>SOUS-TOTAL</strong></div>
+                            <div><strong class="order-total">
+                                    <%=panier.formattedSousTotals%>
+                                </strong></div>
+                        </div>
+                        <div class="order-col">
+                            <div>TPS(5%)</div>
+                            <div><strong>
+                                    <%=classPanier.formattedTotals(panier.TPS)%>
+                                </strong></div>
+                        </div>
+                        <div class="order-col">
+                            <div>TVQ(9.975%)</div>
+                            <div><strong>
+                                    <%=classPanier.formattedTotals(panier.TVQ)%>
+                                </strong></div>
+                        </div>
+
+                        <div class="order-col">
+                            <div><strong>TOTAL</strong></div>
+                            <div><strong class="order-total">
+                                    <%=panier.formattedTotals%>
+                                </strong></div>
+                        </div>
                     </div>
-                    <div class="order-col">
-                        <div>expédition</div>
-                        <div><strong>GRATUIT</strong></div>
+                    <div class="payment-method">
+                        <div class="input-radio">
+                            <input type="radio" name="payment" id="payment-1">
+                            <label for="payment-1">
+                                <span></span>
+                                Direct Bank Transfer
+                            </label>
+                            <div class="caption">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.</p>
+                            </div>
+                        </div>
+                        <div class="input-radio">
+                            <input type="radio" name="payment" id="payment-2">
+                            <label for="payment-2">
+                                <span></span>
+                                Cheque Payment
+                            </label>
+                            <div class="caption">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.</p>
+                            </div>
+                        </div>
+                        <div class="input-radio">
+                            <input type="radio" name="payment" id="payment-3">
+                            <label for="payment-3">
+                                <span></span>
+                                Paypal System
+                            </label>
+                            <div class="caption">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="order-col">
-                        <div><strong>SOUS-TOTAL</strong></div>
-                        <div><strong class="order-total"><%=panier.formattedSousTotals%></strong></div>
-                    </div>
-                    <div class="order-col">
-                        <div>TPS(5%)</div>
-                        <div><strong><%=classPanier.formattedTotals(panier.TPS)%></strong></div>
-                    </div>
-                    <div class="order-col">
-                        <div>TVQ(9.975%)</div>
-                        <div><strong><%=classPanier.formattedTotals(panier.TVQ)%></strong></div>
-                    </div>
-                    
-                    <div class="order-col">
-                        <div><strong>TOTAL</strong></div>
-                        <div><strong class="order-total"><%=panier.formattedTotals%></strong></div>
-                    </div>
+
+                    <a href="#" class="primary-btn order-submit">Placer Commande</a>
                 </div>
-                <div class="payment-method">
-                    <div class="input-radio">
-                        <input type="radio" name="payment" id="payment-1">
-                        <label for="payment-1">
-                            <span></span>
-                            Direct Bank Transfer
-                        </label>
-                        <div class="caption">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                    <div class="input-radio">
-                        <input type="radio" name="payment" id="payment-2">
-                        <label for="payment-2">
-                            <span></span>
-                            Cheque Payment
-                        </label>
-                        <div class="caption">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                    <div class="input-radio">
-                        <input type="radio" name="payment" id="payment-3">
-                        <label for="payment-3">
-                            <span></span>
-                            Paypal System
-                        </label>
-                        <div class="caption">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <a href="#" class="primary-btn order-submit">Placer Commande</a>
+                <!-- /Order Details -->
             </div>
-            <!-- /Order Details -->
+            <!-- /row -->
         </div>
-        <!-- /row -->
+        <!-- /container -->
     </div>
-    <!-- /container -->
-</div>
-<!-- /SECTION -->
-<%- include ('../partials/footer') %>
+    <!-- /SECTION -->
+    <%- include ('../partials/footer') %>
