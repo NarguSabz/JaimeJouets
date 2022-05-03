@@ -23,8 +23,9 @@ var panierRouter = require('./routes/panier');
 var proposRouter = require('./routes/propos');
 var commanderRouter = require('./routes/commander');
 var filtrerRouter = require('./routes/filtrer');
-var ModifierMotDePasseRouter = require('./routes/modifierMDP')
-var ModifierEmailRouter = require('./routes/modifierEmail')
+var ModifierMotDePasseRouter = require('./routes/modifierMDP');
+var ModifierEmailRouter = require('./routes/modifierEmail');
+var ModifierAdresseRouter = require('./routes/modifierAdresse');
 
 
 /*
@@ -63,6 +64,7 @@ app.use('/propos', proposRouter);
 app.use('/filtrer', filtrerRouter);
 app.use('/modifierMotDePasse', ModifierMotDePasseRouter);
 app.use('/modifierEmail', ModifierEmailRouter);
+app.use('/modifierAdresse', ModifierAdresseRouter);
 //catch 404 and forward to error handler
 //app.use(function(req, res, next) {
 //  next(createError(404));
