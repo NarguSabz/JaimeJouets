@@ -63,7 +63,7 @@
                         <%panier.produits.forEach(function(produit) { %>
                         <div class="order-col">
                             <div><%=produit.qty%>x <%=produit.nom%></div>
-                            <div><%=produit.prix%>$</div>
+                            <div><%=produit.prix * produit.qty%>$</div>
                         </div>
                         <%})%>
                     </div>
