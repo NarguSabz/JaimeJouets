@@ -1,0 +1,27 @@
+<%- include ('../partials/header') %>
+<body>
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h3 class="title">Modifier adresse</h3>
+                </div>
+            </div>
+            <form action="/modifierAdresse/adresseModifiee" method="post">
+                <input class="input" placeholder="Nouvelle adresse" name="newAdresse">
+                <br>
+                <br>
+                <button class="primary-btn cta-btn">Confirmation</button>
+            </form>
+
+            <br>
+            <%if (typeof items != 'undefined' && items.length>0) {%>
+                <p class="<%= items[1]%>" id="messageCreation"><strong><%= items[0]%></strong></p> 
+            <% }else {%>
+                <p class="createAlert" id="messageConnexion" ></p>
+            <% } %>
+        </div>
+    </div>
+</body>
+<%- include ('../partials/footer') %>
