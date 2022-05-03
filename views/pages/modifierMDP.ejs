@@ -8,15 +8,19 @@
                     <h3 class="title">Modifier mot de passe</h3>
                 </div>
             </div>
-            <form action="/modifierMotDePasse" method="post">
-                <input class="input" type="password" placeholder="Nouveau mot de passe">
+            <form action="/modifierMotDePasse/motDePasseModifie" method="post">
+                <input class="input" type="password" placeholder="Nouveau mot de passe" name="newMdp">
                 <br>
                 <br>
                 <button class="primary-btn cta-btn">Confirmation</button>
             </form>
 
             <br>
-
+            <%if (typeof items != 'undefined' && items.length>0) {%>
+                <p class="<%= items[1]%>" id="messageCreation"><strong><%= items[0]%></strong></p> 
+            <% }else {%>
+                <p class="createAlert" id="messageConnexion" ></p>
+            <% } %>
         </div>
     </div>
 </body>
