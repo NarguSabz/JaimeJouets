@@ -9,9 +9,10 @@
 
                 <div class="col-md-7">
                     <!-- Billing Details -->
+                    <form action="#">
                     <div class="billing-details">
                         <div class="section-title">
-                            <h3 class="title">Billing address</h3>
+                            <h3 class="title">DÉTAILS DU CONTACT</h3>
                         </div>
                         <div class="form-group">
                             <input class="input" type="text" name="first-name" placeholder="Prénom" required
@@ -34,26 +35,23 @@
                                 oninput="this.setCustomValidity('')">
                         </div>
                         <div class="form-group">
-                            <input class="input" type="text" name="city" placeholder="Ville">
+                            <input class="input" type="text" name="city" placeholder="Ville" required
+                            oninvalid="this.setCustomValidity('Veuillez entrer votre ville ici')"
+                            oninput="this.setCustomValidity('')">
                         </div>
                         <div class="form-group">
-                            <select>
-                                <option class="select-option" label="Select" value="">Select</option>
+                            <select class="input">
                                 <option class="select-option" label="Alberta" value="AB">Alberta</option>
-                                <option class="select-option" label="British Columbia" value="BC">British Columbia
-                                </option>
+                                <option class="select-option" label="British Columbia" value="BC">Colombie-Britannique</option>
                                 <option class="select-option" label="Manitoba" value="MB">Manitoba</option>
-                                <option class="select-option" label="New Brunswick" value="NB">New Brunswick</option>
-                                <option class="select-option" label="Newfoundland and Labrador" value="NL">Newfoundland
-                                    and Labrador</option>
-                                <option class="select-option" label="Northwest Territories" value="NT">Northwest
-                                    Territories</option>
-                                <option class="select-option" label="Nova Scotia" value="NS">Nova Scotia</option>
+                                <option class="select-option" label="New Brunswick" value="NB">Nouveau-Brunswick</option>
+                                <option class="select-option" label="Newfoundland and Labrador" value="NL">Terre-Neuve-et-Labrador</option>
+                                <option class="select-option" label="Northwest Territories" value="NT">Territoires du Nord-Ouest</option>
+                                <option class="select-option" label="Nova Scotia" value="NS">Nouvelle-Écosse</option>
                                 <option class="select-option" label="Nunavut" value="NU">Nunavut</option>
                                 <option class="select-option" label="Ontario" value="ON">Ontario</option>
-                                <option class="select-option" label="Prince Edward Island" value="PE">Prince Edward
-                                    Island</option>
-                                <option class="select-option" label="Quebec" value="QC">Quebec</option>
+                                <option class="select-option" label="Prince Edward Island" value="PE">l'Île-du-Prince-Édouard</option>
+                                <option class="select-option" label="Quebec" value="QC">Québec</option>
                                 <option class="select-option" label="Saskatchewan" value="SK">Saskatchewan</option>
                                 <option class="select-option" label="Yukon" value="YT">Yukon</option>
                             </select>
@@ -167,9 +165,10 @@
                             </div>
                         </div>
                     </div>
-
-                    <a href="#" class="primary-btn order-submit">Placer Commande</a>
+                    <button class="primary-btn order-submit">Placer Commande</button></div>
                 </div>
+            </form>
+
                 <!-- /Order Details -->
             </div>
             <!-- /row -->
