@@ -23,6 +23,7 @@ var panierRouter = require('./routes/panier');
 var proposRouter = require('./routes/propos');
 var commanderRouter = require('./routes/commander');
 var filtrerRouter = require('./routes/filtrer');
+var forgotPasswordRouter = require('./routes/forgotPassword');
 
 
 /*
@@ -60,6 +61,8 @@ app.use('/panier', panierRouter);
 app.use('/commander', commanderRouter);
 app.use('/propos', proposRouter);
 app.use('/filtrer', filtrerRouter);
+app.use('/forgotPassword', forgotPasswordRouter);
+
 //catch 404 and forward to error handler
 //app.use(function(req, res, next) {
 //  next(createError(404));

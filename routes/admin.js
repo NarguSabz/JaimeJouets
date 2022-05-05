@@ -31,7 +31,7 @@ router.get('/items/', function (req, res) {
     sess = req.session;
     utilisateur = sess.username;
     userMessageArray = ['', ''];
-         utilisateur= "test";
+        
     if (utilisateur == "test") {
         
         res.render('pages/admin-items.ejs', { login: "", accueil: "", creationCompte: "", produit: "", propos: "",items: userMessageArray, username: utilisateur,nbreParPage : 9,recherche:true, marque:"",q:"" });
@@ -56,7 +56,7 @@ router.get('/', function (req, res) {
     //verifier si l'utilsateur connecter est l'administrateur, sinon redirect l'utilisateur vers la page principale
     sess = req.session;
     utilisateur = sess.username;
-         utilisateur= "test";
+        
     userMessageArray = ['', ''];
     if (utilisateur == "test") {
        
@@ -73,7 +73,7 @@ router.get('/users/', function (req, res) {
     //verifier si l'utilsateur connecter est l'administrateur, sinon redirect l'utilisateur vers la page principale
     sess = req.session;
     utilisateur = sess.username;
-            utilisateur= "test";
+           
     userMessageArray = ['', ''];
     if (utilisateur == "test") {
     
