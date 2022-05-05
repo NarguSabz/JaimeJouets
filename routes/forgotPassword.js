@@ -6,8 +6,7 @@ var db = monk('localhost:27017/protodb');
 var request = require('request');
 var nodemailer = require('nodemailer');
 
-var tempReq;
-var tempRes;
+
 //ajout d'une connection a la base de donnees
 var utilisateur;
 
@@ -31,8 +30,7 @@ router.get('/', function (req, res) {
     utilisateur = sess.username;
     userMessageArray = ['', ''];
     if (utilisateur == undefined){
-        tempRes = res;
-        tempReq = req;
+
         res.render('pages/forgotPassword.ejs', { login: "active", accueil: "", creationCompte: "", produit: "", propos: "",items: userMessageArray,username: sess.username,nbreParPage :9,recherche:false, marque:req.query.marque,q:req.query.q});
     }else{
         res.redirect('/');
@@ -48,17 +46,22 @@ userPassword = "";
 db.collection("compte_client").find({ email: userEmail }, function (err, result) {
         //imprimer un message d'erreur si l'item n'existe pas dans la bd
         if (typeof result[0] == 'undefined') {  
-            userMessageTextGlobal = "l'adresse email" + userEmail + " est introuvable dans la base de donnée!";
+            userMessageTextGlobal = "l'adresse email " + userEmail + " est introuvable dans la base de donnée!";
             userMessageAlertGlobal = "alertBad";
-            printResult(userMessageTextGlobal,userMessageAlertGlobal);
+            userMessageArray = [userMessageTextGlobal, userMessageAlertGlobal];
+            res.render('pages/forgotPassword.ejs', { login: "active", accueil: "", creationCompte: "", produit: "", propos: "",items: userMessageArray,username: sess.username,nbreParPage :9,recherche:false, marque:req.query.marque,q:req.query.q});
+            res.end();
         } else {
-           if (result[0].username == userUsername)
+           if (result[0].username == userUsername){
                userPassword = result[0].mdp;
-               mailOptions = createEmailOptions(userEmail, userPassword);
+               mailOptions = createEmailOptions(userEmail, userPassword, userUsername);
                sendEmail(mailOptions);     
-                userMessageTextGlobal = "Mot de passe envoyé!";
-                userMessageAlertGlobal = "alertGood";
-                printResult(userMessageTextGlobal,userMessageAlertGlobal);
+               }
+               userMessageTextGlobal = "Mot de passe envoyer si le nom d'utilisateur correspont a l'adresse email!";
+               userMessageAlertGlobal = "alertGood";
+               userMessageArray = [userMessageTextGlobal, userMessageAlertGlobal];
+               res.render('pages/forgotPassword.ejs', { login: "active", accueil: "", creationCompte: "", produit: "", propos: "",items: userMessageArray,username: sess.username,nbreParPage :9,recherche:false, marque:req.query.marque,q:req.query.q});
+               res.end();
            }
   
         
@@ -68,18 +71,14 @@ db.collection("compte_client").find({ email: userEmail }, function (err, result)
 
  });  
 
- function printResult(userMessageTextTmp, userMessageAlertTmp) {
-    userMessageArray = [userMessageTextTmp, userMessageAlertTmp];
-    tempRes.render('pages/forgotPassword.ejs', { login: "active", accueil: "", creationCompte: "", produit: "", propos: "",items: userMessageArray});
-    tempRes.end();
-}
 
-function createEmailOptions(userEmail, userPassword){
+
+function createEmailOptions(userEmail, userPassword, userUsername){
  var mailOptions = {
   from: 'jaimejouet@outlook.com',
   to: userEmail,
   subject: 'mot de passe oublier!',
-  text: userPassword
+  text: "Le mot de passe pour " + userUsername + " est " + userPassword + "."
 };
 return mailOptions;
 }
