@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var monk = require('monk');
-var db = monk('localhost:27017/protodb');
+var db = monk('mongodb+srv://dbUser:dbUserpassword@cluster0.g2a61.mongodb.net/protodb');
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
+var url = "mongodb+srv://dbUser:dbUserpassword@cluster0.g2a61.mongodb.net/";
 
 var tempReq;
 var tempRes;
