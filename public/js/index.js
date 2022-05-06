@@ -140,6 +140,8 @@ function enlever(id) {
                 // document.getElementById("panier").innerHTML = '';
 
             } element2.insertAdjacentHTML("afterBegin", text);
+           
+
 
 
 
@@ -234,7 +236,7 @@ function ajouterQuantite(id, qty = 1) {
                 // document.getElementById("panier").innerHTML = '';
 
             } element2.insertAdjacentHTML("afterBegin", text);
-
+            document.getElementById("sousTotal2").innerHTML = document.getElementById("sousTotal").dataset.sous;
         });
     });
 }
