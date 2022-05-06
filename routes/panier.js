@@ -64,7 +64,8 @@ function sessionPanierVide() {
     TPS: 0,
     TVQ: 0,
     formattedSousTotals: '',
-    formattedTotals: ''
+    formattedTotals: '',
+    rabais: 0
   };
 }
 

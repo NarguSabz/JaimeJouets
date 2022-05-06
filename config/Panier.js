@@ -18,17 +18,33 @@ class Panier {
     }
     static calculateTotals(panier){
         panier.totals = 0;
-    panier.produits.forEach(item => {
-        let prix = item.prix;
-        let qty = item.qty;
-        let somme = prix * qty;
+        panier.produits.forEach(item => {
+            let prix = item.prix;
+            let qty = item.qty;
+            let somme = prix * qty;
 
-        panier.totals += somme;
-    });
-    panier.TPS=(panier.totals*5)/100;
-    panier.TVQ= (panier.totals*9.975)/100;
-    panier.formattedSousTotals= this.formattedTotals(panier.totals);
-    panier.formattedTotals= this.formattedTotals(panier.totals+panier.TPS+panier.TVQ);
+            panier.totals += somme;
+        });
+        panier.TPS=(panier.totals*5)/100;
+        panier.TVQ= (panier.totals*9.975)/100;
+        panier.formattedSousTotals= this.formattedTotals(panier.totals);
+        panier.formattedTotals= this.formattedTotals(panier.totals+panier.TPS+panier.TVQ);
+    }
+
+    static calculateRabais(panier, rabais){
+        panier.totals = 0;
+        panier.produits.forEach(item => {
+            let prix = item.prix;
+            let qty = item.qty;
+            let somme = prix * qty;
+
+            panier.totals += somme;
+        });
+        var rabaisEnDollards = (panier.totals * rabais/100)
+        panier.TPS=(panier.totals*5)/100;
+        panier.TVQ= (panier.totals*9.975)/100;
+        panier.formattedSousTotals= this.formattedTotals(panier.totals - rabaisEnDollards);
+        panier.formattedTotals= this.formattedTotals(panier.totals-rabaisEnDollards+panier.TPS+panier.TVQ);
     }
     
     static formattedTotals(totalAFormatee) {

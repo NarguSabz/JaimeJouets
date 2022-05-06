@@ -76,7 +76,8 @@ function insertUserPanier() {
         TPS: 0,
         TVQ: 0,
         formattedSousTotals: '',
-        formattedTotals: ''
+        formattedTotals: '',
+        rabais: 0
     };
     MongoClient.connect(url, function (err, db) {
         db.db("protodb").collection("panier").insertOne(myobj, function (err, res) {

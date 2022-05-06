@@ -79,6 +79,7 @@
                 </div>
 
                 <!-- Order Details -->
+                
                 <div class="col-md-5 order-details">
                     <div class="section-title text-center">
                         <h3 class="title">Votre Commande</h3>
@@ -120,6 +121,13 @@
                             <div>TVQ(9.975%)</div>
                             <div><strong>
                                     <%=classPanier.formattedTotals(panier.TVQ)%>
+                                </strong></div>
+                        </div>
+
+                        <div class="order-col">
+                            <div>Rabais</div>
+                            <div><strong>
+                                    <%=panier.rabais%>%
                                 </strong></div>
                         </div>
 
@@ -168,6 +176,17 @@
                     <button class="primary-btn order-submit">Placer Commande</button></div>
                 </div>
             </form>
+            <div class="col-md-5 order-details">
+                    <div class="section-title text-center">
+                        <h3 class="title">Rabais</h3>
+                    </div>
+                    <form action="/commander/reduction" method="post" name="rabais">
+                        <input type="text" name="code" placeholder="Code de réduction">
+                        <br>
+                        <br>
+                        <button class="primary-btn cta-btn">Appliquer</button>
+                    </form>
+                </div>
 
                 <!-- /Order Details -->
             </div>
