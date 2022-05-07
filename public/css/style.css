@@ -2252,4 +2252,21 @@ overflow: hidden;
                 50% 50% 
                 no-repeat;
 }
+.containerdiv {
+  border: 0;
+  float: left;
+  position: relative;
+  width: 100px;
+}
 
+.cornerimage {
+  border: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.etoile{
+  max-width: 100px;
+}
