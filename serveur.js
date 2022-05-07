@@ -82,6 +82,16 @@ app.use(function(err, req, res, next) {
   res.render('pages/error');
 });
 
+// success page 
+app.get('/success' , (req ,res ) => {
+  res.send("<html><body><script>alert('Félicitations! vous avez effectué le paiement avec succès'); window.location = 'http://localhost:2000/';</script></body></html>");
+})
+
+// error page 
+app.get('/err' , (req , res) => {
+  res.send("<html><body><script>alert('paiement non réussi'); window.location = 'http://localhost:2000/commander';</script></body></html>");
+})
+
 var serveur = app.listen(2000, function () {
     console.log("serveur fonctionne sur 2000... ! ");
 });
