@@ -130,20 +130,14 @@ function enlever(id) {
             enleverPage(id);
             //document.getElementById("panier").outerHTML = text;
             const element2 = document.querySelector('#panier');
-            console.log(element2);
             if (element2.firstChild != null) {
 
                 while (element2.firstChild) {
                     element2.removeChild(element2.firstChild);
                 }
-
                 // document.getElementById("panier").innerHTML = '';
 
             } element2.insertAdjacentHTML("afterBegin", text);
-           
-
-
-
 
         });
     });

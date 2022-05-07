@@ -29,7 +29,7 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
-  prix = req.session.panier.totals +req.session.panier.TPS+req.session.panier.TVQ;
+  prix = (req.session.panier.totals +req.session.panier.TPS+req.session.panier.TVQ).toFixed(2);
   var payment = {
     "intent": "authorize",
 "payer": {
@@ -41,13 +41,12 @@ router.post('/', function (req, res) {
 },
 "transactions": [{
 "amount": {
-"total": prix ,
+"total":prix ,
 "currency": "CAD"
 },
 "description": " un jouet "
 }]
 }
-console.log(req.session.panier.totals +req.session.panier.TPS+req.session.panier.TVQ)
 createPay( payment )
 .then( ( transaction ) => {
     var id = transaction.id; 
