@@ -114,6 +114,27 @@ function checkUserNameAvailable() {
 
             if (!result[0]) {
                 db.close();
+                
+                checkEmailAvailable();
+
+
+            }else{
+            db.close();
+            printResult("nom d'utilisateur deja utiliser!", "alertBad");
+            }
+            
+        });
+
+    });
+}
+
+function checkEmailAvailable() {
+    MongoClient.connect(url, function (err, db) {
+        db.db("protodb").collection("compte_client").find({ email: userEmail }).limit(1).toArray(function (err, result) {
+
+            if (!result[0]) {
+                db.close();
+                
                 insertUserPanier();
                 insertUserCompteClient();
 
@@ -121,7 +142,7 @@ function checkUserNameAvailable() {
 
             }else{
             db.close();
-            printResult("nom d'utilisateur utiliser!", "alertBad");
+            printResult("Email deja utiliser!", "alertBad");
             }
             
         });

@@ -46,7 +46,8 @@ router.delete('/deleteuser:id', function(req, res) {
 
   var userToDelete = req.params.id;
   db.collection('compte_client').remove({ 'username' : userToDelete }, function(err) {
-    res.send((err === null) ? { msg: '' } : { msg:'error: ' + err });
+    //res.send((err === null) ? { msg: '' } : { msg:'error: ' + err });
+    deleteOnePanier(userToDelete,res);
   });
 });
 
@@ -148,12 +149,42 @@ router.post('/users/', function (req, res) {
     
 });
 
+function deleteOnePanier(userToDelete,res) {
+  db.collection('panier').remove({ 'compte_client' : userToDelete }, function(err) {
+    //res.send((err === null) ? { msg: '' } : { msg:'error: ' + err });
+   
+  });
+}
+
+
 function checkUserNameAvailable() {
     MongoClient.connect(url, function (err, db) {
         db.db("protodb").collection("panier").find({ compte_client: userUsername }).limit(1).toArray(function (err, result) {
 
             if (!result[0]) {
                 db.close();
+                
+                checkEmailAvailable();
+
+               
+
+            }else{
+            db.close();
+            printResultUsers("nom d'utilisateur deja utiliser!", "alertBad");
+            }
+            
+        });
+
+    });
+}
+
+function checkEmailAvailable() {
+    MongoClient.connect(url, function (err, db) {
+        db.db("protodb").collection("compte_client").find({ email: userEmail }).limit(1).toArray(function (err, result) {
+
+            if (!result[0]) {
+                db.close();
+                
                 insertUserPanier();
                 insertUserCompteClient();
 
@@ -161,7 +192,7 @@ function checkUserNameAvailable() {
 
             }else{
             db.close();
-            printResultUsers("nom d'utilisateur utiliser!", "alertBad");
+            printResultUsers("Email deja utiliser!", "alertBad");
             }
             
         });
