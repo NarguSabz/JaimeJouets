@@ -35,6 +35,7 @@
     "mongodb": "^3.5.4",
     "monk": "^7.1.2",
     "mysql": "^2.18.1",
+    "paypal-rest-sdk": "^1.8.1",
     "request": "^2.88.2",
     "tether": "^2.0.0"
   }
