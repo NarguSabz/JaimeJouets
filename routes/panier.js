@@ -25,7 +25,7 @@ router.post('/ajouterPanier', (req, res) => {
   }
   utilisateur = sess.username;
     panier.ajouterAuPanier(req.body.produit, req.body.qty,req.session.panier);
-
+    sauvegarderPanier(req);
     res.end();
 
 });
@@ -45,6 +45,8 @@ router.get('/enlever/:id', (req, res) => {
 
   let id = req.params.id;
   panier.enleverProduit(parseInt(id, 10),req.session.panier);
+  sauvegarderPanier(req);
+
   res.redirect('/panier/quickview');
 });
 router.get('/ajouterQuantite/:id/:qty', (req, res) => {
@@ -54,6 +56,8 @@ router.get('/ajouterQuantite/:id/:qty', (req, res) => {
   let id = req.params.id;
   let qty = req.params.qty
   panier.ajouterQuantite(parseInt(id, 10), parseInt(qty, 10),req.session.panier);
+  sauvegarderPanier(req);
+
   res.redirect('/panier/quickview');
 });
 
@@ -66,6 +70,22 @@ function sessionPanierVide() {
     formattedSousTotals: '',
     formattedTotals: ''
   };
+}
+function sauvegarderPanier(req){
+  if (req.session.username) {
+    panierUser = req.session.panier;
+    db.collection("panier").findOneAndUpdate({ "compte_client": panierUser.compte_client }, {
+      $set:
+      {
+        produits: panierUser.produits,
+        totals: panierUser.totals,
+        TPS: panierUser.TPS,
+        TVQ: panierUser.TVQ,
+        formattedSousTotals: panierUser.formattedSousTotals,
+        formattedTotals: panierUser.formattedTotals
+      }
+    }).then((updatedDoc) => { console.log(updatedDoc) })
+  }
 }
 
 

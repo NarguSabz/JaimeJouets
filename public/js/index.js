@@ -307,8 +307,17 @@ function soumettre() {
     document.getElementById("selectorNombrePage").value = document.getElementById("selectorNombrePage").dataset.nbrePage;
     console.log(document.getElementById("selectorNombrePage").dataset.nbrePage+"lkl");  
 };*/
+onbeforeunload = function() {
 
-window.addEventListener("beforeunload", function (evt) {
+    if(Application.hasUnsavedChanges()) {
+      return 'You have unsaved changes. Please save them before leaving this page';
+    }
+  
+  
+  };
+
+
+window.addEventListener("beforeunload", function(event) {
     const params = {
         typeDeconnexion: 'ajax',
     }
@@ -319,6 +328,8 @@ window.addEventListener("beforeunload", function (evt) {
 
         }, body: JSON.stringify(params)
     });
+    (e || window.event).returnValue = null;
+    return null;
 });
 
 function filtrer() {

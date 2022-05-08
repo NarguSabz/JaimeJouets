@@ -15,7 +15,7 @@ router.get('/', function (req, res) {
 
 router.post('/deconnexion', function (req, res) {
   //save to cart de la base de donnees
-  console.log(req.session.panier)
+  console.log('req.session.panier')
   if (req.session.username) {
     panier = req.session.panier;
     db.collection("panier").findOneAndUpdate({ "compte_client": panier.compte_client }, {
