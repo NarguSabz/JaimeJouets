@@ -97,25 +97,26 @@ function onPageReloud() {
         });
     });
     try {
-  
-    document.getElementById("selectorNombrePage").value = document.getElementById("selectorNombrePage").dataset.nbrePage;
-    document.getElementById("selectorPrix").value = document.getElementById("selectorPrix").dataset.prix;
-    console.log(document.getElementById("selectorPrix").value);
-    var filtre = document.getElementById("aside").dataset.filtre;
-    var filtres = document.forms[1];
-    for (i = 0; i < filtres.length; i++) {
-        console.log(filtres[i].value == filtre + filtre)
 
-        if (filtres[i].value == filtre) {
-            $('#' + filtres[i].id).prop('checked', true);
-      }  }
-    }catch{}
-    
-    document.getElementById("progres5").style.width= document.getElementById("progres5").dataset.progres + "%";
-    document.getElementById("progres4").style.width= document.getElementById("progres4").dataset.progres + "%";
-    document.getElementById("progres3").style.width= document.getElementById("progres3").dataset.progres + "%";
-    document.getElementById("progres2").style.width= document.getElementById("progres2").dataset.progres + "%";
-    document.getElementById("progres1").style.width= document.getElementById("progres1").dataset.progres + "%";
+        document.getElementById("selectorNombrePage").value = document.getElementById("selectorNombrePage").dataset.nbrePage;
+        document.getElementById("selectorPrix").value = document.getElementById("selectorPrix").dataset.prix;
+        console.log(document.getElementById("selectorPrix").value);
+        var filtre = document.getElementById("aside").dataset.filtre;
+        var filtres = document.forms[1];
+        for (i = 0; i < filtres.length; i++) {
+            console.log(filtres[i].value == filtre + filtre)
+
+            if (filtres[i].value == filtre) {
+                $('#' + filtres[i].id).prop('checked', true);
+            }
+        }
+    } catch { }
+
+    document.getElementById("progres5").style.width = document.getElementById("progres5").dataset.progres + "%";
+    document.getElementById("progres4").style.width = document.getElementById("progres4").dataset.progres + "%";
+    document.getElementById("progres3").style.width = document.getElementById("progres3").dataset.progres + "%";
+    document.getElementById("progres2").style.width = document.getElementById("progres2").dataset.progres + "%";
+    document.getElementById("progres1").style.width = document.getElementById("progres1").dataset.progres + "%";
 
 }
 function enlever(id) {
@@ -140,6 +141,45 @@ function enlever(id) {
             } element2.insertAdjacentHTML("afterBegin", text);
 
         });
+        if(window.location =='http://localhost:2000/commander'){
+        fetch('/commander', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then(function (reponse) {
+            reponse.text().then(function (text) {
+                if (text.includes('vide')) {
+                    var g = document.createElement('script');
+                    var s = document.getElementsByTagName('script')[0];
+                    g.text = "alert('votre panier est vide!'); window.location = 'http://localhost:2000/';"
+                    s.parentNode.insertBefore(g, s);
+
+                } else {
+                    const element3 = document.querySelector('.order-summary');
+                    if (element3.firstChild != null) {
+
+                        while (element3.firstChild) {
+                            element3.removeChild(element3.firstChild);
+                        }
+                        // document.getElementById("panier").innerHTML = '';
+
+                    } element3.insertAdjacentHTML("afterBegin", text);
+
+                    const element = document.getElementsByClassName('order-summary').item(0);
+                    checkout = document.getElementById("checkout").innerHTML;
+                    if (element.firstChild != null) {
+
+                        while (element.firstChild) {
+                            element.removeChild(element.firstChild);
+                        }
+                        // document.getElementById("panier").innerHTML = '';
+
+                    } element.insertAdjacentHTML("afterBegin", checkout);
+                }
+            });
+        });}
     });
 
 }
@@ -284,13 +324,14 @@ window.addEventListener("beforeunload", function (evt) {
 function filtrer() {
 
     var filtres = document.forms[1];
-    var filtresJson = { marque: [], categorie: [], prix: [], evaluation:[] };
+    var filtresJson = { marque: [], categorie: [], prix: [], evaluation: [] };
 
     for (i = 0; i < filtres.length; i++) {
         if (filtres[i].checked) {
             if (filtres[i].name == "evaluation") {
-            var nom = filtres[i].name;
-            filtresJson[nom].push(Number(filtres[i].value));}else{
+                var nom = filtres[i].name;
+                filtresJson[nom].push(Number(filtres[i].value));
+            } else {
                 var nom = filtres[i].name;
                 filtresJson[nom].push(filtres[i].value);
             }
@@ -300,9 +341,10 @@ function filtrer() {
         }
 
     }
-    if(filtresJson.evaluation.length !=0){
+    if (filtresJson.evaluation.length != 0) {
         console.log(filtresJson.evaluation)
-    filtresJson.evaluation = [Math.min.apply(Math,filtresJson.evaluation)];}
+        filtresJson.evaluation = [Math.min.apply(Math, filtresJson.evaluation)];
+    }
 
     const params = {
         filtres: filtresJson,
