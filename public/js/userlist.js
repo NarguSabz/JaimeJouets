@@ -1,4 +1,4 @@
-//var $ = require("jquery");
+
 // DOM Ready =============================================================
 $(document).ready(function() {
   // Populate the user table on initial page load
@@ -92,10 +92,12 @@ function deleteUser(event) {
           }
 
           //Update the table
-          populateTable();
+          
       });
+    populateTable();
   } else {
       //If they said no to the confirm, do notiong
       return false;
   }
+    
 };

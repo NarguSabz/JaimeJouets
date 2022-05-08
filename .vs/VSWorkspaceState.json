@@ -2,14 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\public",
-    "\\public\\css",
-    "\\public\\fonts",
-    "\\public\\img",
+    "\\public\\js",
     "\\routes",
     "\\views",
     "\\views\\pages",
     "\\views\\partials"
   ],
-  "SelectedNode": "\\routes\\admin.js",
+  "SelectedNode": "\\public\\js\\itemlist.js",
   "PreviewInSolutionExplorer": false
 }

@@ -5,6 +5,8 @@ var db = monk('mongodb+srv://dbUser:dbUserpassword@cluster0.g2a61.mongodb.net/pr
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb+srv://dbUser:dbUserpassword@cluster0.g2a61.mongodb.net/";
 
+
+
 var tempReq;
 var tempRes;
 
@@ -218,21 +220,21 @@ function updateUser() {
 }
 
 function updateUserDocument() {
-const userInfoList = [userPassword,userFirstname,userLastname,userEmail,userAddress];
-const docInfoList = ["mdp","prenom","nom","email","adresse"];
-console.log(userInfoList);
+    const userInfoList = [userPassword,userFirstname,userLastname,userEmail,userAddress];
+    const docInfoList = ["mdp","prenom","nom","email","adresse"];
+    console.log(userInfoList);
 
-for (let i = 0; i < userInfoList.length; i++) {
-  if (userInfoList[i] != ""){
-    docTmp = docInfoList[i];
-    tempChange= userInfoList[i];
+        for (let i = 0; i < userInfoList.length; i++) {
+          if (userInfoList[i] != ""){
+            docTmp = docInfoList[i];
+            tempChange= userInfoList[i];
 
-    db.collection("compte_client").update({ username: userUsername }, { $set: { [docTmp]: tempChange } }).then(() => {
+            db.collection("compte_client").update({ username: userUsername }, { $set: { [docTmp]: tempChange } }).then(() => {
             
-        });
-  }
-}
- printResultUsers("utilisateur modifier!", "alertGood");      
+                });
+          }
+        }
+    printResultUsers("utilisateur modifier!", "alertGood");      
 
 }
 
@@ -332,6 +334,7 @@ function printResultUsers(userMessageTextTmp, userMessageAlertTmp) {
     userMessageArray = [userMessageTextTmp, userMessageAlertTmp];
     tempRes.render('pages/admin-users.ejs', { login: "", accueil: "", creationCompte: "", produit: "", propos: "",items: userMessageArray, username: utilisateur,nbreParPage : 9,recherche:true, marque:"",q:"" });
     tempRes.end();
+
 }
 
 //mettre a jour un document selon le radiobutton choisis (increment or set)
@@ -379,6 +382,8 @@ function setDocumentZero(docTmp) {
         });
      
 }
+
+
 /** deprecated
 function checkVarInt(){
     if (!isinstance(tempAmountChange, int) ||!isinstance(tempPriceChange, int)){
