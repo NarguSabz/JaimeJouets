@@ -306,7 +306,7 @@ function soumettre() {
 /*window.onload = (event) => {
     document.getElementById("selectorNombrePage").value = document.getElementById("selectorNombrePage").dataset.nbrePage;
     console.log(document.getElementById("selectorNombrePage").dataset.nbrePage+"lkl");  
-};*/
+};
 onbeforeunload = function() {
 
     if(Application.hasUnsavedChanges()) {
@@ -330,7 +330,7 @@ window.addEventListener("beforeunload", function(event) {
     });
     (e || window.event).returnValue = null;
     return null;
-});
+});*/
 
 function filtrer() {
 
