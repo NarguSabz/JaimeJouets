@@ -8,6 +8,6 @@
     "\\views\\pages",
     "\\views\\partials"
   ],
-  "SelectedNode": "\\public\\js\\itemlist.js",
+  "SelectedNode": "\\routes\\admin.js",
   "PreviewInSolutionExplorer": false
 }

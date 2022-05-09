@@ -6,7 +6,7 @@ $(document).ready(function() {
     // Username link click    
   $('#itemList table tbody').on('click', 'td a.linkshowuser', showUserInfo);     
   // Add User button click   
-  
+
  
   //Delete User link click
   $('#itemList table tbody').on('click', 'td a.linkdeleteuser', deleteUser);

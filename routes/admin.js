@@ -190,7 +190,7 @@ function checkEmailAvailable() {
                 insertUserPanier();
                 insertUserCompteClient();
 
-                printResultUsers("Creation du compte avec succes!", "alertGood");
+                
 
             }else{
             db.close();
@@ -263,7 +263,7 @@ function insertUserCompteClient() {
     MongoClient.connect(url, function (err, db) {
 
         db.db("protodb").collection("compte_client").insertOne(myobj, function (err, res) {
-
+            printResultUsers("Creation du compte avec succes!", "alertGood");
             if (err) throw err;
             db.close();
         });
