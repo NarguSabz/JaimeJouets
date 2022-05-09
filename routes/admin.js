@@ -120,6 +120,7 @@ router.post('/items/', function (req, res) {
             //mettre a jour les documents necessaires et les mettres a zero si negatif
             updateDocument("nombrestock", tempReq.body.incSetAmount, tempAmountChange);
             updateDocument("prix", tempReq.body.incSetPrice, tempPriceChange)
+
             positiveDocument();
             
                     
@@ -309,7 +310,7 @@ function checkOneFieldEmpty(fieldToCheck) {
 
 
 //imprimer le resultat final si tout est correcte
-function printFinishedResult(req) {
+function printFinishedResult() {
     db.collection("produits").find({ numid: tempItemId }, function (err, result) {
         
         
@@ -359,26 +360,45 @@ function setPosInt(intTmp) {
     return intTmp;
 }
 
+
 //mettre a zero un document si negatif
-function positiveDocument(docList) {
+function positiveDocument() {
     db.collection("produits").find({ numid: tempItemId }, function (err, result) {
         
-            if (result[0].nombrestock <= 0) 
+            if (result[0].nombrestock < 0) 
                 setDocumentZero("nombrestock");
+           
+            if (result[0].prix < 0) 
+                setDocumentPrixZero("prix");
             
-            if (result[0].prix <= 0) 
-                setDocumentZero("prix");
-
+            if (result[0].nombrestock < 0 || result[0].prix < 0){
+                positiveDocument();
+            }else{
+                printFinishedResult();
+            }
+            
+            
+            
+           
     });
-    printFinishedResult();    
+        
    
 }
+
 
 //mettre a zero un document 
 function setDocumentZero(docTmp) {
    
         db.collection("produits").update({ numid: tempItemId }, { $set: { [docTmp]: 0 } }).then(() => {
-      
+          
+        });
+     
+}
+//mettre a zero un document 
+function setDocumentPrixZero(docTmp) {
+   
+        db.collection("produits").update({ numid: tempItemId }, { $set: { [docTmp]: 0 } }).then(() => {
+            
         });
      
 }
