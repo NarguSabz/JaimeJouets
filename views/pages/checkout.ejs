@@ -106,6 +106,12 @@
                             <div><strong>GRATUIT</strong></div>
                         </div>
                         <div class="order-col">
+                            <div>Rabais</div>
+                            <div><strong>
+                                    <%=panier.rabais%>%
+                                </strong></div>
+                        </div>
+                        <div class="order-col">
                             <div><strong>SOUS-TOTAL</strong></div>
                             <div><strong class="order-total">
                                     <%=panier.formattedSousTotals%>
@@ -124,12 +130,7 @@
                                 </strong></div>
                         </div>
 
-                        <div class="order-col">
-                            <div>Rabais</div>
-                            <div><strong>
-                                    <%=panier.rabais%>%
-                                </strong></div>
-                        </div>
+                        
 
                         <div class="order-col">
                             <div><strong>TOTAL</strong></div>
@@ -183,6 +184,12 @@
                     <form action="/commander/reduction" method="post" name="rabais">
                         <input type="text" name="code" placeholder="Code de réduction">
                         <br>
+                        <br>
+                        <%if (typeof items != 'undefined' && items.length>0) {%>
+                            <p class="<%= items[1]%>" id="messageCreation"><strong><%= items[0]%></strong></p> 
+                        <% }else {%>
+                            <p class="createAlert" id="messageConnexion" ></p>
+                        <% } %>
                         <br>
                         <button class="primary-btn cta-btn">Appliquer</button>
                     </form>
