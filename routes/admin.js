@@ -43,7 +43,7 @@ router.get('/items/', function (req, res) {
    } 
 });
 
-/* DELETE to deleteuser. */
+//methode qui se charge de suprimer un compte_client
 router.delete('/deleteuser:id', function(req, res) {
 
   var userToDelete = req.params.id;
@@ -95,6 +95,7 @@ router.get('/itemlist/', function (req, res) {
 
 });
 
+//methode qui se charge de charger d'afficher la liste des users dans une table
 router.get('/userlist/', function (req, res) {
     db.collection('compte_client').find({}, {}, function (e, docs) {
         res.json(docs);
@@ -102,7 +103,7 @@ router.get('/userlist/', function (req, res) {
 
 });
 
-//methode qui se charge de faire les transactions lorsque le boutton est cliquer.
+//methode qui se charge de faire les modification aux items lorsque le boutton est cliquer.
 router.post('/items/', function (req, res) {
    
 
@@ -130,6 +131,7 @@ router.post('/items/', function (req, res) {
     });
 });
 
+//methode qui se charge de faire les modification aux utilisateurs lorsque le boutton est cliquer.
 router.post('/users/', function (req, res) {
     fillUserInput(req);
     tempRes = res;
@@ -152,6 +154,7 @@ router.post('/users/', function (req, res) {
     
 });
 
+//methode qui se charge de suprimer un panier
 function deleteOnePanier(userToDelete,res) {
   db.collection('panier').remove({ 'compte_client' : userToDelete }, function(err) {
     //res.send((err === null) ? { msg: '' } : { msg:'error: ' + err });
@@ -159,7 +162,7 @@ function deleteOnePanier(userToDelete,res) {
   });
 }
 
-
+//methode qui s'assure que le nom d'utilisateur n'est pas utiliser avant de faire les insertions
 function checkUserNameAvailable() {
     MongoClient.connect(url, function (err, db) {
         db.db("protodb").collection("panier").find({ compte_client: userUsername }).limit(1).toArray(function (err, result) {
@@ -181,6 +184,7 @@ function checkUserNameAvailable() {
     });
 }
 
+//methode qui s'assure que l'adresse email n'est pas utiliser avant de faire les insertions
 function checkEmailAvailable() {
     MongoClient.connect(url, function (err, db) {
         db.db("protodb").collection("compte_client").find({ email: userEmail }).limit(1).toArray(function (err, result) {
@@ -203,6 +207,7 @@ function checkEmailAvailable() {
     });
 }
 
+//methode qui met a jours les informations entrés d'un  utilisateur s'il existe dans la bd
 function updateUser() {
     MongoClient.connect(url, function (err, db) {
         db.db("protodb").collection("panier").find({ compte_client: userUsername }).limit(1).toArray(function (err, result) {
@@ -220,6 +225,7 @@ function updateUser() {
     });
 }
 
+//methode qui met a jours les informations entrés d'un  utilisateur
 function updateUserDocument() {
     const userInfoList = [userPassword,userFirstname,userLastname,userEmail,userAddress];
     const docInfoList = ["mdp","prenom","nom","email","adresse"];
@@ -239,6 +245,7 @@ function updateUserDocument() {
 
 }
 
+//methode qui insere un panier pour un utilisateur
 function insertUserPanier() {
 
     var myobj = {
@@ -258,6 +265,7 @@ function insertUserPanier() {
     });
 }
 
+//methode qui insere un compte_client pour un utilisateur
 function insertUserCompteClient() {
 
     var myobj = { username: userUsername, mdp: userPassword, prenom: userFirstname, nom: userLastname, email: userEmail, adresse: userAddress };
@@ -271,6 +279,7 @@ function insertUserCompteClient() {
 
     });
 }
+
 //remplir les variables globales necessaires au fonctionnement de la page
 function fillVariablesUpdateInput(req) {
     tempItemId = req.body.itemID.toString().trim();
@@ -278,6 +287,7 @@ function fillVariablesUpdateInput(req) {
     tempPriceChange = Number(req.body.priceChange);
 }
 
+//remplir les variables globales necessaires au fonctionnement de la page
 function fillUserInput(req) {
 
     userUsername = req.body.userUsername.toString().trim();
@@ -288,6 +298,8 @@ function fillUserInput(req) {
     userAddress = req.body.adresse.toString().trim();
 
 }
+
+//methode qui s'assure que plusieurs champs d'entrés sont remplis ou non
 function checkAllFieldsEmpty() {
     var missingAmount = 0;
 
@@ -301,6 +313,7 @@ function checkAllFieldsEmpty() {
     return Boolean(missingAmount);
 }
 
+//methode qui s'assure que un champs d'entrés est remplis ou non
 function checkOneFieldEmpty(fieldToCheck) {
     if (fieldToCheck.trim() == "") {
         return 1;
@@ -324,13 +337,14 @@ function printFinishedResult() {
     });
 }
 
-//imprimer un resultat 
+//methode qui affiche le resultat de les modifications d'un item
 function printResult(userMessageTextTmp, userMessageAlertTmp) {
     userMessageArray = [userMessageTextTmp, userMessageAlertTmp];
     tempRes.render('pages/admin-items.ejs', { login: "", accueil: "", creationCompte: "", produit: "", propos: "",items: userMessageArray, username: utilisateur,nbreParPage : 9,recherche:true, marque:"",q:"" });
     tempRes.end();
 }
 
+//methode qui affiche le resultat de les modifications d'un utilisateur
 function printResultUsers(userMessageTextTmp, userMessageAlertTmp) {
     userMessageArray = [userMessageTextTmp, userMessageAlertTmp];
     tempRes.render('pages/admin-users.ejs', { login: "", accueil: "", creationCompte: "", produit: "", propos: "",items: userMessageArray, username: utilisateur,nbreParPage : 9,recherche:true, marque:"",q:"" });
@@ -351,6 +365,7 @@ function updateDocument(docTmp, radioToCheck, tempChange) {
         });
     }
 }
+
 //mettre a zero un int negatif
 function setPosInt(intTmp) {
 
@@ -423,4 +438,5 @@ function setEmptyZero(){
         tempPriceChange = 0;  
 }
 */
+
 module.exports = router;

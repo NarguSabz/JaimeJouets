@@ -1,21 +1,17 @@
-//var $ = require("jquery");
-// DOM Ready =============================================================
+//Remplir le tableau et activer les liens lorsque le page est charger
 $(document).ready(function() {
-  // Populate the user table on initial page load
+
   populateTable();
+
 });
 
-// Functions =============================================================
-
-// Fill table with data
+//methode qui va remplir le tableau des items avec leurs informations a l'aide de jquery
 function populateTable() {
 
-  // Empty content string
   var tableContent = '';
-  // jQuery AJAX call for JSON
+
   $.getJSON( '/admin/itemlist', function( data ) {
 
-    // For each item in our JSON, add a table row and cells to the content string
     $.each(data, function(){
     
       tableContent += '<tr>';
@@ -26,8 +22,7 @@ function populateTable() {
       tableContent += '</tr>';
       
   });
-        // Inject the whole content string into our existing HTML table        $('#userList table tbody').html(tableContent);    });};
-    // Inject the whole content string into our existing HTML table
+
     $('#itemList table tbody').html(tableContent);
   });
 };

@@ -5,7 +5,6 @@ var request = require('request');
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb+srv://dbUser:dbUserpassword@cluster0.g2a61.mongodb.net/";
 
-
 var userUsername = "";
 var userPassword = "";
 var userFirstname = "";
@@ -14,9 +13,6 @@ var userEmail = "";
 var userAddress = "";
 var tempRes;
 var utilisateur;
-//var mongo = require('mongodb');
-//var monk = require('monk');
-//var db = monk('localhost:27017/protodb');
 
 //methode http chargee de la route /creerCompte
 router.get('/', function (req, res) {
@@ -67,7 +63,7 @@ router.post('/', function (req, res) {
 
 });
 
-
+//methode qui insere un panier pour un utilisateur
 function insertUserPanier() {
 
     var myobj = {
@@ -87,6 +83,7 @@ function insertUserPanier() {
     });
 }
 
+//methode qui insere un compte_client pour un utilisateur
 function insertUserCompteClient() {
 
     var myobj = { username: userUsername, mdp: userPassword, prenom: userFirstname, nom: userLastname, email: userEmail, adresse: userAddress };
@@ -101,6 +98,7 @@ function insertUserCompteClient() {
     });
 }
 
+//methode qui affiche le resultat de la creation d'un utilisateur
 function printResult(userMessageTextTmp, userMessageAlertTmp) {
     userMessageArray = [userMessageTextTmp, userMessageAlertTmp];
     tempRes.render('pages/creerUnCompte.ejs', { login: "", accueil: "", creationCompte: "active", produit: "", propos: "", items: userMessageArray, username: sess.username, nbreParPage: 9, recherche: false, marque: '', q: '' });
@@ -108,6 +106,7 @@ function printResult(userMessageTextTmp, userMessageAlertTmp) {
 
 }
 
+//methode qui s'assure que le nom d'utilisateur n'est pas utiliser avant de faire les insertions
 function checkUserNameAvailable() {
     MongoClient.connect(url, function (err, db) {
         db.db("protodb").collection("panier").find({ compte_client: userUsername }).limit(1).toArray(function (err, result) {
@@ -128,6 +127,7 @@ function checkUserNameAvailable() {
     });
 }
 
+//methode qui s'assure que l'adresse email n'est pas utiliser avant de faire les insertions
 function checkEmailAvailable() {
     MongoClient.connect(url, function (err, db) {
         db.db("protodb").collection("compte_client").find({ email: userEmail }).limit(1).toArray(function (err, result) {
@@ -150,6 +150,40 @@ function checkEmailAvailable() {
     });
 }
 
+//methode qui s'assure que plusieurs champs d'entrés sont remplis ou non
+function checkAllFieldsEmpty() {
+    var missingAmount = 0;
+
+    missingAmount += checkOneFieldEmpty(userUsername);
+    missingAmount += checkOneFieldEmpty(userPassword);
+    missingAmount += checkOneFieldEmpty(userFirstname);
+    missingAmount += checkOneFieldEmpty(userLastname);
+    missingAmount += checkOneFieldEmpty(userEmail);
+    missingAmount += checkOneFieldEmpty(userAddress);
+
+    return Boolean(missingAmount);
+}
+
+//methode qui s'assure que un champs d'entrés est remplis ou non
+function checkOneFieldEmpty(fieldToCheck) {
+    if (fieldToCheck.trim() == "") {
+        return 1;
+    }
+    return 0;
+}
+
+//methode qui remplis les variables globales
+function fillVariablesInput(req) {
+
+    userUsername = req.body.usernameCreate.toString().trim();
+    userPassword = req.body.passwordUser.toString().trim();
+    userFirstname = req.body.fname.toString().trim();
+    userLastname = req.body.lname.toString().trim();
+    userEmail = req.body.email.toString().trim();
+    userAddress = req.body.adresse.toString().trim();
+
+}
+
 /**     deprecated 
 function giveUserId() {
     MongoClient.connect(url, function (err, db) {
@@ -169,36 +203,6 @@ function giveUserId() {
     }
 */
 
-function checkAllFieldsEmpty() {
-    var missingAmount = 0;
-
-    missingAmount += checkOneFieldEmpty(userUsername);
-    missingAmount += checkOneFieldEmpty(userPassword);
-    missingAmount += checkOneFieldEmpty(userFirstname);
-    missingAmount += checkOneFieldEmpty(userLastname);
-    missingAmount += checkOneFieldEmpty(userEmail);
-    missingAmount += checkOneFieldEmpty(userAddress);
-
-    return Boolean(missingAmount);
-}
-
-function checkOneFieldEmpty(fieldToCheck) {
-    if (fieldToCheck.trim() == "") {
-        return 1;
-    }
-    return 0;
-}
-
-function fillVariablesInput(req) {
-
-    userUsername = req.body.usernameCreate.toString().trim();
-    userPassword = req.body.passwordUser.toString().trim();
-    userFirstname = req.body.fname.toString().trim();
-    userLastname = req.body.lname.toString().trim();
-    userEmail = req.body.email.toString().trim();
-    userAddress = req.body.adresse.toString().trim();
-
-}
 /**     deprecated 
 function sleep(milliseconds) {
     const date = Date.now();
