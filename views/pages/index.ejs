@@ -229,9 +229,8 @@
                                                         <%=produit.categories_id[0].nom %>
                                                             ans</p>
                                                             <div class="product-rating" style="justify-content: center;
-                                                            display: flex;padding-bottom: 60px;">
-                                                                <script
-                                                                    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                                                                                                                        display: flex;padding-bottom: 60px;">
+                                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
                                                                 <div class="containerdiv">
                                                                     <div>
                                                                         <img class="etoile" src="../img/stars_blank.png" alt="img">
@@ -242,8 +241,6 @@
                                                                         </div>
                                                                 </div>
                                                             </div>
-                                                    <div class="product-btns">
-                                                    </div>
                                                 </div>
                                                 <div class="add-to-cart">
                                                     <button class="add-to-cart-btn" onclick='ajoutAuPanier("<%=produit.nom%>","./img/<%=produit.numid %>/<%=produit.numid %>-1.jpg","<%=produit.numid%>","<%=produit.prix %>");'><i class="fa fa-shopping-cart"></i>Ajout au panier</button>
@@ -309,6 +306,7 @@
                                                                             <img class="etoile" src="../img/stars_full.png" alt="">
                                                                         </div>
                                                                 </div>
+                                                            </div>
                                                             </div>
                                                         <div class="add-to-cart">
                                                             <button class="add-to-cart-btn" onclick='ajoutAuPanier("<%=produits[i].nom%>","./img/<%=produits[i].numid %>/<%=produits[i].numid %>-1.jpg","<%=produits[i].numid%>","<%=produits[i].prix %>");'><i
