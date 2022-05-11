@@ -11,7 +11,7 @@ var utilisateur;
 
 //transporter pour envoyer des emails
 var transporter = nodemailer.createTransport({
-  service: 'hotmail',
+  service: 'Outlook365',
   auth: {
     user: 'jaimejouet@outlook.com',
     pass: 'tp2!jaime'
