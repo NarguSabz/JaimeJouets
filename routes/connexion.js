@@ -2,7 +2,9 @@ var express = require('express');
 var router = express.Router();
 var mongo = require('mongodb');
 var monk = require('monk');
-var db = monk('localhost:27017/protodb');
+var db = monk('mongodb+srv://dbUser:dbUserpassword@cluster0.g2a61.mongodb.net/protodb');
+
+
 var request = require('request');
 
 //ajout d'une connection a la base de donnees
@@ -47,7 +49,7 @@ router.post('/', function (req, res) {
                 db.collection("panier").find({ compte_client: req.body.username }, function (err, resultat) {
 
                     console.log(result);
-                    console.log(resultat[0]);
+                    console.log(resultat);
                     if (typeof result[0] == 'undefined') {
                     //message d'erreur pour un nom d'utilsateur incorrecte
                     userMessageText = "Combinaison du nom d'utilisateur et mot de passe incorrecte!";

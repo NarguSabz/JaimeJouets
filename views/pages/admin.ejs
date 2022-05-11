@@ -1,51 +1,32 @@
 <%- include ('../partials/header') %>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
 <body>
     <div class="container">
         <!-- row -->
         <div class="row">
             <div class="col-md-12">
                 <div class="section-title">
-                    <h3 class="title">Admin</h3>
+                    <h3 class="title">Admin - Panneau de configuration</h3>
                 </div>
             </div>
-                                     
-
-
-
-            <form action="/admin" method="post">
-                <input class="input" name="itemID" placeholder=" Exemple: 701 ">
-                <br>
-                <br>
-                <input class="input" type="number" name="amountChange" placeholder="Exemple: -3">
-                <br>
-                <br>
-                <button class="primary-btn cta-btn">Mettre a jour</button>
+                   
+           <form action="/admin/items" method="get">
+           <h4>Modifier le prix et la quantité d'un item</h4>
+                <button class="primary-btn cta-btn">Modifier le stock!</button>
             </form>
-
             <br>
-
-            <%if (typeof items != 'undefined' && items.length>0) {%>
-                <p class="<%= items[1]%>" id="messageCreation"><strong><%= items[0]%></strong></p> 
-            <% }else {%>
-                <p class="createAlert" id="messageConnexion" ></p>
-            <% } %>
-
-            <h3 class="title">liste des produits</h3>
-
-            <div id="itemList">
-            <table>
-                <thead>
-                <th>Id du produit</th>
-                <th>Nom</th>
-                <th>Stock</th>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-            </div>
-
+            <br>
+            <h4>Modifier la liste des utilisateurs et leurs informations</h4>
+            <form action="/admin/users" method="get">
+                <button class="primary-btn cta-btn">Modifier les utilisateurs!</button>
+            </form>
+            <br>
+            <br>
             
         </div>
     </div>
     </body>
+    <script type="text/javascript" src="/js/itemlist.js"> </script>
+
     <%- include ('../partials/footer') %>

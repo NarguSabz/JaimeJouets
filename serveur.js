@@ -26,11 +26,13 @@ var filtrerRouter = require('./routes/filtrer');
 var ModifierMotDePasseRouter = require('./routes/modifierMDP');
 var ModifierEmailRouter = require('./routes/modifierEmail');
 var ModifierAdresseRouter = require('./routes/modifierAdresse');
+var forgotPasswordRouter = require('./routes/forgotPassword');
 
 
 /*
 * parse all form data
 */
+app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use ( session ( { secret : crypto.randomBytes(20).toString("hex") ,saveUninitialized : false , resave : false } ) ) ;
@@ -65,6 +67,8 @@ app.use('/filtrer', filtrerRouter);
 app.use('/modifierMotDePasse', ModifierMotDePasseRouter);
 app.use('/modifierEmail', ModifierEmailRouter);
 app.use('/modifierAdresse', ModifierAdresseRouter);
+app.use('/forgotPassword', forgotPasswordRouter);
+
 //catch 404 and forward to error handler
 //app.use(function(req, res, next) {
 //  next(createError(404));
