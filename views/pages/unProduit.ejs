@@ -95,7 +95,6 @@
                         </div>
 
                         <ul class="product-btns">
-                            <li><a href="#"><i class="fa fa-heart-o"></i>Ajouter à la liste de souhaits</a></li>
                         </ul>
 
                         <ul class="product-links">
@@ -422,19 +421,14 @@
                                     <p class="product-category">pour
                                         <%=produit.categories_id[0].nom %> ans
                                     </p>
-                                    <div class="product-rating" style="justify-content: center;
-                                    display: flex;padding-bottom: 0px;">
-                                        <script
-                                            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-                                        <div class="containerdiv">
-                                            <div>
-                                                <img class="etoile" src="../img/stars_blank.png" alt="img">
-                                            </div>
-                                            <%pourcentage=(produit.moyen* 100) / 5 + "%" %>
-                                                <div class="cornerimage" style="width:<%= pourcentage %>;">
-                                                    <img class="etoile" src="../img/stars_full.png" alt="">
-                                                </div>
-                                        </div>
+                                    <div class="product-rating">
+                                        <%for(var l=0; l < produit.moyen ;l++ ){%>
+                                            <i class="fa fa-star"></i>
+                                            <%}for(var m=1; m < 5-produit.moyen; m++ ){%>
+                                                <i class="fa fa-star-o"></i>                                                         
+                                        <%}%>
+                                    </div>
+                                    <div class="product-btns">
                                     </div>
                                 </div>
                                 <div class="add-to-cart">
