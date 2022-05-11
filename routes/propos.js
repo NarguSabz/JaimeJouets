@@ -1,7 +1,7 @@
 var express = require('express');
 var mongo = require('mongodb');
 var monk = require('monk');
-var db = monk('localhost:27017/protodb');
+var db = monk('mongodb+srv://dbUser:dbUserpassword@cluster0.g2a61.mongodb.net/protodb');
 var router = express.Router();
 
 //methode http chargee de la route /accueil
