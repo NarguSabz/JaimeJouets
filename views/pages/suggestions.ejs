@@ -34,20 +34,25 @@
                 <!--on place le prix du produit-->
 
                 <h4 class="product-price">$<%=produits[j].prix %>
-                        <del class="product-old-price">$990.00</del>
                 </h4>
                 <!--on place la categorie d age du produit-->
 
                 <p class="product-category">pour
                     <%=produits[j].categories_id[0].nom %> ans
                 </p>
-                <div class="product-rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                </div>
+                <div class="product-rating" style="justify-content: center;
+                display: flex;padding-bottom: 60px;">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<div class="containerdiv">
+<div>
+<img class="etoile" src="../img/stars_blank.png" alt="img">
+</div>
+<%pourcentage=(produits[j].moyen* 100) / 5 + "%" %>
+<div class="cornerimage" style="width:<%= pourcentage %>;">
+<img class="etoile" src="../img/stars_full.png" alt="">
+</div>
+</div>
+</div>
                 <div class="product-btns">
                 </div>
             </div>
