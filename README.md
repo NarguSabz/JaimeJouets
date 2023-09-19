@@ -35,9 +35,10 @@ Pour utiliser ce projet localement, suivez ces étapes :
 2. Assurez-vous d'avoir Node.js et MongoDB installés.
 3. Exécutez npm install pour installer les dépendances du projet.
 4. Exécutez le serveur avec la commande node app.js.
-5.[guide-utilisation-jaime-jouet.docx](https://github.com/NarguSabz/JaimeJouets/files/12655378/guide-utilisation-jaime-jouet.docx)
+   
+[guide-utilisation-jaime-jouet.docx](https://github.com/NarguSabz/JaimeJouets/files/12655378/guide-utilisation-jaime-jouet.docx)
 
-##Contributeurs
+### Contributeurs
 * [NarguSabz](https://github.com/NarguSabz)
 * [castiel10k](https://github.com/castiel10k)
 * [Sirois-Olivier](https://github.com/Sirois-Olivier)
